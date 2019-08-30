@@ -1,4 +1,8 @@
 site_name: Git Breakdown
 nav:
     - Home: index.md
-theme: readthedocs
+    - Políticas: 
+        'Políticas de Branches': branches.md
+        'Políticas de Commits': commits.md
+
+theme: cinder
