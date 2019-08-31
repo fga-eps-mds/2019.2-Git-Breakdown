@@ -8,20 +8,20 @@
     
     
     
-    <link rel="../img/favicon.ico">
+    <link rel="../../../img/favicon.ico">
 
     
-    <title>Políticas de Branches - Git Breakdown</title>
+    <title>Sprint Review - Git Breakdown</title>
     
 
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
     <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-    <link href="../css/base.min.css" rel="stylesheet">
-    <link href="../css/cinder.min.css" rel="stylesheet">
-    <link href="../css/highlight.min.css" rel="stylesheet">
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../../css/highlight.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -61,7 +61,7 @@
 
             <!-- Main title -->
 
-            <a class="navbar-brand" href="..">Git Breakdown</a>
+            <a class="navbar-brand" href="../../..">Git Breakdown</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -71,7 +71,7 @@
                 
                 
                     <li >
-                        <a href="..">Home</a>
+                        <a href="../../..">Home</a>
                     </li>
                 
                 
@@ -82,28 +82,7 @@
                         
                             
 <li >
-    <a href="../comunicacao/">Plano de comunicação</a>
-</li>
-
-                        
-                        </ul>
-                    </li>
-                
-                
-                
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Políticas <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        
-                            
-<li class="active">
-    <a href="./">Políticas de Branches</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../commits/">Políticas de Commits</a>
+    <a href="../../../comunicacao/">Plano de comunicação</a>
 </li>
 
                         
@@ -113,6 +92,27 @@
                 
                 
                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Políticas <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../branches/">Políticas de Branches</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../commits/">Políticas de Commits</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sprints <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -123,13 +123,13 @@
         
             
 <li >
-    <a href="../sprints/planing/sprint0/">Sprint Planing</a>
+    <a href="../../planing/sprint0/">Sprint Planing</a>
 </li>
 
         
             
-<li >
-    <a href="../sprints/review/sprint0/">Sprint Review</a>
+<li class="active">
+    <a href="./">Sprint Review</a>
 </li>
 
         
@@ -150,12 +150,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../comunicacao/">
+                        <a rel="prev" href="../../planing/sprint0/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li >
-                        <a rel="next" href="../commits/">
+                    <li class="disabled">
+                        <a rel="next" >
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -169,70 +169,219 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#politica-de-branches">Política de Branches</a></li>
-            <li class="second-level"><a href="#historico-de-versoes">Histórico de Versões</a></li>
+        <li class="first-level active"><a href="#periodo">Período</a></li>
+        <li class="first-level "><a href="#monitoramento-e-controle">Monitoramento e Controle</a></li>
+            <li class="second-level"><a href="#presencas-sprint-plaining-sprint-review">Presenças Sprint Plaining + Sprint Review</a></li>
                 
-            <li class="second-level"><a href="#fluxo-de-branches">Fluxo de Branches</a></li>
+            <li class="second-level"><a href="#daily-meeting">Daily Meeting</a></li>
                 
-                <li class="third-level"><a href="#branches-principais">Branches Principais</a></li>
-                <li class="third-level"><a href="#feature-branch">Feature Branch</a></li>
-            <li class="second-level"><a href="#pull-request">Pull Request</a></li>
+        <li class="first-level "><a href="#status-das-tarefas-no-fim-da-sprint">Status das Tarefas no Fim da Sprint</a></li>
+        <li class="first-level "><a href="#retrospectiva">Retrospectiva</a></li>
+            <li class="second-level"><a href="#evolucao-de-conhecimento">Evolução de conhecimento</a></li>
                 
-            <li class="second-level"><a href="#nomenclatura">Nomenclatura</a></li>
-                
+        <li class="first-level "><a href="#dividas-tecnicas">Dívidas Técnicas</a></li>
+        <li class="first-level "><a href="#analise-scrum-master">Análise Scrum Master</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="politica-de-branches">Política de Branches</h1>
-<h2 id="historico-de-versoes">Histórico de Versões</h2>
+<h2 id="periodo">Período</h2>
+<p>Duração: 28/08 à 31/08</p>
+<h2 id="monitoramento-e-controle">Monitoramento e Controle</h2>
+<h3 id="presencas-sprint-plaining-sprint-review">Presenças Sprint Plaining + Sprint Review</h3>
 <table>
 <thead>
 <tr>
-<th>Data</th>
-<th>Autor</th>
-<th>Descrição</th>
-<th>Versão</th>
+<th><strong>Membros</strong></th>
+<th><strong>Presença</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>30/08/2019</td>
-<td>Mateus Oliveira</td>
-<td>Criação do documento</td>
-<td>1</td>
+<td>Lucas</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Diego</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Mateus</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Vitor Hugo</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Pedro Daia</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Paulo</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Pedro Daniel</td>
+<td>✘</td>
+</tr>
+<tr>
+<td>João Victor</td>
+<td>✘</td>
 </tr>
 </tbody>
 </table>
-<h2 id="fluxo-de-branches">Fluxo de Branches</h2>
-<p>Para garantir um fluxo de trabalho contínuo e de forma padronizada possibilitando o rastreamento das funcionalidades desenvolvidas e facilitando a implementação de  <em>pipelines</em>  de integração(CI) e entrega(CD) contínua, será utilizada a estratégia de  <strong>Git Flow</strong>  com a seguinte exceção: 
-- Não será utilizada o fluxo de branch para  <code>hotfix</code>, <code>release</code> ou <code>docs</code>.</p>
-<p>Os conceitos chave para implementação da estratégia de  <strong>Git Flow</strong>  que serão utilizadas pelo grupo são:</p>
-<p><code>Main Branches</code></p>
-<p><code>Feature Branch</code></p>
-<p><code>Pull Request</code></p>
-<p>Exemplo do fluxo de branches:</p>
-<p><img alt="" src="https://i.imgur.com/hUZvZ7p.png" /></p>
-<h3 id="branches-principais">Branches Principais</h3>
-<p>Essencialmente o repositório deve possuir duas branches principais: <code>master</code> e <code>develop</code></p>
-<p>A branch  <code>master</code>  possui sempre a versão mais estável da aplicação, ou seja a versão que deve estar pronta para produção.</p>
-<p>Já a branch  <code>develop</code>  possui a última versão desenvolvida da aplicação. Essa branch pode ser considerada a branch de integração, onde as diferentes funcionalidades desenvolvidas vão ser unidas em uma nova versão do sistema.</p>
-<h3 id="feature-branch">Feature Branch</h3>
-<p>Consiste na criação de uma nova branch a partir da branch com a última versão da aplicação sempre que for iniciado o trabalho em uma nova funcionalidade ou história de usuário.</p>
-<h2 id="pull-request">Pull Request</h2>
-<p>Toda nova <em>feature</em> desenvolvida deve ser integrada à branch <code>develop</code> por meio de um processo de <strong>Pull Request</strong>, que consiste em revisar o código a ser integrado, além de validar a integridade da nova funcionalidade utilizando das ferramentas de integração contínua.</p>
-<p>Para publicar uma nova versão estável da aplicação na branch <code>master</code> é necessário realizar um <strong>Pull Request</strong> da branch <code>develop</code> para a <code>master</code>. Assim garantido a revisão da nova versão do código.</p>
-<h2 id="nomenclatura">Nomenclatura</h2>
-<p>Toda branch deve estar necessariamente estar relacionada a uma funcionalidade ou correção, logo a uma <em>Issue</em>. O nome da branch deve estar em INGLÊS seguindo o padrão:</p>
+<h3 id="daily-meeting">Daily Meeting</h3>
+<table>
+<thead>
+<tr>
+<th>Membros</th>
+<th>Quarta-feira</th>
+<th>Quinta-feira</th>
+<th>Sexta-Feira</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lucas</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Vitor Hugo</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Pedro Daia</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Paulo</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Pedro Daniel</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>João Victor</td>
+<td>✔</td>
+<td>✔</td>
+<td>✘</td>
+</tr>
+</tbody>
+</table>
+<h2 id="status-das-tarefas-no-fim-da-sprint">Status das Tarefas no Fim da Sprint</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Issue</strong></th>
+<th><strong>História</strong></th>
+<th><strong>Resposáveis</strong></th>
+<th><strong>Status</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/15">#15</a></td>
+<td>Criar orçamento do projeto</td>
+<td>Diego</td>
+<td>Pronto</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/14">#14</a></td>
+<td>criar plano de gerenciamento de risco</td>
+<td>Lucas</td>
+<td>Pronto</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/13">#13</a></td>
+<td>criar plano de gerenciamento de projeto</td>
+<td>Lucas</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/10">#10</a></td>
+<td>criar eap</td>
+<td>Diego</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/9">#9</a></td>
+<td>criar o tap</td>
+<td>Diego</td>
+<td>Pronto</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/8">#8</a></td>
+<td>criar politica de pull request</td>
+<td>Mateus</td>
+<td>Pronto</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/7">#7</a></td>
+<td>criar documento de visão</td>
+<td>Paulo, Pedro Daia, Pedro Daniel, João Victor, Victor Hugo, Mateus</td>
+<td>Nova</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/4">#4</a></td>
+<td>criar politica de commits</td>
+<td>Mateus</td>
+<td>Desenvolvimento</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/3">#3</a></td>
+<td>criar politica de issues</td>
+<td>Diego</td>
+<td>Pronto</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/6">#6</a></td>
+<td>criar github pages</td>
+<td>Mateus</td>
+<td>Pronto</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/2">#2</a></td>
+<td>Iniciar primeiros treinamentos</td>
+<td>Lucas, Paulo, Pedro Daia, Pedro Daniel, João Victor, Victor Hugo, Diego</td>
+<td>Pronto</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/1">#1</a></td>
+<td>criar plano de comunicação</td>
+<td>Lucas</td>
+<td>Pronto</td>
+</tr>
+</tbody>
+</table>
+<h2 id="retrospectiva">Retrospectiva</h2>
+<h3 id="evolucao-de-conhecimento">Evolução de conhecimento</h3>
+<p><img alt="Evoluçao" src="https://i.imgur.com/buNdVD0.png" /></p>
+<h2 id="dividas-tecnicas">Dívidas Técnicas</h2>
 <ul>
 <li>
-<p>Para funcionalidades: <code>feat#NÚMERO_DA_ISSUE/descrição_curta</code></p>
+<p>Comunicação falha entre a equipe</p>
 </li>
 <li>
-<p>Para correções: <code>fix#NÚMERO_DA_ISSUE/descrição_curta</code></p>
+<p>Faltou backlog do produto para esta semana</p>
+</li>
+<li>
+<p>Controle de tempo entre a equipe de desenvolvimento</p>
 </li>
 </ul>
-<p>Exemplo: <code>feat#24/easy_auth</code></p></div>
+<h2 id="analise-scrum-master">Análise Scrum Master</h2>
+<p>A equipe de MDS demonstrou interesse e buscou maneiras de definir a tecnologia para primeira reunião. Tivemos um atraso para iniciar pois não estava definida a equipe, logo não tivemos sprint plaining antes da primeira Sprint. Demos um avanço grande nas documentações, porém está um pouco nebuloso o escopo do projeto. A equipe de EPS buscou atender as dificuldades da equipe de desenvolvimento.</p></div>
         
         
     </div>
@@ -247,13 +396,13 @@
         
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../js/bootstrap-3.0.3.min.js"></script>
-    <script src="../js/highlight.pack.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script>var base_url = ".."</script>
+    <script>var base_url = "../../.."</script>
     
-    <script src="../js/base.js"></script>
-    <script src="../search/main.js"></script>
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
