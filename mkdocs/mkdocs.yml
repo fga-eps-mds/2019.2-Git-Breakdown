@@ -6,5 +6,9 @@ nav:
     - Políticas: 
         'Políticas de Branches': branches.md
         'Políticas de Commits': commits.md
+    - Sprints:
+        'Sprint 0':
+            'Sprint Planing': sprints/planing/sprint0.md
+            'Sprint Review': sprints/review/sprint0.md
 
 theme: cinder
