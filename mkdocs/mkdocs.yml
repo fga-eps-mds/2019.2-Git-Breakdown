@@ -1,6 +1,8 @@
 site_name: Git Breakdown
 nav:
     - Home: index.md
+    - Planos: 
+        'Plano de comunicação': comunicacao.md
     - Políticas: 
         'Políticas de Branches': branches.md
         'Políticas de Commits': commits.md
