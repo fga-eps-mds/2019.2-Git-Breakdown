@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../img/favicon.ico">
+
+    
+    <title>Visão - Git Breakdown</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link href="../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">Git Breakdown</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentos <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Visão</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../tap/">Termo de Abertura</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../eap/">Estrutura Analítica</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../orcamento_inicial/">Orçamento Inicial</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Planos <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../comunicacao/">Comunicação</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../riscos/">Gerenciamento de riscos</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../plano_de_gerenciamento_de_projeto/">Gerenciamento de projeto</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Políticas <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../branches/">Branches</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../commits/">Commits</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Issues</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sprints <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Sprint 0</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../sprints/planing/sprint0/">Sprint Planing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sprints/review/sprint0/">Sprint Review</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Sprint 1</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../sprints/planing/sprint1/">Sprint Planing</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="..">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../tap/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#historico-de-versoes">Histórico de versões</a></li>
+        <li class="first-level "><a href="#1-introducao">1. Introdução</a></li>
+        <li class="first-level "><a href="#2-posicionamento">2. Posicionamento</a></li>
+        <li class="first-level "><a href="#3-descricoes-da-parte-interessada-e-do-usuario">3. Descrições da Parte Interessada e do Usuário</a></li>
+            <li class="second-level"><a href="#31-demograficos-de-mercado">3.1 Demográficos de Mercado</a></li>
+                
+            <li class="second-level"><a href="#32-resumo-da-parte-interessada">3.2 Resumo da parte interessada</a></li>
+                
+            <li class="second-level"><a href="#33-resumo-do-usuario">3.3 Resumo do usuário</a></li>
+                
+        <li class="first-level "><a href="#4-visao-geral-do-produto">4. Visão Geral do Produto</a></li>
+            <li class="second-level"><a href="#42-resumo-das-capacidades">4.2 Resumo das Capacidades</a></li>
+                
+        <li class="first-level "><a href="#5-recursos-do-produto">5. Recursos do Produto</a></li>
+            <li class="second-level"><a href="#51-burndown-chart">5.1 BurnDown Chart</a></li>
+                
+            <li class="second-level"><a href="#52-velocity">5.2 Velocity</a></li>
+                
+            <li class="second-level"><a href="#53-commits">5.3 Commits</a></li>
+                
+            <li class="second-level"><a href="#54-interacao-com-a-comunidade">5.4 Interação com a comunidade</a></li>
+                
+            <li class="second-level"><a href="#55-visualizacoes-favoritos-e-forks">5.5 Visualizações, favoritos e forks</a></li>
+                
+        <li class="first-level "><a href="#6-restricoes">6. Restrições</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="historico-de-versoes">Histórico de versões</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29/08/2019</td>
+<td>0.1</td>
+<td>Estrutura Inicial</td>
+<td>Pedro Daniel</td>
+</tr>
+<tr>
+<td>29/08/2019</td>
+<td>0.2</td>
+<td>Iniciando tópico sobre as partes interessadas</td>
+<td>João V.</td>
+</tr>
+<tr>
+<td>01/09/2019</td>
+<td>0.3</td>
+<td>Montando escopo,  propósito e visão geral do produto</td>
+<td>Victor H., Pedro Daniel</td>
+</tr>
+<tr>
+<td>02/09/2019</td>
+<td>0.4</td>
+<td>Atualizando os tópicos de introdução e posicionamento</td>
+<td>Paulo H.</td>
+</tr>
+<tr>
+<td>03/09/2019</td>
+<td>0.5</td>
+<td>Reedição do escopo e delimitando instrução do problema</td>
+<td>Victor H.</td>
+</tr>
+<tr>
+<td>03/09/2019</td>
+<td>0.6</td>
+<td>Criando instrução de problema, posição de produto, demográficos de mercado e resumo da parte interessada</td>
+<td>Paulo H.</td>
+</tr>
+<tr>
+<td>03/09/2019</td>
+<td>0.7</td>
+<td>Atualizando o tópico sobre visão geral do produto e editando recursos do produto</td>
+<td>João V., Victor H.</td>
+</tr>
+<tr>
+<td>05/09/2019</td>
+<td>0.8</td>
+<td>Editando restrições do produto</td>
+<td>Victor H.</td>
+</tr>
+<tr>
+<td>05/09/2019</td>
+<td>1.0</td>
+<td>Revisão e adaptação para markdown</td>
+<td>Pedro Daniel, João V.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-introducao">1. Introdução</h2>
+<p>A declaração a seguir tem como finalidade expor as premissas de desenvolvimento e usabilidade de um produto. O Git Breakdown desponta de uma extensão para navegadores a qual tem como principal propósito incrementar a gama de aplicações GitHub que trabalha com aferição e análise estatística, aplicada ao monitoramento do desempenho de contribuidores envolvidos em um projeto. Esta análise visa expor, compreender e aperfeiçoar todas as fases que compõem a realização de um projeto.</p>
+<p>### 1.1 Propósito</p>
+<p>O propósito deste documento será definir o problema, a oportunidade de negócio contida no projeto, os perfis das partes interessadas e do usuário, assim como descrever a visão geral do produto, os recursos, restrições e especificações do sistema.</p>
+<p>### 1.2 Escopo</p>
+<p>Esse documento tem o objetivo de explanar o plugin Git BreakDown. Uma extensão para auxiliar no acompanhamento de projetos de software que utilizam a plataforma GitHub para controle de versionamento.</p>
+<p>Desenvolvido para o auxílio de equipes que utilizam as metodologias ágeis de desenvolvimento de software, para gestores de times, e para usuários que acompanham o ciclo de vida de projetos no GitHub.</p>
+<p>### 1.3 Definições, Acrônimos e Abreviações</p>
+<p><strong>API:</strong> Application Programming Interface. Em português significa Interface de Programação de Aplicações, é uma das formas de integrar sistemas.</p>
+<p><strong>GitHub:</strong> Plataforma de hospedagem de código-fonte com controle de versão.</p>
+<p><strong>Dashboard:</strong> Interface gráfica que fornece indicadores de desempenho e uma visão geral de andamento/progresso.</p>
+<p><strong>ZenHub:</strong> Extensão para navegadores que adiciona ferramentas de gerenciamento diretamente na interface do GitHub.</p>
+<p>### 1.4 Visão Geral</p>
+<p>Tem-se por finalidade deste documento apresentar de forma simples e didática o engajamento do produto no que tange a problemática inicial.</p>
+<p>Abordando, por tópicos, todas as funcionalidades do projeto: descrição do contexto em que atua, exposição de sua finalidade, detalhamento de técnicas utilizadas, leitura e exposição de dados metrificados.</p>
+<h2 id="2-posicionamento">2. Posicionamento</h2>
+<p>### 2.1 Oportunidade de Negócios</p>
+<p>A equipe de desenvolvimento do projeto tem como planejamento a criação de uma ferramenta que analisa e traça métricas, as quais abordam dados estatísticos sobre a evolução de um projeto de software. Com tal coleta de informações, espera-se que um gerenciador possa ter mais clareza ao tomar decisões, visto que o mesmo irá dispor de uma série de informações numéricas que representam o desempenho da equipe e de quem a compõe.</p>
+<p>### 2.2 Instrução do problema</p>
+<p>Um modelo de negócios, certamente deve buscar uma crescente evolução na eficiência de seus métodos. Para que tal objetivo seja alcançado, faz-se necessário aferir métricas sobre os projetos, funcionários, qualidade de trabalho, tempo gasto, pareamento de conhecimentos dentre outros.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Problema</td>
+<td>Melhorar a eficiência dentro de um modelo de desenvolvimento de software</td>
+</tr>
+<tr>
+<td>Afetados</td>
+<td>Projetos de desenvolvimento do software que usam a plataforma GitHub</td>
+</tr>
+<tr>
+<td>Impactos</td>
+<td>Ampliação da base de dados estatísticos, aprimoramento da eficácia na tomada de decisões</td>
+</tr>
+<tr>
+<td>Solução</td>
+<td>A extensão atua na captação de dados provindos do GitHub e desenvolverá análises especiais, voltadas ao modelo de negócios</td>
+</tr>
+</tbody>
+</table>
+<p>### 2.3 Instrução de Posição de Produto</p>
+<p>A captação e tratamento destes dados podem inferir pontos decisivos na evolução do processo como um todo. A proposta da extensão Git Breakdown configura-se em atuar na coleta das referências de rendimento, tratar e propor informações de qualidade, as quais antes se encontravam ocultas ou fora do espectro de visão.</p>
+<p>Para maior confiabilidade dos dados apresentados, toda coleta de conteúdo é aplicada a uma série de métodos probabilísticos e estatísticos de alto desempenho, com a finalidade de normalizar e expor as métricas mais fiéis a situação.</p>
+<h2 id="3-descricoes-da-parte-interessada-e-do-usuario">3. Descrições da Parte Interessada e do Usuário</h2>
+<p>A parte interessada, encarregada do desenvolvimento do produto, que também se enquadra como potenciais usuários do sistema, visa proporcionar aos usuários do GitHub uma melhor experiência no desenvolvimento e acompanhamento de projetos diante a análise de estatísticas e desempenhos.</p>
+<h3 id="31-demograficos-de-mercado">3.1 Demográficos de Mercado</h3>
+<p>O avanço tecnológico vigente, estimula a implementação de tecnologias associadas à rotina. Para com este fenômeno, faz-se urgente o desenvolvimento de inúmeros algoritmos com intuito de resolver problemas do cotidiano de um projeto de software.</p>
+<p>Portanto, é de se concluir que o desenvolvimento de softwares voltados a essa problemática encontra-se em processo crescente de evolução. Logo, várias metodologias surgem, muitas vezes em casos particulares e sem comprovação válida de sua eficiência.</p>
+<p>Partindo deste pressuposto, o Git Breakdown toma postura frente à análise dos métodos existentes, e oferece uma alta gama de informações que espelham a desenvoltura do projeto. Com isso, gerentes de projetos podem inferir erros e acertos em suas metodologias, melhorando a qualidade e eficiência do produto final.</p>
+<h3 id="32-resumo-da-parte-interessada">3.2 Resumo da parte interessada</h3>
+<p>Equipes de desenvolvimento de software que usam a plataforma GitHub. Tais equipes podem ser formadas por empresas, instituições de ensino ou grupos interessados pelo assunto.</p>
+<h3 id="33-resumo-do-usuario">3.3 Resumo do usuário</h3>
+<p>A plataforma desponta de artifícios para todo os usuários GitHub, com foco para: gestores de equipes de alto, médio e baixo desempenho; desenvolvedores individuais e terceiros interessados. A interação com o usuário possui vários níveis de referência, partindo de alvos mais simples como a própria exposição de dados, perdurando até avançadas métricas estatísticas.</p>
+<h2 id="4-visao-geral-do-produto">4. Visão Geral do Produto</h2>
+<p>O projeto consiste em uma ferramenta de monitoramento de repositório com interface integrada ao Github. A partir da mesma é possível ter controle sobre os dados das atividades de contribuidores de determinado projeto.</p>
+<p>### 4.1 Perspectiva do Produto</p>
+<p>Trata-se de uma extensão do navegador Google Chrome, com sua interface integrada ao GitHub. Existem outras extensões que auxiliam o desenvolvimento de projetos dentro da plataforma de versionamento citada, como o ZenHub, por exemplo, e até mesmo dashboards que monitoram as atividades em repositórios, como o produto apresentado, porém a intenção é aprimorar a experiência do usuário em relação aos produtos semelhantes.</p>
+<h3 id="42-resumo-das-capacidades">4.2 Resumo das Capacidades</h3>
+<p>O produto tem como finalidade a criação de um dashboard para monitorar atividades em um repositório, com enfoque na experiência do usuário, para que seja possível otimizar a produtividade de projetos. O sistema gera dados numéricos, representados graficamente, da atividade dos desenvolvedores no projeto em questão.</p>
+<h2 id="5-recursos-do-produto">5. Recursos do Produto</h2>
+<h3 id="51-burndown-chart">5.1 BurnDown Chart</h3>
+<p>Recurso que cria um gráfico de relação linear dos pontos abertos no início da sprint, até o final dela.</p>
+<h3 id="52-velocity">5.2 Velocity</h3>
+<p>Recurso Gráfico que permite analisar o quanto uma equipe pode produzir durante uma sprint.</p>
+<h3 id="53-commits">5.3 Commits</h3>
+<ul>
+<li>Quantidade de commits por pessoa;</li>
+<li>Porcentagens individuais de commits em relação as sprints anteriores;</li>
+<li>Quantidade de commits em nível global;</li>
+<li>Quantidade de commits em porcentagens de nível global em relação as sprints anteriores.</li>
+</ul>
+<h3 id="54-interacao-com-a-comunidade">5.4 Interação com a comunidade</h3>
+<ul>
+<li>Comentários feitos por não-contribuintes;</li>
+<li>Issues abertas por não-contribuintes.</li>
+</ul>
+<h3 id="55-visualizacoes-favoritos-e-forks">5.5 Visualizações, favoritos e forks</h3>
+<p>Série histórica de acompanhamento de visualizações, favoritações e forks feita no repositório.</p>
+<h2 id="6-restricoes">6. Restrições</h2>
+<ul>
+<li>O Git BreakDown opera apenas no navegador Google Chrome;</li>
+<li>É necessário que o repositório em análise siga uma metodologia previamente definida de issues/commits/pull requests para que a ferramenta tenha uma análise consistente;<ul>
+<li>O plugin opera de forma inapropriada em repositórios sem uma política definitiva.</li>
+</ul>
+</li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

@@ -11,7 +11,7 @@
     <link rel="../img/favicon.ico">
 
     
-    <title>Commits - Git Breakdown</title>
+    <title>Termo de Abertura - Git Breakdown</title>
     
 
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -76,7 +76,7 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentos <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -87,8 +87,8 @@
 
                         
                             
-<li >
-    <a href="../tap/">Termo de Abertura</a>
+<li class="active">
+    <a href="./">Termo de Abertura</a>
 </li>
 
                         
@@ -136,7 +136,7 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Políticas <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -147,8 +147,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Commits</a>
+<li >
+    <a href="../commits/">Commits</a>
 </li>
 
                         
@@ -216,12 +216,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../branches/">
+                        <a rel="prev" href="../documento_visao/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../issues/">
+                        <a rel="next" href="../eap/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -235,24 +235,30 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#politica-de-commits">Política de Commits</a></li>
-            <li class="second-level"><a href="#historico-de-versoes">Histórico de Versões</a></li>
+        <li class="first-level active"><a href="#termo-de-abertura">Termo de Abertura</a></li>
+            <li class="second-level"><a href="#1-introducao">1.  Introdução</a></li>
                 
-            <li class="second-level"><a href="#principios-basicos">Princípios básicos</a></li>
+            <li class="second-level"><a href="#2-descricao-do-projeto">2.  Descrição do projeto</a></li>
                 
-                <li class="third-level"><a href="#1-faca-commits-atomicos">1 - Faça  commits  atômicos</a></li>
-                <li class="third-level"><a href="#2-sempre-escrever-commits-em-ingles">2 - Sempre escrever  commits em INGLÊS</a></li>
-                <li class="third-level"><a href="#3-seguir-regra-5072">3 - Seguir regra 50/72</a></li>
-            <li class="second-level"><a href="#anatomia-do-commit">Anatomia do Commit</a></li>
+            <li class="second-level"><a href="#3-proposito-e-justificativa">3.  Propósito e justificativa</a></li>
                 
-                <li class="third-level"><a href="#assunto">Assunto</a></li>
-                <li class="third-level"><a href="#corpo">Corpo</a></li>
+            <li class="second-level"><a href="#4-objetivos-do-projeto">4.  Objetivos do projeto</a></li>
+                
+            <li class="second-level"><a href="#5-requisitos-de-alto-nivel">5.  Requisitos de alto nível</a></li>
+                
+            <li class="second-level"><a href="#6-stakeholders">6. Stakeholders</a></li>
+                
+            <li class="second-level"><a href="#7-resumo-do-orcamento">7. Resumo do Orçamento</a></li>
+                
+            <li class="second-level"><a href="#riscos">Riscos</a></li>
+                
+            <li class="second-level"><a href="#resumo-do-cronograma-de-marcos">Resumo do Cronograma de Marcos</a></li>
+                
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="politica-de-commits">Política de Commits</h1>
-<h2 id="historico-de-versoes">Histórico de Versões</h2>
+<hr />
 <table>
 <thead>
 <tr>
@@ -264,56 +270,267 @@
 </thead>
 <tbody>
 <tr>
-<td>30/08/2019</td>
-<td>Mateus Oliveira</td>
-<td>Criação do documento</td>
-<td>1</td>
+<td>31/08/2019</td>
+<td>Diego Resende</td>
+<td>Abertura do Documento</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>----</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="principios-basicos">Princípios básicos</h2>
-<h3 id="1-faca-commits-atomicos">1 - Faça  <em>commits</em>  atômicos</h3>
-<p>Sempre dividir o trabalho em pequenos e significativos <em>commits</em> fazendo com que cada <em>commit</em> implemente apenas uma funcionalidade.</p>
-<h3 id="2-sempre-escrever-commits-em-ingles">2 - Sempre escrever  <em>commits</em> em <strong>INGLÊS</strong></h3>
-<p>A fim de deixar o projeto mais acessível ao público global, o idioma padrão adotado tanto para o código quanto para tudo o que se relaciona diretamente ao mesmo é o inglês, logo as mensagens dos <em>commits</em> devem estar completamente em inglês.</p>
-<h3 id="3-seguir-regra-5072">3 - Seguir regra 50/72</h3>
-<p>As mensagens devem possuir no máximo 50 caracteres, caso seja necessário uma mensagem melhor, escreva um resumo de até 50 caracteres, adicione uma linha em branco e descreva melhor o <em>commit</em> em quantas linhas forem necessárias, porém cada linha deve respeitar o tamanho máximo de 72 caracteres. Caso seu <em>commit</em> necessite mais espaço que isso ele não é atômico.</p>
-<h2 id="anatomia-do-commit">Anatomia do Commit</h2>
-<p>A anatomia do commit deve seguir o seguinte padrão:</p>
-<p><strong>Formato</strong>:</p>
-<pre><code>&lt;tipo&gt;(#número da issue): assunto
-
-&lt;corpo&gt;
-..
-</code></pre>
-
-<h3 id="assunto">Assunto</h3>
+<h1 id="termo-de-abertura">Termo de Abertura</h1>
+<h3 id="1-introducao">1.  Introdução</h3>
+<p>Este documento tem como objetivo fazer uma abertura oficial do projeto trazendo as principais informações sobre o problema a ser solucionado, os objetivos a serem cumpridos, os stakeholders e o contexto geral em que o projeto vai ser desenvolvido.</p>
+<h3 id="2-descricao-do-projeto">2.  Descrição do projeto</h3>
+<p>O projeto é um plugin a ser instalado no GitHub, uma famosa ferramenta de versionamento de código. O Plugin é voltado para o monitoramento de repositórios trazendo uma análise técnica de projeto de desenvolvimento de softwares.</p>
+<h3 id="3-proposito-e-justificativa">3.  Propósito e justificativa</h3>
+<p>Em um projeto de desenvolvimento de software é de grande importância que haja um monitoramento do que vem acontecendo durante o desenvolvimento. Assuntos como a quantidade de issues abertas, Branches criadas e estatísticas de contribuição por parte da equipe pode ajudar a encontrar possíveis problemas, corrigi-los, fazendo com que o projeto de desenvolvimento ocorra de forma mais ágil e de melhor qualidade.</p>
+<h3 id="4-objetivos-do-projeto">4.  Objetivos do projeto</h3>
+<p>O objetivo principal do projeto é trazer um monitoramento eficaz do repositório que tiver o plugin instalado, trazendo uma análise técnica para a equipe de desenvolvimento.</p>
+<h3 id="5-requisitos-de-alto-nivel">5.  Requisitos de alto nível</h3>
+<p>O plugin do GitHub servirá para monitoramento e análise que auxiliará projetos de desenvolvimento de softwares.
+- a)  Coletar informações de issues, branches e commits.</p>
 <ul>
-<li>Máximo de 50 caracteres</li>
-<li>Tipo de escopo devem estar em letras minúsculas</li>
+<li>
+<p>b)  Salvar as informações.</p>
+</li>
+<li>
+<p>c)  Fazer uma análise estatística das informações.</p>
+</li>
+<li>
+<p>d)  Fazer a visualização das informações em gráficos.</p>
+</li>
 </ul>
-<p>Exemplo:</p>
-<p><code>feat(#35): add route /login</code>.</p>
-<p>Os valores permitidos para o  <code>tipo</code>  são:</p>
-<ul>
-<li><code>feat</code>: nova funcionalidade</li>
-<li><code>style</code>: formatação geral no código</li>
-<li><code>refact</code>: refatoração de código</li>
-<li><code>test</code>: adicionar/refatorar testes</li>
-<li><code>fix</code>: correções</li>
-<li><code>docs</code>: relacionado a documentação</li>
-</ul>
-<h3 id="corpo">Corpo</h3>
-<p>Se é necessário contextualizar o commit e explicar o porquê das mudanças, descreva o corpo do commit de acordo com o seguinte:</p>
-<ul>
-<li>Deve conter o  <code>o que</code>  e o  <code>por que</code>  foi feito</li>
-<li>Máximo de 72 caracteres por linha</li>
-</ul>
-<p>Exemplo:</p>
-<pre><code>refactor(#25): change login method to oauth 
-
-The previous login method was insecure due a new exploit discovered
-</code></pre></div>
+<h3 id="6-stakeholders">6. <strong>Stakeholders</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Papel</th>
+<th>Email</th>
+<th>GitHub</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lucas Midlhey <br /> Cardoso Naves</td>
+<td>Gerência - Scrum Master</td>
+<td>lucasmidlhey@hotmail.com</td>
+<td>@Lucasmidlhey</td>
+</tr>
+<tr>
+<td>Mateus Oliveira <br />Patrício</td>
+<td>Gerência- DevOps</td>
+<td>o.mateus.p@gmail.com</td>
+<td>@omateusp</td>
+</tr>
+<tr>
+<td>Wellingthon Diego <br />Resende de Lima</td>
+<td>Gerência - PO/Engenharia do</td>
+<td>diegowdrl@gmail.com</td>
+<td>@wdresende</td>
+</tr>
+<tr>
+<td>João Victor Max <br />Bisinotti de Oliveira</td>
+<td>Desenvolvedor</td>
+<td>victormax2006@gmail.com</td>
+<td>@jbisinotti</td>
+</tr>
+<tr>
+<td>Pedro Daniel Carvalho <br />Matias</td>
+<td>Desenvolvedor</td>
+<td>pedrodaniel.unb@gmail.com</td>
+<td>@pdaniel37</td>
+</tr>
+<tr>
+<td>Pedro Daia Cardoso</td>
+<td>Desenvolvedor</td>
+<td>pedro_daia@hotmail.com</td>
+<td>@pxpc2</td>
+</tr>
+<tr>
+<td>Victor Hugo Pereira <br />Antunes</td>
+<td>Desenvolvedor</td>
+<td>victorhpantunes@gmail.com</td>
+<td>@wdvictor</td>
+</tr>
+<tr>
+<td>Paulo Henrique Costa <br /> Gontijo</td>
+<td>Desenvolvedor</td>
+<td>paulohgontijoo@gmail.com</td>
+<td>@paulohgontijoo</td>
+</tr>
+<tr>
+<td>Carla Rocha</td>
+<td>Orientadora</td>
+<td>rocha.carla@gmail.com</td>
+<td>@RochaCarla</td>
+</tr>
+<tr>
+<td>Joenio Costa</td>
+<td>Orientador</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-resumo-do-orcamento">7. Resumo do Orçamento</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Recursos Humanos</strong></td>
+<td>R$ 18.360,00</td>
+</tr>
+<tr>
+<td><strong>Equipamentos</strong></td>
+<td>R$ 30.179,00</td>
+</tr>
+<tr>
+<td><strong>Riscos</strong></td>
+<td>R$ 7.280,85</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>R$ 55.819.85</td>
+</tr>
+</tbody>
+</table>
+<h3 id="riscos">Riscos</h3>
+<table>
+<thead>
+<tr>
+<th>Risco</th>
+<th>Descrição</th>
+<th>Categoria EAR</th>
+<th>Prob.</th>
+<th>Impacto</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R01</td>
+<td>Dificuldade com as tecnologias</td>
+<td>Técnico - Tecnologia</td>
+<td>Alta</td>
+<td>Muito Alto</td>
+<td>Estudo e pareamentos efetivos</td>
+</tr>
+<tr>
+<td>R02</td>
+<td>Redução dos membros da equipe</td>
+<td>Externo - Fatores pessoais</td>
+<td>Baixa</td>
+<td>Muito Alto</td>
+<td>Comunicação efetiva, motivação, e redistribuição das tarefas</td>
+</tr>
+<tr>
+<td>R03</td>
+<td>Mudança de escopo</td>
+<td>Gerenciamento do projeto - Planejamento</td>
+<td>Alta</td>
+<td>Médio</td>
+<td>Redefinir o escopo e redistribuir as novas tarefas</td>
+</tr>
+<tr>
+<td>R04</td>
+<td>Falta de comunicação</td>
+<td>Organizacionais - Estratégias</td>
+<td>Média</td>
+<td>Médio</td>
+<td>Usar meios de comunicações comuns entre os membros</td>
+</tr>
+<tr>
+<td>R05</td>
+<td>Perda de equipamentos da equipe</td>
+<td>Externo - Fatores pessoais</td>
+<td>Muito Baixa</td>
+<td>Muito Alto</td>
+<td>Definir pareamentos que permitam ocorrer presencialmente</td>
+</tr>
+<tr>
+<td>R06</td>
+<td>Alteração nas datas da disciplina</td>
+<td>Externo - Ambiente acadêmico</td>
+<td>Média</td>
+<td>Alto</td>
+<td>Redefinir datas das entregas</td>
+</tr>
+<tr>
+<td>R07</td>
+<td>Entregas atrasadas</td>
+<td>Gerenciamento do projeto - Planejamento</td>
+<td>Alta</td>
+<td>Alto</td>
+<td>Definição de uma nova data para a entrega e se necessário um novo pareamento</td>
+</tr>
+<tr>
+<td>R08</td>
+<td>Dependência das atividades</td>
+<td>Gerenciamento do projeto - Planejamento</td>
+<td>Muito Baixa</td>
+<td>Alto</td>
+<td>Redefinição das tarefas a fim de acabar com a dependência</td>
+</tr>
+<tr>
+<td>R09</td>
+<td>Qualidade do projeto não atender às expectativas do Product Owner</td>
+<td>Externo - "Cliente"</td>
+<td>Média</td>
+<td>Alto</td>
+<td>Acompanhamento do desenvolvimento junto ao Product Owner</td>
+</tr>
+<tr>
+<td>R010</td>
+<td>Fácil adaptação a tecnologia</td>
+<td>Técnico - Tecnologia</td>
+<td>Baixa</td>
+<td>Médio</td>
+<td>Possibilidade de adição de novas features</td>
+</tr>
+<tr>
+<td>R011</td>
+<td>Falta nas reuniões</td>
+<td>Externo- Condições de trabalho</td>
+<td>Baixa</td>
+<td>Alto</td>
+<td>Acompanhar o motivo da falta e buscar recuperar o atraso</td>
+</tr>
+<tr>
+<td>R012</td>
+<td>Pareamento não efetivos</td>
+<td>Externo- Fatores Pessoais</td>
+<td>Média</td>
+<td>Alto</td>
+<td>Tentar aumentar a comunicação entre os membros, se possível alguém da equipe de EPS monitorar o pareamento, e se extremamente necessário realocar membros em outras atividades.</td>
+</tr>
+<tr>
+<td>R013</td>
+<td>Conflito de entregas em outras disciplinas</td>
+<td>Externo- Fatores pessoais</td>
+<td>Muito Alto</td>
+<td>Médio</td>
+<td>Produzir backlog de sprints reduzidos para semanas de mais necessidade de alienação ao projeto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="resumo-do-cronograma-de-marcos">Resumo do Cronograma de Marcos</h3>
+<p>O projeto possui duas grandes entregas, sendo essas as releases
+| Descrição | Data |
+|--|--|
+| Release 1 |  |
+| Release 2 |  |</p></div>
         
         
     </div>
