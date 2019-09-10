@@ -36,13 +36,13 @@ router.get('/commits', (req , res, err) => {
         fs.appendFile('file.txt', '----------------------' + '\n', (err) =>{
             if(err) throw err;
         })
-        fs.appendFile('file.txt', json[0].commit.author.name + '\n', (err) =>{
+        fs.appendFile('file.txt', json[1].commit.author.name + '\n', (err) =>{
             if(err) throw err;
         })
-        fs.appendFile('file.txt', json[0].commit.message + '\n' , (err) =>{
+        fs.appendFile('file.txt', json[1].commit.message + '\n' , (err) =>{
             if(err) throw err;
         })
-        fs.appendFile('file.txt', json[0].commit.author.date  + '\n', (err) =>{
+        fs.appendFile('file.txt', json[1].commit.author.date  + '\n', (err) =>{
             if(err) throw err;
         })
         fs.appendFile('file.txt','----------------------'  , (err) =>{

@@ -6,7 +6,7 @@
 ### 2. Install necessary dependencies
 -		$npm install express
 		$npm install request
-		
+		$npm install fs		
 - nodemon
 	-  
 		$npm install nodemon
