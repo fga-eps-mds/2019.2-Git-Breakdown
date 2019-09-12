@@ -1,9 +1,12 @@
 const request = require('request')
 
 const urlBase = 'https://api.github.com'
-const urlEndpoint = '/repos/fga-eps-mds/2019.2-Git-Breakdown/issues'
 
 exports.get = (req, res, next) => {
+    let urlEndpoint = '/repos'
+    urlEndpoint += '/' + req.query.owner
+    urlEndpoint += '/' + req.query.repository + '/issues'
+    
     request.get({ headers: {
       'Accept': 'application/vnd.github.v3+json',
       'Content-Type': 'application/json',
@@ -14,8 +17,7 @@ exports.get = (req, res, next) => {
         console.log('error:', error)
         console.log('statusCode:', response && response.statusCode)
         res.status(200).send(issues)
-    });
-    
+    })
 }
 
 exports.post = (req, res, next) => {
