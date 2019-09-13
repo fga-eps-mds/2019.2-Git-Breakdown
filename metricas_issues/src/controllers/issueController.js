@@ -3,7 +3,10 @@ const request = require('request')
 const urlBase = 'https://api.github.com'
 
 exports.get = (req, res, next) => {
-    let urlEndpoint = '/repos'
+    if(req.query.owner === undefined && req.query.repository === undefined){
+        res.status(400).send('Error 400: Bad Request')
+    }else{
+        let urlEndpoint = '/repos'
     urlEndpoint += '/' + req.query.owner
     urlEndpoint += '/' + req.query.repository + '/issues'
     
@@ -18,6 +21,7 @@ exports.get = (req, res, next) => {
         console.log('statusCode:', response && response.statusCode)
         res.status(200).send(issues)
     })
+    }
 }
 
 exports.post = (req, res, next) => {
