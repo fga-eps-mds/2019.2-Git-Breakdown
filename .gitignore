@@ -1,1 +1,3 @@
 mkdocs/site/
+src/node_modules
+mkdocs/
