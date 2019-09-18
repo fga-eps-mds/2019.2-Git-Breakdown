@@ -85,4 +85,3 @@ A master será nossa branch de produção, ou seja, nela estará a versão está
 ### **Branches de documentos**
 
 As branches de documentos são criadas a partir da master, e serve para criação ou refatoração de documentos seguindo a issue do mesmo. No final essa branch deve ser enviada para a master, através de um pull request.
-
