@@ -1,11 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const request = require('request')
-const get_commits = require('../commits/get_all_commits')
+const get_commits = require('../api/commits/get_all_commits')
 
 
 router.get('/', (req , res) => {
-    console.log("home")
     res.send("ok")
 })
 
