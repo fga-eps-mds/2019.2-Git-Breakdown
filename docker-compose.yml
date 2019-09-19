@@ -1,13 +1,6 @@
 version: "3"
 
 services:
-  issue_api:
-    build: ./APIs/issues_request/.
-    command: npm start
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/usr/breakdown/issue_api
   commit_api:
     build: ./APIs/commit_request/.
     command: npm run dev
@@ -15,3 +8,10 @@ services:
       - "3001:3001"
     volumes:
       - .:/usr/breakdown/commit_request
+  issue_api:
+    build: ./APIs/issues_request/.
+    command: npm start
+    ports:
+      - "3002:3002"
+    volumes:
+      - .:/usr/breakdown/issues_request
