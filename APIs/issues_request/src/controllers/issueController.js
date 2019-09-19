@@ -2,6 +2,8 @@ const request = require('request')
 
 const urlBase = 'https://api.github.com'
 
+let queryString = { state:'all', per_page: '10000' }
+
 exports.get = (req, res, next) => {
     if(req.query.owner === undefined || req.query.repository === undefined){
         res.status(400).send('Error 400: Bad Request')
@@ -14,11 +16,21 @@ exports.get = (req, res, next) => {
       'Accept': 'application/vnd.github.v3+json',
       'Content-Type': 'application/json',
       'User-Agent': '2019.2-Git-Breakdown'
-    }, uri: urlBase+urlEndpoint }, function (error, response, body) {
-            let issues = body;
+    }, uri: urlBase+urlEndpoint, qs: queryString }, function (error, response, body) {
+            let issues = JSON.parse(body)
             console.log('error:', error)
             console.log('statusCode:', response && response.statusCode)
-            res.status(response.statusCode).send(issues)
+            function filterIssues(issue) {
+                if(issue.pull_request === undefined){
+                    return true
+                }
+                return false
+            }
+            let filteredIssues = issues.filter(filterIssues)
+
+            console.log( Object.keys(filteredIssues).length )
+            
+            res.status(response.statusCode).send(filteredIssues)
         })
     }
 }
