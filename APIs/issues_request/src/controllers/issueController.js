@@ -2,7 +2,7 @@ const request = require('request')
 
 const urlBase = 'https://api.github.com'
 
-let queryString = { state:'all', per_page: '10000' }
+let queryString = { state:'all', per_page: '10000', since: '' }
 
 exports.get = (req, res, next) => {
     if(req.query.owner === undefined || req.query.repository === undefined){
@@ -11,6 +11,14 @@ exports.get = (req, res, next) => {
         let urlEndpoint = '/repos'
     urlEndpoint += '/' + req.query.owner
     urlEndpoint += '/' + req.query.repository + '/issues'
+
+    let date = new Date()
+    date.setFullYear(2019, 7, 19)
+    date.setHours(-3, 0, 0, 0)
+    console.log(date)
+    queryString.since = date
+    console.log(queryString.since)
+    
 
     request.get({ headers: {
       'Accept': 'application/vnd.github.v3+json',
