@@ -1,0 +1,26 @@
+{
+  "name": "issues_request",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "https://github.com/fga-eps-mds/2019.2-Git-Breakdown",
+  "main": "index.js",
+  "directories": {
+    "test": "mocha"
+  },
+  "scripts": {
+    "start": "nodemon ./bin/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.0",
+    "nodemon": "^1.19.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "should": "^13.2.3"
+  }
+}
