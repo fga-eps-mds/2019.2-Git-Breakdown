@@ -1,5 +1,5 @@
 {
-  "name": "metricas_pullrequests",
+  "name": "pullrequests_request",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "nodemon": "^1.19.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",

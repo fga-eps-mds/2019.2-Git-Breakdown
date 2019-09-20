@@ -15,3 +15,10 @@ services:
       - "3002:3002"
     volumes:
       - .:/usr/breakdown/issues_request
+  pullrequest_api:
+    build: ./APIs/pullrequests_request/.
+    command: npm start
+    ports:
+      - "3003:3003"
+    volumes:
+      - .:/usr/breakdown/pullrequests_request

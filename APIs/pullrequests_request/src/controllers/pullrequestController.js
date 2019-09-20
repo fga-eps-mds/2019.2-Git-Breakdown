@@ -16,8 +16,7 @@ exports.get = (req, res, next) => {
           'User-Agent': '2019.2-Git-Breakdown'
         }, uri: urlBase+urlEndpoint }, function (error, response, body) {
             let issues = JSON.parse(body)
-            console.log('error:', error)
-            console.log('statusCode:', response && response.statusCode)
+            
             function filterPR(issue) {
                 if(issue.pull_request != undefined){
                     return true
