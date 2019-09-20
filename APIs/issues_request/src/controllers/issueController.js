@@ -28,7 +28,25 @@ exports.get = (req, res, next) => {
             }
             let filteredIssues = issues.filter(filterIssues)
 
+            function getOpenIssues(filteredIssues) {
+                if(filteredIssues.state === 'open'){
+                    return true
+                }
+                return false
+            }
+            let openIssues = filteredIssues.filter(getOpenIssues)
+
+            function getClosedIssues(filteredIssues) {
+                if(filteredIssues.state === 'closed'){
+                    return true
+                }
+                return false
+            }
+            let closedIssues = filteredIssues.filter(getClosedIssues)
+
             console.log( Object.keys(filteredIssues).length )
+            console.log( Object.keys(openIssues).length )
+            console.log( Object.keys(closedIssues).length )
             
             res.status(response.statusCode).send(filteredIssues)
         })
