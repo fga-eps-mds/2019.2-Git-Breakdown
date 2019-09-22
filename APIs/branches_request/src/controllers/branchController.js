@@ -1,3 +1,40 @@
+const request = require('request')
+
+const urlBase = 'https://api.github.com'
+
+exports.get = (req, res, next) => 
+{
+    if (req.query.owner === undefined || req.query.repository === undefined)
+    {
+        res.status(400).send("Error 400")
+    }
+    else
+    {
+        let urlEndpoint = '/repos'
+        urlEndpoint += '/' + req.query.owner
+        urlEndpoint += '/' + req.query.repository + 'branches/all'
+        request.get(
+        { 
+            headers: 
+            {
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
+                'User-Agent': '2019.2-Git-Breakdown'
+            },
+
+            uri: urlBase+urlEndpoint 
+        }, 
+        function (error, response, body) 
+        {
+            let issues = body
+            console.log('error:', error)
+            console.log('statusCode:', response && response.statusCode)
+            res.status(responde.statusCode).send(issues)
+        })
+    }
+
+}
+
 exports.post = (req, res, next) => 
 {
     res.status(201).send('Requisição recebida com sucesso!')
