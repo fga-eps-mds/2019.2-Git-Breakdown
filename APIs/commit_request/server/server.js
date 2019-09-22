@@ -7,4 +7,4 @@ app.use('/', routes)
 app.use('/index', routes)
 app.use('/commits', routes)
 
-app.listen(8888)
+app.listen(3001)
