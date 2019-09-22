@@ -1,6 +1,22 @@
 version: "3"
 
 services:
+  gateway_api:
+    build: ./APIs/api_gateway/.
+    command: npm start
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/breakdown/api_gateway
+    depends_on:
+      - commit_api
+      - issue_api
+      - pullrequest_api
+    links:
+      - commit_api
+      - issue_api
+      - pullrequest_api
+  
   commit_api:
     build: ./APIs/commit_request/.
     command: npm run dev
@@ -8,6 +24,7 @@ services:
       - "3001:3001"
     volumes:
       - .:/usr/breakdown/commit_request
+  
   issue_api:
     build: ./APIs/issues_request/.
     command: npm start
@@ -15,6 +32,7 @@ services:
       - "3002:3002"
     volumes:
       - .:/usr/breakdown/issues_request
+  
   pullrequest_api:
     build: ./APIs/pullrequests_request/.
     command: npm start
