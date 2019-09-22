@@ -15,29 +15,32 @@ commit_route.get = (req , res, err) => {
     if(owner === undefined || req.query.repo === undefined){
         res.status(400).send('Error 400: Bad Request')
     }
-    
-    //header params send to get request
-    const gitApiUrl = 'https://api.github.com'
-    const url_endpoint = `${gitApiUrl}/repos/${owner}/${repo}/${endpoint}`
-    const header_option = {
-        url: url_endpoint,
-        method: 'GET',
-        headers: {
-        'Accept': 'application/json',
-        'Accept-Charset': 'utf-8',
-        'User-Agent': '2019.2-Git-Breakdown',  
+    else{
+        //header params send to get request
+        const gitApiUrl = 'https://api.github.com'
+        const url_endpoint = `${gitApiUrl}/repos/${owner}/${repo}/${endpoint}`
+        const header_option = {
+            url: url_endpoint,
+            method: 'GET',
+            headers: {
+            'Accept': 'application/json',
+            'Accept-Charset': 'utf-8',
+            'User-Agent': '2019.2-Git-Breakdown',  
+            }
         }
+
+        request.get(header_option, (err, response , body)=>{
+
+            //console.log('StatusCode:' , res.statusCode)
+            if(!err)
+                console.log('Error:' , err) //print an error if any occur   
+            
+        
+            //commits hold a vector of json's data
+            const commits = JSON.parse(body)
+            res.status(response.statusCode).send(commits)
+        })
     }
-
-    request.get(header_option, (err, response , body)=>{
-
-        console.log('Erro:' , err) //print an error if any occur
-        console.log('StatusCode:' , res.statusCode)
-     
-        //commits hold a vector of json's data
-        const commits = JSON.parse(body)
-        res.status(response.statusCode).send(commits)
-    })
 }
 
 //export this functionality has a module
