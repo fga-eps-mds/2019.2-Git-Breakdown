@@ -6,9 +6,9 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const helmet = require('helmet');
 
-const commitsServiceProxy = httpProxy('http://localhost:3001');
-const issuesServiceProxy = httpProxy('http://localhost:3002');
-const pullrequestsServiceProxy = httpProxy('http://localhost:3003');
+const commitsServiceProxy = httpProxy('commit_api:3001');
+const issuesServiceProxy = httpProxy('issue_api:3002');
+const pullrequestsServiceProxy = httpProxy('pullrequest_api:3003');
 
 // Proxy request
 app.get('/commits', (req, res, next) => {
