@@ -12,23 +12,21 @@ exports.get = (req, res, next) =>
     {
         let urlEndpoint = '/repos'
         urlEndpoint += '/' + req.query.owner
-        urlEndpoint += '/' + req.query.repository + 'branches/all'
+        urlEndpoint += '/' + req.query.repo + '/branches'
         request.get(
         { 
             headers: 
             {
                 'Accept': 'application/vnd.github.v3+json',
                 'Content-Type': 'application/json',
-                'User-Agent': '2019.2-Git-Breakdown'
+                'User-Agent': '2019.2-Git-Breakdown',
+                'Authorization': 'b3bdda9d8bdadd006a8d4279cff79156a3757906'
             },
-
             uri: urlBase+urlEndpoint 
         }, 
         function (error, response, body) 
         {
             let issues = body
-            console.log('error:', error)
-            console.log('statusCode:', response && response.statusCode)
             res.status(response.statusCode).send(issues)
         })
     }
