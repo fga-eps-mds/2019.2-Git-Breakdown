@@ -12,17 +12,17 @@ exports.get = (req, res, next) => {
     urlEndpoint += '/' + req.query.owner
     urlEndpoint += '/' + req.query.repository + '/issues'
 
-    let date = new Date()
-    let selectedDate = req.query.date.split('-') //date first format: DD-MM-YYYY
-    let day = selectedDate[0]
-    let month = selectedDate[1]
-    let year = selectedDate[2]
-    let hour = 0
-    date.setFullYear(year, month -1, day)
-    date.setHours(hour - 3, 0, 0, 0)
-    console.log(date)
-    queryString.since = date
-    console.log(queryString.since)
+    if(req.query.date != undefined){    
+        let date = new Date()
+        let selectedDate = req.query.date.split('-') //date first format: DD-MM-YYYY
+        let day = selectedDate[0]
+        let month = selectedDate[1]
+        let year = selectedDate[2]
+        let hour = 0
+        date.setFullYear(year, month -1, day)
+        date.setHours(hour - 3, 0, 0, 0)
+        queryString.since = date
+    }
 
     request.get({ headers: {
       'Accept': 'application/vnd.github.v3+json',

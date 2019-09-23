@@ -24,6 +24,7 @@ describe('Issue route tests', () => {
         }
 
         expect(response.statusCode).to.equal(200);
+        body.should.have.property('open');
         done();
       }
     );
