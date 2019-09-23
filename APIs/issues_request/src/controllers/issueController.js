@@ -2,7 +2,7 @@ const request = require('request')
 
 const urlBase = 'https://api.github.com'
 
-let queryString = { state:'all', per_page: '10000', since: '' }
+let queryString = { state:'all', per_page: '10000' }
 
 exports.get = (req, res, next) => {
     if(req.query.owner === undefined || req.query.repository === undefined){
@@ -57,7 +57,7 @@ exports.get = (req, res, next) => {
             let closedIssues = filteredIssues.filter(getClosedIssues)
 
             let tIssues = Object.keys(filteredIssues).length //number of all issues
-            let oIssues = Object.keys(openIssues).length // number of open issues
+            let oIssues = Object.keys(openIssues).length //number of open issues
             let cIssues = Object.keys(closedIssues).length //number of closed issues
             let percentOfOpen = parseFloat(((oIssues/tIssues)*100).toFixed(2))
             let percentOfClosed = parseFloat(((cIssues/tIssues)*100).toFixed(2))
