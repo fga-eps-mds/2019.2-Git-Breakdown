@@ -13,12 +13,16 @@ exports.get = (req, res, next) => {
     urlEndpoint += '/' + req.query.repository + '/issues'
 
     let date = new Date()
-    date.setFullYear(2019, 7, 19)
-    date.setHours(-3, 0, 0, 0)
+    let selectedDate = req.query.date.split('-') //date first format: DD-MM-YYYY
+    let day = selectedDate[0]
+    let month = selectedDate[1]
+    let year = selectedDate[2]
+    let hour = 0
+    date.setFullYear(year, month -1, day)
+    date.setHours(hour - 3, 0, 0, 0)
     console.log(date)
     queryString.since = date
     console.log(queryString.since)
-    
 
     request.get({ headers: {
       'Accept': 'application/vnd.github.v3+json',
@@ -52,11 +56,14 @@ exports.get = (req, res, next) => {
             }
             let closedIssues = filteredIssues.filter(getClosedIssues)
 
-            console.log( Object.keys(filteredIssues).length )
-            console.log( Object.keys(openIssues).length )
-            console.log( Object.keys(closedIssues).length )
-            
-            res.status(response.statusCode).send(filteredIssues)
+            let tIssues = Object.keys(filteredIssues).length //number of all issues
+            let oIssues = Object.keys(openIssues).length // number of open issues
+            let cIssues = Object.keys(closedIssues).length //number of closed issues
+            let percentOfOpen = parseFloat(((oIssues/tIssues)*100).toFixed(2))
+            let percentOfClosed = parseFloat(((cIssues/tIssues)*100).toFixed(2))
+
+            let issuesInformation = {'open': oIssues, 'closed': cIssues, 'openPercent': percentOfOpen, 'closedPercent': percentOfClosed}
+            res.status(response.statusCode).json(issuesInformation)
         })
     }
 }
