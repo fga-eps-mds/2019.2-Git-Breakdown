@@ -29,7 +29,7 @@ exports.get = (req, res, next) =>
             let issues = body
             console.log('error:', error)
             console.log('statusCode:', response && response.statusCode)
-            res.status(responde.statusCode).send(issues)
+            res.status(response.statusCode).send(issues)
         })
     }
 

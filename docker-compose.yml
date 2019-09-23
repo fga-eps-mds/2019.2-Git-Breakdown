@@ -40,3 +40,11 @@ services:
       - "3003:3003"
     volumes:
       - .:/usr/breakdown/pullrequests_request
+
+  branch_api:
+    build: ./APIs/branches_request/.
+    command: npm start
+    ports:
+      - "3004:3004"
+    volumes:
+      - .:/usr/breakdown/branches_request
