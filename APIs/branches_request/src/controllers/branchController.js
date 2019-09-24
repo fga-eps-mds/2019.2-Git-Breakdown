@@ -1,10 +1,11 @@
 const request = require('request')
+const constants = require('../constants')
 
 const urlBase = 'https://api.github.com'
 
 exports.get = (req, res, next) => 
 {
-    if (req.query.owner === undefined || req.query.repository === undefined)
+    if (req.query.owner === undefined || req.query.repo === undefined)
     {
         res.status(400).send("Error 400")
     }
@@ -20,9 +21,10 @@ exports.get = (req, res, next) =>
                 'Accept': 'application/vnd.github.v3+json',
                 'Content-Type': 'application/json',
                 'User-Agent': '2019.2-Git-Breakdown',
-                'Authorization': 'b3bdda9d8bdadd006a8d4279cff79156a3757906'
+                'Authorization': constants.token
             },
-            uri: urlBase+urlEndpoint 
+
+            uri: urlBase + urlEndpoint 
         }, 
         function (error, response, body) 
         {

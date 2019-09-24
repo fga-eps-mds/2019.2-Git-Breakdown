@@ -13,7 +13,7 @@ describe('branchRoute teste', () =>
   {
     request.get(
     {
-      url : urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
+      url : urlBase + '?owner=fga-eps-mds&repo=2019.2-Git-Breakdown'
     },
     (error, response, body) => 
     {
