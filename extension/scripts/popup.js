@@ -19,7 +19,6 @@ document.getElementById('logoutButton').addEventListener("click", function()
 
 document.addEventListener('DOMContentLoaded', function() 
 {
-    
 })
 
 chrome.storage.sync.get('oauth2_token', function(res) 
@@ -36,4 +35,4 @@ chrome.storage.sync.get('oauth2_token', function(res)
         let logoutButton = document.getElementById('logoutButton')
         logoutButton.parentNode.removeChild(logoutButton)
     }
-});
+})
