@@ -1,6 +1,6 @@
 {
     "name": "GitBreakdown",
-    "version": "2.2",
+    "version": "0.4",
     "description": "GitBreakdown Chrome extension",
     "permissions": ["declarativeContent", "storage"],
     "background": 
@@ -19,7 +19,7 @@
         ],
         "js": ["scripts/oauth.js"]
     }],
-    "page_action": 
+    "browser_action": 
     {
         "default_popup": "popup.html"
     },

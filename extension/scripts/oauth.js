@@ -8,7 +8,7 @@ const saveAcessToken = (token) =>
 {
     chrome.storage.sync.set({'oauth2_token': token.access_token}, function() 
     {
-        console.log('Token saved')
+        console.log('Token salvo')
     })
 }
 
@@ -33,7 +33,6 @@ const init = () =>
     if(location.search.match(/\?code=([\w\/\-]+)/))
     {
         let code = location.search.match(/\?code=([\w\/\-]+)/)[1]
-        alert(code)
         getAccessToken(code)
     }
 }
