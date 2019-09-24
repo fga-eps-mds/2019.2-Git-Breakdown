@@ -1,48 +1,49 @@
-﻿---
+---
 | Data | Autor  | Descrição | Versão |
 |--|--|--|--|
 |31/08/2019|Diego Resende|Abertura do Documento|0.1|
+|31/08/2019|Diego Resende|Alteração do documento|0.2|
 ----
 
 # Termo de Abertura
 ### 1.  Introdução
-    
+
 
 Este documento tem como objetivo fazer uma abertura oficial do projeto trazendo as principais informações sobre o problema a ser solucionado, os objetivos a serem cumpridos, os stakeholders e o contexto geral em que o projeto vai ser desenvolvido.
 
-  
+
 
 ### 2.  Descrição do projeto
-    
+
 
 O projeto é um plugin a ser instalado no GitHub, uma famosa ferramenta de versionamento de código. O Plugin é voltado para o monitoramento de repositórios trazendo uma análise técnica de projeto de desenvolvimento de softwares.
 
-  
+
 
 ### 3.  Propósito e justificativa
-    
+
 
 Em um projeto de desenvolvimento de software é de grande importância que haja um monitoramento do que vem acontecendo durante o desenvolvimento. Assuntos como a quantidade de issues abertas, Branches criadas e estatísticas de contribuição por parte da equipe pode ajudar a encontrar possíveis problemas, corrigi-los, fazendo com que o projeto de desenvolvimento ocorra de forma mais ágil e de melhor qualidade.
 
-  
+
 
 ### 4.  Objetivos do projeto
-    
+
 
 O objetivo principal do projeto é trazer um monitoramento eficaz do repositório que tiver o plugin instalado, trazendo uma análise técnica para a equipe de desenvolvimento.
 
-  
+
 
 ### 5.  Requisitos de alto nível
-    
+
 
 O plugin do GitHub servirá para monitoramento e análise que auxiliará projetos de desenvolvimento de softwares.
 - a)  Coletar informações de issues, branches e commits.
-    
+
 - b)  Salvar as informações.
-    
+
 - c)  Fazer uma análise estatística das informações.
-    
+
 - d)  Fazer a visualização das informações em gráficos.
 
 ### 6. **Stakeholders**
@@ -88,6 +89,8 @@ O plugin do GitHub servirá para monitoramento e análise que auxiliará projeto
 O projeto possui duas grandes entregas, sendo essas as releases
 | Descrição | Data |
 |--|--|
-| Release 1 |  |
-| Release 2 |  |
-
+| Release 1 | 03/10/2019 |
+| Release 2 | 05/12/2019 |
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIwNTU4NTMxNDJdfQ==
+-->
