@@ -17,7 +17,13 @@
             "http://*.github.com/*",
             "https://*.github.com/*"
         ],
-        "js": ["scripts/oauth.js"]
+        "js": 
+        [
+            "scripts/contentScripts.js",
+            "scripts/oauth.js"
+        ],
+        "run_at": "document_end",
+        "all_frames" : false
     }],
     "page_action": 
     {

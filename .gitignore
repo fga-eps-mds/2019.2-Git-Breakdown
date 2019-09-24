@@ -1,1 +1,5 @@
 mkdocs/site/
+APIs/api_gateway/package-lock.json
+APIs/commit_request/node_modules/
+APIs/commit_request/package-lock.json
+initServerBash/
