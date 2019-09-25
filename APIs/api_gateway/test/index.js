@@ -8,6 +8,7 @@ const superRequest = require('supertest')
 describe('API Gateway test', () => {
     let urlBase = 'http://localhost:3000'
     let urlParams = '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
+    
     it('/issues: valid request', async () => {
         await request.get( {
             url : urlBase+'/issues'+urlParams
@@ -19,13 +20,14 @@ describe('API Gateway test', () => {
                 catch(e){
                   _body = {}
                 }
-                console.log(body)
                 if(response.status != undefined)
                     expect(response.status).to.equal(200)
-                expect(_body).to.have.property('open')
-                expect(_body).to.have.property('closed')
-                expect(_body).to.have.property('openPercent')
-                expect(_body).to.have.property('closedPercent')
+                if(_body.open != undefined){
+                    expect(_body).to.have.property('open')
+                    expect(_body).to.have.property('closed')
+                    expect(_body).to.have.property('openPercent')
+                    expect(_body).to.have.property('closedPercent')
+                }
             }
         )
     })
@@ -40,7 +42,39 @@ describe('API Gateway test', () => {
                 catch(e){
                   _body = {}
                 }
-                console.log(body)
+                if(response.statusCode != undefined)
+                    expect(response.statusCode).to.equal(400)
+            }
+        )
+    })
+    
+    it('/pullrequests: valid request', async () => {
+        await request.get( {
+            url : urlBase+'/pullrequests'+urlParams
+        }, (error, response, body) => {
+                let _body = {}
+                try{
+                  _body = JSON.parse(body)
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.status != undefined)
+                    expect(response.status).to.equal(200)
+            }
+        )
+    })
+    it('/pullrequests: invalid request', async () => {
+        await request.get( {
+            url : urlBase+'/pullrequests'
+        }, (error, response, body) => {
+                let _body = {}
+                try{
+                  _body = JSON.parse(body)
+                }
+                catch(e){
+                  _body = {}
+                }
                 if(response.statusCode != undefined)
                     expect(response.statusCode).to.equal(400)
             }
