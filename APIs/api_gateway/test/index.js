@@ -9,6 +9,39 @@ describe('API Gateway test', () => {
     let urlBase = 'http://localhost:3000'
     let urlParams = '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
     
+    it('/commits: valid request', async () => {
+        await request.get( {
+            url : urlBase+'/commits'+urlParams
+        }, (error, response, body) => {
+                let _body = {}
+                try{
+                  _body = JSON.parse(body)
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.status != undefined)
+                    expect(response.status).to.equal(200)
+            }
+        )
+    })
+    it('/commits: invalid request', async () => {
+        await request.get( {
+            url : urlBase+'/commits'
+        }, (error, response, body) => {
+                let _body = {}
+                try{
+                  _body = JSON.parse(body)
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.statusCode != undefined)
+                    expect(response.statusCode).to.equal(400)
+            }
+        )
+    })
+    
     it('/issues: valid request', async () => {
         await request.get( {
             url : urlBase+'/issues'+urlParams
@@ -80,4 +113,4 @@ describe('API Gateway test', () => {
             }
         )
     })
-});
+})
