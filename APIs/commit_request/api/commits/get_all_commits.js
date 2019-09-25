@@ -6,13 +6,13 @@ commit_route.get = (req , res, err) => {
 
     //verify if exist the necessary parms to to sent a get request
     const owner = req.query.owner
-    const repo = req.query.repo
+    const repo = req.query.repository
     const endpoint = 'commits'
 
     console.log('owner:', owner)
     console.log('repo:', repo)
 
-    if(owner === undefined || req.query.repo === undefined){
+    if(owner === undefined || req.query.repository === undefined){
         res.status(400).send('Error 400: Bad Request')
     }
     else{
