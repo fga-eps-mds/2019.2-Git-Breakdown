@@ -1,6 +1,6 @@
 {
     "name": "GitBreakdown",
-    "version": "0.4",
+    "version": "0.6",
     "description": "GitBreakdown Chrome extension",
     "permissions": ["declarativeContent", "storage"],
     "background": 
