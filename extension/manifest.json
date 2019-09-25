@@ -1,10 +1,6 @@
 {
     "name": "GitBreakdown",
-<<<<<<< HEAD
     "version": "0.4",
-=======
-    "version": "0.6",
->>>>>>> parent of 1c97259... feat(#53):creating confirmation to logout
     "description": "GitBreakdown Chrome extension",
     "permissions": ["declarativeContent", "storage"],
     "background": 
