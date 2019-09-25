@@ -5,7 +5,7 @@ const urlBase = 'https://api.github.com'
 
 exports.get = (req, res, next) => 
 {
-    if (req.query.owner === undefined || req.query.repo === undefined)
+    if (req.query.owner === undefined || req.query.repository === undefined)
     {
         res.status(400).send("Error 400")
     }
@@ -13,7 +13,7 @@ exports.get = (req, res, next) =>
     {
         let urlEndpoint = '/repos'
         urlEndpoint += '/' + req.query.owner
-        urlEndpoint += '/' + req.query.repo + '/branches'
+        urlEndpoint += '/' + req.query.repository + '/branches'
         request.get(
         { 
             headers: 
@@ -28,8 +28,8 @@ exports.get = (req, res, next) =>
         }, 
         function (error, response, body) 
         {
-            let issues = body
-            res.status(response.statusCode).send(issues)
+            let branches = JSON.parse(body)
+            res.status(response.statusCode).json(branches)
         })
     }
 
