@@ -6,7 +6,7 @@ nav:
         'Termo de Abertura': tap.md
         'Estrutura Analítica': eap.md
         'Orçamento Inicial': orcamento_inicial.md
-        'Metricas': 'doc(#-): Added metric document'
+        'Metricas': 'Metricas.md'
     - Planos: 
         'Comunicação': comunicacao.md
         'Gerenciamento de riscos': riscos.md
