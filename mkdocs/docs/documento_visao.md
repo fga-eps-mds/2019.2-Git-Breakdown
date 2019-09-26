@@ -11,24 +11,25 @@
 | 03/09/2019 | 0.7 | Atualizando o tópico sobre visão geral do produto e editando recursos do produto | João V., Victor H. |
 | 05/09/2019 | 0.8 | Editando restrições do produto | Victor H. |
 | 05/09/2019 | 1.0 | Revisão e adaptação para markdown | Pedro Daniel, João V. |
+| 26/09/2019 | 1.1 | Revisão da introdução e correção de bugs | Pedro Daniel |
 
 ---
 
 ## 1. Introdução
 
- A declaração a seguir tem como finalidade expor as premissas de desenvolvimento e usabilidade de um produto. O Git Breakdown desponta de uma extensão para navegadores a qual tem como principal propósito incrementar a gama de aplicações GitHub que trabalha com aferição e análise estatística, aplicada ao monitoramento do desempenho de contribuidores envolvidos em um projeto. Esta análise visa expor, compreender e aperfeiçoar todas as fases que compõem a realização de um projeto.
+A documento a seguir tem como finalidade expor as premissas de desenvolvimento e usabilidade de um produto. O Git Breakdown desponta de uma extensão para navegadores a qual tem como principal propósito ajudar aplicações do GitHub que trabalham com aferição e análise estatística, aplicada ao monitoramento do desempenho de contribuidores envolvidos em um projeto. Esta análise visa expor, compreender e aperfeiçoar todas as fases que compõem a realização de um projeto.
 
-  ### 1.1 Propósito
+### 1.1 Propósito
 
 O propósito deste documento será definir o problema, a oportunidade de negócio contida no projeto, os perfis das partes interessadas e do usuário, assim como descrever a visão geral do produto, os recursos, restrições e especificações do sistema.
 
-  ### 1.2 Escopo
+### 1.2 Escopo
 
- Esse documento tem o objetivo de explanar o plugin Git BreakDown. Uma extensão para auxiliar no acompanhamento de projetos de software que utilizam a plataforma GitHub para controle de versionamento.
+Esse documento tem o objetivo de explanar o plugin Git BreakDown. Uma extensão para auxiliar no acompanhamento de projetos de software que utilizam a plataforma GitHub para controle de versionamento.
 
 Desenvolvido para o auxílio de equipes que utilizam as metodologias ágeis de desenvolvimento de software, para gestores de times, e para usuários que acompanham o ciclo de vida de projetos no GitHub.
 
-  ### 1.3 Definições, Acrônimos e Abreviações
+### 1.3 Definições, Acrônimos e Abreviações
 
 **API:** Application Programming Interface. Em português significa Interface de Programação de Aplicações, é uma das formas de integrar sistemas.
 
@@ -38,20 +39,22 @@ Desenvolvido para o auxílio de equipes que utilizam as metodologias ágeis de d
 
 **ZenHub:** Extensão para navegadores que adiciona ferramentas de gerenciamento diretamente na interface do GitHub.
 
-  ### 1.4 Visão Geral
+**API Gateway:** É uma interface que recebe as chamadas para seus sistemas internos, sendo uma grande porta de entrada.
 
- Tem-se por finalidade deste documento apresentar de forma simples e didática o engajamento do produto no que tange a problemática inicial.
+### 1.4 Visão Geral
 
- Abordando, por tópicos, todas as funcionalidades do projeto: descrição do contexto em que atua, exposição de sua finalidade, detalhamento de técnicas utilizadas, leitura e exposição de dados metrificados.
+Tem-se por finalidade deste documento apresentar de forma simples e didática o engajamento do produto no que tange a problemática inicial.
+
+Abordando, por tópicos, todas as funcionalidades do projeto: descrição do contexto em que atua, exposição de sua finalidade, detalhamento de técnicas utilizadas, leitura e exposição das métricas coletadas.
 
 
 ## 2. Posicionamento
 
-  ### 2.1 Oportunidade de Negócios
+### 2.1 Oportunidade de Negócios
 
 A equipe de desenvolvimento do projeto tem como planejamento a criação de uma ferramenta que analisa e traça métricas, as quais abordam dados estatísticos sobre a evolução de um projeto de software. Com tal coleta de informações, espera-se que um gerenciador possa ter mais clareza ao tomar decisões, visto que o mesmo irá dispor de uma série de informações numéricas que representam o desempenho da equipe e de quem a compõe.
 
-  ### 2.2 Instrução do problema
+### 2.2 Instrução do problema
 
 Um modelo de negócios, certamente deve buscar uma crescente evolução na eficiência de seus métodos. Para que tal objetivo seja alcançado, faz-se necessário aferir métricas sobre os projetos, funcionários, qualidade de trabalho, tempo gasto, pareamento de conhecimentos dentre outros.
 
@@ -62,7 +65,7 @@ Um modelo de negócios, certamente deve buscar uma crescente evolução na efici
 | Impactos | Ampliação da base de dados estatísticos, aprimoramento da eficácia na tomada de decisões |
 | Solução | A extensão atua na captação de dados provindos do GitHub e desenvolverá análises especiais, voltadas ao modelo de negócios |
 
- ### 2.3 Instrução de Posição de Produto
+### 2.3 Instrução de Posição de Produto
 
 A captação e tratamento destes dados podem inferir pontos decisivos na evolução do processo como um todo. A proposta da extensão Git Breakdown configura-se em atuar na coleta das referências de rendimento, tratar e propor informações de qualidade, as quais antes se encontravam ocultas ou fora do espectro de visão.
 
@@ -77,9 +80,9 @@ A parte interessada, encarregada do desenvolvimento do produto, que também se e
 
 O avanço tecnológico vigente, estimula a implementação de tecnologias associadas à rotina. Para com este fenômeno, faz-se urgente o desenvolvimento de inúmeros algoritmos com intuito de resolver problemas do cotidiano de um projeto de software.
 
- Portanto, é de se concluir que o desenvolvimento de softwares voltados a essa problemática encontra-se em processo crescente de evolução. Logo, várias metodologias surgem, muitas vezes em casos particulares e sem comprovação válida de sua eficiência.
+Portanto, é de se concluir que o desenvolvimento de softwares voltados a essa problemática encontra-se em processo crescente de evolução. Logo, várias metodologias surgem, muitas vezes em casos particulares e sem comprovação válida de sua eficiência.
 
- Partindo deste pressuposto, o Git Breakdown toma postura frente à análise dos métodos existentes, e oferece uma alta gama de informações que espelham a desenvoltura do projeto. Com isso, gerentes de projetos podem inferir erros e acertos em suas metodologias, melhorando a qualidade e eficiência do produto final.
+Partindo deste pressuposto, o Git Breakdown toma postura frente à análise dos métodos existentes, e oferece uma alta gama de informações que espelham a desenvoltura do projeto. Com isso, gerentes de projetos podem inferir erros e acertos em suas metodologias, melhorando a qualidade e eficiência do produto final.
 
 ### 3.2 Resumo da parte interessada
 
@@ -94,7 +97,7 @@ Equipes de desenvolvimento de software que usam a plataforma GitHub. Tais equipe
 
 O projeto consiste em uma ferramenta de monitoramento de repositório com interface integrada ao Github. A partir da mesma é possível ter controle sobre os dados das atividades de contribuidores de determinado projeto.
 
- ### 4.1 Perspectiva do Produto
+### 4.1 Perspectiva do Produto
 
 Trata-se de uma extensão do navegador Google Chrome, com sua interface integrada ao GitHub. Existem outras extensões que auxiliam o desenvolvimento de projetos dentro da plataforma de versionamento citada, como o ZenHub, por exemplo, e até mesmo dashboards que monitoram as atividades em repositórios, como o produto apresentado, porém a intenção é aprimorar a experiência do usuário em relação aos produtos semelhantes.
 
