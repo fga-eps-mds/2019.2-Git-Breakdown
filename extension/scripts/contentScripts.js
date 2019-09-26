@@ -17,8 +17,12 @@ const breakdownTAB = () =>{
     tab.style.borderRight = "1px"
     tab.style.borderBottom = "1px"
 
+
+
+
+
     tab.innerHTML =  `
-        <a href="#breakdown" style="text-align:center;">
+        <a href="#breakdown" style=" color: #586069; text-decoration: none; ">
             <span class="span" style="text-align:center;">
                 BreakDown
             </span>
