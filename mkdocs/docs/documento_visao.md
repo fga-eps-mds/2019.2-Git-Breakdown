@@ -4,14 +4,14 @@
 | --- | --- | --- | --- |
 | 29/08/2019 | 0.1 | Estrutura Inicial | Pedro Daniel |
 | 29/08/2019 | 0.2 | Iniciando tópico sobre as partes interessadas | João V. |
-| 01/09/2019 | 0.3 | Montando escopo,  propósito e visão geral do produto | Victor H., Pedro Daniel |
+| 01/09/2019 | 0.3 | Montando escopo, propósito e visão geral do produto | Victor H., Pedro Daniel |
 | 02/09/2019 | 0.4 | Atualizando os tópicos de introdução e posicionamento| Paulo H. |
 | 03/09/2019 | 0.5 | Reedição do escopo e delimitando instrução do problema | Victor H. |
 | 03/09/2019 | 0.6 | Criando instrução de problema, posição de produto, demográficos de mercado e resumo da parte interessada  | Paulo H. |
 | 03/09/2019 | 0.7 | Atualizando o tópico sobre visão geral do produto e editando recursos do produto | João V., Victor H. |
 | 05/09/2019 | 0.8 | Editando restrições do produto | Victor H. |
 | 05/09/2019 | 1.0 | Revisão e adaptação para markdown | Pedro Daniel, João V. |
-| 26/09/2019 | 1.1 | Revisão da introdução e correção de bugs | Pedro Daniel |
+| 26/09/2019 | 1.1 | Revisão da introdução, posicionamento, parte interessada e correção de bugs | Pedro Daniel |
 
 ---
 
@@ -39,8 +39,6 @@ Desenvolvido para o auxílio de equipes que utilizam as metodologias ágeis de d
 
 **ZenHub:** Extensão para navegadores que adiciona ferramentas de gerenciamento diretamente na interface do GitHub.
 
-**API Gateway:** É uma interface que recebe as chamadas para seus sistemas internos, sendo uma grande porta de entrada.
-
 ### 1.4 Visão Geral
 
 Tem-se por finalidade deste documento apresentar de forma simples e didática o engajamento do produto no que tange a problemática inicial.
@@ -56,18 +54,18 @@ A equipe de desenvolvimento do projeto tem como planejamento a criação de uma 
 
 ### 2.2 Instrução do problema
 
-Um modelo de negócios, certamente deve buscar uma crescente evolução na eficiência de seus métodos. Para que tal objetivo seja alcançado, faz-se necessário aferir métricas sobre os projetos, funcionários, qualidade de trabalho, tempo gasto, pareamento de conhecimentos dentre outros.
+Um modelo de negócios, certamente deve buscar uma crescente evolução na eficiência de seus métodos. Para que tal objetivo seja alcançado, faz-se necessário aferir métricas sobre os projetos, desenvolvedores, qualidade de trabalho, tempo gasto dentre outros.
 
 | Tipo | Descrição |
 | --- | --- |
-| Problema | Melhorar a eficiência dentro de um modelo de desenvolvimento de software |
-| Afetados | Projetos de desenvolvimento do software que usam a plataforma GitHub |
+| Problema | Melhorar a eficiência dentro de um modelo ágil de desenvolvimento de software |
+| Afetados | Projetos de desenvolvimento do software que usam a plataforma GitHub para versionamento |
 | Impactos | Ampliação da base de dados estatísticos, aprimoramento da eficácia na tomada de decisões |
-| Solução | A extensão atua na captação de dados provindos do GitHub e desenvolverá análises especiais, voltadas ao modelo de negócios |
+| Solução | A extensão atua na captação de dados provenientes do GitHub e desenvolverá gráficos especiais, voltados ao modelo de negócios |
 
 ### 2.3 Instrução de Posição de Produto
 
-A captação e tratamento destes dados podem inferir pontos decisivos na evolução do processo como um todo. A proposta da extensão Git Breakdown configura-se em atuar na coleta das referências de rendimento, tratar e propor informações de qualidade, as quais antes se encontravam ocultas ou fora do espectro de visão.
+A captação e tratamento destes dados podem inferir pontos decisivos na evolução do processo como um todo. A proposta da extensão Git Breakdown configura-se em atuar na coleta das referências de rendimento, tratar informações de qualidade, as quais antes se encontravam ocultas ou fora do espectro de visão dos membros do projeto.
 
 Para maior confiabilidade dos dados apresentados, toda coleta de conteúdo é aplicada a uma série de métodos probabilísticos e estatísticos de alto desempenho, com a finalidade de normalizar e expor as métricas mais fiéis a situação.
 
@@ -90,7 +88,7 @@ Equipes de desenvolvimento de software que usam a plataforma GitHub. Tais equipe
 
 ### 3.3 Resumo do usuário
 
- A plataforma desponta de artifícios para todo os usuários GitHub, com foco para: gestores de equipes de alto, médio e baixo desempenho; desenvolvedores individuais e terceiros interessados. A interação com o usuário possui vários níveis de referência, partindo de alvos mais simples como a própria exposição de dados, perdurando até avançadas métricas estatísticas.
+A extensão dispõe de métricas por meio de dashboards para todos os usuários do GitHub, com foco para: gestores de equipes de alto, médio e baixo desempenho; desenvolvedores individuais e terceiros interessados. A interação com o usuário possui vários níveis de referência, partindo de alvos mais simples como a própria exposição de dados, até métricas mais avançadas.
 
 
 ## 4. Visão Geral do Produto
