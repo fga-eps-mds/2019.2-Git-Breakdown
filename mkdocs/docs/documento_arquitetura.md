@@ -9,11 +9,12 @@
 | 07/09/2019 | 1.0 | Criação da tabela de tecnologias e diagrama de pacotes | Paulo, Pedro Daniel |
 | 10/09/2019 | 1.1 | Revisão e adaptação para markdown | Pedro Daniel, João V. |
 | 25/09/2019 | 1.2 | Adicionando API Gateway e microsserviços | Pedro Daniel |
+| 26/09/2019 | 1.3 | Revisando introdução e representação da arquitetura | Pedro Daniel |
 
 ---
 
 ## 1. Introdução
-  ### 1.1. Finalidade
+### 1.1. Finalidade
 
 Este documento tem como objetivo descrever a arquitetura do plugin Git Breakdown. Ele apresenta as decisões de arquitetura para o projeto de forma objetiva e concisa e também contém informações que serão utilizadas para os desenvolvedores e gestores compreenderem a arquitetura utilizada no desenvolvimento, o fluxo de informações e as tecnologias envolvidas no projeto.
 
@@ -24,7 +25,10 @@ Este documento esclarece as decisões arquiteturais do plugin Git Breakdown, os 
 ### 1.3. Definições, Acrônimos e Abreviações
 
 - **API** - Application Programming Interface: conjunto de rotinas e padrões estabelecidos por um software para a utilização das suas funcionalidades por demais aplicativos que desejam utilizar seu serviço
-- **MVC** - Model View Controller: padrão de arquitetura de software constituído por três camadas
+- **API Gateway** - É uma interface que recebe as chamadas para seus sistemas internos, sendo uma grande porta de entrada.
+- **Microsserviços** - Refere-se aos serviços individuais em uma arquitetura de microsserviços. Por sua vez, uma arquitetura de microsserviço é um estilo moderno de arquitetura para web services.
+- **MVC** - Model View Controller: padrão de arquitetura de software constituído por três camadas: Model, View e Controller.
+- **Arquitetura Serverless** - Refere-se a aplicativos que dependem significativamente de serviços de terceiros (conhecido como Backend como Serviço ou “BaaS”) ou no código personalizado que é executado em contêineres efêmeros (Função como Serviço ou “FaaS”).
 
 ### 1.4. Visão Geral
 
@@ -33,20 +37,20 @@ O documento detalha a arquitetura utilizada para o desenvolvimento do projeto. P
 ## 2.  Representação de Arquitetura
 ### 2.1. Node.js
 
-O Node.js pode ser definido como um ambiente de execução Javascript server-side, ou seja, com o Node.js é possível criar aplicações Javascript para rodar como uma aplicação standalone em uma máquina, não dependendo de um browser para a execução. O principal motivo de sua adoção é a sua alta capacidade de escala. Além disso, sua arquitetura, flexibilidade e baixo custo, o tornam uma boa escolha para implementação de Microsserviços e componentes da arquitetura Serverless.
+O Node.js pode ser definido como um ambiente de execução Javascript server-side, ou seja, com o Node.js é possível criar aplicações Javascript para rodar como uma aplicação standalone em uma máquina, não dependendo de um browser para a execução. Os principais motivos de sua adoção são a sua alta capacidade de escala e seu notável suporte com assincronicidade. Além disso, sua arquitetura, flexibilidade e baixo custo, o tornam uma boa escolha para implementação de Microsserviços e componentes da arquitetura Serverless.
 
 ### 2.2. Express
 
-O Express é um framework para aplicativo da web do Node.js mínimo e flexível que fornece um conjunto robusto de recursos para aplicativos web e móvel. Com uma infinidade de métodos utilitários HTTP e middleware a seu dispor, criar uma API robusta é rápido e fácil. O Express fornece uma camada fina de recursos fundamentais para aplicativos da web, sem obscurecer os recursos do Node.js.
+O Express é um framework para aplicativo da web do Node.js minimalista e flexível que fornece um conjunto robusto de recursos para aplicativos web e móvel. Com uma infinidade de métodos utilitários HTTP e middleware disponíveis, com o Express é possível criar uma API robusta de forma rápida e com facilidade. O Express fornece uma camada fina de recursos fundamentais para aplicativos da web, sem obscurecer os recursos do Node.js.
 
 ### 2.3. Plugin Google Chrome
 
- Plugins para o google chrome são pequenos programas utilizados para customizar a experiência de um usuário ao utilizar o browser. São extensões que permitem a utilização de novas funcionalidades. Os plugins são feitos em tecnologias web, como HTML, CSS e JavaScript. No Git Breakdown, o plugin será responsável por trocar informações com o backend e mostrá-las na página do GitHub acessada pelo usuário. Para isso, deve editar o conteúdo HTML presente na página, acrescentando as informações recebidas pelo backend. A arquitetura do plugin é composta por 4 componentes: popup.html, popup.js, background.js e contentscript.js.
+Plugins para o google chrome são pequenos programas utilizados para customizar a experiência de um usuário ao utilizar o browser. São extensões que permitem a utilização de novas funcionalidades. Os plugins são feitos em tecnologias web, como HTML, CSS e JavaScript. No Git Breakdown, o plugin será responsável por trocar informações com o backend e mostrá-las na página do GitHub acessada pelo usuário. Para isso, deve editar o conteúdo HTML presente na página, acrescentando as informações recebidas pelo backend. A arquitetura do plugin é composta por 4 componentes: popup.html, popup.js, background.js e contentscript.js.
 
-- Popup.html - janela feita em HTML que sobrepõe o conteúdo da página
-- Popup.js - controla as funcionalidades da popup.html
-- Background.js - script responsável pelos eventos que ocorrem na página e precisam ser observados pelo plugin. O módulo background deve ficar desabilitado quando não é utilizado, e carregado apenas quando necessário.
-- Contentscript.js - responsável pela leitura e escrita em uma página web. Ele lê e modifica o DOM de páginas web acessadas pelo browser.
+- **Popup.html** - janela feita em HTML que sobrepõe o conteúdo da página
+- **Popup.js** - controla as funcionalidades da popup.html
+- **Background.js** - script responsável pelos eventos que ocorrem na página e precisam ser observados pelo plugin. O módulo background deve ficar desabilitado quando não é utilizado, e carregado apenas quando necessário.
+- **Contentscript.js** - responsável pela leitura e escrita em uma página web. Ele lê e modifica o DOM de páginas web acessadas pelo browser.
 
  A imagem a seguir mostra a representação dessa arquitetura:
 
@@ -55,11 +59,11 @@ O Express é um framework para aplicativo da web do Node.js mínimo e flexível 
 
 ### 2.4. GitHub API v3
 
-A API do GitHub é consumida pelo backend do sistema. Os dados provenientes da API são processados de acordo com os critérios adotados, gerando as métricas desejadas que retornarão ao plugin do Google Chrome.
+A API do GitHub é consumida pelo backend da extensão, os dados provenientes da API são processados de acordo com os critérios adotados, gerando as métricas desejadas que retornarão ao plugin do Google Chrome.
 
 ### 2.5. API Gateway e Microsserviços
 
-A API Gateway ficará responsável por fazer a mediação entre o frontend e os microsserviços, redirecionando as requisições para o microsserviço correspondente e retornando a sua resposta para a origem da requisição.
+A API Gateway ficará responsável por fazer a mediação entre o frontend e os microsserviços, redirecionando as requisições para o microsserviço correspondente e retornando a respectiva resposta para a origem da requisição.
 
 Será desenvolvido um microsserviço para cada métrica, são elas:
  - commits;
@@ -82,8 +86,6 @@ Será desenvolvido um microsserviço para cada métrica, são elas:
 | Web Extension | Biblioteca NodeJS que converte a estrutura node para arquitetura chrome |
 | Google Chrome | Navegador padrão da aplicação |
 | Docker | Utilizado para configurar o ambiente de desenvolvimento |
-
-
 
 ### 3.2. Restrições de arquitetura
 
