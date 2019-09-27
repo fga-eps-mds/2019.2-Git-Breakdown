@@ -10,11 +10,15 @@ document.getElementById('loginButton').addEventListener("click", function()
 
 document.getElementById('logoutButton').addEventListener("click", function()
 {
-    chrome.storage.sync.set({'oauth2_token': null}, function()
+    let exit = confirm("Are you sure to logout?")
+    if (exit)
     {
-        console.log("Token removido com sucesso")
-    })
-    window.close()
+        chrome.storage.sync.set({'oauth2_token': null}, function()
+        {
+            console.log("Token removido com sucesso")
+        })
+        window.close()
+    }
 })
 
 document.addEventListener('DOMContentLoaded', function() 
