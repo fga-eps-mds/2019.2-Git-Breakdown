@@ -1,5 +1,5 @@
 {
-  "name": "commit_request",
+  "name": "commits_request",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./server/server.js"
+    "start": "nodemon ./server/server.js"
   },
   "keywords": [],
   "author": "",
