@@ -12,6 +12,7 @@
 | 05/09/2019 | 0.8 | Editando restrições do produto | Victor H. |
 | 05/09/2019 | 1.0 | Revisão e adaptação para markdown | Pedro Daniel, João V. |
 | 26/09/2019 | 1.1 | Revisão da introdução, posicionamento, parte interessada e correção de bugs | Pedro Daniel |
+| 28/09/2019 | 1.2 | Finalizando a revisão do documento | João V., Paulo H., Pedro Daia, Pedro Daniel, Victor H. |
 
 ---
 
@@ -97,37 +98,32 @@ O projeto consiste em uma ferramenta de monitoramento de repositório com interf
 
 ### 4.1 Perspectiva do Produto
 
-Trata-se de uma extensão do navegador Google Chrome, com sua interface integrada ao GitHub. Existem outras extensões que auxiliam o desenvolvimento de projetos dentro da plataforma de versionamento citada, como o ZenHub, por exemplo, e até mesmo dashboards que monitoram as atividades em repositórios, como o produto apresentado, porém a intenção é aprimorar a experiência do usuário em relação aos produtos semelhantes.
+Trata-se de uma extensão do navegador Google Chrome, com sua interface integrada ao GitHub. Existem outras extensões que auxiliam o monitoramento de projetos dentro da plataforma de versionamento citada, porém a intenção é aprimorar a experiência do usuário em relação aos produtos semelhantes.
 
 ### 4.2 Resumo das Capacidades
 
-O produto tem como finalidade a criação de um dashboard para monitorar atividades em um repositório, com enfoque na experiência do usuário, para que seja possível otimizar a produtividade de projetos. O sistema gera dados numéricos, representados graficamente, da atividade dos desenvolvedores no projeto em questão.
+O produto tem como finalidade a criação de dashboards para monitorar atividades em um repositório, com enfoque na experiência do usuário, para que seja possível otimizar a produtividade de projetos.
 
 ## 5. Recursos do Produto
 
-### 5.1 BurnDown Chart
-
-Recurso que cria um gráfico de relação linear dos pontos abertos no início da sprint, até o final dela.
-
-### 5.2 Velocity
-
-Recurso Gráfico que permite analisar o quanto uma equipe pode produzir durante uma sprint.
-
-### 5.3 Commits
+### 5.1 Commits
 * Quantidade de commits por pessoa;
-* Porcentagens individuais de commits em relação as sprints anteriores;
-* Quantidade de commits em nível global;
-* Quantidade de commits em porcentagens de nível global em relação as sprints anteriores.
+    * Quantidade de linhas adicionadas e deletadas.
+* Quantidade total de commits do repositório.
 
-### 5.4 Interação com a comunidade
-* Comentários feitos por não-contribuintes;
-* Issues abertas por não-contribuintes.
+### 5.2 Issues
+* Quantidade de issues abertas e fechadas;
+* Porcentagem de issues abertas e fechadas.
 
-###  5.5 Visualizações, favoritos e forks
+### 5.3 Pull Requests
+* Quantidade de pull requests abertos e fechados;
+* Porcentagem de pull requests recusados em relação aos fechados.
 
-Série histórica de acompanhamento de visualizações, favoritações e forks feita no repositório.
+### 5.4 Branches
+* Quantidade de branches ativas;
+* Porcentagem das branches mescladas(_merged_).
 
-## 6. Restrições
+## 6. Restrições e Dependências
 * O Git BreakDown opera apenas no navegador Google Chrome;
-* É necessário que o repositório em análise siga uma metodologia previamente definida de issues/commits/pull requests para que a ferramenta tenha uma análise consistente;
-    * O plugin opera de forma inapropriada em repositórios sem uma política definitiva.
+* Depende da autenticação do usuário;
+* Depende da GitHub API v3.
