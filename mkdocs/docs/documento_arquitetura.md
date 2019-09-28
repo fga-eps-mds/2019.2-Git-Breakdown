@@ -73,6 +73,8 @@ Será desenvolvido um microsserviço para cada métrica, são elas:
 
 ### 2.6. Visão Geral da Arquitetura
 
+<iframe frameborder="0" style="width:100%;height:450px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=vis%C3%A3o%20geral%20da%20arquitetura#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1-iZbdzQnqdeggyvf_r0IBU6btVb7TLN9%26export%3Ddownload"></iframe>
+
 ## 3. Metas e Restrições da Arquitetura
 
 ### 3.1. Tecnologias utilizadas para o desenvolvimento
