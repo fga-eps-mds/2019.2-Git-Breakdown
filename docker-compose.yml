@@ -9,21 +9,21 @@ services:
     volumes:
       - .:/usr/breakdown/api_gateway
     depends_on:
-      - commit_api
+      - commits_api
       - issue_api
       - pullrequest_api
     links:
-      - commit_api
+      - commits_api
       - issue_api
       - pullrequest_api
   
-  commit_api:
-    build: ./APIs/commit_request/.
-    command: npm run dev
+  commits_api:
+    build: ./APIs/commits_request/.
+    command: npm start
     ports:
       - "3001:3001"
     volumes:
-      - .:/usr/breakdown/commit_request
+      - .:/usr/breakdown/commits_request
   
   issue_api:
     build: ./APIs/issues_request/.
