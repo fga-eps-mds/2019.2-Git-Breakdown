@@ -36,3 +36,5 @@ app.use(cookieParser());
 
 let server = http.createServer(app);
 server.listen(3000);
+
+module.exports = app
