@@ -1,0 +1,25 @@
+site_name: Git Breakdown
+nav:
+    - Home: index.md
+    - Documentos:
+        'Visão': documento_visao.md
+        'Termo de Abertura': tap.md
+        'Estrutura Analítica': eap.md
+        'Orçamento Inicial': orcamento_inicial.md
+        'Metricas': 'Metricas.md'
+    - Planos: 
+        'Comunicação': comunicacao.md
+        'Gerenciamento de riscos': riscos.md
+        'Gerenciamento de projeto': plano_de_gerenciamento_de_projeto.md
+    - Políticas: 
+        'Branches': branches.md
+        'Commits': commits.md
+        'Issues': issues.md
+    - Sprints:
+        'Sprint 0':
+            'Sprint Planing': sprints/planing/sprint0.md
+            'Sprint Review': sprints/review/sprint0.md
+        'Sprint 1':
+            'Sprint Planing': sprints/planing/sprint1.md
+
+theme: cinder

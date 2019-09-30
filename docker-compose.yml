@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  gateway_api:
+    build: ./APIs/api_gateway/.
+    command: npm start
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/breakdown/api_gateway
+    depends_on:
+      - commits_api
+      - issue_api
+      - pullrequest_api
+    links:
+      - commits_api
+      - issue_api
+      - pullrequest_api
+  
+  commits_api:
+    build: ./APIs/commits_request/.
+    command: npm start
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/usr/breakdown/commits_request
+  
+  issue_api:
+    build: ./APIs/issues_request/.
+    command: npm start
+    ports:
+      - "3002:3002"
+    volumes:
+      - .:/usr/breakdown/issues_request
+  
+  pullrequest_api:
+    build: ./APIs/pullrequests_request/.
+    command: npm start
+    ports:
+      - "3003:3003"
+    volumes:
+      - .:/usr/breakdown/pullrequests_request
+
+  branch_api:
+    build: ./APIs/branches_request/.
+    command: npm start
+    ports:
+      - "3004:3004"
+    volumes:
+      - .:/usr/breakdown/branches_request
