@@ -38,5 +38,8 @@ chrome.storage.sync.get('oauth2_token', function(res)
         console.log("Token nao disponivel")
         let logoutButton = document.getElementById('logoutButton')
         logoutButton.parentNode.removeChild(logoutButton)
+        // only show issue chart when logged in - for testing of feat#47
+        let issue_graph = document.getElementById('issueStatusChart')
+        issue_graph.parentNode.removeChild(issue_graph)
     }
 })

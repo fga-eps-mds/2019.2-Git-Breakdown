@@ -25,6 +25,7 @@
                 background-color: steelblue;
             }
         </style>
+        <script src="scripts/Chart.min.js"></script>
     </head>
     <body>
         <div id="app">
@@ -32,6 +33,10 @@
             <button id="loginButton">Log in to GitHub</button>
             <button id="logoutButton">Logout</button>
         </div>
+        <canvas id="issueStatusChart" width="400" height="400"></canvas>
+
+        <script type="text/javascript" src="scripts/graph.js"></script>
+
         <script type="module" src="scripts/popup.js"> </script>
     </body>
 </html>
