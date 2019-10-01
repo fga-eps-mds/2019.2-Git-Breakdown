@@ -8,37 +8,24 @@ exports.get = (req, res, next) => {
     }else{
         let urlEndpoint = '/repos'
         urlEndpoint += '/' + req.query.owner
-        urlEndpoint += '/' + req.query.repository + '/pulls?state=all' 
+        urlEndpoint += '/' + req.query.repository + '/issues'
 
         request.get({ headers: {
           'Accept': 'application/vnd.github.v3+json',
           'Content-Type': 'application/json',
           'User-Agent': '2019.2-Git-Breakdown'
         }, uri: urlBase+urlEndpoint }, function (error, response, body) {
-            let pullrequests = JSON.parse(body)
+            let issues = JSON.parse(body)
             
-            function filterOpenPR(pr) {
-                if(pr.state === 'open'){
+            function filterPR(issue) {
+                if(issue.pull_request != undefined){
                     return true
                 }
                 return false
             }
-            let openPRs = pullrequests.filter(filterOpenPR)
-
-            function filterClosedPR(pr) {
-                if(pr.state === 'closed'){
-                    return true
-                }
-                return false
-            }
-            let closedPRs = pullrequests.filter(filterClosedPR)
-
-            let numberOfOpen = Object.keys(openPRs).length
-            let numberOfClosed = Object.keys(closedPRs).length 
-
-            let prInfo = {'open': numberOfOpen, 'closed': numberOfClosed}
+            let filteredIssues = issues.filter(filterPR)
             
-            res.status(response.statusCode).json(prInfo)
+            res.status(response.statusCode).send(filteredIssues)
         })
     }
 }
