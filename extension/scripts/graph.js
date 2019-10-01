@@ -1,12 +1,10 @@
-const url_base = 'http://54.159.51.170:3000/issues'
+import constants from './constants.js'
+
+const url_base_issues = 'http://54.159.51.170:3000/issues'
 const url_aux = '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
 
-let num_open = 1
-let num_closed = 1
-
-fetch(url_base+url_aux).then((resp) => resp.json()).then(function(data)
+fetch(url_base_issues+url_aux).then((resp) => resp.json()).then(function(data)
 {
-    console.log(data)
     const ctx = document.getElementById('issueStatusChart').getContext('2d')
     const issueChart = new Chart(ctx, 
     {
@@ -52,5 +50,5 @@ fetch(url_base+url_aux).then((resp) => resp.json()).then(function(data)
     })
 }).catch(function()
 {
-
+    console.log("erro = ")
 })

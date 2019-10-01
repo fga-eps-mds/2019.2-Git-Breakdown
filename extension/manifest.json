@@ -1,8 +1,14 @@
 {
     "name": "GitBreakdown",
-    "version": "0.6",
+    "version": "0.7",
     "description": "GitBreakdown Chrome extension",
-    "permissions": ["declarativeContent", "storage", "http://54.159.51.170:3000/*"],
+    "permissions": 
+    [
+        "declarativeContent",
+        "storage",
+        "http://54.159.51.170:3000/*",
+        "tabs"
+    ],
     "background": 
     {
         "scripts": ["scripts/background.js"],

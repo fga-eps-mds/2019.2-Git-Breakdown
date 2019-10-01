@@ -23,6 +23,15 @@ document.getElementById('logoutButton').addEventListener("click", function()
 
 document.addEventListener('DOMContentLoaded', function() 
 {
+    chrome.tabs.query
+    ({
+        'active': true, 'lastFocusedWindow': true
+    },
+    function (tabs) 
+    {
+        constants.PAGE_URL = tabs[0].url
+        console.log("page url: " + constants.PAGE_URL)
+    })
 })
 
 chrome.storage.sync.get('oauth2_token', function(res) 
@@ -38,7 +47,13 @@ chrome.storage.sync.get('oauth2_token', function(res)
         console.log("Token nao disponivel")
         let logoutButton = document.getElementById('logoutButton')
         logoutButton.parentNode.removeChild(logoutButton)
-        // only show issue chart when logged in - for testing of feat#47
+        
+        /*
+        Aqui a gente remove o gráfico de issues quando da logout
+        TODO: depois de finalizar a issue de criar gráfico de commits, 
+        tem que arrumar isso para só mostrar um gráfico de cada vez a partir
+        da aba selecionada algo do tipo
+        */
         let issue_graph = document.getElementById('issueStatusChart')
         issue_graph.parentNode.removeChild(issue_graph)
     }
