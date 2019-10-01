@@ -1,4 +1,5 @@
 import constants from './constants.js'
+import {fetchFunc} from './graph.js'
 
 const url = 
 `https://github.com/login/oauth/authorize?response_type=code&client_id=${constants.CLIENT_ID}&scope=repo`
@@ -29,8 +30,12 @@ document.addEventListener('DOMContentLoaded', function()
     },
     function (tabs) 
     {
-        constants.PAGE_URL = tabs[0].url
-        console.log("page url: " + constants.PAGE_URL)
+        
+        let array = tabs[0].url.split("/")
+        constants.OWNER_KEY = array[3]
+        constants.REPO_KEY = array[4]
+        let url_aux = `?owner=${constants.OWNER_KEY}&repository=${constants.REPO_KEY}`
+        fetchFunc(url_aux)
     })
 })
 
