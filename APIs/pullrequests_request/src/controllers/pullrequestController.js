@@ -33,10 +33,20 @@ exports.get = (req, res, next) => {
             }
             let closedPRs = pullrequests.filter(filterClosedPR)
 
+            function getRefusedMerge(pr) {
+                if(pr.merged_at === null){
+                    return true
+                }
+                return false
+            }
+            let refusedPullrequests = closedPRs.filter(getRefusedMerge)
+
             let numberOfOpen = Object.keys(openPRs).length
             let numberOfClosed = Object.keys(closedPRs).length 
+            let numberOfRefused = Object.keys(refusedPullrequests).length
+            let percentageOfRefused = (numberOfRefused/Object.keys(pullrequests).length)*100
 
-            let prInfo = {'open': numberOfOpen, 'closed': numberOfClosed}
+            let prInfo = {'open': numberOfOpen, 'closed': numberOfClosed, 'refused_percent': percentageOfRefused}
             
             res.status(response.statusCode).json(prInfo)
         })
