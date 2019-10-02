@@ -1,6 +1,23 @@
 
+MutationObserver = window.MutationObserver
+var count = 0
+var observer = new MutationObserver((mutations , observer) => {
+    console.log(mutations)
+    console.log(count)
+    count++
+    if(document.getElementsByClassName('gdb-tab').length == 0)
+        gdb()
+    var mutations = observer.takeRecords()
+})
+
+observer.observe(document, {
+    subtree: true,
+    childList: true
+})
+
 const buttonGbd = () => { 
     var tab = document.createElement('div')
+    tab.className = "gdb-tab"
     tab.style.textAlign = "center"
     tab.style.paddingLeft = "12px"
     tab.style.paddingRight = "12px"
@@ -27,15 +44,4 @@ const gdb = () => {
  
 }
 
-const getBody = () => {
-    const body = document.querySelectorAll('body')
-    console.log(body)
-    return body
-}
 
-const body = getBody()
-
-if(body.length != 0){
-   body.addEventListener('change', gdb())
-   console.log('body found')
-}
