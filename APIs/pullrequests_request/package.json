@@ -7,7 +7,7 @@
     "test": "mocha"
   },
   "scripts": {
-    "test": "DEV_ENV=development nodemon --exec \"mocha --recursive\" --timeout 30000 ./test/*.js --exit",
+    "test": "./node_modules/.bin/_mocha --recursive ./test/*.js",
     "start": "nodemon ./bin/server.js"
   },
   "keywords": [],
