@@ -24,7 +24,8 @@ const buttonGbd = () => {
 
 const gdb = () => {
     const gitNavBar = document.getElementsByClassName('hx_reponav reponav js-repo-nav js-sidenav-container-pjax container zh-attached')
-    gitNavBar[0].appendChild(buttonGbd())
+    if(gitNavBar.length != 0)
+        gitNavBar[0].appendChild(buttonGbd())
  
 }
 
