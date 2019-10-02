@@ -6,7 +6,7 @@
     [
         "declarativeContent",
         "storage",
-        "http://54.159.51.170:3000/*",
+        "http://54.164.24.112:3000/*",
         "tabs"
     ],
     "background": 
@@ -22,7 +22,7 @@
             "https://github.com/*",
             "http://*.github.com/*",
             "https://*.github.com/*",
-            "http://54.159.51.170:3000/*"
+            "http://54.164.24.112:3000/*"
         ],
         "js": ["scripts/oauth.js"]
     }],

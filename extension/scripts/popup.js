@@ -35,7 +35,16 @@ document.addEventListener('DOMContentLoaded', function()
         constants.OWNER_KEY = array[3]
         constants.REPO_KEY = array[4]
         let url_aux = `?owner=${constants.OWNER_KEY}&repository=${constants.REPO_KEY}`
-        fetchFunc(url_aux)
+
+        if (constants.OWNER_KEY === undefined || constants.REPO_KEY === undefined)
+        {
+            console.log("Not in a valid repository")
+        }
+        else
+        {
+            console.log("valid repo")
+            fetchFunc(url_aux)
+        }
     })
 })
 

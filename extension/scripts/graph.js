@@ -1,4 +1,4 @@
-const url_base_issues = 'http://54.159.51.170:3000/issues'
+const url_base_issues = 'http://54.164.24.112:3000/issues'
 
 export function fetchFunc(url_aux)
 {
