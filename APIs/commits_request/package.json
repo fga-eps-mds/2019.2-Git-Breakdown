@@ -7,7 +7,7 @@
     "test": "mocha"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "DEV_ENV=development nodemon --exec \"mocha --recursive\" --timeout 30000 ./test/*.js --exit",
     "start": "nodemon ./server/server.js"
   },
   "keywords": [],
