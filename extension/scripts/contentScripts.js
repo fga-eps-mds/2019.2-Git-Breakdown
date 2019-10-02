@@ -32,16 +32,12 @@ const gdb = () => {
 
 const initGDB = () => {
     MutationObserver = window.MutationObserver
-    var count = 0
     var observer = new MutationObserver((mutations , observer) => {
-    console.log(mutations)
-    console.log(count)
-    count++
     if(document.getElementsByClassName('gdb-tab').length == 0)
         gdb()
-    var mutations = observer.takeRecords()
+    
     })
-
+    var mutations = observer.takeRecords()
     observer.observe(document, {
     subtree: true,
     childList: true
