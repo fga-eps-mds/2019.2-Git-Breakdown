@@ -1,20 +1,4 @@
 
-MutationObserver = window.MutationObserver
-var count = 0
-var observer = new MutationObserver((mutations , observer) => {
-    console.log(mutations)
-    console.log(count)
-    count++
-    if(document.getElementsByClassName('gdb-tab').length == 0)
-        gdb()
-    var mutations = observer.takeRecords()
-})
-
-observer.observe(document, {
-    subtree: true,
-    childList: true
-})
-
 const buttonGbd = () => { 
     var tab = document.createElement('div')
     tab.className = "gdb-tab"
@@ -29,7 +13,7 @@ const buttonGbd = () => {
     tab.style.borderBottom = "1px"
     tab.innerHTML =  `
             <a href="#breakdown" style=" color: #586069; text-decoration: none; ">
-                <span class="span" style="text-align:center;">
+                <span style="text-align:center;">
                     BreakDown
                 </span>
             </a>
@@ -45,3 +29,23 @@ const gdb = () => {
 }
 
 
+const initGDB = () => {
+    MutationObserver = window.MutationObserver
+    var count = 0
+    var observer = new MutationObserver((mutations , observer) => {
+    console.log(mutations)
+    console.log(count)
+    count++
+    if(document.getElementsByClassName('gdb-tab').length == 0)
+        gdb()
+    var mutations = observer.takeRecords()
+    })
+
+    observer.observe(document, {
+    subtree: true,
+    childList: true
+    })
+}
+
+
+initGDB()
