@@ -1,7 +1,9 @@
-//Button routine: put the GDB button in the GH pages
+//Button routine: put the GBD button in the GH pages
+
 const buttonGbd = () => { 
     var tab = document.createElement('span')
-    tab.className = "gdb-tab"
+    tab.id = "gbd-tab"
+    tab.className = "position-relative float-left"
     tab.style.textAlign = "center"
     tab.style.paddingLeft = "12px"
     tab.style.paddingRight = "12px"
@@ -22,24 +24,45 @@ const buttonGbd = () => {
     return tab
 }
 
-const gdb = () => {
-    const gitNavBar = document.getElementsByClassName('hx_reponav reponav js-repo-nav js-sidenav-container-pjax container zh-attached')
-    if(gitNavBar.length != 0)
-        gitNavBar[0].appendChild(buttonGbd())
+const insertButton = () => {
+    const gitNavBar = document.getElementsByTagName('nav')
+    var navPatter = /.*(hx_reponav reponav)+.*/ 
+    for(var i = 0 ; i < gitNavBar.length ; i++)
+    {
+        var className = gitNavBar[i].className
+        var res = navPatter.exec(className)
+        if (res != null)
+            gitNavBar[i].appendChild(buttonGbd())       
+    }
 }
 
-const initGDB = () => {
-    MutationObserver = window.MutationObserver
-    var observer = new MutationObserver((mutations , observer) => {
-    if(document.getElementsByClassName('gdb-tab').length == 0)
-        gdb()
+//This function deals to insert button in cases when the mutation event doesn't trigger
+const init_ = () => {
+    if(document.getElementById('gbd-tab') === null)
+    {   
+        insertButton()
+    }
+}
+
+
+//the observer Method
+const initGBD = () => {
     
+    var observer = new MutationObserver( () => {   
+        if(document.getElementById('gbd-tab') === null)
+        {   
+            insertButton()
+        }
     })
-    var mutations = observer.takeRecords()
+  
+    //start to observe the DOM
     observer.observe(document, {
-    subtree: true,
-    childList: true
+        subtree: true,
+        childList: true
     })
+
 }
 
-initGDB()
+
+init_()
+initGBD()
