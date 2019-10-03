@@ -1,8 +1,14 @@
 {
     "name": "GitBreakdown",
-    "version": "2.2",
+    "version": "0.7",
     "description": "GitBreakdown Chrome extension",
-    "permissions": ["declarativeContent", "storage"],
+    "permissions": 
+    [
+        "declarativeContent",
+        "storage",
+        "http://54.164.24.112:3000/*",
+        "tabs"
+    ],
     "background": 
     {
         "scripts": ["scripts/background.js"],
@@ -15,17 +21,17 @@
             "http://github.com/*",
             "https://github.com/*",
             "http://*.github.com/*",
-            "https://*.github.com/*"
+            "https://*.github.com/*",
+            "http://54.164.24.112:3000/*"
         ],
         "js": 
         [
+            "scripts/oauth.js",
             "scripts/contentScripts.js",
-            "scripts/oauth.js"
-        ],
-        "run_at": "document_end",
-        "all_frames" : false
+            "scripts/button.js"
+        ]
     }],
-    "page_action": 
+    "browser_action": 
     {
         "default_popup": "popup.html"
     },
