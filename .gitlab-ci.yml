@@ -1,0 +1,75 @@
+# Gitlab-ci.yml file
+
+# This is the major part of the code which explains the stages present in our pipeline.
+# In a django application we have various stages which include testing, packing the code,
+# performing migrations, collecting static files and running the application.
+# The various stages are broadly classified into 3 main categories:
+
+# 1. Test       2. Release      3. Deploy
+
+stages:
+- build
+- test
+
+# Stage I
+# Build Phase:
+# This is where the main code is built.
+build:
+  image: docker:dind
+  stage: build
+  script:
+      - sudo docker-compose build --no-cache
+
+# Stage II
+# Testing Phase:
+# This is where the main code is tested.
+# Other options like code coverage, etc are also written in this phase
+api_gateway:
+  stage: test
+  image: node:alpine
+  before_script:
+    # install requirement to api_gateway
+    - npm --prefix ./APIs/api_gateway install ./APIs/api_gateway
+
+  script:
+    - sudo docker-compose up -d
+    - npm test --prefix ./APIs/api_gateway
+    - sudo docker-compose down
+
+branches_request:
+  stage: test
+  image: node:alpine
+  before_script:
+    # install requirement to branches_request
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/branches_request/src/constants.js
+    - npm --prefix ./APIs/branches_request install ./APIs/branches_request
+
+  script:
+    - sudo docker-compose up -d
+    - npm test --prefix ./APIs/branches_request
+    - sudo docker-compose down
+
+pullrequests_request:
+  stage: test
+  image: node:alpine
+  before_script:
+    # install requirement to pullrequests_request
+    - npm --prefix ./APIs/pullrequests_request install ./APIs/pullrequests_request
+
+  script:
+    - sudo docker-compose up -d
+    - npm test --prefix ./APIs/pullrequests_request
+    - sudo docker-compose down
+
+issues_request:
+  stage: test
+  image: node:alpine
+  before_script:
+    # install requirement to issues_request
+    - npm --prefix ./APIs/issues_request install ./APIs/issues_request
+
+  script:
+    - sudo docker-compose up -d
+    - npm test --prefix ./APIs/issues_request
+    - sudo docker-compose down
+
