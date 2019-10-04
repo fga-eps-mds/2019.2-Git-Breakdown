@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "directories": {
+    "test": "mocha"
+  },
   "scripts": {
     "start": "nodemon ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "DEV_ENV=development nodemon --exec \"mocha --recursive\" --timeout 30000 ./test/*.js --exit"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,12 @@
     "helmet": "^3.21.0",
     "http": "0.0.0",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "should": "^13.2.3"
   }
 }

@@ -1,11 +1,14 @@
 {
-  "name": "commit_request",
+  "name": "commits_request",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "directories": {
+    "test": "mocha"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./server/server.js"
+    "start": "nodemon ./server/server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +18,10 @@
     "express-http-proxy": "^1.5.1",
     "nodemon": "^1.19.2",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "should": "^13.2.3"
   }
 }
