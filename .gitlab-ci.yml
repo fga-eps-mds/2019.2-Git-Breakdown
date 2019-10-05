@@ -1,12 +1,3 @@
-# Gitlab-ci.yml file
-
-# This is the major part of the code which explains the stages present in our pipeline.
-# In a django application we have various stages which include testing, packing the code,
-# performing migrations, collecting static files and running the application.
-# The various stages are broadly classified into 3 main categories:
-
-# 1. Test       2. Release      3. Deploy
-
 stages:
 - build
 - test
