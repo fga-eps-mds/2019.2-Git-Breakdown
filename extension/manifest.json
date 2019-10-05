@@ -24,7 +24,12 @@
             "https://*.github.com/*",
             "http://54.164.24.112:3000/*"
         ],
-        "js": ["scripts/oauth.js"]
+        "js": 
+        [
+            "scripts/oauth.js",
+            "scripts/contentScripts.js",
+            "scripts/button.js"
+        ]
     }],
     "browser_action": 
     {
