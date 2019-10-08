@@ -1,8 +1,21 @@
-const url_base_issues = 'http://54.164.24.112:3000/issues'
+let url_base = 'http://18.215.242.203:3000'
 
-export function fetchFunc(url_aux)
+export function createPRChart(url_aux)
 {
-    fetch(url_base_issues+url_aux).then((resp) => resp.json()).then(function(data)
+    let url_pr = url_base + '/pullrequests' + url_aux
+    fetch(url_pr).then((resp) => resp.json()).then(function(data)
+    {
+        console.log("PR data: " + data)
+    }).catch(function()
+    { 
+        console.log("URL PR = " + url_pr)
+    })
+}
+
+export function createIssuesChart(url_aux, repo_name)
+{
+    let url_issues = url_base + '/issues' + url_aux
+    fetch(url_issues).then((resp) => resp.json()).then(function(data)
     {
         const ctx = document.getElementById('issueStatusChart').getContext('2d')
         const issueChart = new Chart(ctx, 
@@ -33,7 +46,7 @@ export function fetchFunc(url_aux)
                 title:
                 {
                     display: true,
-                    text: 'Issues state chart'
+                    text: 'Issues chart for repository: ' + repo_name
                 },
                 scales: 
                 {
@@ -49,6 +62,6 @@ export function fetchFunc(url_aux)
         })
     }).catch(function()
     {
-        console.log("URL = " + url_base_issues+url_aux)
+        console.log("URL ISSUE = " + url_issues)
     })
 } 

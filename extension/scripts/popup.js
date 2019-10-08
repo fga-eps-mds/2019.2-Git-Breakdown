@@ -1,5 +1,6 @@
 import constants from './constants.js'
-import {fetchFunc} from './graph.js'
+import {createIssuesChart} from './graph.js'
+import {createPRChart} from './graph.js'
 
 const url = 
 `https://github.com/login/oauth/authorize?response_type=code&client_id=${constants.CLIENT_ID}&scope=repo`
@@ -42,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function()
         }
         else
         {
-            console.log("valid repo")
-            fetchFunc(url_aux)
+            createIssuesChart(url_aux, constants.REPO_KEY)
+            createPRChart(url_aux)
         }
     })
 })
