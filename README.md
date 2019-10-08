@@ -33,11 +33,11 @@ Nosso software possui uma API para extrair dados do Github para analisar métric
 
 * Se você for um colaborador externo, dê um fork no projeto.
 
-* A criação de issues deve seguir a [política de issues](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/issues/).
+* A criação de issues deve seguir a [política de issues](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/#/docs/issues).
 
-* A criação de branches deve seguir a [política de branches](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/branches/).
+* A criação de branches deve seguir a [política de branches](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/#/docs/branches).
 
-* No desenvolvimento, usar nossa [política de commits](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/commits/).
+* No desenvolvimento, usar nossa [política de commits](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/#/docs/commits).
 
 * Pull requests só serão aceitos se estiverem passando na integração.
 

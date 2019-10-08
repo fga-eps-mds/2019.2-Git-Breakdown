@@ -1,5 +1,5 @@
 
-<center> <a href="/">
+<center> <a href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/#/">
   <img src="_images/LOGO_GATO_TRANSP.gif" alt="logo" style="width: 60%">
 </a> </center>
 
