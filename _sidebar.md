@@ -11,6 +11,7 @@
   - [Visão](docs/documento_visao.md)
   - [Documento de Arquitetura](docs/documento_arquitetura.md)
   - [Estrutura Analítica do Projeto](docs/eap.md)
+  - [Backlog do Produto](docs/backlog.md)
 
 - Planos
 

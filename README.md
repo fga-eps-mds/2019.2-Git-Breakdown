@@ -60,7 +60,7 @@ As branches de documentos são criadas a partir da master, e serve para criaçã
 <br/>
 <br/>
 
-<center> <h1> Conheça nossa equipe <h1> </center>
+<!-- <center> <h1> Conheça nossa equipe <h1> </center>
 <br/>
 <br/>
 <br/>
@@ -170,6 +170,6 @@ As branches de documentos são criadas a partir da master, e serve para criaçã
         </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
