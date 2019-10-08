@@ -3,56 +3,53 @@ const issues = require('../src/routes/pullrequestRoute')
 const assert = chai.assert
 const request = require('request')
 const should = require('should')
-const axios = require('axios')
 const expect = chai.expect
 chai.use(require('chai-json'));
 
 const urlBase = 'http://localhost:3000/pullrequests'
 
 describe('PullRequests route tests', () => {
-  it('Test: Request valid', () => {
-    axios.get(
+  it('Test: Request valid', (done) => {
+    request.get(
       {
         url : urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
       },
-      async (error, response, body) => {
+      (error, response, body) => {
 
         let _body = {};
         try{
-          _body = await JSON.parse(body);
+          _body = JSON.parse(body);
         }
         catch(e){
           _body = {};
         }
-
-        if(response.status != undefined)
-            expect(response.statusCode).to.equal(200);
-
-        if(_body != undefined){
-            expect(_body).to.have.property('open')
-            expect(_body).to.have.property('closed')
-            expect(_body).to.have.property('refused_percent')
-        }
+          
+        /*for(issue in body){
+           expect(body).to.have.nested.property(issue.pull_request)
+        }*/
+          expect(response.statusCode).to.equal(200)
+        done();
       }
     );
   });
 
-  it('Test: Request without parameters', () => {
-    axios.get(
+  it('Test: Request without parameters', (done) => {
+    request.get(
       {
         url : urlBase + '?owner=f'
       },
-      async (error, response, body) => {
+      (error, response, body) => {
 
         let _body = {};
         try{
-          _body = await JSON.parse(body);
+          _body = JSON.parse(body);
         }
         catch(e){
           _body = {};
         }
 
         expect(response.statusCode).to.equal(400);
+        done();
       }
     );
   });
