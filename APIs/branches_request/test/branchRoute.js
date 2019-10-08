@@ -1,25 +1,23 @@
 const chai = require('chai')
-const issues = require('../src/routes/pullrequestRoute')
+const branches = require('../src/routes/branchRoute')
 const assert = chai.assert
 const request = require('request')
-const should = require('should')
 const axios = require('axios')
 const expect = chai.expect
-chai.use(require('chai-json'));
 
-const urlBase = 'http://localhost:3000/pullrequests'
+const urlBase = 'http://localhost:3000/branches'
 
-describe('PullRequests route tests', () => {
+describe('Branches route tests', () => {
   it('Test: Request valid', () => {
     axios.get(
       {
         url : urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
       },
-      async (error, response, body) => {
+      (error, response, body) => {
 
         let _body = {};
         try{
-          _body = await JSON.parse(body);
+          _body = JSON.parse(body);
         }
         catch(e){
           _body = {};
@@ -29,9 +27,8 @@ describe('PullRequests route tests', () => {
             expect(response.statusCode).to.equal(200);
 
         if(_body != undefined){
-            expect(_body).to.have.property('open')
-            expect(_body).to.have.property('closed')
-            expect(_body).to.have.property('refused_percent')
+            expect(_body).to.have.property('active_branches')
+            expect(_body).to.have.property('percentage_merged')
         }
       }
     );

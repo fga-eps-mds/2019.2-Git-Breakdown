@@ -1,56 +1,54 @@
-const url_base = 'http://54.159.51.170:3000/issues'
-const url_aux = '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
+const url_base_issues = 'http://54.164.24.112:3000/issues'
 
-let num_open = 1
-let num_closed = 1
-
-fetch(url_base+url_aux).then((resp) => resp.json()).then(function(data)
+export function fetchFunc(url_aux)
 {
-    console.log(data)
-    const ctx = document.getElementById('issueStatusChart').getContext('2d')
-    const issueChart = new Chart(ctx, 
+    fetch(url_base_issues+url_aux).then((resp) => resp.json()).then(function(data)
     {
-        type: 'pie',
-        data: 
+        const ctx = document.getElementById('issueStatusChart').getContext('2d')
+        const issueChart = new Chart(ctx, 
         {
-            labels: ['open', 'closed'],
-            datasets: 
-            [{
-                label: '# of issues',
-                data: [data.open, data.closed],
-                backgroundColor: 
-                [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor: 
-                [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: 
-        {
-            title:
+            type: 'pie',
+            data: 
             {
-                display: true,
-                text: 'Issues state chart'
-            },
-            scales: 
-            {
-                yAxes: 
+                labels: ['open', 'closed'],
+                datasets: 
                 [{
-                    ticks: 
-                    {
-                        beginAtZero: true
-                    }
+                    label: '# of issues',
+                    data: [data.open, data.closed],
+                    backgroundColor: 
+                    [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: 
+                    [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
                 }]
+            },
+            options: 
+            {
+                title:
+                {
+                    display: true,
+                    text: 'Issues state chart'
+                },
+                scales: 
+                {
+                    yAxes: 
+                    [{
+                        ticks: 
+                        {
+                            beginAtZero: true
+                        }
+                    }]
+                }
             }
-        }
+        })
+    }).catch(function()
+    {
+        console.log("URL = " + url_base_issues+url_aux)
     })
-}).catch(function()
-{
-
-})
+} 
