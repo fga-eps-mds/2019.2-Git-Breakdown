@@ -1,3 +1,4 @@
+# SSH connection
 set -e
 
 eval $(ssh-agent -s)

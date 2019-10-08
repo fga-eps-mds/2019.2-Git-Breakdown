@@ -1,3 +1,4 @@
+# Updating and restarting APIs
 set -e
 
 cd /home/ubuntu/2019.2-Git-Breakdown
