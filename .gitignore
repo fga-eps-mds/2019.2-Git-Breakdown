@@ -1,9 +1,3 @@
 mkdocs/site/
-APIs/api_gateway/package-lock.json
-APIs/commit_request/node_modules/
-APIs/commit_request/package-lock.json
-initServerBash/
-node_modules/
-extension/package-lock.json
-extension/package.json
+
 extension/scripts/Chart.min.js

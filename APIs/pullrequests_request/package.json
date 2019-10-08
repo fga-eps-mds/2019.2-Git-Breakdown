@@ -7,17 +7,16 @@
     "test": "mocha"
   },
   "scripts": {
-    "test": "./node_modules/.bin/_mocha --recursive ./test/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./bin/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.0",
     "express": "^4.17.1",
-    "nodemon": "^1.19.2",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "nodemon": "^1.19.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
