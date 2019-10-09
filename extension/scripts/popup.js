@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function()
         }
         else
         {
-            createIssuesChart(url_aux, constants.REPO_KEY)
-            createPRChart(url_aux)
+            //createIssuesChart(url_aux, constants.REPO_KEY)
+            createPRChart(url_aux, constants.REPO_KEY)
         }
     })
 })
@@ -63,13 +63,12 @@ chrome.storage.sync.get('oauth2_token', function(res)
         let logoutButton = document.getElementById('logoutButton')
         logoutButton.parentNode.removeChild(logoutButton)
         
-        /*
-        Aqui a gente remove o gráfico de issues quando da logout
-        TODO: depois de finalizar a issue de criar gráfico de commits, 
-        tem que arrumar isso para só mostrar um gráfico de cada vez a partir
-        da aba selecionada algo do tipo
-        */
-        let issue_graph = document.getElementById('issueStatusChart')
-        issue_graph.parentNode.removeChild(issue_graph)
+        /* 
+         * Dashboard que contém o gráfico atual
+         * Não sei plotar mais de um gráfico dentro do popup, fica bagunçado
+         * TODO: arrumar isso ae 
+         */ 
+        let dashboard = document.getElementById('activeDashboard')
+        dashboard.parentNode.removeChild(dashboard)
     }
 })
