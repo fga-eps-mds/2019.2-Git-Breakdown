@@ -5,7 +5,7 @@ export function createPRChart(url_aux)
     let url_pr = url_base + '/pullrequests' + url_aux
     fetch(url_pr).then((resp) => resp.json()).then(function(data)
     {
-        console.log("PR data: " + data)
+        console.log("PR data: " + JSON.stringify(data))
     }).catch(function()
     { 
         console.log("URL PR = " + url_pr)
