@@ -8,7 +8,7 @@ export function createPRChart(url_aux, repo_name)
         let total_refused = Math.round((data.refused_percent * data.closed)/100)
         let total_accepted = (data.closed - total_refused)
         console.log(total_refused)
-        const ctx = document.getElementById('activeDashboard').getContext('2d')
+        const ctx = document.getElementById('prsDashboard').getContext('2d')
         const prChart = new Chart(ctx, 
         {
             type: 'pie',
@@ -64,7 +64,7 @@ export function createIssuesChart(url_aux, repo_name)
     let url_issues = url_base + '/issues' + url_aux
     fetch(url_issues).then((resp) => resp.json()).then(function(data)
     {
-        const ctx = document.getElementById('activeDashboard').getContext('2d')
+        const ctx = document.getElementById('issuesDashboard').getContext('2d')
         const issueChart = new Chart(ctx, 
         {
             type: 'pie',

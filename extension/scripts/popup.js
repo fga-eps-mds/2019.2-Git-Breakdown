@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function()
         }
         else
         {
-            //createIssuesChart(url_aux, constants.REPO_KEY)
+            createIssuesChart(url_aux, constants.REPO_KEY)
             createPRChart(url_aux, constants.REPO_KEY)
         }
     })
@@ -63,12 +63,11 @@ chrome.storage.sync.get('oauth2_token', function(res)
         let logoutButton = document.getElementById('logoutButton')
         logoutButton.parentNode.removeChild(logoutButton)
         
-        /* 
-         * Dashboard que contém o gráfico atual
-         * Não sei plotar mais de um gráfico dentro do popup, fica bagunçado
-         * TODO: arrumar isso ae 
-         */ 
-        let dashboard = document.getElementById('activeDashboard')
-        dashboard.parentNode.removeChild(dashboard)
+        
+        let issue_chart = document.getElementById('issuesDashboard')
+        issue_chart.parentNode.removeChild(issue_chart)
+        
+        let pr_chart = document.getElementById('prsDashboard')
+        pr_chart.parentNode.removeChild(pr_chart)
     }
 })
