@@ -1,5 +1,5 @@
 import constants from './constants.js'
-import {createIssuesChart} from './graph.js'
+import {createIssuesChart, createBranchesChart} from './graph.js'
 import {createPRChart} from './graph.js'
 
 const url = 
@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function()
         {
             createIssuesChart(url_aux, constants.REPO_KEY)
             createPRChart(url_aux, constants.REPO_KEY)
+            createBranchesChart(url_aux, constants.REPO_KEY)
         }
     })
 })

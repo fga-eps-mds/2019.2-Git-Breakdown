@@ -1,5 +1,17 @@
 let url_base = 'http://18.215.242.203:3000'
 
+export function createBranchesChart(url_aux, repo_name)
+{
+    let url_branches = url_base + '/branches' + url_aux
+    fetch(url_branches).then((resp) => resp.json()).then(function(data)
+    {
+        console.log(JSON.stringify(data))
+    }).catch(function()
+    { 
+        console.log("URL branches = " + url_branches)
+    })
+}
+
 export function createPRChart(url_aux, repo_name)
 {
     let url_pr = url_base + '/pullrequests' + url_aux
