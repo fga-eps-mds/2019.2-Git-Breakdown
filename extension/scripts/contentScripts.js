@@ -9,6 +9,5 @@ const load = (file) => {
 
 //The first routine necessary to start the app: load the button
 load('./button.js')
-load('./gbdScreen.js')
 
 

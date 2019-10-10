@@ -46,7 +46,6 @@ const init_ = () => {
     }
 }
 
-
 //the observer Method
 const initGBD = () => {
     
@@ -74,6 +73,11 @@ const gdbScreen = () =>
     {
         div[i].parentNode.removeChild(div[i])
     }
+
+    //
+    
+    
+
     
 }
 
