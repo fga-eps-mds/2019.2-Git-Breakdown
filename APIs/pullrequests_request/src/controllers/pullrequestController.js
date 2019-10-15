@@ -46,7 +46,10 @@ exports.get = (req, res, next) => {
             let numberOfRefused = Object.keys(refusedPullrequests).length
             let percentageOfRefused = (numberOfRefused/Object.keys(pullrequests).length)*100
 
-            let prInfo = {'open': numberOfOpen, 'closed': numberOfClosed, 'refused_percent': percentageOfRefused}
+            let total_merged = numberOfClosed - numberOfRefused
+
+            let prInfo = {'open': numberOfOpen, 'closed': numberOfClosed, 'refused_percent': percentageOfRefused,
+        'merged': total_merged, 'refused': numberOfRefused}
             
             res.status(response.statusCode).json(prInfo)
         })

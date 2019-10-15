@@ -1,5 +1,6 @@
 import constants from './constants.js'
-import {fetchFunc} from './graph.js'
+import {createIssuesChart} from './graph.js'
+import {createPRChart} from './graph.js'
 
 const url = 
 `https://github.com/login/oauth/authorize?response_type=code&client_id=${constants.CLIENT_ID}&scope=repo`
@@ -42,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function()
         }
         else
         {
-            console.log("valid repo")
-            fetchFunc(url_aux)
+            createIssuesChart(url_aux, constants.REPO_KEY)
+            createPRChart(url_aux, constants.REPO_KEY)
         }
     })
 })
@@ -62,13 +63,11 @@ chrome.storage.sync.get('oauth2_token', function(res)
         let logoutButton = document.getElementById('logoutButton')
         logoutButton.parentNode.removeChild(logoutButton)
         
-        /*
-        Aqui a gente remove o gráfico de issues quando da logout
-        TODO: depois de finalizar a issue de criar gráfico de commits, 
-        tem que arrumar isso para só mostrar um gráfico de cada vez a partir
-        da aba selecionada algo do tipo
-        */
-        let issue_graph = document.getElementById('issueStatusChart')
-        issue_graph.parentNode.removeChild(issue_graph)
+        
+        let issue_chart = document.getElementById('issuesDashboard')
+        issue_chart.parentNode.removeChild(issue_chart)
+        
+        let pr_chart = document.getElementById('prsDashboard')
+        pr_chart.parentNode.removeChild(pr_chart)
     }
 })
