@@ -40,4 +40,10 @@
     - [Sprint planing](docs/sprints/planing/sprint3.md)
     - [Sprint Review](docs/sprints/review/sprint3.md)
   - Sprint 4
-   - [Sprint planing](docs/sprints/planing/sprint4.md)
+    - [Sprint planing](docs/sprints/planing/sprint4.md)
+    - [Sprint Review](docs/sprints/review/sprint4.md)
+  - Sprint 5
+    - [Sprint planing](docs/sprints/planing/sprint5.md)
+    - [Sprint Review](docs/sprints/review/sprint5.md)
+  - Sprint 6
+    - [Sprint planing](docs/sprints/planing/sprint6.md)
