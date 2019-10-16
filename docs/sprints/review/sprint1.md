@@ -37,9 +37,9 @@ Duração: 31/08 à 07/09
 | [#12](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/12) | Trabalhar documento de arquitetura | Time desenvolvimento | Pendente |
 | [#13](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/13) | criar plano de gerenciamento de projeto | Lucas | Pronto |
 | [#10](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/10) | criar eap | Diego | Pronto |
-| [#20](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/12) | Ambiente de desenvolvimento com docker | Mateus | Adiada |
+| [#20](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/20) | Ambiente de desenvolvimento com docker | Mateus | Adiada |
 | [#8](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/8) | criar politica de pull request | Mateus | Pronto |
-| [#19](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/12) | Treinar conhecimento sobre API do github| Todos | Pronto |
+| [#19](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/19) | Treinar conhecimento sobre API do github| Todos | Pronto |
 
 ## Retrospectiva
 

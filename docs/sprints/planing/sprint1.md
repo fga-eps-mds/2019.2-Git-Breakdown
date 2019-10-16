@@ -53,8 +53,8 @@ Foi definido o planejamento da sprint, não conseguimos fechar o escopo para faz
 |--|--|--|--|--|
 | [#7](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/7) | Trabalhar documento de visão | 5 | Time de desenvolvimento, Mateus | Continuidade |
 | [#12](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/12)  | Trabalhar documento de arquitetura | 8 | Time de desenvolimento, Mateus | Continuidade |
-| [#20](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/12)  | Ambiente de desenvolvimento com docker | 3 | Time de desenvolimento, Mateus | Nova |
-| [#19](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/12)  | Treinar conhecimento sobre API do github | 8 | Todos | Nova |
+| [#20](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/20)  | Ambiente de desenvolvimento com docker | 3 | Time de desenvolimento, Mateus | Nova |
+| [#19](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/19)  | Treinar conhecimento sobre API do github | 8 | Todos | Nova |
 
 
 

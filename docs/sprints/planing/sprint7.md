@@ -76,8 +76,8 @@ Tivemos uma reunião dentro da faculdade apenas para re organizar o nosso trabal
 | [#78](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/78) | Refatorar testes | 8 | Paulo e Pedro Daniel | Pendência |
 | [#77](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/77) | Habilitar API para receber tempo por parâmetro | 8 | Paulo e Pedro Daniel | Pendência |
 | [#17](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/17) | Esquematizar versão inicial do pipeline de desenvolvimento | 3 | Mateus | Pendência |
-| [#90](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/17) | # Refatorar documento de visão | 3 | Time de desenvolvimento | Nova |
-| [#91](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/17) | # Refatorar documento de arquitetura | 3 | Time de desenvolvimento | Nova |
+| [#90](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/90) | # Refatorar documento de visão | 3 | Time de desenvolvimento | Nova |
+| [#92](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/92) | # Refatorar documento de arquitetura | 3 | Time de desenvolvimento | Nova |
 
 ## Pareamento
 

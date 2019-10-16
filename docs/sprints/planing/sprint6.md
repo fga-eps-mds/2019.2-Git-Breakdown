@@ -64,7 +64,7 @@ Nesta reunião foi definido o que trabalharemos esta semana e analisamos as pend
 |--|--|--|--|--|
 | [#62](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/62) | Visualizar gráfico de commits | 5 | Pedro Daia | Pendência |
 | [#63](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/63) | Ajustar requisição com token | 5 | Pedro Daniel e Paulo | Pendência |
-| [#51](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/66) | Configurar deploy contínuo | 13 |Mateus | Pendência |
+| [#51](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/51) | Configurar deploy contínuo | 13 |Mateus | Pendência |
 | [#80](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/80) | Visualizar gráfico de branchs | 3 | Pedro Daia e Mateus | Nova |
 | [#79](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/79) | Visualizar gráfico de pull request | 3 | Pedro Daia e Mateus | Nova |
 | [#78](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/78) | Refatorar testes | 8 | Paulo e Pedro Daniel | Nova |

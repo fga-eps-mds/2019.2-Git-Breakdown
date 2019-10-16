@@ -36,7 +36,7 @@ Não houve reunião semanal.
 |--|--|--|--|
 | [#62](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/62) | Visualizar gráfico de commits | Pedro Daia | Pendência |
 | [#63](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/63) | Ajustar requisição com token | Pedro Daniel e Paulo | Pendência |
-| [#51](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/66) | Configurar deploy contínuo |Mateus | Pronto |
+| [#51](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/51) | Configurar deploy contínuo |Mateus | Pronto |
 | [#80](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/80) | Visualizar gráfico de branchs | Pedro Daia e Mateus | Pendência |
 | [#79](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/79) | Visualizar gráfico de pull request | Pedro Daia e Mateus | Pronto |
 | [#78](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/78) | Refatorar testes | Paulo e Pedro Daniel | Pendência |

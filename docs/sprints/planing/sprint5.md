@@ -84,8 +84,8 @@ Nesta reunião foi definido o quer iremos apresentar para Release 1, planejar a 
 | [#64](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/64) | Botão para página do github com icone, atualizado por click  | 13 | Victor Hugo, Paulo | Nova |
 | [#65](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/65) | Visualizar gráfico em qualquer repositório aberto | 8 | Lucas, Pedro Daia | Nova |
 | [#66](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/66) | Criar uma apresentação | 13 |Mateus | Nova |
-| [#45](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/66) | Definir perfil da comunidade do repositório | 5 | EPS | Pendencia |
-| [#51](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/66) | Configurar deploy contínuo | 13 |Mateus | Mateus |
+| [#45](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/45) | Definir perfil da comunidade do repositório | 5 | EPS | Pendencia |
+| [#51](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/51) | Configurar deploy contínuo | 13 |Mateus | Mateus |
 
 
   
