@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/_mocha --recursive ./test/*.js",
-    "start": "nodemon ./server/server.js"
+    "start": "nodemon ./bin/server.js"
   },
   "keywords": [],
   "author": "",
