@@ -1,6 +1,5 @@
 const axios = require('axios')
 
-const urlBase = 'https://api.github.com'
 const queryString = { state:'all' }
 
 exports.get = async (req, res, next) => {

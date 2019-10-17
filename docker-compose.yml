@@ -9,15 +9,17 @@ services:
     volumes:
       - .:/usr/breakdown/api_gateway
     depends_on:
-      - commits_api
+      - commit_api
       - issue_api
       - pullrequest_api
+      - branch_api
     links:
-      - commits_api
+      - commit_api
       - issue_api
       - pullrequest_api
+      - branch_api
   
-  commits_api:
+  commit_api:
     build: ./APIs/commits_request/.
     command: npm start
     ports:
