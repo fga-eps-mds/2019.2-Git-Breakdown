@@ -1,15 +1,14 @@
 const axios = require('axios')
 
-const urlBase = 'https://api.github.com'
-
-let queryString = { state:'all', per_page: '10000' }
+const queryString = { state:'all', per_page: '10000' }
 
 exports.get = async (req, res, next) => {
     const owner = req.query.owner
     const repository = req.query.repository
+    const token = req.query.token
     const endpoint = 'issues'
     
-    if(req.query.owner === undefined || req.query.repository === undefined || req.query.token === undefined){
+    if(owner === undefined || repository === undefined || token === undefined){
         res.status(400).send('Error 400: Bad Request')
     }else{
         const gitApiUrl = 'https://api.github.com'
@@ -32,7 +31,7 @@ exports.get = async (req, res, next) => {
                 'Accept': 'application/json',
                 'Accept-Charset': 'utf-8',
                 'User-Agent': '2019.2-Git-Breakdown',
-                'Authorization': `token ${req.query.token}`
+                'Authorization': `token ${token}`
             },
             params: queryString
         }    
