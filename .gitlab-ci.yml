@@ -11,8 +11,8 @@ build:
   image: docker:dind
   stage: build
   script:
-    - sudo docker-compose down
-    - sudo docker-compose build --no-cache
+    - docker-compose down
+    - docker-compose build --no-cache
 
 # Stage II
 # Testing Phase:
@@ -26,9 +26,9 @@ api_gateway:
     - npm --prefix ./APIs/api_gateway install ./APIs/api_gateway
 
   script:
-    - sudo docker-compose up -d
+    - docker-compose up -d
     - npm test --prefix ./APIs/api_gateway
-    - sudo docker-compose down
+    - docker-compose down
 
 branches_request:
   stage: test
@@ -39,9 +39,9 @@ branches_request:
     - npm --prefix ./APIs/branches_request install ./APIs/branches_request
 
   script:
-    - sudo docker-compose up -d
+    - docker-compose up -d
     - npm test --prefix ./APIs/branches_request
-    - sudo docker-compose down
+    - docker-compose down
 
 pullrequests_request:
   stage: test
@@ -51,9 +51,9 @@ pullrequests_request:
     - npm --prefix ./APIs/pullrequests_request install ./APIs/pullrequests_request
 
   script:
-    - sudo docker-compose up -d
+    - docker-compose up -d
     - npm test --prefix ./APIs/pullrequests_request
-    - sudo docker-compose down
+    - docker-compose down
 
 issues_request:
   stage: test
@@ -63,9 +63,9 @@ issues_request:
     - npm --prefix ./APIs/issues_request install ./APIs/issues_request
 
   script:
-    - sudo docker-compose up -d
+    - docker-compose up -d
     - npm test --prefix ./APIs/issues_request
-    - sudo docker-compose down
+    - docker-compose down
 
 
 # Stage III
