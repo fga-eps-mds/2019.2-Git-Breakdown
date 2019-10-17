@@ -1,17 +1,20 @@
-const request = require('request')
+const axios = require('axios')
 
 const urlBase = 'https://api.github.com'
 
 let queryString = { state:'all', per_page: '10000' }
 
-exports.get = (req, res, next) => {
-    if(req.query.owner === undefined || req.query.repository === undefined){
+exports.get = async (req, res, next) => {
+    const owner = req.query.owner
+    const repository = req.query.repository
+    const endpoint = 'issues'
+    
+    if(req.query.owner === undefined || req.query.repository === undefined || req.query.token === undefined){
         res.status(400).send('Error 400: Bad Request')
     }else{
-        let urlEndpoint = '/repos'
-    urlEndpoint += '/' + req.query.owner
-    urlEndpoint += '/' + req.query.repository + '/issues'
-
+        const gitApiUrl = 'https://api.github.com'
+        const url_endpoint = `${gitApiUrl}/repos/${owner}/${repository}/${endpoint}`
+        
     if(req.query.date != undefined){    
         let date = new Date()
         let selectedDate = req.query.date.split('-') //date first format: DD-MM-YYYY
@@ -23,15 +26,19 @@ exports.get = (req, res, next) => {
         date.setHours(hour - 3, 0, 0, 0)
         queryString.since = date
     }
+    
+    const header_option = {
+            headers: {
+                'Accept': 'application/json',
+                'Accept-Charset': 'utf-8',
+                'User-Agent': '2019.2-Git-Breakdown',
+                'Authorization': `token ${req.query.token}`
+            },
+            params: queryString
+        }    
 
-    request.get({ headers: {
-      'Accept': 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json',
-      'User-Agent': '2019.2-Git-Breakdown'
-    }, uri: urlBase+urlEndpoint, qs: queryString }, function (error, response, body) {
-            let issues = JSON.parse(body)
-            console.log('error:', error)
-            console.log('statusCode:', response && response.statusCode)
+    await axios.get(url_endpoint, header_option).then((response) => {
+            let issues = response.data
             function filterIssues(issue) {
                 if(issue.pull_request === undefined){
                     return true
@@ -63,7 +70,9 @@ exports.get = (req, res, next) => {
             let percentOfClosed = parseFloat(((cIssues/tIssues)*100).toFixed(2))
 
             let issuesInformation = {'open': oIssues, 'closed': cIssues, 'openPercent': percentOfOpen, 'closedPercent': percentOfClosed}
-            res.status(response.statusCode).json(issuesInformation)
+            res.status(200).json(issuesInformation)
+        }).catch(function (err) {
+                console.log(err)
         })
     }
 }
