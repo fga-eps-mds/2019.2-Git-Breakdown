@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const routes = require('../routes/commitsRoute')
+const routes = require('../src/routes/commitsRoute')
 
 
 app.use('/', routes)
