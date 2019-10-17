@@ -1,31 +1,35 @@
-const request = require('request')
 const axios = require('axios')
-const constants = require('../constants')
-const urlBase = 'https://api.github.com'
 
-exports.get = (req, res, next) => 
+const queryString = { state:'closed' }
+
+exports.get = async (req, res, next) => 
 {
-    if (req.query.owner === undefined || req.query.repository === undefined)
-    {
+    const owner = req.query.owner
+    const repository = req.query.repository
+    const token = req.query.token
+    const endpoint = 'pulls'
+    const endpointB = 'branches'
+    
+    if(owner === undefined || repository === undefined || token === undefined){
         res.status(400).send("Error 400")
     }
     else
     {
-        request.get(
-            { 
-                    headers: 
-                    {
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json',
-                        'User-Agent': '2019.2-Git-Breakdown',
-                    },
+        const gitApiUrl = 'https://api.github.com'
+        const url_endpoint = `${gitApiUrl}/repos/${owner}/${repository}/${endpoint}`
+
+        const header_option = {
+            headers: {
+                'Accept': 'application/json',
+                'Accept-Charset': 'utf-8',
+                'User-Agent': '2019.2-Git-Breakdown',
+                'Authorization': `token ${token}`
+            },
+            params: queryString
+        }
         
-                    uri: urlBase + '/repos/' + req.query.owner + '/' + req.query.repository
-                    + '/pulls?state=closed' 
-            }, 
-            function (error, response, body) 
-            {
-                let pullrequests = JSON.parse(body)
+        await axios.get(url_endpoint, header_option).then( async response => {
+                let pullrequests = response.data
                 function getMergedBranches(pr) {
                     if(pr.merged_at === null){
                         return false
@@ -36,25 +40,19 @@ exports.get = (req, res, next) =>
                 qtdMerged = Object.keys(mergedBranches).length
                 
 
-                let urlEndpoint = '/repos'
-                urlEndpoint += '/' + req.query.owner
-                urlEndpoint += '/' + req.query.repository + '/branches'
+                const url_endpointB = `${gitApiUrl}/repos/${owner}/${repository}/${endpointB}`
+
+                const header_optionB = {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Accept-Charset': 'utf-8',
+                        'User-Agent': '2019.2-Git-Breakdown',
+                        'Authorization': `token ${token}`
+                    }
+                }
             
-                request.get(
-                    { 
-                        headers: 
-                        {
-                            'Accept': 'application/vnd.github.v3+json',
-                            'Content-Type': 'application/json',
-                            'User-Agent': '2019.2-Git-Breakdown',
-                            'Authorization': constants.token
-                        },
-            
-                        uri: urlBase + urlEndpoint 
-                    }, 
-                    function (error, response, body) 
-                    {
-                        let branches = JSON.parse(body)
+                await axios.get(url_endpointB, header_optionB).then( response => {
+                        let branches = response.data
 
                         function filterActiveBranches(br) {
                             if(br.name != 'master'){
@@ -71,9 +69,13 @@ exports.get = (req, res, next) =>
                         let branchInfo = {'active_branches': qtdActive, 
                             'percentage_merged': percentage_merged}
             
-                        res.status(response.statusCode).json(branchInfo)
-                    })
-            })
+                        res.status(200).json(branchInfo)
+                    }).catch(function (err) {
+                        console.log(err)
+                })
+            }).catch(function (err) {
+                console.log(err)
+        })
     }
 
 }

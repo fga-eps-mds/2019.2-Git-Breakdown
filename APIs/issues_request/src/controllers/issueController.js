@@ -36,7 +36,7 @@ exports.get = async (req, res, next) => {
             params: queryString
         }    
 
-    await axios.get(url_endpoint, header_option).then((response) => {
+    await axios.get(url_endpoint, header_option).then( response => {
             let issues = response.data
             function filterIssues(issue) {
                 if(issue.pull_request === undefined){

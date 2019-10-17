@@ -25,7 +25,7 @@ exports.get = async (req, res, next) => {
             params: queryString
         }
         
-        axios.get(url_endpoint, header_option).then( response => {
+        await axios.get(url_endpoint, header_option).then( response => {
             let pullrequests = response.data
             
             function filterOpenPR(pr) {
