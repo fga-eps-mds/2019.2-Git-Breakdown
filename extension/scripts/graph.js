@@ -5,7 +5,8 @@ export function createBranchesChart(url_aux, repo_name)
     let url_branches = url_base + '/branches' + url_aux
     fetch(url_branches).then((resp) => resp.json()).then(function(data)
     {
-        console.log(JSON.stringify(data))
+        let qtMerged = Math.round((data.active_branches * data.percentage_merged) / (100 - data.percentage_merged))
+        console.log("qtMerged: " + qtMerged + ", qtActive: " + data.active_branches)
     }).catch(function()
     { 
         console.log("URL branches = " + url_branches)
