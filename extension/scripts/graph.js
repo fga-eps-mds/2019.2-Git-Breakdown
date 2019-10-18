@@ -6,7 +6,49 @@ export function createBranchesChart(url_aux, repo_name)
     fetch(url_branches).then((resp) => resp.json()).then(function(data)
     {
         let qtMerged = Math.round((data.active_branches * data.percentage_merged) / (100 - data.percentage_merged))
-        console.log("qtMerged: " + qtMerged + ", qtActive: " + data.active_branches)
+        const ctx = document.getElementById('branchesDashboard').getContext('2d')
+        const branchesChart = new Chart(ctx, 
+        {
+            type: 'pie',
+            data: 
+            {
+                labels: ['Active', 'Merged'],
+                datasets: 
+                [{
+                    label: '# of branches',
+                    data: [data.active_branches, qtMerged],
+                    backgroundColor: 
+                    [
+                        'rgba(64, 174, 237, 0.6)',
+                        'rgba(57, 66, 255, 0.6)'
+                    ],
+                    borderColor: 
+                    [
+                        'rgba(110, 110, 110, 1)',
+                        'rgba(110, 110, 110, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: 
+            {
+                title:
+                {
+                    display: true,
+                    text: 'Branches dashboard for repository: ' + repo_name
+                },
+                scales: 
+                {
+                    yAxes: 
+                    [{
+                        ticks: 
+                        {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        })
     }).catch(function()
     { 
         console.log("URL branches = " + url_branches)
@@ -90,8 +132,8 @@ export function createIssuesChart(url_aux, repo_name)
                     data: [data.open, data.closed],
                     backgroundColor: 
                     [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)'
                     ],
                     borderColor: 
                     [

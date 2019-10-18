@@ -80,5 +80,8 @@ chrome.storage.sync.get('oauth2_token', function(res)
         
         let pr_chart = document.getElementById('prsDashboard')
         pr_chart.parentNode.removeChild(pr_chart)
+
+        let branches_chart = document.getElementById('branchesDashboard')
+        branches_chart.parentNode.removeChild(branches_chart)
     }
 })
