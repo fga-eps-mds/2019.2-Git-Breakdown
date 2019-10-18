@@ -1,11 +1,11 @@
 const chai = require('chai')
-const branches = require('../src/routes/branchRoute')
-const assert = chai.assert
 const axios = require('axios')
 const expect = chai.expect
+
+const token ='34736585925fcffda98155ba9877a7989a623702'
 const urlBase = 'http://localhost:3004/branches'
-const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
-const url = urlBase + '?owner=f'
+const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown' + token
+// const url = urlBase + '?owner=f'
 
 describe('Branches route tests', () => {
   it('Test: Request valid', (done) => {
@@ -22,7 +22,7 @@ describe('Branches route tests', () => {
         if(response.status != undefined)
             expect(response.status).to.equal(200);
 
-        if(_body != undefined){
+        if(_body.branches != undefined){
             expect(_body).to.have.property('active_branches')
             expect(_body).to.have.property('percentage_merged')
         }
@@ -34,7 +34,7 @@ describe('Branches route tests', () => {
   })
 
   it('Test: Request without parameters', (done) => {
-    axios.get(url).then(response => {
+    axios.get(urlBase).then(response => {
 
         let _body = {}
         try{
