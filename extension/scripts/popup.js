@@ -1,5 +1,5 @@
 import constants from './constants.js'
-import {createIssuesChart} from './graph.js'
+import {createIssuesChart, createBranchesChart} from './graph.js'
 import {createPRChart} from './graph.js'
 
 const url = 
@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function()
                 {
                     createIssuesChart(url_aux, constants.REPO_KEY)
                     createPRChart(url_aux, constants.REPO_KEY)
+                    createBranchesChart(url_aux, constants.REPO_KEY)
                 }
             }
             else
@@ -79,5 +80,8 @@ chrome.storage.sync.get('oauth2_token', function(res)
         
         let pr_chart = document.getElementById('prsDashboard')
         pr_chart.parentNode.removeChild(pr_chart)
+
+        let branches_chart = document.getElementById('branchesDashboard')
+        branches_chart.parentNode.removeChild(branches_chart)
     }
 })
