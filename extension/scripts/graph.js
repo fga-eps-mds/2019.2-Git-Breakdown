@@ -1,5 +1,17 @@
 let url_base = 'http://18.215.242.203:3000'
 
+export function createCommitsChart(url_aux, repo_name)
+{
+    let url_commits = url_base + '/commits' + url_aux
+    fetch(url_commits).then((resp) => resp.json()).then(function(data)
+    {
+        console.log(JSON.stringify(data))
+    }).catch(function()
+    { 
+        console.log("URL commits = " + url_commits)
+    })
+}
+
 export function createBranchesChart(url_aux, repo_name)
 {
     let url_branches = url_base + '/branches' + url_aux

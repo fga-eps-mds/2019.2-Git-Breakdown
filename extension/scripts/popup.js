@@ -1,6 +1,6 @@
 import constants from './constants.js'
-import {createIssuesChart, createBranchesChart} from './graph.js'
-import {createPRChart} from './graph.js'
+import {createIssuesChart, createBranchesChart, createPRChart,
+createCommitsChart} from './graph.js'
 
 const url = 
 `https://github.com/login/oauth/authorize?response_type=code&client_id=${constants.CLIENT_ID}&scope=repo`
@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function()
                     createIssuesChart(url_aux, constants.REPO_KEY)
                     createPRChart(url_aux, constants.REPO_KEY)
                     createBranchesChart(url_aux, constants.REPO_KEY)
+                    createCommitsChart(url_aux, constants.REPO_KEY)
                 }
             }
             else
