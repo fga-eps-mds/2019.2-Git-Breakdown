@@ -1,55 +1,47 @@
 const chai = require('chai')
-const issues = require('../src/routes/issueRoute')
-const assert = chai.assert
-const request = require('request')
-const should = require('should')
+const axios = require('axios')
 const expect = chai.expect
 
-const urlBase = 'http://localhost:3000/routes'
+const urlBase = 'http://localhost:3002/routes'
+const token ='34736585925fcffda98155ba9877a7989a623702'
+const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown=' + token
+const url = urlBase + '?owner=f'
 
-describe('Issue route tests', () => {
-  it('Test: Request valid', () => {
-    request.get(
-      {
-        url : urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
-      },
-      (error, response, body) => {
+describe('Issues route tests', () => {
+  it('Test: Request valid', (done) => {
+    axios.get(urlEndpoint).then(response => {
 
-        let _body = {};
+        let _body = {}
         try{
-          _body = JSON.parse(body);
+          _body = response.data
         }
         catch(e){
-          _body = {};
+          _body = {}
         }
 
-        expect(response.statusCode).to.equal(200);
+        expect(response.status).to.equal(200);
         body.should.have.property('open');
-        done();
       }
-    );
-  });
+    ).catch(err => {
+      console.log(err)
+    })
+    done()
+  })
 
-  it('Test: Request without parameters', () => {
-    request.get(
-      {
-        url : urlBase + '?owner=f'
-      },
-      (error, response, body) => {
+  it('Test: Request without parameters', (done) => {
+    axios.get(urlBase).then(response => {
 
         let _body = {};
         try{
-          _body = JSON.parse(body);
+          _body = response.data
         }
         catch(e){
-          _body = {};
+          _body = {}
         }
-
-        expect(response.statusCode).to.equal(400);
-        done();
       }
-    );
-  });
-
-  
-});
+    ).catch(err => {
+      expect(err.response.status).to.equal(400);
+    })
+    done()
+  }) 
+})
