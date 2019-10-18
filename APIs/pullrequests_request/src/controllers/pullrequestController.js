@@ -1,21 +1,31 @@
-const request = require('request')
+const axios = require('axios')
 
-const urlBase = 'https://api.github.com'
+const queryString = { state:'all' }
 
-exports.get = (req, res, next) => {
-    if(req.query.owner === undefined || req.query.repository === undefined){
+exports.get = async (req, res, next) => {
+    const owner = req.query.owner
+    const repository = req.query.repository
+    const token = req.query.token
+    const endpoint = 'pulls'
+    
+    if(owner === undefined || repository === undefined || token === undefined){
         res.status(400).send('Error 400: Bad Request')
     }else{
-        let urlEndpoint = '/repos'
-        urlEndpoint += '/' + req.query.owner
-        urlEndpoint += '/' + req.query.repository + '/pulls?state=all' 
+        const gitApiUrl = 'https://api.github.com'
+        const url_endpoint = `${gitApiUrl}/repos/${owner}/${repository}/${endpoint}`
 
-        request.get({ headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json',
-          'User-Agent': '2019.2-Git-Breakdown'
-        }, uri: urlBase+urlEndpoint }, function (error, response, body) {
-            let pullrequests = JSON.parse(body)
+        const header_option = {
+            headers: {
+                'Accept': 'application/json',
+                'Accept-Charset': 'utf-8',
+                'User-Agent': '2019.2-Git-Breakdown',
+                'Authorization': `token ${token}`
+            },
+            params: queryString
+        }
+        
+        await axios.get(url_endpoint, header_option).then( response => {
+            let pullrequests = response.data
             
             function filterOpenPR(pr) {
                 if(pr.state === 'open'){
@@ -51,7 +61,9 @@ exports.get = (req, res, next) => {
             let prInfo = {'open': numberOfOpen, 'closed': numberOfClosed, 'refused_percent': percentageOfRefused,
         'merged': total_merged, 'refused': numberOfRefused}
             
-            res.status(response.statusCode).json(prInfo)
+            res.status(200).json(prInfo)
+        }).catch(function (err) {
+                console.log(err)
         })
     }
 }

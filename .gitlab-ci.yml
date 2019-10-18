@@ -1,6 +1,8 @@
+# Git Breakdown CI/CD configuration file.
 stages:
 - build
 - test
+- deploy
 
 # Stage I
 # Build Phase:
@@ -9,7 +11,8 @@ build:
   image: docker:dind
   stage: build
   script:
-      - sudo docker-compose build --no-cache
+    - sudo docker-compose down
+    - sudo docker-compose build --no-cache
 
 # Stage II
 # Testing Phase:
@@ -64,3 +67,19 @@ issues_request:
     - npm test --prefix ./APIs/issues_request
     - sudo docker-compose down
 
+
+# Stage III
+# Deploying Phase:
+# This is where the main code is deployed to our server at AWS.
+deploy:
+  stage: deploy
+  image: ubuntu:latest
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - chmod a+x ./deploy/disableHostKeyChecking.sh
+
+  script:
+    - bash deploy/deploy.sh
+
+  only:
+    - master

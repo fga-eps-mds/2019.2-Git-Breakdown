@@ -8,12 +8,13 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/_mocha --recursive ./test/*.js",
-    "start": "nodemon ./server/server.js"
+    "start": "nodemon ./bin/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "express": "^4.17.1",
     "express-http-proxy": "^1.5.1",
     "nodemon": "^1.19.2",
