@@ -83,5 +83,8 @@ chrome.storage.sync.get('oauth2_token', function(res)
 
         let branches_chart = document.getElementById('branchesDashboard')
         branches_chart.parentNode.removeChild(branches_chart)
+
+        let commits_chart = document.getElementById('commitsDashboard')
+        commits_chart.parentNode.removeChild(commits_chart)
     }
 })
