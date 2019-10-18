@@ -8,16 +8,50 @@ export function createCommitsChart(url_aux, repo_name)
         let size = Object.keys(data).length
         let names = []
         let qtCommits = []
+        let colorArray = getRandomColorArray(size)
         for (let i = 0; i < size; i++)
         {
             if (data[i+1] != undefined)
             {
                 names[i] = data[i+1].name
                 qtCommits[i] = data[i+1].commits
-                console.log(names[i] + " has " + qtCommits[i] + " commit"
-                + (qtCommits[i] === 1? "" : "s"))
             }
         }
+        const ctx = document.getElementById('commitsDashboard').getContext('2d')
+        const commitsChart = new Chart(ctx, 
+        {
+            type: 'pie',
+            data: 
+            {
+                labels: names,
+                datasets: 
+                [{
+                    label: '# of branches',
+                    data: qtCommits,
+                    backgroundColor: colorArray,
+                    borderColor: colorArray,
+                    borderWidth: 1
+                }]
+            },
+            options: 
+            {
+                title:
+                {
+                    display: true,
+                    text: 'Commits per person dashboard for repository: ' + repo_name
+                },
+                scales: 
+                {
+                    yAxes: 
+                    [{
+                        ticks: 
+                        {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        })
     }).catch(function(err)
     { 
         console.log("Error: URL commits = " + url_commits + "err: " + err)
@@ -86,7 +120,6 @@ export function createPRChart(url_aux, repo_name)
     {
         let total_refused = Math.round((data.refused_percent * data.closed)/100)
         let total_accepted = (data.closed - total_refused)
-        console.log(total_refused)
         const ctx = document.getElementById('prsDashboard').getContext('2d')
         const prChart = new Chart(ctx, 
         {
@@ -191,3 +224,17 @@ export function createIssuesChart(url_aux, repo_name)
         console.log("URL ISSUE = " + url_issues)
     })
 } 
+
+function getRandomColorArray(arraySize)
+{
+    let colorArray = []
+    for (let i = 0; i < arraySize; i++)
+    {
+        const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+        const randomByte = () => randomNumber(0, 255)
+        const randomPercent = () => (randomNumber(50, 100) * 0.01).toFixed(2)
+        const randomCssRgba = `rgba(${[randomByte(), randomByte(), randomByte(), randomPercent()].join(', ')})`
+        colorArray[i] = randomCssRgba
+    }
+    return colorArray
+}
