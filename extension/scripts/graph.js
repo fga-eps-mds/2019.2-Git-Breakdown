@@ -5,10 +5,22 @@ export function createCommitsChart(url_aux, repo_name)
     let url_commits = url_base + '/commits' + url_aux
     fetch(url_commits).then((resp) => resp.json()).then(function(data)
     {
-        console.log(JSON.stringify(data))
-    }).catch(function()
+        let size = Object.keys(data).length
+        let names = []
+        let qtCommits = []
+        for (let i = 0; i < size; i++)
+        {
+            if (data[i+1] != undefined)
+            {
+                names[i] = data[i+1].name
+                qtCommits[i] = data[i+1].commits
+                console.log(names[i] + " has " + qtCommits[i] + " commit"
+                + (qtCommits[i] === 1? "" : "s"))
+            }
+        }
+    }).catch(function(err)
     { 
-        console.log("URL commits = " + url_commits)
+        console.log("Error: URL commits = " + url_commits + "err: " + err)
     })
 }
 
