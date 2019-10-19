@@ -5,6 +5,7 @@
   "repository": "https://github.com/fga-eps-mds/2019.2-Git-Breakdown",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.19.0",
     "express": "^4.17.1",
     "nodemon": "^1.19.2",
     "request": "^2.88.0"
@@ -14,11 +15,11 @@
     "mocha": "^6.2.0"
   },
   "directories": {
-    "test": "mocha '../test/branchRoute-test.js' --reporter mocha-junit-reporter --timeout 60000 --exit"
+    "test": "mocha"
   },
   "scripts": {
     "start": "nodemon ./bin/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/_mocha --recursive ./test/*.js"
   },
   "keywords": [],
   "author": "",
