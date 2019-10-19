@@ -1,3 +1,4 @@
+# Disable new host confirmation
 set -e
 mkdir -p ~/.ssh
 touch ~/.ssh/config
