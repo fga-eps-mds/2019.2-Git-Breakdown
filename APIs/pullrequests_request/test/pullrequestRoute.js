@@ -4,7 +4,8 @@ const expect = chai.expect
 chai.use(require('chai-json'))
 
 const urlBase = 'http://localhost:3003/pullrequests'
-const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
+const token = require('../../constants')
+const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=' + token
 
 describe('PullRequests route tests', () => {
   it('Test: Request valid', (done) => {
