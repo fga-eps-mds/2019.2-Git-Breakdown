@@ -21,7 +21,7 @@ describe('API Gateway integration tests', () => {
                    expect(response.status).to.equal(200)
             }
         ).catch(err => {
-          console.log(err)
+          const errrorResponse = err
         })
         done()
     })
@@ -62,7 +62,7 @@ describe('API Gateway integration tests', () => {
                 }
             }
         ).catch(err => {
-          console.log(err)
+          const errorResponse = err
         })
         done()
     })
@@ -75,8 +75,8 @@ describe('API Gateway integration tests', () => {
                 catch(e){
                   _body = {}
                 }
-                if(response.statusCode != undefined)
-                    expect(response.statusCode).to.equal(400)
+                if(response.status != undefined)
+                    expect(response.status).to.equal(400)
             }
         ).catch(err => {
           expect(err.response.status).to.equal(400)
@@ -97,7 +97,7 @@ describe('API Gateway integration tests', () => {
                     expect(response.status).to.equal(200)
             }
         ).catch(err => {
-          console.log(err)
+          const errorResponse = err
         })
         done()
     })
@@ -110,8 +110,8 @@ describe('API Gateway integration tests', () => {
                 catch(e){
                   _body = {}
                 }
-                if(response.statusCode != undefined)
-                    expect(response.statusCode).to.equal(400)
+                if(response.status != undefined)
+                    expect(response.status).to.equal(400)
             }
         ).catch(err => {
           expect(err.response.status).to.equal(400)
@@ -132,7 +132,7 @@ describe('API Gateway integration tests', () => {
                     expect(response.status).to.equal(200)
             }
         ).catch(err => {
-          console.log(err)
+          const errorResponse = err
         })
         done()
     })
@@ -145,8 +145,8 @@ describe('API Gateway integration tests', () => {
                 catch(e){
                   _body = {}
                 }
-                if(response.statusCode != undefined)
-                    expect(response.statusCode).to.equal(400)
+                if(response.status != undefined)
+                    expect(response.status).to.equal(400)
             }
         ).catch(err => {
           expect(err.response.status).to.equal(400)

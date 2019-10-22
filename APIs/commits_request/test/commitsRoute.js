@@ -28,10 +28,11 @@ describe('Commits route tests', () => {
             expect(_body[1]).to.have.property('additions')
             expect(_body[1]).to.have.property('deletions')
         }
-        
+        done()  
       }
     ).catch(err => {
-      console.log(err)
+      const errorResponse = err
+      done()
     })
     done()
   })

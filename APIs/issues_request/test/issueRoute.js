@@ -5,7 +5,7 @@ const expect = chai.expect
 const urlBase = 'http://localhost:3002/routes'
 const token = require('../../constants')
 const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown=' + token
-const url = urlBase + '?owner=f'
+const url = urlBase 
 
 describe('Issues route tests', () => {
   it('Test: Request valid', (done) => {
@@ -23,7 +23,7 @@ describe('Issues route tests', () => {
         body.should.have.property('open');
       }
     ).catch(err => {
-      console.log(err)
+      const errorResponse = err
     })
     done()
   })
@@ -40,7 +40,11 @@ describe('Issues route tests', () => {
         }
       }
     ).catch(err => {
-      expect(err.response.status).to.equal(400);
+      if(err.response.status === 400){
+        expect(err.response.status).to.equal(400)
+      }else{
+        expect(err.response.status).to.equal(404)
+      } 
     })
     done()
   }) 

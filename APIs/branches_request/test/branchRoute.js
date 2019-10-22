@@ -27,7 +27,7 @@ describe('Branches route tests', () => {
         }
       }
     ).catch(err => {
-      console.log(err)
+      const errorResponse = err
     })
     done()
   })

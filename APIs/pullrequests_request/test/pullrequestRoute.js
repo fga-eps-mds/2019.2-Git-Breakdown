@@ -27,9 +27,11 @@ describe('PullRequests route tests', () => {
             expect(_body).to.have.property('closed')
             expect(_body).to.have.property('refused_percent')
         }
+        done()
       }
     ).catch(err => {
-      console.log(err)
+      const errorResponse = err
+      done()
     })
     done()
   })
@@ -46,7 +48,7 @@ describe('PullRequests route tests', () => {
         }
       }
     ).catch(err => {
-      expect(response.status).to.equal(400)
+      expect(err.response.status).to.equal(400)
     })
     done()
   })
