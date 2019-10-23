@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function()
         
         let array = tabs[0].url.split("/")
         constants.OWNER_KEY = array[3]
-        constants.REPO_KEY = array[4]
+        constants.REPO_KEY = array[4].split("#")[0]
 
         chrome.storage.sync.get('oauth2_token', function(res) 
         {

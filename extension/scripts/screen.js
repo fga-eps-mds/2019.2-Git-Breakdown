@@ -73,7 +73,7 @@ const gbdScreen = () =>
     const repoContent = document.getElementsByClassName('repository-content')
     const screen = document.createElement('div')
     screen.innerHTML = innerScreen
-    if(document.getElementsByClassName('gbd-screen').length == 0)
+    if(document.getElementsByClassName('gbd-screen').length == 0 && repoContent !== undefined)
     {
         repoContent[0].parentNode.insertBefore(screen, repoContent[0])
         repoContent[0].parentNode.removeChild(repoContent[0])
@@ -88,7 +88,8 @@ const gbdButtonOnClick = () =>
 {
     //console.log("6-GdbButtonOnClick()")
     const gbdtab = document.getElementById('gbd-button')
-    gbdtab.addEventListener('click', gbdScreen)
+    if (gbdtab !== null)
+      gbdtab.addEventListener('click', gbdScreen)
 }
 
 const update = () =>	
