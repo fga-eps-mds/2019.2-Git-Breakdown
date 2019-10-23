@@ -5,7 +5,7 @@ const load = (file) => {
     document.getElementsByTagName('head')[0].appendChild(src)
 }
 
-console.log('1-load(button)')
+//console.log('1-load(button)')
 load('./button.js')
-console.log("5-load(screen)")
+//console.log("5-load(screen)")
 load('./screen.js')
