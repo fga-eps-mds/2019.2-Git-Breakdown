@@ -28,7 +28,8 @@
         [
             "scripts/oauth.js",
             "scripts/contentScripts.js",
-            "scripts/button.js"
+            "scripts/button.js",
+            "scripts/screen.js"
         ]
     }],
     "browser_action": 
