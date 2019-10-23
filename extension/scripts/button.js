@@ -1,5 +1,3 @@
-//Button routine: put the GBD button in the GH pages
-
 const buttonGbd = () => { 
     var tab = document.createElement('span')
     //tab.id = "gbd-tab"
@@ -33,8 +31,6 @@ const insertButton = () => {
         if (res != null)
             gitNavBar[i].appendChild(buttonGbd())       
     }
-
-   
 }
 
 //This function deals to insert button in cases when the mutation event doesn't trigger
@@ -66,140 +62,86 @@ const initGBD = () => {
 }
 
 //On this function, change the class that we take from dom, take his first child
-const gdbScreen = () => 
+const gbdScreen = () => 
 {
-    console.log("gbd start")
-    const repoContent = document.getElementsByClassName('repository-content')
-    console.log(repoContent)
-    // for(var i = 1 ; i < repoContent.length; i++)
-    // {
-    //     repoContent[i].parentNode.removeChild(div[i])
-    // }
+    const addCss = () => 
+    {
+        let innerStyle = 
+        `   
+        * {
+            margin:0px;
+            padding:0px;
+            font-family:sans-serif
+          }
 
-    const addGbdCss = () => {
-        
+        #gbd-screen {
+            border : 0.5px solid rgba(39, 31, 31, 0.5);
+            position : relative;
+            width : 1000px;
+            height : 500px;
+        }
+
+        #gbd-sidebar {
+            position: absolute;
+            width : 10px;
+            height : 100%;
+            background:#151719;
+            -webkit-transition :width 0.5s;
+            transition : width 0.5s;
+        }
+
+        #gbd-sidebar:hover {
+            width : 200px;
+        }
+
+        #gbd-sidebar ul li {
+            color : rgba(230, 230, 230);
+            position : relative;
+            text-align : center;
+            padding: 10%;
+            border-bottom: 1px solid rgba(100, 100, 100,0.3);
+        }
+
+        `
+        let css = document.createElement('style')
+        css.innerHTML = innerStyle
+        let head =  document.getElementsByTagName('head')
+        head[0].appendChild(css)  
     }
 
-    const innerScreen = `
-        <style>
-            @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
-            body {
-            overflow-x: hidden;
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            }
-
-            /* Toggle Styles */
-
-            #viewport {
-            padding-left: 250px;
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-            }
-
-            #content {
-            width: 100%;
-            position: relative;
-            margin-right: 0;
-            }
-
-            /* Sidebar Styles */
-
-            #sidebar {
-            z-index: 1000;
-            position: fixed;
-            left: 250px;
-            width: 250px;
-            height: 100%;
-            margin-left: -250px;
-            overflow-y: auto;
-            background: #37474F;
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-            }
-
-            #sidebar header {
-            background-color: #263238;
-            font-size: 20px;
-            line-height: 52px;
-            text-align: center;
-            }
-
-            #sidebar header a {
-            color: #fff;
-            display: block;
-            text-decoration: none;
-            }
-
-            #sidebar header a:hover {
-            color: #fff;
-            }
-
-            #sidebar .nav{
-            
-            }
-
-            #sidebar .nav a{
-            background: none;
-            border-bottom: 1px solid #455A64;
-            color: #CFD8DC;
-            font-size: 14px;
-            padding: 16px 24px;
-            }
-
-            #sidebar .nav a:hover{
-            background: none;
-            color: #ECEFF1;
-            }
-
-            #sidebar .nav a i{
-            margin-right: 16px;
-            }
-        </style>
-            <div class="gbd-screen">
-                <div class="sidebar-logo">
-                    BreakDown
-                </div>
-                <ul class="sidebar-navigation">
-                    <li class="header">Commits</li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-home" aria-hidden="true"></i> Issues
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-tachometer" aria-hidden="true"></i> Pull Requests
-                            </a>
-                        </li>
-                        <li class="header">Branchs</li>
-                         <li>
-                            <a href="#">
-                                <i class="fa fa-users" aria-hidden="true"></i>GBD documentation
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-            <div class="content-container">
+ 
+    
+    const innerScreen = 
+    `    
+    <div id="gbd-screen">
+        <div id="gbd-sidebar">
+            <ul class="gbd-menu">    
+                <li>menu 1</li>
+                <li>menu 2</li>
+                <li>menu 3</li>
+                <li>menu 4</li>
+            </ul>
+        </div>
+    </div>
     `
-    const gdbScreen = document.createElement('div')
-    gdbScreen.innerHTML = innerScreen
+
+    const repoContent = document.getElementsByClassName('repository-content')
+    const screen = document.createElement('div')
+    screen.innerHTML = innerScreen
     if(document.getElementsByClassName('gbd-screen').length == 0)
     {
-        repoContent[0].parentNode.insertBefore(gdbScreen, repoContent[0])
+        repoContent[0].parentNode.insertBefore(screen, repoContent[0])
         repoContent[0].parentNode.removeChild(repoContent[0])
+        addCss()
     }
+
+    
 }
 
 const event = () => 
 {
     const gbdtab = document.getElementById('gbd-tab')
-    gbdtab.addEventListener('click', gdbScreen)
+    gbdtab.addEventListener('click', gbdScreen)
 }
 
 
