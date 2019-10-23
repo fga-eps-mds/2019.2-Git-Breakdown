@@ -59,8 +59,25 @@ exports.get = async (req, res, next) => {
             }
 
             await filteredIssues.forEach((issue, index, array) => {
+
+                let match = false
+                for (let contributor in contributorsInformation) {
+                    if (contributorsInformation[contributor].name === issue.user.login) {
+                        contributorsInformation[contributor].opened_issues += 1
+                        match = true
+                    }
+                }
+                if (match === false) {
+                    let committer = { 'name': issue.user.login,
+                                        'opened_issues': 1,
+                                        'closed_issues': 0, 
+                                        'comments': 0 }
+                    contributorsInformation.push(committer)
+                }
+                
                 axios.get(issue.comments_url, header_option_2).then(function (response) {
                     let comments = response.data
+
                     comments.forEach((comment, index, array) => {
                         let match = false
                         for (let contributor in contributorsInformation) {
