@@ -73,35 +73,41 @@ const gbdScreen = () =>
             padding:0px;
             font-family:sans-serif
           }
-
-        #gbd-screen {
+          
+          #gbd-screen {
             border : 0.5px solid rgba(39, 31, 31, 0.5);
             position : relative;
             width : 1000px;
             height : 500px;
-        }
-
-        #gbd-sidebar {
+            
+          }
+          
+          #gbd-sidebar {
             position: absolute;
+            display: block;
+            text-decoration: none;
             width : 10px;
             height : 100%;
             background:#151719;
             -webkit-transition :width 0.5s;
             transition : width 0.5s;
-        }
-
-        #gbd-sidebar:hover {
+          }
+          
+          #gbd-sidebar:hover {
             width : 200px;
-        }
-
-        #gbd-sidebar ul li {
+          }
+          
+          #gbd-sidebar a{
+            text-decoration : none;
+            display : block;
+            list-style-type : none;
             color : rgba(230, 230, 230);
-            position : relative;
             text-align : center;
             padding: 10%;
             border-bottom: 1px solid rgba(100, 100, 100,0.3);
-        }
-
+            margin : 10px;
+            overflow:hidden;
+          }
         `
         let css = document.createElement('style')
         css.innerHTML = innerStyle
@@ -115,12 +121,10 @@ const gbdScreen = () =>
     `    
     <div id="gbd-screen">
         <div id="gbd-sidebar">
-            <ul class="gbd-menu">    
-                <li>menu 1</li>
-                <li>menu 2</li>
-                <li>menu 3</li>
-                <li>menu 4</li>
-            </ul>
+            <a href="#">menu 1 </a>
+            <a href="#">menu 2 </a>
+            <a href="#">menu 3 </a>
+            <a href="#">menu 4 </a>
         </div>
     </div>
     `
