@@ -11,7 +11,7 @@ const gbdScreen = () =>
             font-family:sans-serif
           }
           
-          #gbd-screen {
+          #gbdScreen {
             border : 0.5px solid rgba(39, 31, 31, 0.5);
             position : relative;
             width : 1000px;
@@ -19,36 +19,51 @@ const gbdScreen = () =>
             
           }
           
-          #gbd-sidebar {
+          #gbdSidebar {
             position: absolute;
             display: block;
             text-decoration: none;
-            width : 30px;
+            width : 50px;
             height : 100%;
             background:#151719;
-            -webkit-transition :width 0.5s;
-            transition : width 0.5s;
+            -webkit-transition :all 0.5s;
+            transition : all 0.5s;
           }
           
-          #gbd-sidebar:hover {
+          #gbdSidebar:hover{
             width : 200px;
           }
           
-          #gbd-sidebar a{
+          #gbdSidebar a{
+            font-size : 13px;
             text-decoration : none;
             display : block;
             list-style-type : none;
             color : rgba(230, 230, 230);
             text-align : center;
-            border-bottom: 1px solid rgba(100, 100, 100,0.3);
-            margin : 40px;
+            margin: 40px;
             overflow:hidden;
+            transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
           }
 
-          #gbd-sidebar p{
+          .gbdMenu:hover{
+            margin : 0px;
+            color : rgba(105, 107, 108, 1);
+            border-bottom : 1px solid rgba(105, 107, 108, 1);
+          }
+
+          #gbdSidebar p{
+            text-align : center;
             color : rgba(230, 230, 230);
             overflow: hidden;
             margin : 45px;
+            border-bottom: 1px solid rgba(255, 137, 75, 0.42);
+          }
+
+          #gbdSidebar p:hover{
+            border-bottom: 1px solid rgba(255, 137, 75, 0.42);
           }
 
         `
@@ -60,12 +75,12 @@ const gbdScreen = () =>
 
     const innerScreen = 
         `    
-        <div id="gbd-screen">
-            <div id="gbd-sidebar">
+        <div id="gbdScreen">
+            <div id="gbdSidebar">
                 <p>GitBreakDown</p>
-                <a href="#">home</a>
-                <a href="#">About us</a>
-                <a href="#">About the metris </a>
+                <a class="gbdMenu" href="#">home</a>
+                <a class="gbdMenu" href="#">Details</a>
+                <a class="gbdMenu" href="#">About us</a>
             </div>
         </div>
         `
