@@ -1,20 +1,13 @@
 const gbdScreen = () => 
 {
-    let gbdtab = document.getElementById('gbd-button')
+    let gbdtab = document.getElementById('gbdButton')
     let current_selected = document.getElementsByClassName('js-selected-navigation-item selected reponav-item')
-    //console.log(current_selected[0].classList)
     current_selected[0].classList.remove('selected')
     gbdtab.className = 'js-selected-navigation-item selected reponav-item'
     const addCss = () => 
     {
         let innerStyle = 
         `   
-        * {
-            margin:0px;
-            padding:0px;
-            font-family:sans-serif
-          }
-          
           #gbdScreen {
             border : 0.5px solid rgba(39, 31, 31, 0.5);
             position : relative;
@@ -71,8 +64,11 @@ const gbdScreen = () =>
           }
 
         `
+        //The final tag
         let css = document.createElement('style')
         css.innerHTML = innerStyle
+
+        //Inserting the tag into the head
         let head =  document.getElementsByTagName('head')
         head[0].appendChild(css)  
     }
@@ -88,24 +84,31 @@ const gbdScreen = () =>
             </div>
         </div>
         `
+    //revoming a black space between the navbar and the breakDown screen
+    let pageHead = document.getElementsByClassName("pagehead repohead instapaper_ignore readability-menu experiment-repo-nav")
+    let pageElement = pageHead[0]
+    pageElement.style.marginBottom = "0px"
+    //
 
-    const repoContent = document.getElementsByClassName('repository-content')
-    const screen = document.createElement('div')
+
+    //inserting the screen inside gitHub
+    let repoContent = document.getElementsByClassName('repository-content')
+    let screen = document.createElement('div')
     screen.innerHTML = innerScreen
-    if(document.getElementsByClassName('gbd-screen').length == 0 && repoContent[0] !== undefined)
+    if(document.getElementsByClassName('gbdButton').length == 0 && repoContent[0] !== undefined)
     {
         repoContent[0].parentNode.insertBefore(screen, repoContent[0])
         repoContent[0].parentNode.removeChild(repoContent[0])
         addCss()
     }
-
+    //
     
 }
 
 
 const gbdButtonOnClick = () => 
 {
-    const gbdtab = document.getElementById('gbd-button')
+    const gbdtab = document.getElementById('gbdButton')
     if (gbdtab !== null)
     {
       gbdtab.addEventListener('click', gbdScreen)
@@ -116,7 +119,7 @@ const update = () =>
 {	
     let observer = new MutationObserver( () => 	
     {   	
-        if(document.getElementById('gbd-button') !== null)	
+        if(document.getElementById('gbdButton') !== null)	
         {   		
             gbdButtonOnClick()	
         }
