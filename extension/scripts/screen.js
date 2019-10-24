@@ -1,5 +1,10 @@
 const gbdScreen = () => 
 {
+    let gbdtab = document.getElementById('gbd-button')
+    let current_selected = document.getElementsByClassName('js-selected-navigation-item selected reponav-item')
+    //console.log(current_selected[0].classList)
+    current_selected[0].classList.remove('selected')
+    gbdtab.className = 'js-selected-navigation-item selected reponav-item'
     const addCss = () => 
     {
         let innerStyle = 
@@ -102,7 +107,9 @@ const gbdButtonOnClick = () =>
 {
     const gbdtab = document.getElementById('gbd-button')
     if (gbdtab !== null)
+    {
       gbdtab.addEventListener('click', gbdScreen)
+    }
 }
 
 const update = () =>	
