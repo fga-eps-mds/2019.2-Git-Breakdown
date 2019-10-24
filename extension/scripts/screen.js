@@ -9,7 +9,11 @@ const gbdScreen = () =>
         let innerStyle = 
         `   
           #gbdScreen {
-            border : 0.5px solid rgba(39, 31, 31, 0.5);
+            border-radius : 25px;
+            box-shadow: 5px 5px #e1e4e8; 
+            border-top : 0;
+            border-bottom : 3px #e36209 #e1e4e8 transparent;
+            border-right : 3px #e36209 #e1e4e8 transparent;
             position : relative;
             width : 1000px;
             height : 500px;
@@ -17,6 +21,7 @@ const gbdScreen = () =>
           }
           
           #gbdSidebar {
+            border-radius : 25px;
             position: absolute;
             display: block;
             text-decoration: none;
