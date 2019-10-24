@@ -87,7 +87,7 @@ const gbdScreen = () =>
     const repoContent = document.getElementsByClassName('repository-content')
     const screen = document.createElement('div')
     screen.innerHTML = innerScreen
-    if(document.getElementsByClassName('gbd-screen').length == 0 && repoContent !== undefined)
+    if(document.getElementsByClassName('gbd-screen').length == 0 && repoContent[0] !== undefined)
     {
         repoContent[0].parentNode.insertBefore(screen, repoContent[0])
         repoContent[0].parentNode.removeChild(repoContent[0])
