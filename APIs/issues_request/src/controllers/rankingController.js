@@ -75,6 +75,30 @@ exports.get = async (req, res, next) => {
                     contributorsInformation.push(committer)
                 }
                 
+            axios.get(issue.url, header_option_2).then(function (response) {
+                let issue = response.data
+                if(issue.closed_by != undefined){
+                    let match = false
+                    for (let contributor in contributorsInformation) {
+                        if (contributorsInformation[contributor].name === issue.closed_by.login) {
+                            contributorsInformation[contributor].closed_issues += 1
+                            match = true
+                        }
+                    }
+                    if (match === false) {
+                        let committer = { 'name': issue.closed_by.login,
+                                            'opened_issues': 0,
+                                            'closed_issues': 1, 
+                                            'comments': 0 }
+                        contributorsInformation.push(committer)
+                    }
+                }
+
+
+            }).catch(err => {
+                console.log(err)
+            })
+
                 axios.get(issue.comments_url, header_option_2).then(function (response) {
                     let comments = response.data
 
