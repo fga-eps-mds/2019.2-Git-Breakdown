@@ -22,8 +22,6 @@ const buttonGbd = () => {
 }
 
 const insertButton = () => {
-    
-    //console.log("3-insertButton()")
     const gitNavBar = document.getElementsByTagName('nav')
     var navPatter = /.*(hx_reponav reponav)+.*/ 
     for(var i = 0 ; i < gitNavBar.length ; i++)
@@ -35,18 +33,16 @@ const insertButton = () => {
     }
 }
 
-//This function deals to insert button in cases when the mutation event doesn't trigger
 const init_  = () =>{
-    //console.log("4-init_()")
     if(document.getElementById('gbd-button') === null)
     {   
         insertButton()
     }
 }
 
-//the observer Method
+
  const initGBD = () => {
-    //console.log("2-initGBD()")
+    
     let observer = new MutationObserver( () => {   
         if(document.getElementById('gbd-button') === null)
         {   
@@ -54,7 +50,6 @@ const init_  = () =>{
         }
     })
   
-    //start to observe the DOM
     observer.observe(document, {
         subtree: true,
         childList: true

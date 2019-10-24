@@ -1,6 +1,5 @@
 const gbdScreen = () => 
 {
-    //console.log("7")
     const addCss = () => 
     {
         let innerStyle = 
@@ -98,10 +97,9 @@ const gbdScreen = () =>
     
 }
 
-// event()
+
 const gbdButtonOnClick = () => 
 {
-    //console.log("6-GdbButtonOnClick()")
     const gbdtab = document.getElementById('gbd-button')
     if (gbdtab !== null)
       gbdtab.addEventListener('click', gbdScreen)
@@ -112,13 +110,11 @@ const update = () =>
     let observer = new MutationObserver( () => 	
     {   	
         if(document.getElementById('gbd-button') !== null)	
-        {   	
-            //console.log("update runnin")	
+        {   		
             gbdButtonOnClick()	
-        }	
+        }
     })	
 
-    //start to observe the DOM	
     observer.observe(document, {	
         subtree: true,	
         childList: true	
