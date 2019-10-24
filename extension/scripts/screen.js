@@ -2,8 +2,18 @@ const gbdScreen = () =>
 {
     let gbdtab = document.getElementById('gbdButton')
     let current_selected = document.getElementsByClassName('js-selected-navigation-item selected reponav-item')
-    current_selected[0].classList.remove('selected')
-    gbdtab.className = 'js-selected-navigation-item selected reponav-item'
+    let zenhub_selected = document.getElementsByClassName('reponav-item zh-sidebar-item zh-navbar-link zh-topbar-item selected')
+    
+    gbdtab.classList.remove('gbdselected')
+
+    if (zenhub_selected[0] !== undefined)
+      zenhub_selected[0].classList.remove('selected')
+
+    if (current_selected[0] !== undefined)
+      current_selected[0].classList.remove('selected')
+
+    gbdtab.className = 'js-selected-navigation-item gbdselected reponav-item'
+
     const addCss = () => 
     {
         let innerStyle = 
@@ -21,13 +31,14 @@ const gbdScreen = () =>
           }
           
           #gbdSidebar {
+            font: inherit;
             border-radius : 25px;
             position: absolute;
             display: block;
             text-decoration: none;
             width : 50px;
             height : 100%;
-            background:#151719;
+            background-color:rgba(0,51,102,0.63);
             -webkit-transition :all 0.5s;
             transition : all 0.5s;
           }
@@ -37,6 +48,7 @@ const gbdScreen = () =>
           }
           
           #gbdSidebar a{
+            font-weight: 500;
             font-size : 13px;
             text-decoration : none;
             display : block;
@@ -50,6 +62,8 @@ const gbdScreen = () =>
             -moz-transition: all 0.3s;
           }
 
+          .reponav-item.gbdselected{color:#24292e;background-color:#fff;border-color:rgba(0,51,102,0.7) #e1e4e8 transparent;}
+
           .gbdMenu:hover{
             margin : 0px;
             color : rgba(105, 107, 108, 1);
@@ -58,6 +72,8 @@ const gbdScreen = () =>
 
           #gbdSidebar p{
             text-align : center;
+            font-size: inherit;
+            font-weight: 700;
             color : rgba(230, 230, 230);
             overflow: hidden;
             margin : 45px;
@@ -83,8 +99,8 @@ const gbdScreen = () =>
         <div id="gbdScreen">
             <div id="gbdSidebar">
                 <p>GitBreakDown</p>
-                <a class="gbdMenu" href="#">home</a>
-                <a class="gbdMenu" href="#">Details</a>
+                <a class="gbdMenu" href="#">Home</a>
+                <a class="gbdMenu" href="#">Documentation</a>
                 <a class="gbdMenu" href="#">About us</a>
             </div>
         </div>
@@ -120,10 +136,23 @@ const gbdButtonOnClick = () =>
     }
 }
 
+const zenhubOnClick = () =>
+{
+  const zhTab = document.getElementsByClassName("reponav-item zh-sidebar-item zh-navbar-link zh-topbar-item selected")[0]
+  if (zhTab !== null && zhTab !== undefined)
+  {
+    zhTab.addEventListener('click', function()
+    {
+      document.getElementById('gbdButton').classList.remove('gbdselected')
+    })
+  }
+}
+
 const update = () =>	
 {	
     let observer = new MutationObserver( () => 	
     {   	
+        zenhubOnClick()
         if(document.getElementById('gbdButton') !== null)	
         {   		
             gbdButtonOnClick()	
