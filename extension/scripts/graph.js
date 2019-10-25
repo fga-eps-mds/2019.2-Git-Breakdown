@@ -1,6 +1,6 @@
 let url_base = 'http://18.215.242.203:3000'
 
-export function createCommitsChart(url_aux, repo_name)
+export function createCommitsChart(url_aux, repo_name, ctx)
 {
     let url_commits = url_base + '/commits' + url_aux
     fetch(url_commits).then((resp) => resp.json()).then(function(data)
@@ -17,7 +17,6 @@ export function createCommitsChart(url_aux, repo_name)
                 qtCommits[i] = data[i+1].commits
             }
         }
-        const ctx = document.getElementById('commitsDashboard').getContext('2d')
         const commitsChart = new Chart(ctx, 
         {
             type: 'bar',
@@ -58,13 +57,12 @@ export function createCommitsChart(url_aux, repo_name)
     })
 }
 
-export function createBranchesChart(url_aux, repo_name)
+export function createBranchesChart(url_aux, repo_name, ctx)
 {
     let url_branches = url_base + '/branches' + url_aux
     fetch(url_branches).then((resp) => resp.json()).then(function(data)
     {
         let qtMerged = Math.round((data.active_branches * data.percentage_merged) / (100 - data.percentage_merged))
-        const ctx = document.getElementById('branchesDashboard').getContext('2d')
         const branchesChart = new Chart(ctx, 
         {
             type: 'pie',
@@ -113,14 +111,13 @@ export function createBranchesChart(url_aux, repo_name)
     })
 }
 
-export function createPRChart(url_aux, repo_name)
+export function createPRChart(url_aux, repo_name, ctx)
 {
     let url_pr = url_base + '/pullrequests' + url_aux
     fetch(url_pr).then((resp) => resp.json()).then(function(data)
     {
         let total_refused = Math.round((data.refused_percent * data.closed)/100)
         let total_accepted = (data.closed - total_refused)
-        const ctx = document.getElementById('prsDashboard').getContext('2d')
         const prChart = new Chart(ctx, 
         {
             type: 'pie',
@@ -171,12 +168,11 @@ export function createPRChart(url_aux, repo_name)
     })
 }
 
-export function createIssuesChart(url_aux, repo_name)
+export function createIssuesChart(url_aux, repo_name, ctx)
 {
     let url_issues = url_base + '/issues' + url_aux
     fetch(url_issues).then((resp) => resp.json()).then(function(data)
     {
-        const ctx = document.getElementById('issuesDashboard').getContext('2d')
         const issueChart = new Chart(ctx, 
         {
             type: 'pie',

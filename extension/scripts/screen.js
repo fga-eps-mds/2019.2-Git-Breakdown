@@ -1,3 +1,5 @@
+let url_base = 'http://18.215.242.203:3000'
+
 const gbdScreen = () => 
 {
     let gbdtab = document.getElementById('gbdButton')
@@ -125,8 +127,19 @@ const gbdScreen = () =>
         repoContent[0].parentNode.insertBefore(screen, repoContent[0])
         repoContent[0].parentNode.removeChild(repoContent[0])
         addCss()
+
+        chrome.storage.sync.get('oauth2_token', function(res) 
+        {
+            if (res.oauth2_token != undefined)
+            {
+                let url = window.location.href.split("/")
+                let owner = url[3]
+                let repo = url[4].split("#")[0]
+                let url_aux = `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}`
+            }
+        })
+
     }
-    //
     
 }
 
@@ -142,14 +155,14 @@ const gbdButtonOnClick = () =>
 
 const zenhubOnClick = () =>
 {
-  const zhTab = document.getElementsByClassName("reponav-item zh-sidebar-item zh-navbar-link zh-topbar-item selected")[0]
-  if (zhTab !== null && zhTab !== undefined)
-  {
-    zhTab.addEventListener('click', function()
+    const zhTab = document.getElementsByClassName("reponav-item zh-sidebar-item zh-navbar-link zh-topbar-item selected")[0]
+    if (zhTab !== null && zhTab !== undefined)
     {
-      document.getElementById('gbdButton').classList.remove('gbdselected')
-    })
-  }
+        zhTab.addEventListener('click', function()
+        {
+          document.getElementById('gbdButton').classList.remove('gbdselected')
+        })
+    }
 }
 
 const update = () =>	

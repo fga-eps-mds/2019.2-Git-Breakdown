@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function()
                     }
                     else
                     {
-                        createIssuesChart(url_aux, constants.REPO_KEY)
+                        /*createIssuesChart(url_aux, constants.REPO_KEY)
                         createPRChart(url_aux, constants.REPO_KEY)
                         createBranchesChart(url_aux, constants.REPO_KEY)
-                        createCommitsChart(url_aux, constants.REPO_KEY)
+                        createCommitsChart(url_aux, constants.REPO_KEY)*/
                     }
                 }
                 else
@@ -78,18 +78,5 @@ chrome.storage.sync.get('oauth2_token', function(res)
         console.log("Token nao disponivel")
         let logoutButton = document.getElementById('logoutButton')
         logoutButton.parentNode.removeChild(logoutButton)
-        
-        
-        let issue_chart = document.getElementById('issuesDashboard')
-        issue_chart.parentNode.removeChild(issue_chart)
-        
-        let pr_chart = document.getElementById('prsDashboard')
-        pr_chart.parentNode.removeChild(pr_chart)
-
-        let branches_chart = document.getElementById('branchesDashboard')
-        branches_chart.parentNode.removeChild(branches_chart)
-
-        let commits_chart = document.getElementById('commitsDashboard')
-        commits_chart.parentNode.removeChild(commits_chart)
     }
 })
