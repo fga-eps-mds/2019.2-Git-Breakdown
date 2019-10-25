@@ -93,6 +93,12 @@ const gbdScreen = () =>
             border-bottom: 1px solid rgba(255, 137, 75, 0.42);
           }
 
+          #commitsDiv
+          {
+              margin-left: 200px;
+              margin-right: 200px;
+          }
+
         `
         //The final tag
         let css = document.createElement('style')
