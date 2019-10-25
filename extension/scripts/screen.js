@@ -105,10 +105,18 @@ const gbdScreen = () =>
                 <a class="gbdMenu" href="#">Documentation</a>
                 <a class="gbdMenu" href="#">About us</a>
             </div>
-            <canvas id="issuesDashboard" width="400" height="400"></canvas>
-            <canvas id="prsDashboard" width="400" height="400"></canvas>
-            <canvas id="branchesDashboard" width="400" height="400"></canvas>
-            <canvas id="commitsDashboard" width="400" height="400"></canvas>
+            <div id="commitsDiv">
+                <canvas id="commitsDashboard" width="400" height="400"></canvas>
+            </div>
+            <div id="commitsDiv">
+                <canvas id="issuesDashboard" width="400" height="400"></canvas>   
+            </div>
+            <div id="commitsDiv">
+                <canvas id="prsDashboard" width="400" height="400"></canvas>   
+            </div>
+            <div id="commitsDiv">
+                <canvas id="branchesDashboard" width="400" height="400"></canvas>   
+            </div>
         </div>
         `
     //revoming a black space between the navbar and the breakDown screen
@@ -128,20 +136,20 @@ const gbdScreen = () =>
         repoContent[0].parentNode.removeChild(repoContent[0])
         addCss()
 
-        chrome.storage.sync.get('oauth2_token', function(res) 
+        // sending a message to background.js to receive back fetched API data
+        chrome.runtime.sendMessage({metric: "commits"}, function(response) 
         {
-            if (res.oauth2_token != undefined)
+            if (response.type !== undefined)
             {
-                let url = window.location.href.split("/")
-                let owner = url[3]
-                let repo = url[4].split("#")[0]
-                let url_aux = `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}`
+              let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+              console.log(commitCtx)
+              console.log(response.type)
             }
         })
-
     }
     
 }
+
 
 
 const gbdButtonOnClick = () => 
