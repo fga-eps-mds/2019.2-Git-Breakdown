@@ -33,4 +33,21 @@ describe('PullRequests ranking test', () => {
     })
     done()
   })
+
+  it('Test: Request without parameters', (done) => {
+    axios.get(urlBase).then(response => {
+
+        let _body = {};
+        try{
+          _body = response.data
+        }
+        catch(e){
+          _body = {}
+        }
+      }
+    ).catch(err => {
+      expect(err.response.status).to.equal(400)
+    })
+    done()
+  })
 })
