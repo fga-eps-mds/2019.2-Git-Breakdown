@@ -36,7 +36,7 @@ const gbdScreen = () =>
           #gbdSidebar {
             font: inherit;
             border-radius : 25px;
-            position: fixed;
+            position: absolute;
             display: block;
             text-decoration: none;
             width : 50px;
@@ -95,9 +95,56 @@ const gbdScreen = () =>
 
           #commitsDiv
           {
-              margin-left: 200px;
-              margin-right: 200px;
+            position: absolute;
+            top: 0;
+            right:0;
+            width: 400px;
+            height : 250px;
+            
           }
+
+          #issuesDiv
+          {
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 400px;
+            height : 250px;
+            margin-left: 190px;
+            
+          }
+
+          #branchesDiv
+          {
+            position: absolute;
+            bottom: 0;
+            right:0;
+            width: 400px;
+            height : 250px;
+            
+          }
+
+          #prsDiv
+          {
+            margin-left: 190px;
+            position: absolute;
+            bottom: 0;
+            left:0;
+            width: 400px;
+            height : 250px;
+            
+          }
+
+          canvas {
+            border: 1px solid black;
+            box-shadow: 5px 5px #e1e4e8;
+            height: 250px;
+            width:400px;
+            border-radius : 10px;
+          }
+
+        
+          
 
         `
         //The final tag
@@ -118,10 +165,11 @@ const gbdScreen = () =>
                 <a class="gbdMenu" href="#">Documentation</a>
                 <a class="gbdMenu" href="#">About us</a>
             </div>
-            <div class="flex-container" id="charts">
+            <div class="flexContainer" id="charts">
                 <div id="commitsDiv">
                     <canvas id="commitsDashboard"></canvas>
                 </div>
+                
                 <div id="issuesDiv">
                     <canvas id="issuesDashboard"></canvas>   
                 </div>
@@ -131,6 +179,7 @@ const gbdScreen = () =>
                 <div id="branchesDiv">
                     <canvas id="branchesDashboard"></canvas>   
                 </div>
+                
             </div>
         </div>
         `
