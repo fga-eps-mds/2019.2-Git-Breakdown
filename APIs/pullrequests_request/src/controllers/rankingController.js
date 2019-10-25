@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const queryString = { state:'all' }
+const queryString = { state:'all', per_page: 10000 }
 
 exports.get = async (req, res, next) => {
     const owner = req.query.owner
@@ -36,7 +36,7 @@ exports.get = async (req, res, next) => {
             }
             let filteredPullRequests = pullrequests.filter(filterPullRequests)
             
-            await filteredPullRequests.forEach((pr, index, array) => {
+            await filteredPullRequests.forEach(async (pr, index, array) => {
 
                 let match = false
                 for (let contributor in contributorsInformation) {
@@ -45,20 +45,42 @@ exports.get = async (req, res, next) => {
                         match = true
                     }
                 }
-                    if (match === false) {
-                        let committer = { 'name': pr.user.login,
-                                          'merged_pull_requests': 1, 
-                                          'comments': 0 }
-                        contributorsInformation.push(committer)
-                    }
-                    contributorsInformation[0].pullrequests += 1
+                if (match === false) {
+                    let committer = { 'name': pr.user.login,
+                                      'merged_pull_requests': 1, 
+                                      'comments': 0 }
+                    contributorsInformation.push(committer)
+                }
+                
+                await axios.get(pr.comments_url, header_option).then(async response => {
+                    let comments = response.data
 
-                    if (contributorsInformation[0].pullrequests === array.length) {
-                        return res.status(200).json(contributorsInformation)
-                    }
+                    await comments.forEach((comment, index, arr) => {
+                        let match = false
+                        for (let contributor in contributorsInformation) {
+                            if (contributorsInformation[contributor].name === comment.user.login) {
+                                contributorsInformation[contributor].comments += 1
+                                match = true
+                            }
+                        }
+                        if (match === false) {
+                            let committer = { 'name': comment.user.login,
+                                              'merged_pull_requests': 0,
+                                              'comments': 1 }
+                            contributorsInformation.push(committer)
+                        }
+                    })
+                }).catch(err => {
+                    console.log(err)
                 })
+                
+                contributorsInformation[0].pullrequests += 1
+                if (contributorsInformation[0].pullrequests === array.length) {
+                    return res.status(200).json(contributorsInformation)
+                }
+            })
         }).catch(function (err) {
-                console.log(err)
+            console.log(err)
         })
     }
 }
