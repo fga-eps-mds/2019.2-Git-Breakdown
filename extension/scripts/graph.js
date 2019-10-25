@@ -38,9 +38,16 @@ function createCommitsChart(data, ctx)
             {
                 yAxes: 
                 [{
-                    ticks: 
+                    gridLines: 
                     {
-                        beginAtZero: true
+                        display: false
+                    }
+                }],
+                xAxes: 
+                [{
+                    gridLines: 
+                    {
+                        display: false
                     }
                 }]
             }
@@ -83,13 +90,10 @@ function createBranchesChart(data, ctx)
             },
             scales: 
             {
-                yAxes: 
-                [{
-                    ticks: 
-                    {
-                        beginAtZero: true
-                    }
-                }]
+                ticks: 
+                {
+                    display: false
+                }
             }
         }
     })
@@ -134,13 +138,10 @@ function createPRChart(data, ctx)
             },
             scales: 
             {
-                yAxes: 
-                [{
-                    ticks: 
-                    {
-                        beginAtZero: true
-                    }
-                }]
+                ticks: 
+                {
+                    display: false
+                }
             }
         }
     })
@@ -180,13 +181,10 @@ function createIssuesChart(data, ctx)
             },
             scales: 
             {
-                yAxes: 
-                [{
-                    ticks: 
-                    {
-                        beginAtZero: true
-                    }
-                }]
+                ticks: 
+                {
+                    display: false
+                }
             }
         }
     })

@@ -29,17 +29,18 @@ const gbdScreen = () =>
             position : relative;
             width : 1000px;
             height : 500px;
+            overflow-y: scroll;
             
           }
           
           #gbdSidebar {
             font: inherit;
             border-radius : 25px;
-            position: absolute;
+            position: fixed;
             display: block;
             text-decoration: none;
             width : 50px;
-            height : 100%;
+            height : 500px;
             background-color:rgba(0,51,102,0.63);
             -webkit-transition :all 0.5s;
             transition : all 0.5s;
@@ -82,6 +83,12 @@ const gbdScreen = () =>
             border-bottom: 1px solid rgba(255, 137, 75, 0.42);
           }
 
+          .flex-container
+          {
+              display: flex;
+              flex-direction: column;
+          }
+
           #gbdSidebar p:hover{
             border-bottom: 1px solid rgba(255, 137, 75, 0.42);
           }
@@ -105,17 +112,19 @@ const gbdScreen = () =>
                 <a class="gbdMenu" href="#">Documentation</a>
                 <a class="gbdMenu" href="#">About us</a>
             </div>
-            <div id="commitsDiv">
-                <canvas id="commitsDashboard" width="400" height="400"></canvas>
-            </div>
-            <div id="commitsDiv">
-                <canvas id="issuesDashboard" width="400" height="400"></canvas>   
-            </div>
-            <div id="commitsDiv">
-                <canvas id="prsDashboard" width="400" height="400"></canvas>   
-            </div>
-            <div id="commitsDiv">
-                <canvas id="branchesDashboard" width="400" height="400"></canvas>   
+            <div class="flex-container" id="charts">
+                <div id="commitsDiv">
+                    <canvas id="commitsDashboard"></canvas>
+                </div>
+                <div id="issuesDiv">
+                    <canvas id="issuesDashboard"></canvas>   
+                </div>
+                <div id="prsDiv">
+                    <canvas id="prsDashboard"></canvas>   
+                </div>
+                <div id="branchesDiv">
+                    <canvas id="branchesDashboard"></canvas>   
+                </div>
             </div>
         </div>
         `
@@ -137,39 +146,41 @@ const gbdScreen = () =>
         addCss()
 
         // sending messages to background.js to receive back fetched API data
-
-        chrome.runtime.sendMessage({metric: "issues"}, function(response) 
+        if (typeof chrome.app.isInstalled !== 'undefined')
         {
-            if (response.issues !== undefined)
+            chrome.runtime.sendMessage({metric: "issues"}, function(response) 
             {
-              let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-              createIssuesChart(response.issues, issuesCtx)
-            }
-        })
-        chrome.runtime.sendMessage({metric: "commits"}, function(response) 
-        {
-            if (response.commits !== undefined)
+                if (response.issues !== undefined)
+                {
+                    let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                    createIssuesChart(response.issues, issuesCtx)
+                }
+            })
+            chrome.runtime.sendMessage({metric: "commits"}, function(response) 
             {
-                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                createCommitsChart(response.commits, commitCtx)
-            }
-        })
-        chrome.runtime.sendMessage({metric: "branches"}, function(response) 
-        {
-            if (response.branches !== undefined)
+                if (response.commits !== undefined)
+                {
+                    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                    createCommitsChart(response.commits, commitCtx)
+                }
+            })
+            chrome.runtime.sendMessage({metric: "branches"}, function(response) 
             {
-                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                createBranchesChart(response.branches, branchesCtx)
-            }
-        })
-        chrome.runtime.sendMessage({metric: "pullrequests"}, function(response) 
-        {
-            if (response.pullrequests !== undefined)
+                if (response.branches !== undefined)
+                {
+                    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                    createBranchesChart(response.branches, branchesCtx)
+                }
+            })
+            chrome.runtime.sendMessage({metric: "pullrequests"}, function(response) 
             {
-                let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                createPRChart(response.pullrequests, prCtx)
-            }
-        })
+                if (response.pullrequests !== undefined)
+                {
+                    let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                    createPRChart(response.pullrequests, prCtx)
+                }
+            })
+        }
     }
     
 }

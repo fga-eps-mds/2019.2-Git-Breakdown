@@ -1,6 +1,4 @@
 import constants from './constants.js'
-import {createIssuesChart, createBranchesChart, createPRChart,
-createCommitsChart} from './graph.js'
 
 const url = 
 `https://github.com/login/oauth/authorize?response_type=code&client_id=${constants.CLIENT_ID}&scope=repo`
