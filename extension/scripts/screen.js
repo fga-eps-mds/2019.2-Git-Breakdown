@@ -103,6 +103,10 @@ const gbdScreen = () =>
                 <a class="gbdMenu" href="#">Documentation</a>
                 <a class="gbdMenu" href="#">About us</a>
             </div>
+            <canvas id="issuesDashboard" width="400" height="400"></canvas>
+            <canvas id="prsDashboard" width="400" height="400"></canvas>
+            <canvas id="branchesDashboard" width="400" height="400"></canvas>
+            <canvas id="commitsDashboard" width="400" height="400"></canvas>
         </div>
         `
     //revoming a black space between the navbar and the breakDown screen
