@@ -143,9 +143,7 @@ const gbdScreen = () =>
             if (response.issues !== undefined)
             {
               let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-              console.log(issuesCtx)
-              console.log(response.issues)
-
+              createIssuesChart(response.issues, issuesCtx)
             }
         })
         chrome.runtime.sendMessage({metric: "commits"}, function(response) 
@@ -153,8 +151,7 @@ const gbdScreen = () =>
             if (response.commits !== undefined)
             {
                 let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                console.log(commitCtx)
-                console.log(response.commits)
+                createCommitsChart(response.commits, commitCtx)
             }
         })
         chrome.runtime.sendMessage({metric: "branches"}, function(response) 
@@ -162,8 +159,7 @@ const gbdScreen = () =>
             if (response.branches !== undefined)
             {
                 let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                console.log(branchesCtx)
-                console.log(response.branches)
+                createBranchesChart(response.branches, branchesCtx)
             }
         })
         chrome.runtime.sendMessage({metric: "pullrequests"}, function(response) 
@@ -171,8 +167,7 @@ const gbdScreen = () =>
             if (response.pullrequests !== undefined)
             {
                 let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                console.log(prCtx)
-                console.log(response.pullrequests)
+                createPRChart(response.pullrequests, prCtx)
             }
         })
     }
