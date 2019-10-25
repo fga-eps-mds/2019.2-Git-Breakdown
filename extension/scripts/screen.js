@@ -136,14 +136,43 @@ const gbdScreen = () =>
         repoContent[0].parentNode.removeChild(repoContent[0])
         addCss()
 
-        // sending a message to background.js to receive back fetched API data
+        // sending messages to background.js to receive back fetched API data
+
+        chrome.runtime.sendMessage({metric: "issues"}, function(response) 
+        {
+            if (response.issues !== undefined)
+            {
+              let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+              console.log(issuesCtx)
+              console.log(response.issues)
+
+            }
+        })
         chrome.runtime.sendMessage({metric: "commits"}, function(response) 
         {
-            if (response.type !== undefined)
+            if (response.commits !== undefined)
             {
-              let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-              console.log(commitCtx)
-              console.log(response.type)
+                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                console.log(commitCtx)
+                console.log(response.commits)
+            }
+        })
+        chrome.runtime.sendMessage({metric: "branches"}, function(response) 
+        {
+            if (response.branches !== undefined)
+            {
+                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                console.log(branchesCtx)
+                console.log(response.branches)
+            }
+        })
+        chrome.runtime.sendMessage({metric: "pullrequests"}, function(response) 
+        {
+            if (response.pullrequests !== undefined)
+            {
+                let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                console.log(prCtx)
+                console.log(response.pullrequests)
             }
         })
     }
