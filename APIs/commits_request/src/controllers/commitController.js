@@ -1,6 +1,8 @@
 const express = require('express')
 const axios = require('axios')
 const commit_route = express.Router()
+const queryString = { state:'all', per_page: 10000 }
+
 
 commit_route.get = async (req, res, next) => {
 
@@ -23,7 +25,8 @@ commit_route.get = async (req, res, next) => {
                 'Accept-Charset': 'utf-8',
                 'User-Agent': '2019.2-Git-Breakdown',
                 'Authorization': `token ${req.query.token}`
-            }
+            },
+            params: queryString
         }
 
         try {
