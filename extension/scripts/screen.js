@@ -2,6 +2,9 @@ let url_base = 'http://18.215.242.203:3000'
 
 const gbdScreen = () => 
 {
+
+
+
     let gbdtab = document.getElementById('gbdButton')
     let current_selected = document.getElementsByClassName('js-selected-navigation-item selected reponav-item')
     let zenhub_selected = document.getElementsByClassName('reponav-item zh-sidebar-item zh-navbar-link zh-topbar-item selected')
@@ -153,7 +156,8 @@ const gbdScreen = () =>
         head[0].appendChild(css)  
     }
 
-    const innerScreen = 
+    const addScreen = () => {
+        innerScreen = 
         `    
         <div id="gbdScreen">
             <div id="gbdSidebar">
@@ -180,22 +184,9 @@ const gbdScreen = () =>
             </div>
         </div>
         `
-    //revoming a black space between the navbar and the breakDown screen
-    let pageHead = document.getElementsByClassName("pagehead repohead instapaper_ignore readability-menu experiment-repo-nav")
-    let pageElement = pageHead[0]
-    pageElement.style.marginBottom = "5px"
-    //
-
-
-    //inserting the screen inside gitHub
-    let repoContent = document.getElementsByClassName('repository-content')
-    let screen = document.createElement('div')
-
-    let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
-    mainContainer[0].innerHTML = innerScreen
-    mainContainer[0].style.marginLeft = '0'
-    mainContainer[0].style.marginRight = '0'
-    addCss()
+        return innerScreen
+    }
+    
     // sending messages to background.js to receive back fetched API data
     if (typeof chrome.app.isInstalled !== 'undefined')
     {
@@ -232,15 +223,20 @@ const gbdScreen = () =>
             }
         })
     }
+    //revoming a black space between the navbar and the breakDown screen
+    let pageHead = document.getElementsByClassName("pagehead repohead instapaper_ignore readability-menu experiment-repo-nav")
+    let pageElement = pageHead[0]
+    pageElement.style.marginBottom = "5px"
+    //
+
+    
+    let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
+    mainContainer[0].innerHTML = addScreen()
+    mainContainer[0].style.marginLeft = '0'
+    addCss()
     
     
 }
-
-document.addEventListener('DOMContentLoaded', function() 
-{
-    console.log("teste")
-})
-
 
 const gbdButtonOnClick = () => 
 {
