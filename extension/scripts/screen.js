@@ -236,6 +236,10 @@ const gbdScreen = () =>
     
 }
 
+document.addEventListener('DOMContentLoaded', function() 
+{
+    console.log("teste")
+})
 
 
 const gbdButtonOnClick = () => 
