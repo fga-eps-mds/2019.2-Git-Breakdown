@@ -194,61 +194,29 @@ const gbdScreen = () =>
     if (typeof chrome.app.isInstalled !== 'undefined')
     {
         console.log("gbdScreen sending requests")
-        chrome.runtime.sendMessage({metric: "issues"}, function(response) 
+        chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
         {
-            setTimeout(function(){
-               
-                if (response.issues !== undefined)
+                if (response !== undefined)
                 {
                     let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-                    createIssuesChart(response.issues, issuesCtx)
+                    createIssuesChart(response[1], issuesCtx)
+                    
+                    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                    createCommitsChart(response[0], commitCtx)
+
+                    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                    createBranchesChart(response[2], branchesCtx)
+
+                    let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                    createPRChart(response[3], prCtx)
                 }
                 else{
                     console.log("gbdScreen-else")
                     document.getElementById('gbdButton').click()
                 }                   
                 
-            }, 2000)
-
-        })
-        chrome.runtime.sendMessage({metric: "commits"}, function(response) 
-        {
-            setTimeout(function(){
-               
-                if (response.commits !== undefined)
-                {
-                    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                    createCommitsChart(response.commits, commitCtx)
-                }
-            }, 2000)
-                
-        })
-        chrome.runtime.sendMessage({metric: "branches"}, function(response) 
-        {
-            setTimeout(function(){
-                
-                if(response.branches !== undefined)
-                {
-                    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                    createBranchesChart(response.branches, branchesCtx)
-                }
-            }, 2000)
-                
-        })
-        chrome.runtime.sendMessage({metric: "pullrequests"}, function(response) 
-        {
-            setTimeout(function(){
-               
-                if (response.pullrequests !== undefined)
-                {
-                    let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                    createPRChart(response.pullrequests, prCtx)
-                }
-            },2000)
-                
         })
     }
-    
     
 }
 
