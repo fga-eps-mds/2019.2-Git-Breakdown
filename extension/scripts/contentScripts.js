@@ -1,11 +1,13 @@
-const load = (file) => {
+const load = (file, type_) => {
     let src = document.createElement('script')
-    src.setAttribute('type', 'module')
+    src.setAttribute('type', type_)
     src.setAttribute('src', file)
     document.getElementsByTagName('head')[0].appendChild(src)
+    if (file === './Chart.min.js')
+        console.log("loading chartjs!")
 }
 
-//console.log('1-load(button)')
-load('./button.js')
-//console.log("5-load(screen)")
-load('./screen.js')
+load('./button.js', 'module')
+load('./screen.js', 'module')
+load('./popup.js', 'module')
+load('./Chart.min.js', 'text/javascript')

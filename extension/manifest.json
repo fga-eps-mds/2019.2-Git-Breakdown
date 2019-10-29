@@ -28,6 +28,8 @@
         [
             "scripts/oauth.js",
             "scripts/contentScripts.js",
+            "scripts/Chart.min.js",
+            "scripts/graph.js",
             "scripts/button.js",
             "scripts/screen.js"
         ]
