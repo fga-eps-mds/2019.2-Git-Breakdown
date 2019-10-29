@@ -3,9 +3,6 @@ let url_base = 'http://18.215.242.203:3000'
 const gbdScreen = () => 
 {
     let issueResp , prResp, branchResp, commitResp
-
-    // sending messages to background.js to receive back fetched API data
-   
     
     let gbdtab = document.getElementById('gbdButton')
     let current_selected = document.getElementsByClassName('js-selected-navigation-item selected reponav-item')
@@ -141,13 +138,7 @@ const gbdScreen = () =>
                 right:5%;
             }
 
-         
-        
-          
-
         `
-
-         
 
         //The final tag
         let css = document.createElement('style')
@@ -189,27 +180,22 @@ const gbdScreen = () =>
         return innerScreen
     }
     
-
-
-    
     //revoming a black space between the navbar and the breakDown screen
     let pageHead = document.getElementsByClassName("pagehead repohead instapaper_ignore readability-menu experiment-repo-nav")
     let pageElement = pageHead[0]
     pageElement.style.marginBottom = "5px"
-    //
-
     
     let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
     mainContainer[0].innerHTML = addScreen()
     mainContainer[0].style.marginLeft = '0'
     addCss()
 
-    console.log("gbdScreen")
+    
     if (typeof chrome.app.isInstalled !== 'undefined')
     {
+        console.log("gbdScreen sending requests")
         chrome.runtime.sendMessage({metric: "issues"}, function(response) 
         {
-            console.log('issue')
             setTimeout(function(){
                
                 if (response.issues !== undefined)
@@ -227,7 +213,6 @@ const gbdScreen = () =>
         })
         chrome.runtime.sendMessage({metric: "commits"}, function(response) 
         {
-            console.log('commits')
             setTimeout(function(){
                
                 if (response.commits !== undefined)
@@ -240,7 +225,6 @@ const gbdScreen = () =>
         })
         chrome.runtime.sendMessage({metric: "branches"}, function(response) 
         {
-            console.log('branchs')
             setTimeout(function(){
                 
                 if(response.branches !== undefined)
@@ -253,7 +237,6 @@ const gbdScreen = () =>
         })
         chrome.runtime.sendMessage({metric: "pullrequests"}, function(response) 
         {
-            console.log('PR')
             setTimeout(function(){
                
                 if (response.pullrequests !== undefined)
@@ -269,9 +252,29 @@ const gbdScreen = () =>
     
 }
 
+window.onhashchange = function()
+{
+    let gbdButton = document.getElementById('gbdButton')
+    if (gbdButton !== this.undefined)
+    {
+        if (window.location.href.includes("#breakdown"))
+        {
+            console.log("showing breakdown screen")
+            gbdScreen()
+        }
+        else
+        {
+            if (gbdButton.className == 'js-selected-navigation-item gbdselected reponav-item')
+            {
+                console.log("removing selection from gbd button")
+                gbdButton.classList.remove('gbdselected')
+            }
+        }
+    }
+}
+
 const gbdButtonOnClick = () => 
 {
-    
     const gbdtab = document.getElementById('gbdButton')
     if (gbdtab !== null)
     {
