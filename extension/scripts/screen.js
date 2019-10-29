@@ -107,8 +107,8 @@ const gbdScreen = () =>
 
             .flexContainer div{
                 position: absolute;
-                width: 45%;
-                height: 45%;
+                width: 40%;
+                height: 50%;
             }
 
 
@@ -119,23 +119,23 @@ const gbdScreen = () =>
             }
 
             #commitsDiv {
-                top:5%;
-                right:5%;
+                top:0;
+                right:0;
             }
 
             #issuesDiv {
-                top:5%;
-                left:5%;
+                top:0;
+                right:41%;
             }
 
             #prsDiv {
-                bottom:5%;
-                left: 5%;
+                bottom:0;
+                right:41%;
             }
 
             #branchesDiv {
-                bottom:5%;
-                right:5%;
+                bottom:0;
+                right:0;
             }
 
         `
