@@ -22,6 +22,7 @@ const gbdScreen = () =>
     {
         let innerStyle = 
         `   
+            
           #gbdScreen {
             position: relative;
             border-radius : 25px;
@@ -105,37 +106,45 @@ const gbdScreen = () =>
                
             }
 
-            .flexContainer div{
+ 
+            .chartjs-render-monitor {
                 position: absolute;
-                width: 40%;
-                height: 50%;
-            }
-
-
-            .flexContainer canvas {
                 border: 1px solid black;
                 box-shadow: 5px 5px #e1e4e8;
                 border-radius : 10px;
             }
+            
 
-            #commitsDiv {
-                top:0;
-                right:0;
+            #commitsDashboard {
+                top: 0;
+                right: 0;
+                display: block;
+                width: 50% !important;
+                height: 50% !important;
             }
 
-            #issuesDiv {
-                top:0;
-                right:41%;
+            #issuesDashboard {
+                top: 0;
+                left: 0;
+                display: block;
+                width: 50% !important;
+                height: 50% !important;
             }
 
-            #prsDiv {
-                bottom:0;
-                right:41%;
+            #prsDashboard {
+                bottom: 0;
+                right: 0;
+                display: block;
+                width: 50% !important;
+                height: 50% !important;
             }
 
-            #branchesDiv {
-                bottom:0;
-                right:0;
+            #branchesDashboard {
+                bottom: 0;
+                left: 0;
+                display: block;
+                width: 50% !important;
+                height: 50% !important;
             }
 
         `
@@ -160,20 +169,10 @@ const gbdScreen = () =>
                 <a class="gbdMenu" href="#">About us</a>
             </div>
             <div class="flexContainer">
-                <div id="commitsDiv">
-                    <canvas id="commitsDashboard"></canvas>
-                </div>
-                
-                <div id="issuesDiv">
-                    <canvas id="issuesDashboard"></canvas>   
-                </div>
-                <div id="prsDiv">
-                    <canvas id="prsDashboard"></canvas>   
-                </div>
-                <div id="branchesDiv">
-                    <canvas id="branchesDashboard"></canvas>   
-                </div>
-                
+                <canvas id="commitsDashboard"></canvas>
+                <canvas id="issuesDashboard"></canvas>   
+                <canvas id="prsDashboard"></canvas>   
+                <canvas id="branchesDashboard"></canvas>       
             </div>
         </div>
         `
