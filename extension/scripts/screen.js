@@ -185,9 +185,11 @@ const gbdScreen = () =>
     let pageElement = pageHead[0]
     pageElement.style.marginBottom = "5px"
     
+    //make MainContainer use 100% of the screen size
     let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
     mainContainer[0].innerHTML = addScreen()
-    mainContainer[0].style.marginLeft = '0'
+    mainContainer[0].style.maxWidth = "100%"
+   
     addCss()
 
     
@@ -219,6 +221,8 @@ const gbdScreen = () =>
     }
     
 }
+
+
 
 window.onhashchange = function()
 {
