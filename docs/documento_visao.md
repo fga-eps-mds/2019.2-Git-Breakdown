@@ -16,6 +16,7 @@
 
 ---
 
+
 ## 1. Introdução
 
 A documento a seguir tem como finalidade expor as premissas de desenvolvimento e usabilidade de um produto. O Git Breakdown desponta de uma extensão para navegadores a qual tem como principal propósito ajudar aplicações do GitHub que trabalham com aferição e análise estatística, aplicada ao monitoramento do desempenho de contribuidores envolvidos em um projeto. Esta análise visa expor, compreender e aperfeiçoar todas as fases que compõem a realização de um projeto.
@@ -51,7 +52,8 @@ Abordando, por tópicos, todas as funcionalidades do projeto: descrição do con
 
 ### 2.1 Oportunidade de Negócios
 
-A equipe de desenvolvimento do projeto tem como planejamento a criação de uma ferramenta que analisa e traça métricas, as quais abordam dados estatísticos sobre a evolução de um projeto de software. Com tal coleta de informações, espera-se que um gerenciador possa ter mais clareza ao tomar decisões, visto que o mesmo irá dispor de uma série de informações numéricas que representam o desempenho da equipe e de quem a compõe.
+A equipe de desenvolvimento do projeto tem como planejamento a criação de uma ferramenta que analisa dados e gera métricas de forma intuitiva, as quais abordam dados estatísticos sobre a evolução de um projeto de software. Com tal coleta de informações, espera-se que um gerenciador possa ter mais clareza ao tomar decisões, visto que o mesmo irá dispor de uma série de informações numéricas que representam o desempenho da equipe e de quem a compõe.  A métricas geradas pelo BreakDown podem ser bem aproveitadas por desenvolvedores para decidir usar um repositório na sua lista de dependências.
+
 
 ### 2.2 Instrução do problema
 
@@ -94,7 +96,7 @@ A extensão dispõe de métricas por meio de dashboards para todos os usuários 
 
 ## 4. Visão Geral do Produto
 
-O projeto consiste em uma ferramenta de monitoramento de repositório com interface integrada ao Github. A partir da mesma é possível ter controle sobre os dados das atividades de contribuidores de determinado projeto.
+O projeto consiste em uma ferramenta de monitoramento de repositório com interface integrada ao Github. A partir da mesma é possível ter controle sobre os dados das atividades do repositório e de contribuidores de determinado projeto.
 
 ### 4.1 Perspectiva do Produto
 
@@ -102,21 +104,19 @@ Trata-se de uma extensão do navegador Google Chrome, com sua interface integrad
 
 ### 4.2 Resumo das Capacidades
 
-O produto tem como finalidade a criação de dashboards para monitorar atividades em um repositório, com enfoque na experiência do usuário, para que seja possível otimizar a produtividade de projetos.
+O produto tem como finalidade a criação de dashboards para monitorar atividades em um repositório, indicação da rotina de desenvolvimento e contribuição. 
 
 ## 5. Recursos do Produto
 
 ### 5.1 Commits
 * Quantidade de commits por pessoa;
-    * Quantidade de linhas adicionadas e deletadas.
-* Quantidade total de commits do repositório.
-
+   
 ### 5.2 Issues
 * Quantidade de issues abertas e fechadas;
 * Porcentagem de issues abertas e fechadas.
 
 ### 5.3 Pull Requests
-* Quantidade de pull requests abertos e fechados;
+* Quantidade de pull requests abertos e mergados;
 * Porcentagem de pull requests recusados em relação aos fechados.
 
 ### 5.4 Branches
@@ -127,3 +127,13 @@ O produto tem como finalidade a criação de dashboards para monitorar atividade
 * O Git BreakDown opera apenas no navegador Google Chrome;
 * Depende da autenticação do usuário;
 * Depende da GitHub API v3.
+
+
+## 7. Ranking de contribuição
+* Top commiters na master
+* Top merged PR's
+
+
+## 8. Tags descritivas
+* Tempo sem contribuição no repositorio 
+* Aproveitamento de PR
