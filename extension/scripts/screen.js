@@ -1,9 +1,7 @@
 let url_base = 'http://18.215.242.203:3000'
 
 const gbdScreen = () => 
-{
-    let issueResp , prResp, branchResp, commitResp
-    
+{   
     let gbdtab = document.getElementById('gbdButton')
     let current_selected = document.getElementsByClassName('js-selected-navigation-item selected reponav-item')
     let zenhub_selected = document.getElementsByClassName('reponav-item zh-sidebar-item zh-navbar-link zh-topbar-item selected')
@@ -199,6 +197,9 @@ const gbdScreen = () =>
         {
                 if (response !== undefined)
                 {
+                    let screen = document.getElementById('gbdScreen')
+                    screen.className = 'plotted'
+
                     let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
                     createIssuesChart(response[1], issuesCtx)
                     
@@ -231,7 +232,11 @@ window.onhashchange = function()
         if (window.location.href.includes("#breakdown"))
         {
             console.log("showing breakdown screen")
-            gbdScreen()
+            let screen = document.getElementById('gbdScreen')
+            if (screen != null)
+                console.log("already plotted")
+            else
+                gbdScreen()
         }
         else
         {
@@ -244,12 +249,14 @@ window.onhashchange = function()
     }
 }
 
+// TODO: arrumar este listener para nao disparar junto da mudança na url #breakdown
+// por enquanto deixamos ele desativado, a aba só abre com a mudança na url
 const gbdButtonOnClick = () => 
 {
     const gbdtab = document.getElementById('gbdButton')
     if (gbdtab !== null)
     {
-        gbdtab.addEventListener('click', gbdScreen)
+        //gbdtab.addEventListener('click', gbdScreen)
     }
 }
 
