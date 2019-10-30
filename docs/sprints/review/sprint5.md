@@ -57,8 +57,8 @@ Duração:28/09 à 05/10
 | [#64](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/64) | Botão para página do github com icone, atualizado por click| Victor Hugo, Paulo | Pronto |
 | [#65](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/65) | Visualizar gráfico em qualquer repositório aberto  | João Victor, Pedro Daia | Pronto |
 | [#66](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/66) | Criar uma apresentação | Pedro Daniel | Pronto |
-| [#45](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/66) | Definir perfil da comunidade do repositório| Lucas, Mateus, Diego | Pronto |
-| [#51](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/66) | Configurar deploy contínuo | Mateus | Pendência |
+| [#45](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/45) | Definir perfil da comunidade do repositório| Lucas, Mateus, Diego | Pronto |
+| [#51](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/51) | Configurar deploy contínuo | Mateus | Pendência |
   
 
 ## Retrospectiva

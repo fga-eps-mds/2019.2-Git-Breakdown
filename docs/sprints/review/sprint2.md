@@ -54,7 +54,7 @@ Duração: 07/09 à 14/09
 | [#31](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/31) | Coletar informações de issues | Pedro Daniel, Paulo | Pronto |
 | [#26](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/26) | criar página de login de extensão | Pedro Daia, João Victor | Pronto |
 | [#27](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/27) | Criar identidade visual | Diego | despriorizada |
-| [#28](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/8) | criar protótipo de baixa fidelidade| time de desenvolvimento | Pendente por parte da equipe |
+| [#28](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/28) | criar protótipo de baixa fidelidade| time de desenvolvimento | Pendente por parte da equipe |
 
 
 

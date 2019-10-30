@@ -86,9 +86,9 @@ Foi definido o planejamento da sprint, Definimos o backlog do produto e backlog 
 | [#25](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/25) | Criar protótipo de baixa fidelidade | 1 | Time de desenvolimento | Nova |
 | [#27](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/17) |  Criar identidade Visual | 3 | Diego | Nova |
 | [#30](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/30) |  Criar GQM | 5 | Diego | Nova |
-| [#28](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/30) |  Criar readme | 2 | Lucas | Nova |
-| [#29](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/30) | Coletar informações de commits | 5 | Victor Hugo, Mateus | Nova |
-| [#31](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/30) | Coletar informações de issues | 5 | Pedro Daniel, Paulo | Nova |  
+| [#28](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/28) |  Criar readme | 2 | Lucas | Nova |
+| [#29](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/29) | Coletar informações de commits | 5 | Victor Hugo, Mateus | Nova |
+| [#31](https://github.com/fga-eps-mds/2019.2-Git-Breakdown/issues/31) | Coletar informações de issues | 5 | Pedro Daniel, Paulo | Nova |  
 
 
 

@@ -47,3 +47,9 @@
     - [Sprint Review](docs/sprints/review/sprint5.md)
   - Sprint 6
     - [Sprint planing](docs/sprints/planing/sprint6.md)
+    - [Sprint Review](docs/sprints/review/sprint6.md)
+  - Sprint 7
+    - [Sprint planing](docs/sprints/planing/sprint7.md)
+    - [Sprint Review](docs/sprints/review/sprint7.md)
+  - Sprint 8
+    - [Sprint planing](docs/sprints/planing/sprint8.md)
