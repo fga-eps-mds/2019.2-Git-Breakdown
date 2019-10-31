@@ -1,5 +1,13 @@
 let url_base = 'http://18.215.242.203:3000'
 
+const METRICS = 
+[
+  'commitsDashboard', // 0 
+  'issuesDashboard', // 1
+  'branchesDashboard', // 2
+  'prsDashboard' // 3
+]
+
 const gbdScreen = () => 
 {   
     let gbdtab = document.getElementById('gbdButton')
@@ -211,6 +219,10 @@ const gbdScreen = () =>
 
                     let prCtx = document.getElementById('prsDashboard').getContext('2d')
                     createPRChart(response[3], prCtx)
+
+                    for (let i = 0; i < 4; i++)
+                        chartOnClick(i, response[i])
+                    
                 }
                 else{
                     console.log("gbdScreen-else")
@@ -221,7 +233,6 @@ const gbdScreen = () =>
     }
     
 }
-
 
 
 window.onhashchange = function()
@@ -246,6 +257,54 @@ window.onhashchange = function()
                 gbdButton.classList.remove('gbdselected')
             }
         }
+    }
+}
+
+const chartOnClick = (type, data) =>
+{
+    const chart = document.getElementById(METRICS[type])
+    console.log(METRICS[type])
+    if (chart !== undefined && chart != null)
+    {
+        chart.addEventListener('click', function()
+        {
+            console.log(data)
+            console.log("clicked chart")
+            let screen = document.getElementById('gbdScreen')
+            if (screen != null)
+            {
+                console.log("changing screen html")
+                const addScreen = () => 
+                {
+                    innerScreen = 
+                    `    
+                    <div id="gbdScreen">
+                        <div id="gbdSidebar">
+                            <p>GitBreakDown</p>
+                            <a class="gbdMenu" href="#">Home</a>
+                            <a class="gbdMenu" href="#">Documentation</a>
+                            <a class="gbdMenu" href="#">About us</a>
+                        </div>
+                        <div class="flexContainer">
+                            <canvas id="${METRICS[type]}"></canvas>     
+                        </div>
+                    </div>
+                    `
+                    return innerScreen
+                }
+                screen.innerHTML = addScreen()
+                let ctx = document.getElementById(`${METRICS[type]}`).getContext('2d')
+                if (type == 0)
+                    createCommitsChart(data, ctx)
+                else if (type == 1)
+                    createIssuesChart(data, ctx)
+                else if (type == 2)
+                    createBranchesChart(data, ctx)
+                else if (type == 3)
+                    createPRChart(data, ctx)
+            }
+
+        })
     }
 }
 
