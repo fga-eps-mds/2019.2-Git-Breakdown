@@ -274,6 +274,136 @@ const chartOnClick = (type, data) =>
             if (screen != null)
             {
                 console.log("changing screen html")
+                let styles =  document.getElementsByTagName('style')
+                console.log(styles.length)
+
+                for (let i = 0; i < styles.length; i++)
+                {
+                    let style = styles[i]
+                    if (style !== undefined && style.innerText.includes('#gbdScreen'))
+                    {
+                        console.log("changing style")
+                        const addCss = () => {
+                            let innerStyle = 
+                            `   
+                                
+                            #gbdScreen {
+                                position: relative;
+                                border-radius : 25px;
+                                box-shadow: 5px 5px #e1e4e8; 
+                                border-top : 0;
+                                border-bottom : 3px #e36209 #e1e4e8 transparent;
+                                border-right : 3px #e36209 #e1e4e8 transparent;
+                                width : 100%;
+                                height : 500px;
+                                left:0;
+                                
+                            }
+                            
+                            #gbdSidebar {
+                                font: inherit;
+                                border-radius : 25px;
+                                position: absolute;
+                                display: block;
+                                text-decoration: none;
+                                width : 5%;
+                                height : 100%;
+                                background-color:rgba(0,51,102,0.63);
+                                -webkit-transition :all 0.5s;
+                                transition : all 0.5s;
+                            }
+                            
+                            #gbdSidebar:hover{
+                                width : 20%;
+                            }
+                            
+                            #gbdSidebar a{
+                                font-weight: 500;
+                                font-size : 13px;
+                                text-decoration : none;
+                                display : block;
+                                list-style-type : none;
+                                color : rgba(230, 230, 230);
+                                text-align : center;
+                                margin: 40px;
+                                overflow:hidden;
+                                transition: all 0.3s;
+                                -webkit-transition: all 0.3s;
+                                -moz-transition: all 0.3s;
+                            }
+
+                            #gbdSidebar p{
+                                text-align : center;
+                                font-size: inherit;
+                                font-weight: 700;
+                                color : rgba(230, 230, 230);
+                                overflow: hidden;
+                                margin : 45px;
+                                border-bottom: 1px solid rgba(255, 137, 75, 0.42);
+                            }
+
+                            #gbdSidebar p:hover {
+                                border-bottom: 1px solid rgba(255, 137, 75, 0.42);
+                            }
+
+
+                            .reponav-item.gbdselected {
+                                color:#24292e;
+                                background-color:#fff;
+                                border-color:
+                                rgba(0,51,102,0.7) #e1e4e8 transparent;
+                                }
+
+                            .gbdMenu:hover{
+                                margin : 0px;
+                                color : rgba(105, 107, 108, 1);
+                                border-bottom : 1px solid rgba(105, 107, 108, 1);
+                            }
+
+                            
+                            .flexContainer
+                                {
+                                    position: relative;
+                                    width: 80%;
+                                    height: 100%;
+                                    left : 20%; 
+                                
+                                }
+
+                    
+                                .chartjs-render-monitor {
+                                    position: absolute;
+                                    border: 1px solid black;
+                                    box-shadow: 5px 5px #e1e4e8;
+                                    border-radius : 10px;
+                                }
+                                
+
+                                #${METRICS[type]} {
+                                    top: 0;
+                                    right: 0;
+                                    display: block;
+                                    width: 100% !important;
+                                    height: 100% !important;
+                                }
+
+                            `
+                    
+                    
+                       
+                            let newCss = document.createElement('style')
+                            newCss.innerHTML = innerStyle
+
+                            let head =  document.getElementsByTagName('head')
+                            head[0].replaceChild(newCss, style)  
+                        
+                        }
+                
+                        addCss()
+                    }
+                }
+
+                //
                 const addScreen = () => 
                 {
                     innerScreen = 
