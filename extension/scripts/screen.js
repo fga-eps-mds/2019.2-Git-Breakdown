@@ -159,9 +159,29 @@ const gbdScreen = () =>
         let css = document.createElement('style')
         css.innerHTML = innerStyle
 
-        //Inserting the tag into the head
+        let styles =  document.getElementsByTagName('style')
         let head =  document.getElementsByTagName('head')
-        head[0].appendChild(css)  
+
+        if (styles.length < 2)
+        {
+            //Inserting the tag into the head
+            head[0].appendChild(css)  
+        }
+        else
+        {
+            // Let's replace the already existing style
+            for (let i = 0; i < styles.length; i++)
+            {
+                let style = styles[i]
+                if (style !== undefined && style.innerText.includes('#gbdScreen'))
+                {
+                    let head =  document.getElementsByTagName('head')
+                    head[0].replaceChild(css, style)
+                    break
+                }
+            }
+        }
+        
     }
 
     const addScreen = () => {
@@ -428,6 +448,11 @@ const chartOnClick = (type, data) =>
                     createBranchesChart(data, ctx)
                 else if (type == 3)
                     createPRChart(data, ctx)
+
+                document.getElementById(`${METRICS[type]}`).addEventListener('click', function()
+                {
+                    gbdScreen()
+                })
             }
 
         })
