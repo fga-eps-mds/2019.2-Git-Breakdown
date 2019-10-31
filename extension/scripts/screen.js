@@ -263,19 +263,16 @@ window.onhashchange = function()
 const chartOnClick = (type, data) =>
 {
     const chart = document.getElementById(METRICS[type])
-    console.log(METRICS[type])
     if (chart !== undefined && chart != null)
     {
         chart.addEventListener('click', function()
         {
-            console.log(data)
-            console.log("clicked chart")
             let screen = document.getElementById('gbdScreen')
             if (screen != null)
             {
                 console.log("changing screen html")
+
                 let styles =  document.getElementsByTagName('style')
-                console.log(styles.length)
 
                 for (let i = 0; i < styles.length; i++)
                 {
@@ -402,8 +399,7 @@ const chartOnClick = (type, data) =>
                         addCss()
                     }
                 }
-
-                //
+                
                 const addScreen = () => 
                 {
                     innerScreen = 
@@ -445,7 +441,15 @@ const gbdButtonOnClick = () =>
     const gbdtab = document.getElementById('gbdButton')
     if (gbdtab !== null)
     {
-        //gbdtab.addEventListener('click', gbdScreen)
+        gbdtab.addEventListener('click', function()
+        {
+            let screen = document.getElementById('gbdScreen')
+            if (screen == null && window.location.href.includes("#breakdown"))
+            {
+                console.log("reloading screen")
+                gbdScreen()
+            }
+        })
     }
 }
 
