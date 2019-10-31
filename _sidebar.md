@@ -53,3 +53,6 @@
     - [Sprint Review](docs/sprints/review/sprint7.md)
   - Sprint 8
     - [Sprint planing](docs/sprints/planing/sprint8.md)
+    - [Sprint Review](docs/sprints/review/sprint8.md)
+  - Sprint 9
+    - [Sprint planing](docs/sprints/planing/sprint9.md)
