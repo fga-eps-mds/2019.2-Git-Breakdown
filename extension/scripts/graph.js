@@ -38,6 +38,11 @@ function createCommitsChart(data, ctx)
                 display: true,
                 text: 'Commits per person dashboard'
             },
+            tooltips:
+            {
+                titleFontSize: 30,
+                bodyFontSize: 25
+            },
             scales: 
             {
                 yAxes: 
@@ -95,6 +100,11 @@ function createBranchesChart(data, ctx)
         },
         options: 
         {
+            tooltips:
+            {
+                titleFontSize: 30,
+                bodyFontSize: 25
+            },
             legend: {
                 labels: {
                     fontSize: 25
@@ -150,6 +160,11 @@ function createPRChart(data, ctx)
         },
         options: 
         {
+            tooltips:
+            {
+                titleFontSize: 30,
+                bodyFontSize: 25
+            },
             legend: {
                 labels: {
                     fontSize: 25
@@ -200,6 +215,11 @@ function createIssuesChart(data, ctx)
         },
         options: 
         {
+            tooltips:
+            {
+                titleFontSize: 30,
+                bodyFontSize: 25
+            },
             maintainAspectRatio: false,
             title:
             {
