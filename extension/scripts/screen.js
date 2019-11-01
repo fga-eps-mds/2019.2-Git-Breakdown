@@ -226,10 +226,10 @@ const gbdScreen = () =>
                 <div class="subNav">
                     <button class="subNavBtn">Metrics</button>
                     <div class="subNavContent">
-                        <a href="#breakdown/Commits">Commits</a>
-                        <a href="#breakdown/Issues">Issues</a>
-                        <a href="#breakdown/Branchs">Branchs</a>
-                        <a href="#breakdown/PR">Pull Request</a>
+                        <a href="#breakdown/commits">Commits</a>
+                        <a href="#breakdown/issues">Issues</a>
+                        <a href="#breakdown/branchs">Branchs</a>
+                        <a href="#breakdown/pr">Pull Request</a>
                     </div>
                 </div>
             </div>
@@ -286,12 +286,48 @@ const issuesPage = () => {
     let issuesPage = 
     `   
         <h2>Issues</h2>
-        <h1>Issues Opened : ${issuesData.open}</h1>
-        <div>Issues Closed : 23</div>
-        <div>Top issues Creater: Wdvictor</div>
+        <div>Issues Opened : ${issuesData.open}</div>
+        <div>Issues Closed : ${issuesData.close}</div>
     `
     return issuesPage
 
+}
+
+const branchPage = () => {
+    let branchPage = 
+    `
+        <h2> Branchs </h2>
+        <div>Branches open = </div>
+        <div>Branches closed = </div>
+        <div>Branches merged = </div>
+
+    `
+
+    return branchPage
+}
+
+const prPage = () => {
+    let prPage = 
+    `
+        <h2> Pull Request </h2>
+        <div>Pull Request open = </div>
+        <div>Pull Request closed = </div>
+
+    `
+
+    return prPage
+}
+
+const commitsPage = () => {
+    let commitPage = 
+    `
+        <h2>CommitsPage</h2>
+        <div>CommitsPage open = </div>
+        <div>CommitsPage closed = </div>
+
+    `
+
+    return commitPage
 }
 
 
@@ -300,10 +336,22 @@ window.onhashchange = function()
     let gbdButton = document.getElementById('gbdButton')
     if (gbdButton !== this.undefined)
     {
-        if (window.location.href.includes("#breakdown/Issues"))
+        if (window.location.href.includes("#breakdown/issues"))
         {
             document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
 
+        }
+        else if (window.location.href.includes("#breakdown/commits")) {
+
+            document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
+        }
+        else if (window.location.href.includes("#breakdown/branchs") ) {
+
+            document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
+        }
+        else if ( window.location.href.includes("#breakdown/pr")) {
+
+            document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
         }
         else if (window.location.href.includes("#breakdown"))
         {
