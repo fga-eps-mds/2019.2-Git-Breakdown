@@ -14,6 +14,11 @@ function getMetrics() {
             prData = response[3]
         }
     })
+
+    setTimeout(() => {
+        console.log("commits", commitsData)
+    }, 3000)
+    
 }
 
 
@@ -322,12 +327,30 @@ const commitsPage = () => {
     let commitPage = 
     `
         <h2>CommitsPage</h2>
-        <div>CommitsPage open = </div>
-        <div>CommitsPage closed = </div>
+        <div id="repoCommiters">
+        <div>
 
     `
 
     return commitPage
+}
+
+function plotTop10Commiter() {
+    let repoCommiters = document.getElementById("repoCommiters")
+    for(var i = 1 ; i <= commitsData.length; i++)
+    {
+        let member = commitsData[i].name
+        let memberTotalCommits = commitsData[i].commits
+        let commiterData = document.createElement('div')
+        commiterData.innerHTML = 
+        `
+            <div>Name:${member}</div>
+            <div>Name:${memberTotalCommits}</div>
+        `
+
+        repoCommiters.appendChild(commiterData)
+    }
+
 }
 
 
@@ -344,6 +367,7 @@ window.onhashchange = function()
         else if (window.location.href.includes("#breakdown/commits")) {
 
             document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
+            plotTop10Commiter()
         }
         else if (window.location.href.includes("#breakdown/branchs") ) {
 
