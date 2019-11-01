@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "nodemon ./bin/server.js",
-    "test": "./node_modules/.bin/_mocha --recursive ./test/*.js"
+    "test": "./node_modules/.bin/_mocha --recursive --exit ./test/*.js"
   },
   "author": "",
   "license": "ISC",
