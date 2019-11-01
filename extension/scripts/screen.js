@@ -8,6 +8,13 @@ const METRICS =
   'prsDashboard' // 3
 ]
 
+const homeBtn = () => {
+    let homeBtn = document.getElementById('gbdHomeBtn')
+    homeBtn.addEventListener('click', () => {
+        document.getElementsByClassName('gbdContent')[0].innerHTML = gbdScreen()
+     })
+ }
+
 const gbdScreen = () => 
 {   
     let gbdtab = document.getElementById('gbdButton')
@@ -41,52 +48,68 @@ const gbdScreen = () =>
             left:0;
             
           }
-          
-          #gbdSidebar {
-            font: inherit;
-            border-radius : 25px;
-            position: absolute;
-            display: block;
-            text-decoration: none;
-            width : 5%;
-            height : 100%;
-            background-color:rgba(0,51,102,0.63);
-            -webkit-transition :all 0.5s;
-            transition : all 0.5s;
-          }
-          
-          #gbdSidebar:hover{
-            width : 20%;
-          }
-          
-          #gbdSidebar a{
-            font-weight: 500;
-            font-size : 13px;
-            text-decoration : none;
-            display : block;
-            list-style-type : none;
-            color : rgba(230, 230, 230);
-            text-align : center;
-            margin: 40px;
-            overflow:hidden;
-            transition: all 0.3s;
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
-          }
 
-          #gbdSidebar p{
-            text-align : center;
-            font-size: inherit;
-            font-weight: 700;
-            color : rgba(230, 230, 230);
-            overflow: hidden;
-            margin : 45px;
-            border-bottom: 1px solid rgba(255, 137, 75, 0.42);
-          }
+          .gbdContent {
+            position: relative;
+            widht : 100%;
+            height: 80%;
+            top:10%;
+            }
 
-          #gbdSidebar p:hover {
-            border-bottom: 1px solid rgba(255, 137, 75, 0.42);
-          }
+            #gbdNavBar {
+                overflow: hidden;
+                background-color : #24292e;
+            }
+
+            #gbdNavBar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding : 14px 16px;
+                text-decoration: none;
+            }
+
+            .subNav {
+                float : left;
+                overflow: hidden;
+            }
+
+            .subNav .subNavBtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color : inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .gbdNavBar a:hover , .subNav:hover .subNavBtn {
+                blackground-color: red;
+            }
+
+            .subNavContent {
+                display: none;
+                position: absolute;
+                left: 0;
+                background-color : red;
+                width: 100%;
+                z-index: 1;
+            }
+
+            .subNav:hover .subNavContent {
+                display: block;
+            }
+
+            .subNavContent a {
+                float : left;
+                color: white;
+                text-decoration: none;
+            }
+          
+         
 
 
           .reponav-item.gbdselected {
@@ -96,20 +119,13 @@ const gbdScreen = () =>
               rgba(0,51,102,0.7) #e1e4e8 transparent;
             }
 
-          .gbdMenu:hover{
-            margin : 0px;
-            color : rgba(105, 107, 108, 1);
-            border-bottom : 1px solid rgba(105, 107, 108, 1);
-          }
-
           
-          .flexContainer
+            .flexContainer
             {
                 position: relative;
-                width: 80%;
+                width: 50%;
                 height: 100%;
-                left : 20%; 
-               
+                left : 50%;
             }
 
  
@@ -188,17 +204,25 @@ const gbdScreen = () =>
         innerScreen = 
         `    
         <div id="gbdScreen">
-            <div id="gbdSidebar">
-                <p>GitBreakDown</p>
-                <a class="gbdMenu" href="#">Home</a>
-                <a class="gbdMenu" href="#">Documentation</a>
-                <a class="gbdMenu" href="#">About us</a>
+            <div id="gbdNavBar">
+                <a id="gbdHomeBtn" href="#breakdown">Home</a>
+                <div class="subNav">
+                    <button class="subNavBtn">Metrics</button>
+                    <div class="subNavContent">
+                        <a href="#breakdown/Commits">Commits</a>
+                        <a href="#breakdown/Issues">Issues</a>
+                        <a href="#breakdown/Branchs">Branchs</a>
+                        <a href="#breakdown/PR">Pull Request</a>
+                    </div>
+                </div>
             </div>
-            <div class="flexContainer">
-                <canvas id="commitsDashboard"></canvas>
-                <canvas id="issuesDashboard"></canvas>   
-                <canvas id="prsDashboard"></canvas>   
-                <canvas id="branchesDashboard"></canvas>       
+            <div class="gbdContent">
+                <div class="flexContainer">
+                    <canvas id="commitsDashboard"></canvas>
+                    <canvas id="issuesDashboard"></canvas>   
+                    <canvas id="prsDashboard"></canvas>   
+                    <canvas id="branchesDashboard"></canvas>       
+                </div>
             </div>
         </div>
         `
@@ -216,7 +240,7 @@ const gbdScreen = () =>
     mainContainer[0].style.maxWidth = "100%"
    
     addCss()
-
+    homeBtn()
     
     if (typeof chrome.app.isInstalled !== 'undefined')
     {
@@ -254,13 +278,31 @@ const gbdScreen = () =>
     
 }
 
+const issuesPage = (data) => {
+    let issuesPage = 
+    `   
+        <h2>Issues</h2>
+        <h1>Issues Opened : </h1>
+        <div>Issues Closed : 23</div>
+        <div>Top issues Creater: Wdvictor</div>
+
+    `
+    return issuesPage;
+
+}
+
 
 window.onhashchange = function()
 {
     let gbdButton = document.getElementById('gbdButton')
     if (gbdButton !== this.undefined)
     {
-        if (window.location.href.includes("#breakdown"))
+        if (window.location.href.includes("#breakdown/Issues"))
+        {
+            document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
+
+        }
+        else if (window.location.href.includes("#breakdown"))
         {
             console.log("showing breakdown screen")
             let screen = document.getElementById('gbdScreen')
