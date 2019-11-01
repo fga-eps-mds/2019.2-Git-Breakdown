@@ -25,11 +25,9 @@ describe('PullRequests ranking test', () => {
         if(_body != undefined){
             expect(_body).to.have.property('pullrequests')
         }
-        done()
       }
     ).catch(err => {
       const errorResponse = err
-      done()
     })
     done()
   })
