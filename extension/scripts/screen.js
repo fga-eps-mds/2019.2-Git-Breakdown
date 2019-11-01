@@ -1,5 +1,22 @@
 let url_base = 'http://18.215.242.203:3000'
 
+let issuesData , branchsData, prData, commitsData
+
+function getMetrics() {
+    chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
+    {
+        if (response !== undefined)
+        {
+            commitsData = response[0]
+            issuesData = response[1]
+            branchsData = response[2]
+            prData = response[3]
+
+        }
+    })
+}
+
+
 const METRICS = 
 [
   'commitsDashboard', // 0 
@@ -242,52 +259,39 @@ const gbdScreen = () =>
     addCss()
     homeBtn()
     
-    if (typeof chrome.app.isInstalled !== 'undefined')
-    {
-        console.log("gbdScreen sending requests")
-        chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
-        {
-                if (response !== undefined)
-                {
-                    let screen = document.getElementById('gbdScreen')
-                    screen.className = 'plotted'
+    let screen = document.getElementById('gbdScreen')
+    screen.className = 'plotted'
 
-                    let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-                    createIssuesChart(response[1], issuesCtx)
+    let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+    createIssuesChart(issuesData, issuesCtx)
+    
+    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+    createCommitsChart(commitsData, commitCtx)
+
+    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+    createBranchesChart(branchsData, branchesCtx)
+
+    let prCtx = document.getElementById('prsDashboard').getContext('2d')
+    createPRChart(prData, prCtx)
+
+    for (let i = 0; i < 4; i++)
+        chartOnClick(i, response[i])
                     
-                    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                    createCommitsChart(response[0], commitCtx)
-
-                    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                    createBranchesChart(response[2], branchesCtx)
-
-                    let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                    createPRChart(response[3], prCtx)
-
-                    for (let i = 0; i < 4; i++)
-                        chartOnClick(i, response[i])
-                    
-                }
-                else{
-                    console.log("gbdScreen-else")
-                    document.getElementById('gbdButton').click()
-                }                   
-                
-        })
-    }
+                                  
+   
+    
     
 }
 
-const issuesPage = (data) => {
+const issuesPage = () => {
     let issuesPage = 
     `   
         <h2>Issues</h2>
-        <h1>Issues Opened : </h1>
+        <h1>Issues Opened : ${issuesData.open}</h1>
         <div>Issues Closed : 23</div>
         <div>Top issues Creater: Wdvictor</div>
-
     `
-    return issuesPage;
+    return issuesPage
 
 }
 
@@ -550,6 +554,6 @@ const update = () =>
 }
 
 
-
+getMetrics()
 gbdButtonOnClick()
 update()
