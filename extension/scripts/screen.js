@@ -2,25 +2,20 @@ let url_base = 'http://18.215.242.203:3000'
 
 let issuesData , branchsData, prData, commitsData
 
-function getMetrics() {
+function getMetrics() 
+{
+    console.log("getting metrics")
     chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
     {
         if (response !== undefined)
         {
-            data = response
             commitsData = response[0]
             issuesData = response[1]
             branchsData = response[2]
             prData = response[3]
         }
     })
-
-    setTimeout(() => {
-        console.log("commits", commitsData)
-    }, 3000)
-    
 }
-
 
 const METRICS = 
 [
@@ -58,7 +53,7 @@ const gbdScreen = () =>
         let innerStyle = 
         `   
             
-          #gbdScreen {
+        #gbdScreen {
             position: relative;
             border-radius : 25px;
             box-shadow: 5px 5px #e1e4e8; 
@@ -69,9 +64,9 @@ const gbdScreen = () =>
             height : 500px;
             left:0;
             
-          }
+        }
 
-          .gbdContent {
+        .gbdContent {
             position: relative;
             widht : 100%;
             height: 80%;
@@ -130,18 +125,18 @@ const gbdScreen = () =>
                 color: white;
                 text-decoration: none;
             }
-          
-         
+        
+        
 
 
-          .reponav-item.gbdselected {
-              color:#24292e;
-              background-color:#fff;
-              border-color:
-              rgba(0,51,102,0.7) #e1e4e8 transparent;
+        .reponav-item.gbdselected {
+            color:#24292e;
+            background-color:#fff;
+            border-color:
+            rgba(0,51,102,0.7) #e1e4e8 transparent;
             }
 
-          
+        
             .flexContainer
             {
                 position: relative;
@@ -150,7 +145,7 @@ const gbdScreen = () =>
                 left : 50%;
             }
 
- 
+
             .chartjs-render-monitor {
                 position: absolute;
                 border: 1px solid black;
@@ -233,7 +228,7 @@ const gbdScreen = () =>
                     <div class="subNavContent">
                         <a href="#breakdown/commits">Commits</a>
                         <a href="#breakdown/issues">Issues</a>
-                        <a href="#breakdown/branchs">Branchs</a>
+                        <a href="#breakdown/branches">Branches</a>
                         <a href="#breakdown/pr">Pull Request</a>
                     </div>
                 </div>
@@ -260,30 +255,49 @@ const gbdScreen = () =>
     let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
     mainContainer[0].innerHTML = addScreen()
     mainContainer[0].style.maxWidth = "100%"
-   
+
     addCss()
     homeBtn()
     
-    let screen = document.getElementById('gbdScreen')
-    screen.className = 'plotted'
+    if (typeof chrome.app.isInstalled !== 'undefined')
+    {
+        console.log("sending response - may take some time to load")
+        chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
+        {
+            if (response !== undefined)
+            {
 
-    let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-    createIssuesChart(issuesData, issuesCtx)
-    
-    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-    createCommitsChart(commitsData, commitCtx)
+                console.log("good response")
+                commitsData = response[0]
+                issuesData = response[1]
+                branchsData = response[2]
+                prData = response[3]
+                
+                let screen = document.getElementById('gbdScreen')
+                screen.className = 'plotted'
 
-    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-    createBranchesChart(branchsData, branchesCtx)
+                let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                createIssuesChart(issuesData, issuesCtx)
+                
+                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                createCommitsChart(commitsData, commitCtx)
 
-    let prCtx = document.getElementById('prsDashboard').getContext('2d')
-    createPRChart(prData, prCtx)
-                    
-    chartOnClick(0, commitsData)
-    chartOnClick(1, issuesData)
-    chartOnClick(2, branchsData)
-    chartOnClick(3, prData)   
-    
+                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                createBranchesChart(branchsData, branchesCtx)
+
+                let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                createPRChart(prData, prCtx)
+                                
+                for (let i = 0; i < 4; i++)
+                    chartOnClick(i, response[i])
+
+            }
+            else
+                console.log("undefined response")
+        })
+    }
+    else
+        console.log("undefined chrome app")
     
 }
 
@@ -292,7 +306,7 @@ const issuesPage = () => {
     `   
         <h2>Issues</h2>
         <div>Issues Opened : ${issuesData.open}</div>
-        <div>Issues Closed : ${issuesData.close}</div>
+        <div>Issues Closed : ${issuesData.closed}</div>
     `
     return issuesPage
 
@@ -337,18 +351,21 @@ const commitsPage = () => {
 
 function plotTop10Commiter() {
     let repoCommiters = document.getElementById("repoCommiters")
-    for(var i = 1 ; i <= commitsData.length; i++)
+    for(let i = 1; i <= commitsData.length; i++)
     {
-        let member = commitsData[i].name
-        let memberTotalCommits = commitsData[i].commits
-        let commiterData = document.createElement('div')
-        commiterData.innerHTML = 
-        `
-            <div>Name:${member}</div>
-            <div>Name:${memberTotalCommits}</div>
-        `
+        if (commitsData[i] != undefined)
+        {
+            let member = commitsData[i].name
+            let memberTotalCommits = commitsData[i].commits
+            let commiterData = document.createElement('div')
+            commiterData.innerHTML = 
+            `
+                <div>Name:${member}</div>
+                <div>Name:${memberTotalCommits}</div>
+            `
 
-        repoCommiters.appendChild(commiterData)
+            repoCommiters.appendChild(commiterData)
+        }
     }
 
 }
@@ -356,6 +373,7 @@ function plotTop10Commiter() {
 
 window.onhashchange = function()
 {
+    console.log("changed")
     let gbdButton = document.getElementById('gbdButton')
     if (gbdButton !== this.undefined)
     {
@@ -365,11 +383,10 @@ window.onhashchange = function()
 
         }
         else if (window.location.href.includes("#breakdown/commits")) {
-
             document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
             plotTop10Commiter()
         }
-        else if (window.location.href.includes("#breakdown/branchs") ) {
+        else if (window.location.href.includes("#breakdown/branches") ) {
 
             document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
         }
@@ -461,7 +478,6 @@ const update = () =>
         childList: true	
     })	
 }
-
 
 getMetrics()
 gbdButtonOnClick()

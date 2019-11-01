@@ -6,6 +6,8 @@
 
 let url_base = 'http://18.215.242.203:3000'
 
+let fetchedData = []
+
 const FETCH_METRICS = 
 [
   'commits', // 0 
@@ -30,6 +32,8 @@ async function fetchData(type, aux)
 async function execute(request, aux)
 {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
+    fetchedData = data_
+    fetchedData[4] = aux
     return data_
 }
 
@@ -45,11 +49,28 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
             },
             function (tabs) 
             {
-                let url = tabs[0].url.split("/")
-                let owner = url[3]
-                let repo = url[4].split("#")[0]
-                let url_aux = `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}`
-                execute(request, url_aux).then(sendResponse)
+                if (tabs[0] != undefined)
+                {
+                  let url = tabs[0].url.split("/")
+                  let owner = url[3]
+                  let repo = url[4].split("#")[0]
+                  let url_aux = `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}`
+
+                  if (fetchedData.length > 0 && fetchedData[0] != undefined &&
+                    fetchedData[4] == url_aux)
+                  {
+                    console.log("returning fetched data")
+                    sendResponse(fetchedData)
+                  }
+                  else
+                  {
+                    if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[4] != url_aux)
+                      console.log("updating data")
+
+                    console.log("fetching data")
+                    execute(request, url_aux).then(sendResponse)
+                  }
+                }
             })
         }
     })
@@ -59,7 +80,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
 
 chrome.runtime.onInstalled.addListener(function() 
 {
-  
+
 })
 
 
