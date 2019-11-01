@@ -1,5 +1,17 @@
 let url_base = 'http://18.215.242.203:3000'
 
+
+
+
+const homeBtn = () => {
+   let homeBtn = document.getElementById('gbdHomeBtn')
+   homeBtn.addEventListener('click', () => {
+       document.getElementsByClassName('gbdContent')[0].innerHTML = gbdScreen()
+    })
+}
+
+
+
 const gbdScreen = () => 
 {   
     let gbdtab = document.getElementById('gbdButton')
@@ -32,6 +44,13 @@ const gbdScreen = () =>
             height : 500px;
             left:0;
             
+          }
+
+          .gbdContent {
+              position: relative;
+              widht : 100%;
+              height: 80%;
+              top:10%;
           }
           
           #gbdNavBar {
@@ -101,10 +120,8 @@ const gbdScreen = () =>
             {
                 position: relative;
                 width: 50%;
-                height: 70%;
+                height: 100%;
                 left : 50%;
-                top: 10%; 
-               
             }
 
  
@@ -164,22 +181,24 @@ const gbdScreen = () =>
         `    
         <div id="gbdScreen">
             <div id="gbdNavBar">
-                <a href="#BreakDown/home">Home</a>
+                <a id="gbdHomeBtn" href="#breakdown">Home</a>
                 <div class="subNav">
                     <button class="subNavBtn">Metrics</button>
                     <div class="subNavContent">
-                        <a href="#BreakDown/Commits">Commits</a>
-                        <a href="#BreakDown/Issues">Issues</a>
-                        <a href="#BreakDown/Branchs">Branchs</a>
-                        <a href="#BreakDown/PR">Pull Request</a>
+                        <a href="#breakdown/Commits">Commits</a>
+                        <a href="#breakdown/Issues">Issues</a>
+                        <a href="#breakdown/Branchs">Branchs</a>
+                        <a href="#breakdown/PR">Pull Request</a>
                     </div>
                 </div>
             </div>
-            <div class="flexContainer">
-                <canvas id="commitsDashboard"></canvas>
-                <canvas id="issuesDashboard"></canvas>   
-                <canvas id="prsDashboard"></canvas>   
-                <canvas id="branchesDashboard"></canvas>       
+            <div class="gbdContent">
+                <div class="flexContainer">
+                    <canvas id="commitsDashboard"></canvas>
+                    <canvas id="issuesDashboard"></canvas>   
+                    <canvas id="prsDashboard"></canvas>   
+                    <canvas id="branchesDashboard"></canvas>       
+                </div>
             </div>
         </div>
         `
@@ -197,6 +216,7 @@ const gbdScreen = () =>
     mainContainer[0].style.maxWidth = "100%"
    
     addCss()
+    homeBtn()
 
     
     if (typeof chrome.app.isInstalled !== 'undefined')
@@ -228,17 +248,44 @@ const gbdScreen = () =>
                 
         })
     }
+
+
     
 }
 
 
 
+
+
+const issuesPage = () => {
+    let issuesPage = 
+    `   
+        <h2>Issues</h2>
+        <div>Issues Opened : </div>
+        <div>Issues Closed : 23</div>
+        <div>Top issues Creater: Wdvictor</div>
+
+    `
+    return issuesPage;
+
+}
+
+
+
+
+
+//change all this function to work better with the new gbdContent Tag
 window.onhashchange = function()
 {
     let gbdButton = document.getElementById('gbdButton')
     if (gbdButton !== this.undefined)
     {
-        if (window.location.href.includes("#breakdown"))
+        if (window.location.href.includes("#breakdown/Issues"))
+        {
+            console.log('work')
+            document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
+        }
+        else if(window.location.href.includes("#breakdown"))
         {
             console.log("showing breakdown screen")
             let screen = document.getElementById('gbdScreen')
@@ -246,6 +293,7 @@ window.onhashchange = function()
                 console.log("already plotted")
             else
                 gbdScreen()
+            
         }
         else
         {
