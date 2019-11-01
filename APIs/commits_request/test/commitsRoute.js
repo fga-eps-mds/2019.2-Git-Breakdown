@@ -25,8 +25,6 @@ describe('Commits route tests', () => {
         if(_body[0].commits != undefined){
             expect(_body[1]).to.have.property('name')
             expect(_body[1]).to.have.property('commits')
-            expect(_body[1]).to.have.property('additions')
-            expect(_body[1]).to.have.property('deletions')
         }
         done()  
       }
