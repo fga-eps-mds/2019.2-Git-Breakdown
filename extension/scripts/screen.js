@@ -20,7 +20,7 @@ const gbdScreen = () =>
     {
         let innerStyle = 
         `   
-            
+ 
           #gbdScreen {
             position: relative;
             border-radius : 25px;
@@ -34,51 +34,59 @@ const gbdScreen = () =>
             
           }
           
-          #gbdSidebar {
-            font: inherit;
-            border-radius : 25px;
-            position: absolute;
-            display: block;
-            text-decoration: none;
-            width : 5%;
-            height : 100%;
-            background-color:rgba(0,51,102,0.63);
-            -webkit-transition :all 0.5s;
-            transition : all 0.5s;
+          #gbdNavBar {
+           overflow: hidden;
+           background-color : #24292e;
           }
           
-          #gbdSidebar:hover{
-            width : 20%;
+          #gbdNavBar a {
+              float: left;
+              font-size: 16px;
+              color: white;
+              text-align: center;
+              padding : 14px 16px;
+              text-decoration: none;
+          }
+
+          .subNav {
+              float : left;
+              overflow: hidden;
           }
           
-          #gbdSidebar a{
-            font-weight: 500;
-            font-size : 13px;
-            text-decoration : none;
-            display : block;
-            list-style-type : none;
-            color : rgba(230, 230, 230);
-            text-align : center;
-            margin: 40px;
-            overflow:hidden;
-            transition: all 0.3s;
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
+          .subNav .subNavBtn {
+              font-size: 16px;
+              border: none;
+              outline: none;
+              color: white;
+              padding: 14px 16px;
+              background-color : inherit;
+              font-family: inherit;
+              margin: 0;
           }
 
-          #gbdSidebar p{
-            text-align : center;
-            font-size: inherit;
-            font-weight: 700;
-            color : rgba(230, 230, 230);
-            overflow: hidden;
-            margin : 45px;
-            border-bottom: 1px solid rgba(255, 137, 75, 0.42);
+          .gbdNavBar a:hover , .subNav:hover .subNavBtn {
+              blackground-color: red;
           }
 
-          #gbdSidebar p:hover {
-            border-bottom: 1px solid rgba(255, 137, 75, 0.42);
+          .subNavContent {
+              display: none;
+              position: absolute;
+              left: 0;
+              background-color : red;
+              width: 100%;
+              z-index: 1;
           }
+
+          .subNavContent a {
+              float : left;
+              color: white;
+              text-decoration: none;
+          }
+
+          .subNav:hover .subNavContent {
+              display: block;
+          }
+          
 
 
           .reponav-item.gbdselected {
@@ -88,19 +96,14 @@ const gbdScreen = () =>
               rgba(0,51,102,0.7) #e1e4e8 transparent;
             }
 
-          .gbdMenu:hover{
-            margin : 0px;
-            color : rgba(105, 107, 108, 1);
-            border-bottom : 1px solid rgba(105, 107, 108, 1);
-          }
-
-          
+    
           .flexContainer
             {
                 position: relative;
-                width: 80%;
-                height: 100%;
-                left : 20%; 
+                width: 50%;
+                height: 70%;
+                left : 50%;
+                top: 10%; 
                
             }
 
@@ -160,11 +163,17 @@ const gbdScreen = () =>
         innerScreen = 
         `    
         <div id="gbdScreen">
-            <div id="gbdSidebar">
-                <p>GitBreakDown</p>
-                <a class="gbdMenu" href="#">Home</a>
-                <a class="gbdMenu" href="#">Documentation</a>
-                <a class="gbdMenu" href="#">About us</a>
+            <div id="gbdNavBar">
+                <a href="#BreakDown/home">Home</a>
+                <div class="subNav">
+                    <button class="subNavBtn">Metrics</button>
+                    <div class="subNavContent">
+                        <a href="#BreakDown/Commits">Commits</a>
+                        <a href="#BreakDown/Issues">Issues</a>
+                        <a href="#BreakDown/Branchs">Branchs</a>
+                        <a href="#BreakDown/PR">Pull Request</a>
+                    </div>
+                </div>
             </div>
             <div class="flexContainer">
                 <canvas id="commitsDashboard"></canvas>
