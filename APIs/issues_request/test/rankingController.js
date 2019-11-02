@@ -1,17 +1,16 @@
 const chai = require('chai')
 const axios = require('axios')
 const expect = chai.expect
-chai.use(require('chai-json'))
 
-const urlBase = 'http://localhost:3003/pullrequests'
+const urlBase = 'http://localhost:3002/routes/ranking'
 const token = require('../../constants')
-const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=' + token
+const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown=' + token
 
-describe('PullRequests route tests', () => {
+describe('Issues ranking tests', () => {
   it('Test: Request valid', (done) => {
     axios.get(urlEndpoint).then(response => {
 
-        let _body = {};
+        let _body = {}
         try{
           _body = response.data
         }
@@ -19,14 +18,8 @@ describe('PullRequests route tests', () => {
           _body = {}
         }
 
-        if(response.status != undefined)
-            expect(response.status).to.equal(200);
-
-        if(_body != undefined){
-            expect(_body).to.have.property('open')
-            expect(_body).to.have.property('closed')
-            expect(_body).to.have.property('refused_percent')
-        }
+        expect(response.status).to.equal(200);
+        body.should.have.property('issues');
       }
     ).catch(err => {
       const errorResponse = err
@@ -46,8 +39,12 @@ describe('PullRequests route tests', () => {
         }
       }
     ).catch(err => {
-      expect(err.response.status).to.equal(400)
+      if(err.response.status === 400){
+        expect(err.response.status).to.equal(400)
+      }else{
+        expect(err.response.status).to.equal(404)
+      } 
     })
     done()
-  })
-})
+  }) 
+})  

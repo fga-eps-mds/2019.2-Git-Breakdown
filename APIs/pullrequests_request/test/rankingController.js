@@ -7,7 +7,7 @@ const urlBase = 'http://localhost:3003/pullrequests'
 const token = require('../../constants')
 const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=' + token
 
-describe('PullRequests route tests', () => {
+describe('PullRequests ranking test', () => {
   it('Test: Request valid', (done) => {
     axios.get(urlEndpoint).then(response => {
 
@@ -23,9 +23,7 @@ describe('PullRequests route tests', () => {
             expect(response.status).to.equal(200);
 
         if(_body != undefined){
-            expect(_body).to.have.property('open')
-            expect(_body).to.have.property('closed')
-            expect(_body).to.have.property('refused_percent')
+            expect(_body).to.have.property('pullrequests')
         }
       }
     ).catch(err => {
