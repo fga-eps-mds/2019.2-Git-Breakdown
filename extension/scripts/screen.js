@@ -56,12 +56,10 @@ const gbdScreen = () =>
         #gbdScreen {
             position: relative;
             border-radius : 25px;
-            box-shadow: 5px 5px #e1e4e8; 
+            box-shadow: 5px 5px 5px 5px; 
             border-top : 0;
-            border-bottom : 3px #e36209 #e1e4e8 transparent;
-            border-right : 3px #e36209 #e1e4e8 transparent;
             width : 100%;
-            height : 500px;
+            height : 550px;
             left:0;
             
         }
@@ -126,9 +124,6 @@ const gbdScreen = () =>
                 text-decoration: none;
             }
         
-        
-
-
         .reponav-item.gbdselected {
             color:#24292e;
             background-color:#fff;
@@ -140,50 +135,85 @@ const gbdScreen = () =>
             .flexContainer
             {
                 position: relative;
-                width: 50%;
+                width: 60%;
                 height: 100%;
-                left : 50%;
+                left : 40%;
             }
 
 
             .chartjs-render-monitor {
                 position: absolute;
                 border: 1px solid black;
-                box-shadow: 5px 5px #e1e4e8;
+                box-shadow: 5px 5px 5px 5px;
                 border-radius : 10px;
             }
             
 
             #commitsDashboard {
-                top: 0;
-                right: 0;
-                display: block;
+                top: -8px;
+                right: 5px;
                 width: 50% !important;
                 height: 50% !important;
             }
 
             #issuesDashboard {
-                top: 0;
-                left: 0;
-                display: block;
+                top: -8px;
+                left: -5px;
                 width: 50% !important;
                 height: 50% !important;
             }
 
             #prsDashboard {
                 bottom: 0;
-                right: 0;
-                display: block;
+                right: 5px;          
                 width: 50% !important;
                 height: 50% !important;
             }
 
             #branchesDashboard {
                 bottom: 0;
-                left: 0;
-                display: block;
+                left: -5px;  
                 width: 50% !important;
                 height: 50% !important;
+            }
+
+            .metricsPageTitle {
+               text-align: center;
+               box-shadow: 5px 5px 5px 5px black;
+               border-radius: 25px;
+            }
+
+            #commitsContainer {
+               display:flex;
+               padding-top: 15px;
+               height: 90%;
+            }
+
+            #repoCommiters{
+                border: 3px solid black;
+                width: 30%;
+                height: 100%;
+            }
+
+            #progressContainer {
+                border: 4px solid black;
+                width: 70%;
+                height: 100%;
+            }
+
+            .commitsRanking {
+                display: flex;
+                border: 1px solid black;
+            }
+
+            .commitsRanking i{
+                color: blue;
+            }
+
+            #img {
+                border: 1px solid black;
+                padding: 5px 15px 5px 15px;
+                border-radius: 50%;
             }
 
         `
@@ -340,9 +370,13 @@ const prPage = () => {
 const commitsPage = () => {
     let commitPage = 
     `
-        <h2>CommitsPage</h2>
-        <div id="repoCommiters">
-        <div>
+        <h2 class="metricsPageTitle">CommitsPage</h2>
+        <div id="commitsContainer">
+            <div id="repoCommiters">
+            </div>
+            <div id="progressContainer">
+            </div>
+        </div>
 
     `
 
@@ -360,8 +394,10 @@ function plotTop10Commiter() {
             let commiterData = document.createElement('div')
             commiterData.innerHTML = 
             `
-                <div>Name:${member}</div>
-                <div>Name:${memberTotalCommits}</div>
+                <div class="commitsRanking">
+                    <div id="img">i</div>
+                    <div>${member} <i> ${memberTotalCommits}</i> commits</div>
+                </div>
             `
 
             repoCommiters.appendChild(commiterData)
