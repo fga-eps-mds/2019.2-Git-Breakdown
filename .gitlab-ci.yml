@@ -12,7 +12,7 @@ build:
   stage: build
   script:
     - sudo docker-compose down
-    - sudo docker-compose build --no-cache
+    - sudo docker-compose build
 
 # Stage II
 # Testing Phase:
@@ -23,6 +23,7 @@ api_gateway:
   image: node:alpine
   before_script:
     # install requirement to api_gateway
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/constants.js
     - npm --prefix ./APIs/api_gateway install ./APIs/api_gateway
 
   script:
@@ -35,7 +36,7 @@ branches_request:
   image: node:alpine
   before_script:
     # install requirement to branches_request
-    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/branches_request/src/constants.js
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/constants.js
     - npm --prefix ./APIs/branches_request install ./APIs/branches_request
 
   script:
@@ -48,6 +49,7 @@ pullrequests_request:
   image: node:alpine
   before_script:
     # install requirement to pullrequests_request
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/constants.js
     - npm --prefix ./APIs/pullrequests_request install ./APIs/pullrequests_request
 
   script:
@@ -60,11 +62,25 @@ issues_request:
   image: node:alpine
   before_script:
     # install requirement to issues_request
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/constants.js
     - npm --prefix ./APIs/issues_request install ./APIs/issues_request
 
   script:
     - sudo docker-compose up -d
     - npm test --prefix ./APIs/issues_request
+    - sudo docker-compose down
+
+commits_request:
+  stage: test
+  image: node:alpine
+  before_script:
+    # install requirement to commits_request
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/constants.js
+    - npm --prefix ./APIs/commits_request install ./APIs/commits_request
+
+  script:
+    - sudo docker-compose up -d
+    - npm test --prefix ./APIs/commits_request
     - sudo docker-compose down
 
 
