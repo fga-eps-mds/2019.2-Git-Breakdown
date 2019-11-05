@@ -290,46 +290,49 @@ const gbdScreen = () =>
     addCss()
     homeBtn()
     
-    if (typeof chrome.app.isInstalled !== 'undefined')
-    {
-        console.log("sending response - may take some time to load")
-        chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
+    try{
+        if (typeof chrome.app.isInstalled !== 'undefined')
         {
-            if (response !== undefined)
+            console.log("sending response - may take some time to load")
+            chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
             {
+                if (response !== undefined)
+                {
 
-                console.log("good response")
-                commitsData = response[0]
-                issuesData = response[1]
-                branchsData = response[2]
-                prData = response[3]
-                
-                let screen = document.getElementById('gbdScreen')
-                screen.className = 'plotted'
+                    console.log("good response")
+                    commitsData = response[0]
+                    issuesData = response[1]
+                    branchsData = response[2]
+                    prData = response[3]
+                    
+                    let screen = document.getElementById('gbdScreen')
+                    screen.className = 'plotted'
 
-                let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-                createIssuesChart(issuesData, issuesCtx)
-                
-                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                createCommitsChart(commitsData, commitCtx)
+                    let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                    createIssuesChart(issuesData, issuesCtx)
+                    
+                    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                    createCommitsChart(commitsData, commitCtx)
 
-                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                createBranchesChart(branchsData, branchesCtx)
+                    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                    createBranchesChart(branchsData, branchesCtx)
 
-                let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                createPRChart(prData, prCtx)
-                                
-                for (let i = 0; i < 4; i++)
-                    chartOnClick(i, response[i])
+                    let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                    createPRChart(prData, prCtx)
+                                    
+                    for (let i = 0; i < 4; i++)
+                        chartOnClick(i, response[i])
 
-            }
-            else
-                console.log("undefined response")
-        })
+                }
+                else
+                    console.log("undefined response")
+            })
+        }
+        else
+            console.log("undefined chrome app")
+    } catch(err) {
+       console.log("GBD error at screen.js 334: ", err)
     }
-    else
-        console.log("undefined chrome app")
-    
 }
 
 const issuesPage = () => {
@@ -386,6 +389,7 @@ const commitsPage = () => {
 
 function plotTop10Commiter() {
     let repoCommiters = document.getElementById("repoCommiters")
+
     for(let i = 1; i <= commitsData.length; i++)
     {
         if (commitsData[i] != undefined)
@@ -400,7 +404,6 @@ function plotTop10Commiter() {
                     <div>${member} <i> ${memberTotalCommits}</i> commits</div>
                 </div>
             `
-
             repoCommiters.appendChild(commiterData)
         }
     }
@@ -416,12 +419,19 @@ window.onhashchange = function()
     {
         if (window.location.href.includes("#breakdown/issues"))
         {
-            document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
-
+            try {
+                document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
+            } catch(err){
+                console.log("GbdErro at screen.js 425", err)
+            }
         }
         else if (window.location.href.includes("#breakdown/commits")) {
             document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
-            plotTop10Commiter()
+            try {
+                plotTop10Commiter()
+            } catch(err) {
+                console.log("GbdErro at screen.js 433", err)
+            }
         }
         else if (window.location.href.includes("#breakdown/branches") ) {
 
