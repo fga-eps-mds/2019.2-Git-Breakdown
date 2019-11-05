@@ -1,51 +1,55 @@
 const chai = require('chai')
-const axios = require('axios')
+const issues = require('../src/routes/issueRoute')
+const assert = chai.assert
+const request = require('request')
+const should = require('should')
 const expect = chai.expect
 
-const urlBase = 'http://localhost:3002/routes'
-const token = require('../../constants')
-const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown=' + token
-const url = urlBase 
+const urlBase = 'http://localhost:3000/routes'
 
-describe('Issues route tests', () => {
-  it('Test: Request valid', (done) => {
-    axios.get(urlEndpoint).then(response => {
-
-        let _body = {}
-        try{
-          _body = response.data
-        }
-        catch(e){
-          _body = {}
-        }
-
-        expect(response.status).to.equal(200);
-        body.should.have.property('open');
-      }
-    ).catch(err => {
-      const errorResponse = err
-    })
-    done()
-  })
-
-  it('Test: Request without parameters', (done) => {
-    axios.get(urlBase).then(response => {
+describe('Issue route tests', () => {
+  it('Test: Request valid', () => {
+    request.get(
+      {
+        url : urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
+      },
+      (error, response, body) => {
 
         let _body = {};
         try{
-          _body = response.data
+          _body = JSON.parse(body);
         }
         catch(e){
-          _body = {}
+          _body = {};
         }
+
+        expect(response.statusCode).to.equal(200);
+        body.should.have.property('open');
+        done();
       }
-    ).catch(err => {
-      if(err.response.status === 400){
-        expect(err.response.status).to.equal(400)
-      }else{
-        expect(err.response.status).to.equal(404)
-      } 
-    })
-    done()
-  }) 
-})
+    );
+  });
+
+  it('Test: Request without parameters', () => {
+    request.get(
+      {
+        url : urlBase + '?owner=f'
+      },
+      (error, response, body) => {
+
+        let _body = {};
+        try{
+          _body = JSON.parse(body);
+        }
+        catch(e){
+          _body = {};
+        }
+
+        expect(response.statusCode).to.equal(400);
+        done();
+      }
+    );
+  });
+
+  
+});

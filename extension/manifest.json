@@ -18,18 +18,17 @@
     [{
         "matches": 
         [
-            "http://github.com/*/*",
-            "https://github.com/*/*",
+            "http://github.com/*",
+            "https://github.com/*",
+            "http://*.github.com/*",
+            "https://*.github.com/*",
             "http://18.215.242.203:3000/*"
         ],
         "js": 
         [
             "scripts/oauth.js",
             "scripts/contentScripts.js",
-            "scripts/Chart.min.js",
-            "scripts/graph.js",
-            "scripts/button.js",
-            "scripts/screen.js"
+            "scripts/button.js"
         ]
     }],
     "browser_action": 
