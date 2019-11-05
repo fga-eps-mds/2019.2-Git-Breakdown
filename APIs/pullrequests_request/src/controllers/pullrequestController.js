@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const queryString = { state:'all' }
+const queryString = { state:'all', per_page: 10000 }
 
 exports.get = async (req, res, next) => {
     const owner = req.query.owner

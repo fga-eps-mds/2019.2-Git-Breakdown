@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/pullrequestController')
+const pullrequestController = require('../controllers/pullrequestController')
+const rankingController = require('../controllers/rankingController')
 
-router.get('/', controller.get)
-router.post('/', controller.post)
-router.put('/:id', controller.put)
-router.delete('/:id', controller.delete)
+router.get('/', pullrequestController.get)
+router.post('/', pullrequestController.post)
+router.put('/:id', pullrequestController.put)
+router.delete('/:id', pullrequestController.delete)
+router.get('/ranking', rankingController.get)
 
 module.exports = router
