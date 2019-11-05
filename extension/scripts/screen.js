@@ -2,6 +2,8 @@ let url_base = 'http://18.215.242.203:3000'
 
 const gbdScreen = () => 
 {
+    let issueResp , prResp, branchResp, commitResp
+    
     let gbdtab = document.getElementById('gbdButton')
     let current_selected = document.getElementsByClassName('js-selected-navigation-item selected reponav-item')
     let zenhub_selected = document.getElementsByClassName('reponav-item zh-sidebar-item zh-navbar-link zh-topbar-item selected')
@@ -9,10 +11,10 @@ const gbdScreen = () =>
     gbdtab.classList.remove('gbdselected')
 
     if (zenhub_selected[0] !== undefined)
-      zenhub_selected[0].classList.remove('selected')
+        zenhub_selected[0].classList.remove('selected')
 
     if (current_selected[0] !== undefined)
-      current_selected[0].classList.remove('selected')
+        current_selected[0].classList.remove('selected')
 
     gbdtab.className = 'js-selected-navigation-item gbdselected reponav-item'
 
@@ -136,13 +138,7 @@ const gbdScreen = () =>
                 right:5%;
             }
 
-         
-        
-          
-
         `
-
-         
 
         //The final tag
         let css = document.createElement('style')
@@ -153,7 +149,8 @@ const gbdScreen = () =>
         head[0].appendChild(css)  
     }
 
-    const innerScreen = 
+    const addScreen = () => {
+        innerScreen = 
         `    
         <div id="gbdScreen">
             <div id="gbdSidebar">
@@ -180,70 +177,108 @@ const gbdScreen = () =>
             </div>
         </div>
         `
+        return innerScreen
+    }
+    
     //revoming a black space between the navbar and the breakDown screen
     let pageHead = document.getElementsByClassName("pagehead repohead instapaper_ignore readability-menu experiment-repo-nav")
     let pageElement = pageHead[0]
     pageElement.style.marginBottom = "5px"
-    //
-
-
-    //inserting the screen inside gitHub
-    let repoContent = document.getElementsByClassName('repository-content')
-    let screen = document.createElement('div')
-
+    
     let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
-    mainContainer[0].innerHTML = innerScreen
+    mainContainer[0].innerHTML = addScreen()
     mainContainer[0].style.marginLeft = '0'
-    mainContainer[0].style.marginRight = '0'
     addCss()
-    // sending messages to background.js to receive back fetched API data
+
+    
     if (typeof chrome.app.isInstalled !== 'undefined')
     {
+        console.log("gbdScreen sending requests")
         chrome.runtime.sendMessage({metric: "issues"}, function(response) 
         {
-            if (response.issues !== undefined)
-            {
-                let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-                createIssuesChart(response.issues, issuesCtx)
-            }
+            setTimeout(function(){
+               
+                if (response.issues !== undefined)
+                {
+                    let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                    createIssuesChart(response.issues, issuesCtx)
+                }
+                else{
+                    console.log("gbdScreen-else")
+                    document.getElementById('gbdButton').click()
+                }                   
+                
+            }, 2000)
+
         })
         chrome.runtime.sendMessage({metric: "commits"}, function(response) 
         {
-            if (response.commits !== undefined)
-            {
-                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                createCommitsChart(response.commits, commitCtx)
-            }
+            setTimeout(function(){
+               
+                if (response.commits !== undefined)
+                {
+                    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                    createCommitsChart(response.commits, commitCtx)
+                }
+            }, 2000)
+                
         })
         chrome.runtime.sendMessage({metric: "branches"}, function(response) 
         {
-            if (response.branches !== undefined)
-            {
-                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                createBranchesChart(response.branches, branchesCtx)
-            }
+            setTimeout(function(){
+                
+                if(response.branches !== undefined)
+                {
+                    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                    createBranchesChart(response.branches, branchesCtx)
+                }
+            }, 2000)
+                
         })
         chrome.runtime.sendMessage({metric: "pullrequests"}, function(response) 
         {
-            if (response.pullrequests !== undefined)
-            {
-                let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                createPRChart(response.pullrequests, prCtx)
-            }
+            setTimeout(function(){
+               
+                if (response.pullrequests !== undefined)
+                {
+                    let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                    createPRChart(response.pullrequests, prCtx)
+                }
+            },2000)
+                
         })
     }
     
     
 }
 
-
+window.onhashchange = function()
+{
+    let gbdButton = document.getElementById('gbdButton')
+    if (gbdButton !== this.undefined)
+    {
+        if (window.location.href.includes("#breakdown"))
+        {
+            console.log("showing breakdown screen")
+            gbdScreen()
+        }
+        else
+        {
+            if (gbdButton.className == 'js-selected-navigation-item gbdselected reponav-item')
+            {
+                console.log("removing selection from gbd button")
+                gbdButton.classList.remove('gbdselected')
+            }
+        }
+    }
+}
 
 const gbdButtonOnClick = () => 
 {
     const gbdtab = document.getElementById('gbdButton')
     if (gbdtab !== null)
     {
-      gbdtab.addEventListener('click', gbdScreen)
+        gbdtab.addEventListener('click', gbdScreen)
     }
 }
 
@@ -254,7 +289,7 @@ const zenhubOnClick = () =>
     {
         zhTab.addEventListener('click', function()
         {
-          document.getElementById('gbdButton').classList.remove('gbdselected')
+            document.getElementById('gbdButton').classList.remove('gbdselected')
         })
     }
 }
@@ -275,6 +310,7 @@ const update = () =>
         childList: true	
     })	
 }
+
 
 
 gbdButtonOnClick()
