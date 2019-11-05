@@ -21,7 +21,7 @@ async function fetchData(type, aux)
     let url_fetch = `${url_base}/${type}/${aux}`
     try
     {
-        return (await fetch(url_fetch)).json()
+      return (await fetch(url_fetch)).json()
     }
     catch (err)
     {
@@ -31,10 +31,14 @@ async function fetchData(type, aux)
 
 async function execute(request, aux)
 {
+  try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
     fetchedData = data_
     fetchedData[4] = aux
     return data_
+  } catch(err){
+    console.log("GBD error at background.js\nAt execute():", err)
+  }
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
@@ -51,25 +55,29 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
             {
                 if (tabs[0] != undefined)
                 {
-                  let url = tabs[0].url.split("/")
-                  let owner = url[3]
-                  let repo = url[4].split("#")[0]
-                  let url_aux = `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}`
+                  try{
+                    let url = tabs[0].url.split("/")
+                    let owner = url[3]
+                    let repo = url[4].split("#")[0]
+                    let url_aux = `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}`
 
-                  if (fetchedData.length > 0 && fetchedData[0] != undefined &&
-                    fetchedData[4] == url_aux)
-                  {
-                    console.log("returning fetched data")
-                    sendResponse(fetchedData)
-                  }
-                  else
-                  {
-                    if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[4] != url_aux)
-                      console.log("updating data")
+                    if (fetchedData.length > 0 && fetchedData[0] != undefined &&
+                      fetchedData[4] == url_aux)
+                    {
+                      console.log("returning fetched data")
+                      sendResponse(fetchedData)
+                    }
+                    else
+                    {
+                      if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[4] != url_aux)
+                        console.log("updating data")
 
-                    console.log("fetching data")
-                    execute(request, url_aux).then(sendResponse)
-                  }
+                      console.log("fetching data")
+                      execute(request, url_aux).then(sendResponse)
+                    }
+                  } catch (err) {
+                      console.log("GBD erro at background.js\nAt chrome.runtime.onMessage.addListener\n At function(tab):", err)
+                    }
                 }
             })
         }

@@ -28,7 +28,11 @@ const METRICS =
 const homeBtn = () => {
     let homeBtn = document.getElementById('gbdHomeBtn')
     homeBtn.addEventListener('click', () => {
-        document.getElementsByClassName('gbdContent')[0].innerHTML = gbdScreen()
+        try{
+            document.getElementsByClassName('gbdContent')[0].innerHTML = gbdScreen()
+        }catch(err) {
+            console.log("GBD error:", err)
+        }
      })
  }
 
@@ -283,53 +287,61 @@ const gbdScreen = () =>
     pageElement.style.marginBottom = "5px"
     
     //make MainContainer use 100% of the screen size
-    let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
-    mainContainer[0].innerHTML = addScreen()
-    mainContainer[0].style.maxWidth = "100%"
-
-    addCss()
-    homeBtn()
-    
-    if (typeof chrome.app.isInstalled !== 'undefined')
-    {
-        console.log("sending response - may take some time to load")
-        chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
-        {
-            if (response !== undefined)
-            {
-
-                console.log("good response")
-                commitsData = response[0]
-                issuesData = response[1]
-                branchsData = response[2]
-                prData = response[3]
-                
-                let screen = document.getElementById('gbdScreen')
-                screen.className = 'plotted'
-
-                let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-                createIssuesChart(issuesData, issuesCtx)
-                
-                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                createCommitsChart(commitsData, commitCtx)
-
-                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                createBranchesChart(branchsData, branchesCtx)
-
-                let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                createPRChart(prData, prCtx)
-                                
-                for (let i = 0; i < 4; i++)
-                    chartOnClick(i, response[i])
-
-            }
-            else
-                console.log("undefined response")
-        })
+    try {
+        let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
+        mainContainer[0].innerHTML = addScreen()
+        mainContainer[0].style.maxWidth = "100%"
+        addCss()
+        homeBtn()
+    }catch(err) {
+        console.log('GBD Error:', err)
     }
-    else
-        console.log("undefined chrome app")
     
+    try{
+        if (typeof chrome.app.isInstalled !== 'undefined')
+        {
+            console.log("sending response - may take some time to load")
+            chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
+            {
+                if (response !== undefined)
+                {
+
+                    console.log("good response")
+                    commitsData = response[0]
+                    issuesData = response[1]
+                    branchsData = response[2]
+                    prData = response[3]
+                    
+                    try{
+                        let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                        createIssuesChart(issuesData, issuesCtx)
+                        
+                        let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                        createCommitsChart(commitsData, commitCtx)
+
+                        let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                        createBranchesChart(branchsData, branchesCtx)
+
+                        let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                        createPRChart(prData, prCtx)
+                                        
+                        for (let i = 0; i < 4; i++)
+                            chartOnClick(i, response[i])
+                    }catch(err) {
+                        console.log("GBD error:", err)
+                    }
+                }
+                else
+                    console.log("undefined response")
+            })
+        }
+        else
+            console.log("undefined chrome app")
+        
+    }catch(err) {
+        console.log("GBD error:", err)
+    }
+
 }
 
 const issuesPage = () => {
@@ -386,6 +398,7 @@ const commitsPage = () => {
 
 function plotTop10Commiter() {
     let repoCommiters = document.getElementById("repoCommiters")
+
     for(let i = 1; i <= commitsData.length; i++)
     {
         if (commitsData[i] != undefined)
@@ -400,7 +413,6 @@ function plotTop10Commiter() {
                     <div>${member} <i> ${memberTotalCommits}</i> commits</div>
                 </div>
             `
-
             repoCommiters.appendChild(commiterData)
         }
     }
@@ -416,12 +428,19 @@ window.onhashchange = function()
     {
         if (window.location.href.includes("#breakdown/issues"))
         {
-            document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
-
+            try {
+                document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
+            } catch(err){
+                console.log("GBD Erro at screen.js\n At window.onhashchange() ", err)
+            }
         }
         else if (window.location.href.includes("#breakdown/commits")) {
             document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
-            plotTop10Commiter()
+            try {
+                plotTop10Commiter()
+            } catch(err) {
+                console.log("GBD Erro at screen.js\n At window.onhashchange ", err)
+            }
         }
         else if (window.location.href.includes("#breakdown/branches") ) {
 
@@ -438,7 +457,11 @@ window.onhashchange = function()
             if (screen != null)
                 console.log("already plotted")
             else
-                gbdScreen()
+                try{
+                    gbdScreen()
+                }catch(err){
+                    console.log("GBD error:", err)
+                }
         }
         else
         {
@@ -464,7 +487,7 @@ const chartOnClick = (type, data) =>
                 console.log(METRICS[type].split("Dashboard")[0])
                 window.location.hash = `#breakdown/${METRICS[type].split("Dashboard")[0]}`
             }
-        }
+        })
     }
 }
 
