@@ -169,6 +169,7 @@ const gbdScreen = () =>
                 width: 50% !important;
                 height: 50% !important;
             }
+            
 
             #branchesDashboard {
                 bottom: 0;
@@ -463,7 +464,7 @@ const chartOnClick = (type, data) =>
                 console.log(METRICS[type].split("Dashboard")[0])
                 window.location.hash = `#breakdown/${METRICS[type].split("Dashboard")[0]}`
             }
-        })
+        }
     }
 }
 
