@@ -21,7 +21,7 @@ async function fetchData(type, aux)
     let url_fetch = `${url_base}/${type}/${aux}`
     try
     {
-        return (await fetch(url_fetch)).json()
+      return (await fetch(url_fetch)).json()
     }
     catch (err)
     {
@@ -31,10 +31,14 @@ async function fetchData(type, aux)
 
 async function execute(request, aux)
 {
+  try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
     fetchedData = data_
     fetchedData[4] = aux
     return data_
+  } catch(err){
+    console.log("GBD error at background.js\nAt execute():", err)
+  }
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
@@ -72,7 +76,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                       execute(request, url_aux).then(sendResponse)
                     }
                   } catch (err) {
-                      console.log("GBD erro at background.js 75", err)
+                      console.log("GBD erro at background.js\nAt chrome.runtime.onMessage.addListener\n At function(tab):", err)
                     }
                 }
             })

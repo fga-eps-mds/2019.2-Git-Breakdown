@@ -331,7 +331,7 @@ const gbdScreen = () =>
         else
             console.log("undefined chrome app")
     } catch(err) {
-       console.log("GBD error at screen.js 334: ", err)
+       console.log("GBD error at screen.js\n At chrome.runtime.sendMessage():", err)
     }
 }
 
@@ -422,7 +422,7 @@ window.onhashchange = function()
             try {
                 document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
             } catch(err){
-                console.log("GbdErro at screen.js 425", err)
+                console.log("GBD Erro at screen.js\n At window.onhashchange() ", err)
             }
         }
         else if (window.location.href.includes("#breakdown/commits")) {
@@ -430,7 +430,7 @@ window.onhashchange = function()
             try {
                 plotTop10Commiter()
             } catch(err) {
-                console.log("GbdErro at screen.js 433", err)
+                console.log("GBD Erro at screen.js\n At window.onhashchange ", err)
             }
         }
         else if (window.location.href.includes("#breakdown/branches") ) {
