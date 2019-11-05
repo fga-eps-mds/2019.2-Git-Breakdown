@@ -28,7 +28,11 @@ const METRICS =
 const homeBtn = () => {
     let homeBtn = document.getElementById('gbdHomeBtn')
     homeBtn.addEventListener('click', () => {
-        document.getElementsByClassName('gbdContent')[0].innerHTML = gbdScreen()
+        try{
+            document.getElementsByClassName('gbdContent')[0].innerHTML = gbdScreen()
+        }catch(err) {
+            console.log("GBD error:", err)
+        }
      })
  }
 
@@ -283,12 +287,15 @@ const gbdScreen = () =>
     pageElement.style.marginBottom = "5px"
     
     //make MainContainer use 100% of the screen size
-    let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
-    mainContainer[0].innerHTML = addScreen()
-    mainContainer[0].style.maxWidth = "100%"
-
-    addCss()
-    homeBtn()
+    try {
+        let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
+        mainContainer[0].innerHTML = addScreen()
+        mainContainer[0].style.maxWidth = "100%"
+        addCss()
+        homeBtn()
+    }catch(err) {
+        console.log('GBD Error:', err)
+    }
     
     try{
         if (typeof chrome.app.isInstalled !== 'undefined')
@@ -305,24 +312,24 @@ const gbdScreen = () =>
                     branchsData = response[2]
                     prData = response[3]
                     
-                    let screen = document.getElementById('gbdScreen')
-                    screen.className = 'plotted'
+                    try{
+                        let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                        createIssuesChart(issuesData, issuesCtx)
+                        
+                        let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                        createCommitsChart(commitsData, commitCtx)
 
-                    let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-                    createIssuesChart(issuesData, issuesCtx)
-                    
-                    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                    createCommitsChart(commitsData, commitCtx)
+                        let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                        createBranchesChart(branchsData, branchesCtx)
 
-                    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                    createBranchesChart(branchsData, branchesCtx)
-
-                    let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                    createPRChart(prData, prCtx)
-                                    
-                    for (let i = 0; i < 4; i++)
-                        chartOnClick(i, response[i])
-
+                        let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                        createPRChart(prData, prCtx)
+                                        
+                        for (let i = 0; i < 4; i++)
+                            chartOnClick(i, response[i])
+                    }catch(err) {
+                        console.log("GBD error:", err)
+                    }
                 }
                 else
                     console.log("undefined response")
@@ -330,9 +337,11 @@ const gbdScreen = () =>
         }
         else
             console.log("undefined chrome app")
-    } catch(err) {
-       console.log("GBD error at screen.js\n At chrome.runtime.sendMessage():", err)
+        
+    }catch(err) {
+        console.log("GBD error:", err)
     }
+
 }
 
 const issuesPage = () => {
@@ -448,7 +457,11 @@ window.onhashchange = function()
             if (screen != null)
                 console.log("already plotted")
             else
-                gbdScreen()
+                try{
+                    gbdScreen()
+                }catch(err){
+                    console.log("GBD error:", err)
+                }
         }
         else
         {
