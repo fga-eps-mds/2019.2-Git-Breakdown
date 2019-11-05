@@ -1,16 +1,36 @@
 let url_base = 'http://18.215.242.203:3000'
 
+let issuesData , branchsData, prData, commitsData
 
-
-
-const homeBtn = () => {
-   let homeBtn = document.getElementById('gbdHomeBtn')
-   homeBtn.addEventListener('click', () => {
-       document.getElementsByClassName('gbdContent')[0].innerHTML = gbdScreen()
+function getMetrics() 
+{
+    console.log("getting metrics")
+    chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
+    {
+        if (response !== undefined)
+        {
+            commitsData = response[0]
+            issuesData = response[1]
+            branchsData = response[2]
+            prData = response[3]
+        }
     })
 }
 
+const METRICS = 
+[
+  'commitsDashboard', // 0 
+  'issuesDashboard', // 1
+  'branchesDashboard', // 2
+  'prsDashboard' // 3
+]
 
+const homeBtn = () => {
+    let homeBtn = document.getElementById('gbdHomeBtn')
+    homeBtn.addEventListener('click', () => {
+        document.getElementsByClassName('gbdContent')[0].innerHTML = gbdScreen()
+     })
+ }
 
 const gbdScreen = () => 
 {   
@@ -32,137 +52,169 @@ const gbdScreen = () =>
     {
         let innerStyle = 
         `   
- 
-          #gbdScreen {
+            
+        #gbdScreen {
             position: relative;
             border-radius : 25px;
-            box-shadow: 5px 5px #e1e4e8; 
+            box-shadow: 5px 5px 5px 5px; 
             border-top : 0;
-            border-bottom : 3px #e36209 #e1e4e8 transparent;
-            border-right : 3px #e36209 #e1e4e8 transparent;
             width : 100%;
-            height : 500px;
+            height : 550px;
             left:0;
             
-          }
+        }
 
-          .gbdContent {
-              position: relative;
-              widht : 100%;
-              height: 80%;
-              top:10%;
-          }
-          
-          #gbdNavBar {
-           overflow: hidden;
-           background-color : #24292e;
-          }
-          
-          #gbdNavBar a {
-              float: left;
-              font-size: 16px;
-              color: white;
-              text-align: center;
-              padding : 14px 16px;
-              text-decoration: none;
-          }
-
-          .subNav {
-              float : left;
-              overflow: hidden;
-          }
-          
-          .subNav .subNavBtn {
-              font-size: 16px;
-              border: none;
-              outline: none;
-              color: white;
-              padding: 14px 16px;
-              background-color : inherit;
-              font-family: inherit;
-              margin: 0;
-          }
-
-          .gbdNavBar a:hover , .subNav:hover .subNavBtn {
-              blackground-color: red;
-          }
-
-          .subNavContent {
-              display: none;
-              position: absolute;
-              left: 0;
-              background-color : red;
-              width: 100%;
-              z-index: 1;
-          }
-
-          .subNavContent a {
-              float : left;
-              color: white;
-              text-decoration: none;
-          }
-
-          .subNav:hover .subNavContent {
-              display: block;
-          }
-          
-
-
-          .reponav-item.gbdselected {
-              color:#24292e;
-              background-color:#fff;
-              border-color:
-              rgba(0,51,102,0.7) #e1e4e8 transparent;
+        .gbdContent {
+            position: relative;
+            widht : 100%;
+            height: 80%;
+            top:10%;
             }
 
-    
-          .flexContainer
+            #gbdNavBar {
+                overflow: hidden;
+                background-color : #24292e;
+            }
+
+            #gbdNavBar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding : 14px 16px;
+                text-decoration: none;
+            }
+
+            .subNav {
+                float : left;
+                overflow: hidden;
+            }
+
+            .subNav .subNavBtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color : inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .gbdNavBar a:hover , .subNav:hover .subNavBtn {
+                blackground-color: red;
+            }
+
+            .subNavContent {
+                display: none;
+                position: absolute;
+                left: 0;
+                background-color : red;
+                width: 100%;
+                z-index: 1;
+            }
+
+            .subNav:hover .subNavContent {
+                display: block;
+            }
+
+            .subNavContent a {
+                float : left;
+                color: white;
+                text-decoration: none;
+            }
+        
+        .reponav-item.gbdselected {
+            color:#24292e;
+            background-color:#fff;
+            border-color:
+            rgba(0,51,102,0.7) #e1e4e8 transparent;
+            }
+
+        
+            .flexContainer
             {
                 position: relative;
-                width: 50%;
+                width: 60%;
                 height: 100%;
-                left : 50%;
+                left : 40%;
             }
 
- 
+
             .chartjs-render-monitor {
                 position: absolute;
                 border: 1px solid black;
-                box-shadow: 5px 5px #e1e4e8;
+                box-shadow: 5px 5px 5px 5px;
                 border-radius : 10px;
             }
             
 
             #commitsDashboard {
-                top: 0;
-                right: 0;
-                display: block;
+                top: -8px;
+                right: 5px;
                 width: 50% !important;
                 height: 50% !important;
             }
 
             #issuesDashboard {
-                top: 0;
-                left: 0;
-                display: block;
+                top: -8px;
+                left: -5px;
                 width: 50% !important;
                 height: 50% !important;
             }
 
             #prsDashboard {
                 bottom: 0;
-                right: 0;
-                display: block;
+                right: 5px;          
+                width: 50% !important;
+                height: 50% !important;
+            }
+            
+
+            #branchesDashboard {
+                bottom: 0;
+                left: -5px;  
                 width: 50% !important;
                 height: 50% !important;
             }
 
-            #branchesDashboard {
-                bottom: 0;
-                left: 0;
-                display: block;
-                width: 50% !important;
-                height: 50% !important;
+            .metricsPageTitle {
+               text-align: center;
+               box-shadow: 5px 5px 5px 5px black;
+               border-radius: 25px;
+            }
+
+            #commitsContainer {
+               display:flex;
+               padding-top: 15px;
+               height: 90%;
+            }
+
+            #repoCommiters{
+                border: 3px solid black;
+                width: 30%;
+                height: 100%;
+            }
+
+            #progressContainer {
+                border: 4px solid black;
+                width: 70%;
+                height: 100%;
+            }
+
+            .commitsRanking {
+                display: flex;
+                border: 1px solid black;
+            }
+
+            .commitsRanking i{
+                color: blue;
+            }
+
+            #img {
+                border: 1px solid black;
+                padding: 5px 15px 5px 15px;
+                border-radius: 50%;
             }
 
         `
@@ -171,9 +223,29 @@ const gbdScreen = () =>
         let css = document.createElement('style')
         css.innerHTML = innerStyle
 
-        //Inserting the tag into the head
+        let styles =  document.getElementsByTagName('style')
         let head =  document.getElementsByTagName('head')
-        head[0].appendChild(css)  
+
+        if (styles.length < 2)
+        {
+            //Inserting the tag into the head
+            head[0].appendChild(css)  
+        }
+        else
+        {
+            // Let's replace the already existing style
+            for (let i = 0; i < styles.length; i++)
+            {
+                let style = styles[i]
+                if (style !== undefined && style.innerText.includes('#gbdScreen'))
+                {
+                    let head =  document.getElementsByTagName('head')
+                    head[0].replaceChild(css, style)
+                    break
+                }
+            }
+        }
+        
     }
 
     const addScreen = () => {
@@ -185,10 +257,10 @@ const gbdScreen = () =>
                 <div class="subNav">
                     <button class="subNavBtn">Metrics</button>
                     <div class="subNavContent">
-                        <a href="#breakdown/Commits">Commits</a>
-                        <a href="#breakdown/Issues">Issues</a>
-                        <a href="#breakdown/Branchs">Branchs</a>
-                        <a href="#breakdown/PR">Pull Request</a>
+                        <a href="#breakdown/commits">Commits</a>
+                        <a href="#breakdown/issues">Issues</a>
+                        <a href="#breakdown/branches">Branches</a>
+                        <a href="#breakdown/pr">Pull Request</a>
                     </div>
                 </div>
             </div>
@@ -214,78 +286,152 @@ const gbdScreen = () =>
     let mainContainer = document.getElementsByClassName('container-lg clearfix new-discussion-timeline experiment-repo-nav  px-3')
     mainContainer[0].innerHTML = addScreen()
     mainContainer[0].style.maxWidth = "100%"
-   
+
     addCss()
     homeBtn()
-
     
     if (typeof chrome.app.isInstalled !== 'undefined')
     {
-        console.log("gbdScreen sending requests")
+        console.log("sending response - may take some time to load")
         chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
         {
-                if (response !== undefined)
-                {
-                    let screen = document.getElementById('gbdScreen')
-                    screen.className = 'plotted'
+            if (response !== undefined)
+            {
 
-                    let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-                    createIssuesChart(response[1], issuesCtx)
-                    
-                    let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-                    createCommitsChart(response[0], commitCtx)
-
-                    let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-                    createBranchesChart(response[2], branchesCtx)
-
-                    let prCtx = document.getElementById('prsDashboard').getContext('2d')
-                    createPRChart(response[3], prCtx)
-                }
-                else{
-                    console.log("gbdScreen-else")
-                    document.getElementById('gbdButton').click()
-                }                   
+                console.log("good response")
+                commitsData = response[0]
+                issuesData = response[1]
+                branchsData = response[2]
+                prData = response[3]
                 
+                let screen = document.getElementById('gbdScreen')
+                screen.className = 'plotted'
+
+                let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                createIssuesChart(issuesData, issuesCtx)
+                
+                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                createCommitsChart(commitsData, commitCtx)
+
+                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                createBranchesChart(branchsData, branchesCtx)
+
+                let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                createPRChart(prData, prCtx)
+                                
+                for (let i = 0; i < 4; i++)
+                    chartOnClick(i, response[i])
+
+            }
+            else
+                console.log("undefined response")
         })
     }
-
-
+    else
+        console.log("undefined chrome app")
     
 }
-
-
-
-
 
 const issuesPage = () => {
     let issuesPage = 
     `   
         <h2>Issues</h2>
-        <div>Issues Opened : </div>
-        <div>Issues Closed : 23</div>
-        <div>Top issues Creater: Wdvictor</div>
+        <div>Issues Opened : ${issuesData.open}</div>
+        <div>Issues Closed : ${issuesData.closed}</div>
+    `
+    return issuesPage
+
+}
+
+const branchPage = () => {
+    let branchPage = 
+    `
+        <h2> Branchs </h2>
+        <div>Branches open = </div>
+        <div>Branches closed = </div>
+        <div>Branches merged = </div>
 
     `
-    return issuesPage;
+
+    return branchPage
+}
+
+const prPage = () => {
+    let prPage = 
+    `
+        <h2> Pull Request </h2>
+        <div>Pull Request open = </div>
+        <div>Pull Request closed = </div>
+
+    `
+
+    return prPage
+}
+
+const commitsPage = () => {
+    let commitPage = 
+    `
+        <h2 class="metricsPageTitle">CommitsPage</h2>
+        <div id="commitsContainer">
+            <div id="repoCommiters">
+            </div>
+            <div id="progressContainer">
+            </div>
+        </div>
+
+    `
+
+    return commitPage
+}
+
+function plotTop10Commiter() {
+    let repoCommiters = document.getElementById("repoCommiters")
+    for(let i = 1; i <= commitsData.length; i++)
+    {
+        if (commitsData[i] != undefined)
+        {
+            let member = commitsData[i].name
+            let memberTotalCommits = commitsData[i].commits
+            let commiterData = document.createElement('div')
+            commiterData.innerHTML = 
+            `
+                <div class="commitsRanking">
+                    <div id="img">i</div>
+                    <div>${member} <i> ${memberTotalCommits}</i> commits</div>
+                </div>
+            `
+
+            repoCommiters.appendChild(commiterData)
+        }
+    }
 
 }
 
 
-
-
-
-//change all this function to work better with the new gbdContent Tag
 window.onhashchange = function()
 {
+    console.log("changed")
     let gbdButton = document.getElementById('gbdButton')
     if (gbdButton !== this.undefined)
     {
-        if (window.location.href.includes("#breakdown/Issues"))
+        if (window.location.href.includes("#breakdown/issues"))
         {
-            console.log('work')
             document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
+
         }
-        else if(window.location.href.includes("#breakdown"))
+        else if (window.location.href.includes("#breakdown/commits")) {
+            document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
+            plotTop10Commiter()
+        }
+        else if (window.location.href.includes("#breakdown/branches") ) {
+
+            document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
+        }
+        else if ( window.location.href.includes("#breakdown/pr")) {
+
+            document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
+        }
+        else if (window.location.href.includes("#breakdown"))
         {
             console.log("showing breakdown screen")
             let screen = document.getElementById('gbdScreen')
@@ -293,7 +439,6 @@ window.onhashchange = function()
                 console.log("already plotted")
             else
                 gbdScreen()
-            
         }
         else
         {
@@ -306,6 +451,23 @@ window.onhashchange = function()
     }
 }
 
+const chartOnClick = (type, data) =>
+{
+    const chart = document.getElementById(METRICS[type])
+    if (chart !== undefined && chart != null)
+    {
+        chart.addEventListener('click', function()
+        {
+            let screen = document.getElementById('gbdScreen')
+            if (screen != null)
+            {
+                console.log(METRICS[type].split("Dashboard")[0])
+                window.location.hash = `#breakdown/${METRICS[type].split("Dashboard")[0]}`
+            }
+        }
+    }
+}
+
 // TODO: arrumar este listener para nao disparar junto da mudança na url #breakdown
 // por enquanto deixamos ele desativado, a aba só abre com a mudança na url
 const gbdButtonOnClick = () => 
@@ -313,7 +475,15 @@ const gbdButtonOnClick = () =>
     const gbdtab = document.getElementById('gbdButton')
     if (gbdtab !== null)
     {
-        //gbdtab.addEventListener('click', gbdScreen)
+        gbdtab.addEventListener('click', function()
+        {
+            let screen = document.getElementById('gbdScreen')
+            if (screen == null && window.location.href.includes("#breakdown"))
+            {
+                console.log("reloading screen")
+                gbdScreen()
+            }
+        })
     }
 }
 
@@ -346,7 +516,6 @@ const update = () =>
     })	
 }
 
-
-
+getMetrics()
 gbdButtonOnClick()
 update()

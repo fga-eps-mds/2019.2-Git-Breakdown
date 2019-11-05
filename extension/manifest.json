@@ -18,10 +18,8 @@
     [{
         "matches": 
         [
-            "http://github.com/*",
-            "https://github.com/*",
-            "http://*.github.com/*",
-            "https://*.github.com/*",
+            "http://github.com/*/*",
+            "https://github.com/*/*",
             "http://18.215.242.203:3000/*"
         ],
         "js": 
