@@ -10,6 +10,7 @@ const commitsServiceProxy = httpProxy('commit_api:3001');
 const issuesServiceProxy = httpProxy('issue_api:3002');
 const pullrequestsServiceProxy = httpProxy('pullrequest_api:3003');
 const branchesServiceProxy = httpProxy('branch_api:3004');
+const infosServiceProxy = httpProxy('infos_api:3006')
 
 // Proxy request
 app.get('/commits', (req, res, next) => {
@@ -26,6 +27,10 @@ app.get('/pullrequests', (req, res, next) => {
 
 app.get('/branches', (req, res, next) => {
   branchesServiceProxy(req, res, next);
+})
+
+app.get('/infos', (req, res, next) => {
+  infosServiceProxy(req, res, next);
 })
 
 app.use(logger('dev'));

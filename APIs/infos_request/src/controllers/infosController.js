@@ -8,15 +8,16 @@ infos_route.get = async (req, res, next) => {
 
     //verify if exist the necessary parms to send a get request
     const endpoint = 'users'
+    const owner = req.query.owner
     profileInformation = []
 
-    if (false) {
+    if (owner === undefined) {
         return res.status(400).send('Error 400: Bad Request')
     }
     else {
         //header params send to get request
         const gitApiUrl = 'https://api.github.com'
-        const url_endpoint = `${gitApiUrl}/${endpoint}`
+        const url_endpoint = `${gitApiUrl}/${endpoint}/${owner}`
         const header_option = {
             headers: {
                 'Accept': 'application/json',
