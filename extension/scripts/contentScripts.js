@@ -1,11 +1,13 @@
-const load = (file, type_) => {
-    let src = document.createElement('script')
-    src.setAttribute('type', type_)
+
+const load = (file) => {
+    console.log(`:SYS: load(${file})`)
+    var src = document.createElement('script')
+    src.setAttribute('type', 'Module')
     src.setAttribute('src', file)
     document.getElementsByTagName('head')[0].appendChild(src)
 }
 
-load('./button.js', 'module')
-load('./screen.js', 'module')
-load('./popup.js', 'module')
-load('./Chart.min.js', 'text/javascript')
+//The first routine necessary to start the app: load the button
+load('./button.js')
+
+

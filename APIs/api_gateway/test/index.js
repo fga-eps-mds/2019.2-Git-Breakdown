@@ -1,53 +1,52 @@
 const chai = require('chai')
 const assert = chai.assert
-const axios = require('axios')
+const request = require('request')
 const expect = chai.expect
 
 describe('API Gateway integration tests', () => {
     let urlBase = 'http://localhost:3000'
-    const token = require('../../constants')
-    let urlParams = '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=' + token
+    let urlParams = '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
     
-    it('/commits: valid request', (done) => {
-        axios.get(urlBase+'/commits'+urlParams).then((response) => {
+    it('/commits: valid request', async () => {
+        await request.get( {
+            url : urlBase+'/commits'+urlParams
+        }, (error, response, body) => {
                 let _body = {}
                 try{
-                  _body = response.data
+                  _body = JSON.parse(body)
                 }
                 catch(e){
                   _body = {}
                 }
                 if(response.status != undefined)
-                   expect(response.status).to.equal(200)
+                    expect(response.status).to.equal(200)
             }
-        ).catch(err => {
-          const errrorResponse = err
-        })
-        done()
+        )
     })
-    it('/commits: invalid request', (done) => {
-        axios.get(urlBase+'/commits').then((response) => {
+    it('/commits: invalid request', async () => {
+        await request.get( {
+            url : urlBase+'/commits'
+        }, (error, response, body) => {
                 let _body = {}
                 try{
-                  _body = response.data
+                  _body = JSON.parse(body)
                 }
                 catch(e){
                   _body = {}
                 }
-                if(response.status != undefined)
-                    expect(response.status).to.equal(400)
+                if(response.statusCode != undefined)
+                    expect(response.statusCode).to.equal(400)
             }
-        ).catch(err => {
-          expect(err.response.status).to.equal(400)
-        })
-        done()
+        )
     })
     
-    it('/issues: valid request', (done) => {
-        axios.get(urlBase+'/issues'+urlParams).then((response) => {
+    it('/issues: valid request', async () => {
+        await request.get( {
+            url : urlBase+'/issues'+urlParams
+        }, (error, response, body) => {
                 let _body = {}
                 try{
-                  _body = response.data
+                  _body = JSON.parse(body)
                 }
                 catch(e){
                   _body = {}
@@ -61,34 +60,32 @@ describe('API Gateway integration tests', () => {
                     expect(_body).to.have.property('closedPercent')
                 }
             }
-        ).catch(err => {
-          const errorResponse = err
-        })
-        done()
+        )
     })
-    it('/issues: invalid request', (done) => {
-       axios.get(urlBase+'/issues').then((response) => {
+    it('/issues: invalid request', async () => {
+        await request.get( {
+            url : urlBase+'/issues'
+        }, (error, response, body) => {
                 let _body = {}
                 try{
-                  _body = response.data
+                  _body = JSON.parse(body)
                 }
                 catch(e){
                   _body = {}
                 }
-                if(response.status != undefined)
-                    expect(response.status).to.equal(400)
+                if(response.statusCode != undefined)
+                    expect(response.statusCode).to.equal(400)
             }
-        ).catch(err => {
-          expect(err.response.status).to.equal(400)
-        })
-        done()
+        )
     })
     
-    it('/pullrequests: valid request', (done) => {
-        axios.get(urlBase+'/pullrequests'+urlParams).then((response) => {
+    it('/pullrequests: valid request', async () => {
+        await request.get( {
+            url : urlBase+'/pullrequests'+urlParams
+        }, (error, response, body) => {
                 let _body = {}
                 try{
-                  _body = response.data
+                  _body = JSON.parse(body)
                 }
                 catch(e){
                   _body = {}
@@ -96,34 +93,32 @@ describe('API Gateway integration tests', () => {
                 if(response.status != undefined)
                     expect(response.status).to.equal(200)
             }
-        ).catch(err => {
-          const errorResponse = err
-        })
-        done()
+        )
     })
-    it('/pullrequests: invalid request', (done) => {
-        axios.get(urlBase+'/pullrequests').then((response, body) => {
+    it('/pullrequests: invalid request', async () => {
+        await request.get( {
+            url : urlBase+'/pullrequests'
+        }, (error, response, body) => {
                 let _body = {}
                 try{
-                  _body = response.data
+                  _body = JSON.parse(body)
                 }
                 catch(e){
                   _body = {}
                 }
-                if(response.status != undefined)
-                    expect(response.status).to.equal(400)
+                if(response.statusCode != undefined)
+                    expect(response.statusCode).to.equal(400)
             }
-        ).catch(err => {
-          expect(err.response.status).to.equal(400)
-        })
-        done()
+        )
     })
     
-    it('/branches: valid request', (done) => {
-        axios.get(urlBase+'/branches'+urlParams).then((response) => {
+    it('/branches: valid request', async () => {
+        await request.get( {
+            url : urlBase+'/branches'+urlParams
+        }, (error, response, body) => {
                 let _body = {}
                 try{
-                  _body = response.data
+                  _body = JSON.parse(body)
                 }
                 catch(e){
                   _body = {}
@@ -131,26 +126,22 @@ describe('API Gateway integration tests', () => {
                 if(response.status != undefined)
                     expect(response.status).to.equal(200)
             }
-        ).catch(err => {
-          const errorResponse = err
-        })
-        done()
+        )
     })
-    it('/branches: invalid request', (done) => {
-        axios.get(urlBase+'/branches').then((response) => {
+    it('/branches: invalid request', async () => {
+        await request.get( {
+            url : urlBase+'/branches'
+        }, (error, response, body) => {
                 let _body = {}
                 try{
-                  _body = response.data
+                  _body = JSON.parse(body)
                 }
                 catch(e){
                   _body = {}
                 }
-                if(response.status != undefined)
-                    expect(response.status).to.equal(400)
+                if(response.statusCode != undefined)
+                    expect(response.statusCode).to.equal(400)
             }
-        ).catch(err => {
-          expect(err.response.status).to.equal(400)
-        })
-        done()
+        )
     })
 })
