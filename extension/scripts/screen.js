@@ -464,7 +464,7 @@ const chartOnClick = (type, data) =>
                 console.log(METRICS[type].split("Dashboard")[0])
                 window.location.hash = `#breakdown/${METRICS[type].split("Dashboard")[0]}`
             }
-        }
+        })
     }
 }
 
