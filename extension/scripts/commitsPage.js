@@ -1,5 +1,6 @@
 
 function commitsPage(){
+
     let commitPage = 
     `
         <h2 class="metricsPageTitle">CommitsPage</h2>
@@ -11,9 +12,9 @@ function commitsPage(){
         </div>
 
     `
-
     return commitPage
 }
+
 
 
 function plotTop10Commiter(){

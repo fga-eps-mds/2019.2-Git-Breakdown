@@ -125,6 +125,8 @@ window.onhashchange = function()
             document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
             try {
                 plotTop10Commiter()
+                document.getElementById('progressContainer').appendChild(timeConfigPage())
+                addRangeOutput()
             } catch(err) {
                 console.log("GDB Erro: ", err)
             }

@@ -30,6 +30,7 @@
             "scripts/oauth.js",
             "scripts/Chart.min.js",
             "scripts/graph.js",
+            "scripts/timeConfigPage.js",
             "scripts/branchesPage.js",            
             "scripts/commitsPage.js",
             "scripts/issuesPage.js",
