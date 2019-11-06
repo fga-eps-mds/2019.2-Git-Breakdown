@@ -1,3 +1,15 @@
+function selectBehavior() {
+    let gbdtab = document.getElementById('gbdButton')
+    let current_selected = document.getElementsByClassName('js-selected-navigation-item selected reponav-item')
+    gbdtab.classList.remove('gbdselected')
+
+    
+    if (current_selected[0] !== undefined)
+        current_selected[0].classList.remove('selected')
+
+    gbdtab.className = 'js-selected-navigation-item gbdselected reponav-item'
+}
+
 
 const buttonGbd = () => { 
     var tab = document.createElement('a')
