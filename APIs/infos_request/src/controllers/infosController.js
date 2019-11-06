@@ -32,7 +32,10 @@ infos_route.get = async (req, res, next) => {
             await axios.get(url_endpoint, header_option).then(async (response) => {
                 //commits hold a vector of json's data
                 const profile = response.data
-                return res.status(200).json(profile)
+                let info = {'name': profile.nome, 'login': profile.login, 
+                            'avatar': profile.avatar_url, 'bio': profile.bio,
+                            'location': profile.location}
+                return res.status(200).json(info)
             }).catch(function (err) {
                 console.log(err)
             })
