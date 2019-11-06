@@ -4,7 +4,6 @@
 <p align="right">
 
 <a><img src="https://img.shields.io/badge/docs-Github%20Pages-blue.svg"></a>
-<a><img src="https://gitlab.com/omateusp/2019-2-Git-Breakdown/badges/master/pipeline.svg"></a>
 
 
 

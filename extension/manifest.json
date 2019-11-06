@@ -1,6 +1,6 @@
 {
     "name": "GitBreakdown",
-    "version": "0.8",
+    "version": "0.7",
     "description": "GitBreakdown Chrome extension",
     "permissions": 
     [
@@ -28,7 +28,10 @@
         [
             "scripts/oauth.js",
             "scripts/contentScripts.js",
-            "scripts/button.js"
+            "scripts/Chart.min.js",
+            "scripts/graph.js",
+            "scripts/button.js",
+            "scripts/screen.js"
         ]
     }],
     "browser_action": 
