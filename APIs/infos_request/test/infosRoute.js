@@ -1,7 +1,6 @@
 const express = require('express')
 const chai = require('chai')
 const axios = require('axios')
-const infos_route = express.Router()
 const expect = chai.expect
 
 
