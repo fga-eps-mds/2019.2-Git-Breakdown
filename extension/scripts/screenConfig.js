@@ -117,6 +117,8 @@ window.onhashchange = function()
         {
             try{
                 document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
+                document.getElementById('progressContainer').appendChild(timeConfigPage())
+
             }catch(err){
                 console.log("GDB Erro: ", err)
             }
@@ -126,18 +128,26 @@ window.onhashchange = function()
             try {
                 plotTop10Commiter()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
-                addRangeOutput()
             } catch(err) {
                 console.log("GDB Erro: ", err)
             }
         }
         else if (window.location.href.includes("#breakdown/branches") ) {
-
-            document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
+            try{
+                document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
+                document.getElementById('progressContainer').appendChild(timeConfigPage())
+            }catch(err){
+                console.log("GBD error:", err)
+            }
         }
         else if ( window.location.href.includes("#breakdown/pr")) {
-
-            document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
+            try{
+                document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
+                document.getElementById('progressContainer').appendChild(timeConfigPage())
+            }catch(err){
+                console.log("GBD error:", err)
+            }
+            
         }
         else if (window.location.href.includes("#breakdown"))
         {
