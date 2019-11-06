@@ -3,9 +3,9 @@ function timeConfigPage(){
     timeConfigPage.id = "configPage"
     timeConfigPage.innerHTML = 
     `
-        <input name="spritRange" type="number" min="1" max="10"
+        <input name="sprintRange" type="number" min="1" max="10"
         id="sprintRange">
-        <label for="sprintRange">SprintRage<label>
+        <label for="sprintRange">SprintRange<label>
 
     `
     return timeConfigPage

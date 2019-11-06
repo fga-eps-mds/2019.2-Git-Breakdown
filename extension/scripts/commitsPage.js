@@ -19,7 +19,7 @@ function commitsPage(){
 
 function plotTop10Commiter(){
     let repoCommiters = document.getElementById("repoCommiters")
-    for(let i = 1; i <= commitsData.length; i++){
+    for(let i = 0; i < commitsData.length; i++){
         if (commitsData[i] != undefined){
             let member = commitsData[i].name
             let memberTotalCommits = commitsData[i].commits
