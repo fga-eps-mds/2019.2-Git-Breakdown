@@ -1,9 +1,13 @@
 function prPage(){
     let prPage = 
     `
-        <h2> Pull Request </h2>
-        <div>Pull Request open = </div>
-        <div>Pull Request closed = </div>
+    <h2 class="metricsPageTitle">Pull Request status</h2>
+    <div id="metricContainer">
+        <div id="repoRanking">
+        </div>
+        <div id="progressContainer">
+        </div>
+    </div>
 
     `
     return prPage

@@ -1,9 +1,13 @@
 function issuesPage (){
     let issuesPage = 
     `   
-        <h2>Issues</h2>
-        <div>Issues Opened : ${issuesData.open}</div>
-        <div>Issues Closed : ${issuesData.closed}</div>
+    <h2 class="metricsPageTitle">Issues Status</h2>
+    <div id="metricContainer">
+        <div id="repoRanking">
+        </div>
+        <div id="progressContainer">
+        </div>
+    </div>
     `
     return issuesPage
 
