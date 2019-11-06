@@ -4,12 +4,10 @@ const axios = require('axios')
 const infos_route = express.Router()
 const expect = chai.expect
 
-//const owner = req.query.owner
+
 const urlBase = 'http://localhost:3006/infos'
 const token = require('../../constants')
 const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=' + token
-
-//const urlEndpoint = urlBase +'?owner='+owner+'&'+token
 
 
 describe('Infos route tests', () => {
