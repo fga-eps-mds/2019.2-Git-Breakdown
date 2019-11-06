@@ -47,7 +47,7 @@
     }
 
     .gbdNavBar a:hover , .subNav:hover .subNavBtn {
-        blackground-color: red;
+        background-color: red;
     }
 
     .subNavContent {
@@ -173,6 +173,13 @@
         transition: opacity .2s;
       }
 
-      #weeksRange:hover {
-        opacity: 1;
-      }
+
+#configPage{
+    position: relative;
+    width: 15%;
+    text-align: center;
+    box-shadow: 3px 3px 3px 3px black;
+    border-radius: 5%;
+    left:85%;
+    top: 0;
+}
