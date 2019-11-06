@@ -113,12 +113,13 @@ window.onhashchange = function()
     let gbdButton = document.getElementById('gbdButton')
     if (gbdButton !== this.undefined)
     {
+        zenhubOnClick() 
         if (window.location.href.includes("#breakdown/issues"))
         {
             try{
                 document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
-
+                timeConfigOnClick()
             }catch(err){
                 console.log("GDB Erro: ", err)
             }
@@ -128,6 +129,7 @@ window.onhashchange = function()
             try {
                 plotTop10Commiter()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
+                timeConfigOnClick()
             } catch(err) {
                 console.log("GDB Erro: ", err)
             }
@@ -136,6 +138,7 @@ window.onhashchange = function()
             try{
                 document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
+                timeConfigOnClick()
             }catch(err){
                 console.log("GBD error:", err)
             }
@@ -144,6 +147,7 @@ window.onhashchange = function()
             try{
                 document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
+                timeConfigOnClick()
             }catch(err){
                 console.log("GBD error:", err)
             }
@@ -154,6 +158,7 @@ window.onhashchange = function()
             let screen = document.getElementById('gbdScreen')
             if (screen == null)
                 try{
+                    selectBehavior()
                     initScreen()
                 }catch(err){
                     console.log("GBD error:", err)
@@ -163,8 +168,7 @@ window.onhashchange = function()
         {
             if (gbdButton.className == 'js-selected-navigation-item gbdselected reponav-item')
             {
-                zenhubOnClick()
-                selectBehavior()
+                gbdButton.classList.remove('gbdselected')
             }
         }
     }

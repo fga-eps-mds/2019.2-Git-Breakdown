@@ -8,7 +8,7 @@ function zhplugin()
 function zenhubOnClick()
 {
     const zhTab = document.getElementsByClassName("reponav-item zh-sidebar-item zh-navbar-link zh-topbar-item selected")[0]
-    if (zhTab !== null && zhTab !== undefined)
+    if (zhTab !== undefined)
     {
         zhTab.addEventListener('click', function()
         {
