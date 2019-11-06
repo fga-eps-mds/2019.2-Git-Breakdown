@@ -1,51 +1,56 @@
 const chai = require('chai')
+const branches = require('../src/routes/branchRoute')
+const assert = chai.assert
+const request = require('request')
 const axios = require('axios')
 const expect = chai.expect
 
-const urlBase = 'http://localhost:3004/branches'
-const token = require('../../constants')
-const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown=' + token
+const urlBase = 'http://localhost:3000/branches'
 
 describe('Branches route tests', () => {
-  it('Test: Request valid', (done) => {
-    axios.get(urlEndpoint).then(response => {
+  it('Test: Request valid', () => {
+    axios.get(
+      {
+        url : urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown'
+      },
+      (error, response, body) => {
 
-        let _body = {}
+        let _body = {};
         try{
-          _body = response.data
+          _body = JSON.parse(body);
         }
         catch(e){
-          _body = {}
+          _body = {};
         }
 
         if(response.status != undefined)
-            expect(response.status).to.equal(200);
+            expect(response.statusCode).to.equal(200);
 
-        if(_body.branches != undefined){
+        if(_body != undefined){
             expect(_body).to.have.property('active_branches')
             expect(_body).to.have.property('percentage_merged')
         }
       }
-    ).catch(err => {
-      const errorResponse = err
-    })
-    done()
-  })
+    );
+  });
 
-  it('Test: Request without parameters', (done) => {
-    axios.get(urlBase).then(response => {
+  it('Test: Request without parameters', () => {
+    axios.get(
+      {
+        url : urlBase + '?owner=f'
+      },
+      async (error, response, body) => {
 
-        let _body = {}
+        let _body = {};
         try{
-          _body = response.data
+          _body = await JSON.parse(body);
         }
         catch(e){
-          _body = {}
+          _body = {};
         }
+
+        expect(response.statusCode).to.equal(400);
       }
-    ).catch(err => {
-      expect(err.response.status).to.equal(400)
-    })
-    done()
-  })
-})
+    );
+  });
+});

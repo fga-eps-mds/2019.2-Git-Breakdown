@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const queryString = { state:'closed', per_page: 10000 }
+const queryString = { state:'closed' }
 
 exports.get = async (req, res, next) => 
 {
@@ -48,8 +48,7 @@ exports.get = async (req, res, next) =>
                         'Accept-Charset': 'utf-8',
                         'User-Agent': '2019.2-Git-Breakdown',
                         'Authorization': `token ${token}`
-                    },
-                    params: queryString
+                    }
                 }
             
                 await axios.get(url_endpointB, header_optionB).then( response => {
