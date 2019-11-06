@@ -1,10 +1,10 @@
 const express = require('express')
 const axios = require('axios')
-const infos_route = express.Router()
+const profile_route = express.Router()
 const queryString = { state:'all', per_page: 10000 }
 
 
-infos_route.get = async (req, res, next) => {
+profile_route.get = async (req, res, next) => {
 
     //verify if exist the necessary parms to send a get request
     const endpoint = 'users'
@@ -46,4 +46,4 @@ infos_route.get = async (req, res, next) => {
 }
 
 //export this functionality as a module
-module.exports = infos_route
+module.exports = profile_route
