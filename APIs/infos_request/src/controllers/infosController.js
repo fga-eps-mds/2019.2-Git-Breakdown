@@ -30,7 +30,7 @@ infos_route.get = async (req, res, next) => {
 
         try {
             await axios.get(url_endpoint, header_option).then(async (response) => {
-                //commits hold a vector of json's data
+                //infos hold a vector of json's data
                 const profile = response.data
                 let info = {'name': profile.nome, 'login': profile.login, 
                             'avatar': profile.avatar_url, 'bio': profile.bio,
