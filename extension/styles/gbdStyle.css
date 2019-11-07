@@ -17,58 +17,7 @@ height: 80%;
 top:10%;
 }
 
-#gbdNavBar {
-overflow: hidden;
-background-color : #24292e;
-}
 
-#gbdNavBar a {
-float: left;
-font-size: 16px;
-color: white;
-text-align: center;
-padding : 14px 16px;
-text-decoration: none;
-}
-
-.subNav {
-float : left;
-overflow: hidden;
-}
-
-.subNav .subNavBtn {
-font-size: 16px;
-border: none;
-outline: none;
-color: white;
-padding: 14px 16px;
-background-color : inherit;
-font-family: inherit;
-margin: 0;
-}
-
-.gbdNavBar a:hover , .subNav:hover .subNavBtn {
-background-color: red;
-}
-
-.subNavContent {
-display: none;
-position: absolute;
-left: 0;
-background-color : red;
-width: 100%;
-z-index: 1;
-}
-
-.subNav:hover .subNavContent {
-display: block;
-}
-
-.subNavContent a {
-float : left;
-color: white;
-text-decoration: none;
-}
 
 .reponav-item.gbdselected {
 color:#24292e;
@@ -187,34 +136,7 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
 }
 
 
-
 input[type=number]::-webkit-outer-spin-button, 
 input[type=number]::-webkit-inner-spin-button {
 -webkit-appearance: inner-spin-button !important;
 }
-
-#configPage {
-    position: relative;
-    display: none;
-    width: 30%;
-    height: 30%;
-    top:0;
-    right:-70%;
-    box-shadow: 2px 2px 2px 2px black;
-    border-radius: 5%;
-
-} 
-
-#btnOpenConfigPage {
-    background-image:url("https://img.icons8.com/ios/40/000000/hourglass.png") ;
-    text-decoration: none;
-    position: relative;
-    width: 40px;
-    height: 40px;
-    top:0;
-    right: -94.9%;
-    box-shadow: 3px 3px 3px 3px black;
-    border-radius: 5%;
-
-}
-

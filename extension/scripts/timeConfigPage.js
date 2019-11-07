@@ -1,37 +1,3 @@
-function timeConfigPage(){
-    let timeConfigPage =  document.createElement('div')
-    timeConfigPage.id = "configPage"
-    timeConfigPage.innerHTML = 
-    `
-        <form>
-            <div id="formInput">
-                <label for="SprintSize">Sprint Size</label>
-                <input type="number" name="SprintSize" id="SprintSize" min="1" max="10">
-            </div>
-            <div id="formBtns">
-                <button type="submit" id="btnOk">send</button>
-                <button type="button" id="btnCancel">cancel</buton>
-            </div>
-        </form>
-    `
-    return timeConfigPage
-}
-
-
-
-function openSprintPopUp(){
-    document.getElementById("btnOpenConfigPage").addEventListener('click', function(){
-        document.getElementById("configPage").style.display="block"
-    })
-}
-
-function btnCancel(){
-    document.getElementById("btnCancel").addEventListener('click', function(){
-        document.getElementById("configPage").style.display="none"
-    })
-    
-}
-
 
 function settingsOnClick()
 {

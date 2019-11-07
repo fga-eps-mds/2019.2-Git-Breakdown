@@ -4,11 +4,11 @@ function commitsPage(){
     let commitPage = 
     `
         <h2 class="metricsPageTitle">Commits Status</h2>
-        <div id="metricContainer">
-            <div id="repoRanking">
+        <div id="metricContainer" class="container-fluid">
+            <div id="repoRanking" class="container-fluid">
             </div>
-            <div id="progressContainer">
-                <button type="button" id="btnOpenConfigPage"></button>
+            <div id="progressContainer" class="container-fluid">
+
             </div>
         </div>
     `

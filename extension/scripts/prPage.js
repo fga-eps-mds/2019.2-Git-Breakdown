@@ -6,7 +6,6 @@ function prPage(){
         <div id="repoRanking">
         </div>
         <div id="progressContainer">
-            <button type="button" id="btnOpenConfigPage"></button>
         </div>
     </div>
 

@@ -122,10 +122,6 @@ window.onhashchange = function()
             try{
                 
                 document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
-                document.getElementById('progressContainer').appendChild(timeConfigPage())
-                openSprintPopUp()
-                btnCancel()
-                timeConfigOnClick()
             }catch(err){
                 console.log("GDB Erro: ", err)
             }
@@ -135,10 +131,7 @@ window.onhashchange = function()
                    
                 document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
                 plotTop10Commiter()
-                document.getElementById('progressContainer').appendChild(timeConfigPage())
-                openSprintPopUp()
-                btnCancel()
-                timeConfigOnClick()
+
             } catch(err) {
                 console.log("GDB Erro: ", err)
             }
@@ -146,10 +139,6 @@ window.onhashchange = function()
         else if (window.location.href.includes("#breakdown/branches") ) {
             try{
                 document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
-                document.getElementById('progressContainer').appendChild(timeConfigPage())
-                openSprintPopUp()
-                btnCancel()
-                timeConfigOnClick()
             }catch(err){
                 console.log("GBD error:", err)
             }
@@ -158,10 +147,7 @@ window.onhashchange = function()
             try{
                    
                 document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
-                document.getElementById('progressContainer').appendChild(timeConfigPage())
-                openSprintPopUp()
-                btnCancel()
-                timeConfigOnClick()
+                
             }catch(err){
                 console.log("GBD error:", err)
             }
