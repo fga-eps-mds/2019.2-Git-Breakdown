@@ -138,13 +138,7 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
     height: 90%;
 }
 
-#repoRanking{
-    border-radius: 25px;
-    box-shadow: 5px 0 20px 5px black;
-    border: 3px solid black;
-    width: 30%;
-    height: 103%;
-}
+
 
 #progressContainer {
     padding: 4px;
@@ -157,13 +151,32 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
     height: 103%;
 }
 
+#repoRanking{
+    overflow: scroll;
+    padding: 1%;
+    border-radius: 25px;
+    box-shadow: 5px 0 20px 5px black;
+    border: 3px solid black;
+    width: 30%;
+    height: 103%;
+}
+
 .commitsRanking {
+    background-color: rosybrown;
+    padding: 1%;
+    margin:1%;
     display: flex;
     border: 1px solid black;
+    
 }
 
 .commitsRanking i{
     color: blue;
+}
+
+#memberDisplay{
+    font-size: 115%;
+    font-weight: bolder;
 }
 
 #img {

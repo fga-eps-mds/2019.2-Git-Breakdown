@@ -8,7 +8,7 @@ function commitsPage(){
             <div id="repoRanking">
             </div>
             <div id="progressContainer">
-                <button type="button" id="btnOpenConfigPage">Sprint Size</button>
+                <button type="button" id="btnOpenConfigPage"></button>
             </div>
         </div>
 
@@ -25,12 +25,12 @@ function plotTop10Commiter(){
             let member = commitsData[i].name
             let memberTotalCommits = commitsData[i].commits
             let commiterData = document.createElement('div')
+            commiterData.className = "commitsRanking"
             commiterData.innerHTML = 
             `
-                <div class="commitsRanking">
-                    <div id="img">i</div>
-                    <div>${member} <i> ${memberTotalCommits}</i> commits</div>
-                </div>
+                <div id="img">i</div>
+                <div id="memberDisplay">${member} <i> ${memberTotalCommits}</i> commits</div>
+
             `
             repoCommiters.appendChild(commiterData)
         }
