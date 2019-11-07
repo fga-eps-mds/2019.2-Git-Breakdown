@@ -1,6 +1,7 @@
 function gbdScreen()
 {
-    let url = chrome.extension.getURL("images/logo.jpg")
+    let urlLogo = chrome.extension.getURL("images/logo.jpg")
+    let urlCog = chrome.extension.getURL("images/cog-4x.png")
     let gbdScreen = 
     `
     <div class="container-fluid">    
@@ -8,7 +9,7 @@ function gbdScreen()
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="box-shadow: 1px 1px 1px 1px black;
         border-radius: 20px;">
 
-            <a class="navbar-brand" href="#breakdown"><img src="${url}" width="30" height="30" class="d-inline-block align-top"> GitBreakdown</a>
+            <a class="navbar-brand" href="#breakdown"><img src="${urlLogo}" width="30" height="30" class="d-inline-block align-top"> GitBreakdown</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -31,6 +32,14 @@ function gbdScreen()
 
                 </li>
 
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <button type="button" class="btn btn-outline-info" id="settingsButton">
+                        <img src="${urlCog}" width="30" height="30" class="d-inline-block align-top">
+                        </button>
+                    </li>
                 </ul>
 
             </div>

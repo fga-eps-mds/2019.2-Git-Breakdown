@@ -33,6 +33,11 @@ function btnCancel(){
 }
 
 
+function settingsOnClick()
+{
+    
+}
+
 
 function test(data)
 {
