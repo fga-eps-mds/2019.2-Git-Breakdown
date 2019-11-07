@@ -162,6 +162,7 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
 }
 
 .commitsRanking {
+    width: 100%;
     background-color: rosybrown;
     padding: 1%;
     margin:1%;

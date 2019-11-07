@@ -24,7 +24,7 @@ function plotTop10Commiter(){
         if (commitsData[i] != undefined){
             let member = commitsData[i].name
             let memberTotalCommits = commitsData[i].commits
-            let commiterData = document.createElement('div')
+            let commiterData = document.createElement('button')
             commiterData.className = "commitsRanking"
             commiterData.innerHTML = 
             `
