@@ -27,6 +27,8 @@
         "js": 
         [
             "scripts/oauth.js",
+            "scripts/jquery.min.js",
+            "scripts/bootstrap.min.js",
             "scripts/Chart.min.js",
             "scripts/timeConfigPage.js",
             "scripts/graph.js",

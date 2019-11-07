@@ -1,7 +1,8 @@
 function gbdScreen()
 {
     let gbdScreen = 
-    `    
+    `
+    <div class="container-fluid">    
     <div id="gbdScreen">
         <div id="gbdNavBar">
             <a id="gbdHomeBtn" href="#breakdown">Home</a>
@@ -23,6 +24,7 @@ function gbdScreen()
                 <canvas id="branchesDashboard"></canvas>       
             </div>
         </div>
+    </div>
     </div>
     `
     return gbdScreen

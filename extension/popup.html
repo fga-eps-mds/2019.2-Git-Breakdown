@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
         <style>
             button 
             {
@@ -26,13 +29,16 @@
             }
         </style>
         <script src="scripts/Chart.min.js"></script>
+        
     </head>
     <body>
-        <div id="app">
-            <h1>GitBreakdown</h1>
-            <button id="loginButton">Log in to GitHub</button>
-            <button id="logoutButton">Logout</button>
+        <div class="container" id="app">
+            <h1 class="display-4">GitBreakdown</h1>
+            <button type = "button" class="btn btn-dark btn-lg btn-block" id="loginButton">Log in to GitHub</button>
+            <button type = "button" class="btn btn-dark btn-lg btn-block" id="logoutButton">Logout</button>
         </div>
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/bootstrap.min.js"></script>
         <script type="module" src="scripts/popup.js"> </script>
     </body>
 </html>

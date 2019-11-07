@@ -11,7 +11,6 @@ function commitsPage(){
                 <button type="button" id="btnOpenConfigPage"></button>
             </div>
         </div>
-
     `
     return commitPage
 }
