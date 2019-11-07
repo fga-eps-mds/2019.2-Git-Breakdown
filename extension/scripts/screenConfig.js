@@ -1,10 +1,10 @@
+
 let url_base = 'http://18.215.242.203:3000'
 
 let issuesData , branchsData, prData, commitsData
 
 function getMetrics() 
 {
-    console.log("getting metrics")
     chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
     {
         if (response !== undefined)
@@ -38,6 +38,7 @@ const homeBtn = () => {
 
 const initScreen = () => 
 {   
+    
     //function to control the select behavior in buttons inside navbar
     zhplugin()
     selectBehavior()
@@ -117,18 +118,24 @@ window.onhashchange = function()
         if (window.location.href.includes("#breakdown/issues"))
         {
             try{
+                
                 document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
+                openSprintPopUp()
+                btnCancel()
                 timeConfigOnClick()
             }catch(err){
                 console.log("GDB Erro: ", err)
             }
         }
         else if (window.location.href.includes("#breakdown/commits")){
-            document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
             try {
+                   
+                document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
                 plotTop10Commiter()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
+                openSprintPopUp()
+                btnCancel()
                 timeConfigOnClick()
             } catch(err) {
                 console.log("GDB Erro: ", err)
@@ -138,6 +145,8 @@ window.onhashchange = function()
             try{
                 document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
+                openSprintPopUp()
+                btnCancel()
                 timeConfigOnClick()
             }catch(err){
                 console.log("GBD error:", err)
@@ -145,8 +154,11 @@ window.onhashchange = function()
         }
         else if ( window.location.href.includes("#breakdown/pr")) {
             try{
+                   
                 document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
                 document.getElementById('progressContainer').appendChild(timeConfigPage())
+                openSprintPopUp()
+                btnCancel()
                 timeConfigOnClick()
             }catch(err){
                 console.log("GBD error:", err)
@@ -204,6 +216,11 @@ const gbdButtonOnClick = () =>{
     }
 }
 
-getMetrics()
-gbdButtonOnClick()
+try{
+    getMetrics()
+    gbdButtonOnClick()
+}catch(err){
+    console.log("GBD error:", err)
+}
+
 

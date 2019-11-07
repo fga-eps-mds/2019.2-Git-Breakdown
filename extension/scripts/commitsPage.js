@@ -8,6 +8,7 @@ function commitsPage(){
             <div id="repoRanking">
             </div>
             <div id="progressContainer">
+                <button type="button" id="btnOpenConfigPage">Sprint Size</button>
             </div>
         </div>
 
