@@ -106,6 +106,8 @@ const initScreen = () =>
         console.log("GBD error:", err)
     }
 
+    settingsOnClick()
+
 }
 
 window.onhashchange = function()

@@ -2,7 +2,7 @@
     "name": "GitBreakdown",
     "version": "0.7",
     "description": "GitBreakdown Chrome extension",
-    "web_accessible_resources": ["images/logo.jpg", "images/cog-4x.png"],
+    "web_accessible_resources": ["images/logo.jpg", "images/cog-8x.png"],
     "permissions": 
     [
         "declarativeContent",

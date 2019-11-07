@@ -35,14 +35,20 @@ function btnCancel(){
 
 function settingsOnClick()
 {
-    
-}
-
-
-function test(data)
-{
-    alert(data)
-    return data
+    let button = document.getElementById("settingsButton")
+    if (button !== undefined && button !== null)
+    {
+        let saveButton = document.getElementById("settingsSave")
+        if (saveButton !== undefined && saveButton !== null)
+        {
+            saveButton.addEventListener('click', function()
+            {
+                let input = document.getElementById('sprintLength').value
+                alert(input) // TODO: colocar este dado dentro de uma variável acessível pelas metric pages
+                $('#settingsModal').modal('toggle');
+            })
+        }
+    }
 }
 
 // event listener to listen to the time configuration
