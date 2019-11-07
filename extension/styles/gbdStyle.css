@@ -101,39 +101,11 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
 }
 
 #repoRanking{
-    overflow: scroll;
     padding: 1%;
-    border-radius: 25px;
+    border-radius: 1%;
     box-shadow: 5px 0 20px 5px black;
     border: 3px solid black;
-    width: 30%;
-    height: 103%;
-}
-
-.commitsRanking {
-    width: 100%;
-    background-color: rosybrown;
-    padding: 1%;
-    margin:1%;
-    display: flex;
-    border: 1px solid black;
-    
-}
-
-.commitsRanking i{
-    color: blue;
-}
-
-#memberDisplay{
-    font-size: 115%;
-    font-weight: bolder;
-}
-
-#img {
-    border: 1px solid black;
-    padding: 5px 15px 5px 15px;
-    border-radius: 50%;
-}
+} 
 
 
 input[type=number]::-webkit-outer-spin-button, 

@@ -5,7 +5,7 @@ function commitsPage(){
     `
         <h2 class="metricsPageTitle">Commits Status</h2>
         <div id="metricContainer" class="container-fluid">
-            <div id="repoRanking" class="container-fluid">
+            <div id="repoRanking" class="overflow-auto list-group">
             </div>
             <div id="progressContainer" class="container-fluid">
 
@@ -24,10 +24,9 @@ function plotTop10Commiter(){
             let member = commitsData[i].name
             let memberTotalCommits = commitsData[i].commits
             let commiterData = document.createElement('button')
-            commiterData.className = "commitsRanking"
+            commiterData.className = "list-group-item list-group-item-action"
             commiterData.innerHTML = 
             `
-                <div id="img">i</div>
                 <div id="memberDisplay">${member} <i> ${memberTotalCommits}</i> commits</div>
 
             `
