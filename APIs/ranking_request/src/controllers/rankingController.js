@@ -90,6 +90,15 @@ exports.get = async (req, res, next) => {
         }).catch(function (err) {
             console.log(err)
         })
+        rankingResponse.sort((a, b) => {
+            if(a.score > b.score){
+                return -1
+            }
+            if(a.score < b.score){
+                return 1
+            }
+            return 0
+        })
         res.status(200).json(rankingResponse)
     }
 }

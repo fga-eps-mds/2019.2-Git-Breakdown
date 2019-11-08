@@ -96,7 +96,8 @@ exports.get = async (req, res, next) => {
                 }).catch(err => {
                     console.log(err)
                 })
-                /*await axios.get(issue.comments_url, header_option_2).then(function (response) {
+                
+                await axios.get(issue.comments_url, header_option_2).then(function (response) {
                     let comments = response.data
 
                     comments.forEach((comment, index, array) => {
@@ -121,7 +122,7 @@ exports.get = async (req, res, next) => {
                     }
                 }).catch(err => {
                     console.log(err)
-                })*/
+                })
             })
             return res.status(200).json(contributorsInformation)
         }).catch(function (err) {
