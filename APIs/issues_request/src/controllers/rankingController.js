@@ -1,19 +1,19 @@
 const axios = require('axios')
 
-const queryString = { state:'all', per_page: '10000' }
-const queryString2 = { state:'all', per_page: '10000' }
+const queryString = { state:'all', per_page: 10000 }
+const queryString2 = { state:'all', per_page: 10000 }
 
 exports.get = async (req, res, next) => {
     const owner = req.query.owner
     const repository = req.query.repository
     const token = req.query.token
     const endpoint = 'issues'
-    contributorsInformation = [{ 'issues': 0 }]
+    contributorsInformation = []
     
     if(owner === undefined || repository === undefined || token === undefined){
         res.status(400).send('Error 400: Bad Request')
     }else{
-        const gitApiUrl = 'https://api.github.com'
+        const gitApiUrl = 'http://api.github.com'
         const url_endpoint = `${gitApiUrl}/repos/${owner}/${repository}/${endpoint}`
         
     if(req.query.date != undefined){    
@@ -58,7 +58,7 @@ exports.get = async (req, res, next) => {
                 params: queryString2
             }
 
-            await filteredIssues.forEach((issue, index, array) => {
+            await filteredIssues.forEach(async (issue, index, array) => {
 
                 let match = false
                 for (let contributor in contributorsInformation) {
@@ -75,31 +75,28 @@ exports.get = async (req, res, next) => {
                     contributorsInformation.push(committer)
                 }
                 
-            axios.get(issue.url, header_option_2).then(function (response) {
-                let issue = response.data
-                if(issue.closed_by != undefined){
-                    let match = false
-                    for (let contributor in contributorsInformation) {
-                        if (contributorsInformation[contributor].name === issue.closed_by.login) {
-                            contributorsInformation[contributor].closed_issues += 1
-                            match = true
+                await axios.get(issue.url, header_option_2).then(function (response) {
+                    let issue = response.data
+                    if(issue.closed_by != undefined){
+                        let match = false
+                        for (let contributor in contributorsInformation) {
+                            if (contributorsInformation[contributor].name === issue.closed_by.login) {
+                                contributorsInformation[contributor].closed_issues += 1
+                                match = true
+                            }
+                        }
+                        if (match === false) {
+                            let committer = { 'name': issue.closed_by.login,
+                                                'opened_issues': 0,
+                                                'closed_issues': 1, 
+                                                'comments': 0 }
+                            contributorsInformation.push(committer)
                         }
                     }
-                    if (match === false) {
-                        let committer = { 'name': issue.closed_by.login,
-                                            'opened_issues': 0,
-                                            'closed_issues': 1, 
-                                            'comments': 0 }
-                        contributorsInformation.push(committer)
-                    }
-                }
-
-
-            }).catch(err => {
-                console.log(err)
-            })
-
-                axios.get(issue.comments_url, header_option_2).then(function (response) {
+                }).catch(err => {
+                    console.log(err)
+                })
+                /*await axios.get(issue.comments_url, header_option_2).then(function (response) {
                     let comments = response.data
 
                     comments.forEach((comment, index, array) => {
@@ -120,12 +117,13 @@ exports.get = async (req, res, next) => {
                     }) 
                     contributorsInformation[0].issues += 1
                     if (contributorsInformation[0].issues === array.length) {
-                        return res.status(200).json(contributorsInformation)
+                        
                     }
                 }).catch(err => {
                     console.log(err)
-                })
+                })*/
             })
+            return res.status(200).json(contributorsInformation)
         }).catch(function (err) {
                 console.log(err)
         })
