@@ -1,4 +1,6 @@
 const axios = require('axios')
+const http = require('http');
+const agent = new http.Agent({ family: 4 });
 
 const queryString = { state:'all', per_page: 10000 }
 
@@ -7,7 +9,7 @@ exports.get = async (req, res, next) => {
     const repository = req.query.repository
     const token = req.query.token
     const endpoint = 'pulls'
-    contributorsInformation = [{ 'pullrequests': 0 }]
+    contributorsInformation = []
     
     if(owner === undefined || repository === undefined || token === undefined){
         res.status(400).send('Error 400: Bad Request')
@@ -22,7 +24,8 @@ exports.get = async (req, res, next) => {
                 'User-Agent': '2019.2-Git-Breakdown',
                 'Authorization': `token ${token}`
             },
-            params: queryString
+            params: queryString,
+            httpAgent: agent
         }
         
         await axios.get(url_endpoint, header_option).then(async response => {
@@ -73,12 +76,9 @@ exports.get = async (req, res, next) => {
                 }).catch(err => {
                     console.log(err)
                 })
-                
-                contributorsInformation[0].pullrequests += 1
-                if (contributorsInformation[0].pullrequests === array.length) {
-                    return res.status(200).json(contributorsInformation)
-                }
             })
+            
+            return res.status(200).json(contributorsInformation)
         }).catch(function (err) {
             console.log(err)
         })
