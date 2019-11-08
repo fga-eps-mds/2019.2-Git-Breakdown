@@ -171,4 +171,21 @@ describe('API Gateway integration tests', () => {
         })
         done()
     })
+    it('/ranking: invalid request', (done) => {
+        axios.get(urlBase+'/ranking').then((response) => {
+                let _body = {}
+                try{
+                  _body = response.data
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.status != undefined)
+                    expect(response.status).to.equal(400)
+            }
+        ).catch(err => {
+          expect(err.response.status).to.equal(400)
+        })
+        done()
+    })
 })

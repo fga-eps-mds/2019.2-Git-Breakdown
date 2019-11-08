@@ -10,7 +10,7 @@ const commitsServiceProxy = httpProxy('commit_api:3001')
 const issuesServiceProxy = httpProxy('issue_api:3002')
 const pullrequestsServiceProxy = httpProxy('pullrequest_api:3003')
 const branchesServiceProxy = httpProxy('branch_api:3004')
-const rankingServiceProxy = httpProxy('branch_api:3005')
+const rankingServiceProxy = httpProxy('ranking_api:3005')
 
 // Proxy request
 app.get('/commits', (req, res, next) => {
