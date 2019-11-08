@@ -25,7 +25,7 @@ function createCommitsChart(data, ctx)
                 data: qtCommits,
                 backgroundColor: colorArray,
                 borderColor: colorArray,
-                fontSize: 20,
+                fontSize: 12,
                 borderWidth: 1
             }]
         },
@@ -34,14 +34,14 @@ function createCommitsChart(data, ctx)
             maintainAspectRatio: false,
             title:
             {
-                fontSize: 30,
+                fontSize: 12,
                 display: true,
                 text: 'Commits per person dashboard'
             },
             tooltips:
             {
-                titleFontSize: 30,
-                bodyFontSize: 25
+                titleFontSize: 12,
+                bodyFontSize: 12
             },
             scales: 
             {
@@ -55,7 +55,7 @@ function createCommitsChart(data, ctx)
                 xAxes: 
                 [{
                     ticks: {
-                        fontSize: 22
+                        fontSize: 12
                     },
                     gridLines: 
                     {
@@ -65,7 +65,7 @@ function createCommitsChart(data, ctx)
             },
             legend: {
                 labels: {
-                    fontSize: 25
+                    fontSize: 12
                 }
             }
         }
@@ -102,18 +102,18 @@ function createBranchesChart(data, ctx)
         {
             tooltips:
             {
-                titleFontSize: 30,
-                bodyFontSize: 25
+                titleFontSize: 12,
+                bodyFontSize: 12
             },
             legend: {
                 labels: {
-                    fontSize: 25
+                    fontSize: 12
                 }
             },
             maintainAspectRatio: false,
             title:
             {
-                fontSize: 30,
+                fontSize: 12,
                 display: true,
                 text: 'Branches dashboard'
             },
@@ -162,18 +162,18 @@ function createPRChart(data, ctx)
         {
             tooltips:
             {
-                titleFontSize: 30,
-                bodyFontSize: 25
+                titleFontSize: 12,
+                bodyFontSize: 12
             },
             legend: {
                 labels: {
-                    fontSize: 25
+                    fontSize: 12
                 }
             },
             maintainAspectRatio: false,
             title:
             {
-                fontSize: 30,
+                fontSize: 12,
                 display: true,
                 text: 'Pull Requests dashboard'
             },
@@ -217,13 +217,13 @@ function createIssuesChart(data, ctx)
         {
             tooltips:
             {
-                titleFontSize: 30,
-                bodyFontSize: 25
+                titleFontSize: 12,
+                bodyFontSize: 12
             },
             maintainAspectRatio: false,
             title:
             {
-                fontSize: 30,
+                fontSize: 12,
                 display: true,
                 text: 'Issues dashboard'
             },
@@ -236,7 +236,7 @@ function createIssuesChart(data, ctx)
             },
             legend: {
                 labels: {
-                    fontSize: 25
+                    fontSize: 12
                 }
             }
         }

@@ -75,12 +75,59 @@ function gbdScreen()
         </nav>
 
         <div class="gbdContent">
-            <div class="flexContainer">
-                <canvas id="commitsDashboard"></canvas>
-                <canvas id="issuesDashboard"></canvas>   
-                <canvas id="prsDashboard"></canvas>   
-                <canvas id="branchesDashboard"></canvas>       
+        <div class="row">
+
+
+
+        <div class="col">
+        </div>
+
+
+
+        <div class="col">
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="card">
+                    <div class="card-body">
+                        <canvas id="issuesDashboard"></canvas>   
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                    <div class="card-body">
+                        <canvas id="commitsDashboard"></canvas>
+                    </div>
+                    </div>
+                </div>
+
             </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                    <div class="card-body">
+                        <canvas id="branchesDashboard"></canvas> 
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                    <div class="card-body">
+                        <canvas id="prsDashboard"></canvas>   
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+
         </div>
     </div>
     </div>
