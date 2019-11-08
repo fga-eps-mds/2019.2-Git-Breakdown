@@ -39,6 +39,11 @@ top:5%;
     max-height: 80% !important;
 }
 
+.right
+{
+    margin-right: 1.5%;
+}
+
 .nopadding {
     padding: 0 !important;
     margin: 0 !important;
@@ -49,6 +54,10 @@ top:5%;
     position: relative;
     display: block;
     width: 100% !important;
+    min-width: 450px !important;
+    min-height: 235px !important;
+    max-width: 478px !important;
+    max-height: 240px !important;
 }
 
 .card-body

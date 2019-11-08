@@ -49,6 +49,7 @@ function createCommitsChart(data, ctx)
             {
                 yAxes: 
                 [{
+                    display: false,
                     gridLines: 
                     {
                         display: false

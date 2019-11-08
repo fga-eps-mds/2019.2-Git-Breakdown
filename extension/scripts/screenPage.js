@@ -123,7 +123,7 @@ function gbdScreen()
                 </div>
 
                 <div class="col-sm-6">
-                    <div class="card text-white bg-dark mb-3">
+                    <div class="card text-white bg-dark mb-3 right">
                     <div class="card-body">
                         <canvas id="commitsDashboard"></canvas>
                     </div>
@@ -142,7 +142,7 @@ function gbdScreen()
                 </div>
 
                 <div class="col-sm-6">
-                    <div class="card text-white bg-dark mb-3">
+                    <div class="card text-white bg-dark mb-3 right">
                     <div class="card-body">
                         <canvas id="prsDashboard"></canvas>   
                     </div>
