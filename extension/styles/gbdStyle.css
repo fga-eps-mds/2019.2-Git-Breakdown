@@ -1,8 +1,8 @@
 #gbdScreen {
-background-color: rgb(246,248,250);
+background-color: lightgray;
 position: relative;
 border-radius : 25px;
-box-shadow: 5px 5px 5px 5px; 
+box-shadow: #24292e;
 border-top : 0;
 width : 100%;
 height : 600px;
@@ -17,6 +17,11 @@ height: 90%;
 top:5%;
 }
 
+.ranking
+{
+    margin-left: 2%;
+}
+
 .mainscreen
 {
     max-width: inherit;
@@ -26,6 +31,7 @@ top:5%;
 .col
 {
     height: 400px !important;
+    padding-right: 2%;
 }
 
 .row
