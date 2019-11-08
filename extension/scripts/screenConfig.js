@@ -43,10 +43,6 @@ const initScreen = () =>
     zhplugin()
     selectBehavior()
 
-    //revoming a black space between the navbar and the breakDown screen
-    let pageHead = document.getElementsByClassName("pagehead repohead instapaper_ignore readability-menu experiment-repo-nav")
-    let pageElement = pageHead[0]
-    pageElement.style.marginBottom = "5px"
     
     //Catching the container 
     try{
