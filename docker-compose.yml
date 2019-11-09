@@ -13,12 +13,15 @@ services:
       - issue_api
       - pullrequest_api
       - branch_api
+      - ranking_api
       - profile_api
+
     links:
       - commit_api
       - issue_api
       - pullrequest_api
       - branch_api
+      - ranking_api
       - profile_api
   
   commit_api:
@@ -53,6 +56,14 @@ services:
     volumes:
       - .:/usr/breakdown/branches_request
 
+  ranking_api:
+    build: ./APIs/ranking_request/.
+    command: npm start
+    ports:
+      - "3005:3005"
+    volumes:
+      - .:/usr/breakdown/ranking_request
+
   profile_api:
     build: ./APIs/profile_request/.
     command: npm start
@@ -60,3 +71,4 @@ services:
       - "3006:3006"
     volumes:
       - .:/usr/breakdown/profile_request
+
