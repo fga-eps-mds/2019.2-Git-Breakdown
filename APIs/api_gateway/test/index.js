@@ -188,4 +188,22 @@ describe('API Gateway integration tests', () => {
         })
         done()
     })
+    
+    it('/profile: valid request', (done) => {
+        axios.get(urlBase+'/profile'+urlParams).then((response) => {
+                let _body = {}
+                try{
+                  _body = response.data
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.status != undefined)
+                    expect(response.status).to.equal(200)
+            }
+        ).catch(err => {
+          const errorResponse = err
+        })
+        done()
+    })
 })

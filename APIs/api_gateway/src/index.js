@@ -11,7 +11,7 @@ const issuesServiceProxy = httpProxy('issue_api:3002')
 const pullrequestsServiceProxy = httpProxy('pullrequest_api:3003')
 const branchesServiceProxy = httpProxy('branch_api:3004')
 const rankingServiceProxy = httpProxy('ranking_api:3005')
-const infosServiceProxy = httpProxy('infos_api:3006')
+const profileServiceProxy = httpProxy('profile_api:3006')
 
 // Proxy request
 app.get('/commits', (req, res, next) => {
@@ -30,12 +30,12 @@ app.get('/branches', (req, res, next) => {
   branchesServiceProxy(req, res, next)
 })
 
-app.get('/profile', (req, res, next) => {
-  infosServiceProxy(req, res, next);
-})
-
 app.get('/ranking', (req, res, next) => {
   rankingServiceProxy(req, res, next)
+})
+
+app.get('/profile', (req, res, next) => {
+  profileServiceProxy(req, res, next);
 })
 
 app.use(logger('dev'))
