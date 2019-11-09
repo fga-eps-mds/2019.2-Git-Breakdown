@@ -26,11 +26,9 @@ describe('Commits route tests', () => {
             expect(_body[1]).to.have.property('name')
             expect(_body[1]).to.have.property('commits')
         }
-        done()  
       }
     ).catch(err => {
       const errorResponse = err
-      done()
     })
     done()
   })
