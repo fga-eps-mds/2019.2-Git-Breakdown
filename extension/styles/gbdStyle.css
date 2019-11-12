@@ -10,6 +10,11 @@ left:0;
 
 }
 
+.popover
+{
+    max-width: 400px;
+}
+
 .gbdContent {
 position: relative;
 width : 100%;

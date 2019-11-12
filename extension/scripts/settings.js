@@ -3,12 +3,17 @@ function settingsOnClick()
     let button = document.getElementById("settingsButton")
     if (button !== undefined && button !== null)
     {
+        console.log($('#settingsContent').html())
         $('#settingsButton').popover(
             {
                 trigger: 'click',
-                title: 'TITLE',
+                sanitize: false,
+                selector: true,
                 html: true,
-                content: '<h1> Conteudo </h1>'
+                content: function()
+                {
+                    return $("#settingsContent").html()
+                }
             }
         )
     }

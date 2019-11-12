@@ -34,6 +34,16 @@ function gbdScreen()
 
                 </ul>
 
+                
+                    <div id="settingsContent" class="hide">
+                    <div>
+                    <form>
+                        <label for="SprintLength">Sprint length in days: </label>
+                        <input type="number" name="SprintLength" id="sprintLength" min="1" max="10">
+                    </form>
+                    </div>
+                    </div>
+
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <button type="button" class="btn btn-outline-info" id="settingsButton" data-toggle="popover">
