@@ -75,12 +75,85 @@ function gbdScreen()
         </nav>
 
         <div class="gbdContent">
-            <div class="flexContainer">
-                <canvas id="commitsDashboard"></canvas>
-                <canvas id="issuesDashboard"></canvas>   
-                <canvas id="prsDashboard"></canvas>   
-                <canvas id="branchesDashboard"></canvas>       
+        <div class="row">
+
+
+
+        <div class="col">
+        <table class="table table-striped table-dark ranking">
+            <thead>
+                <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">User</th>
+                <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>pxpc2</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>wdvictor</td>
+                <td>420</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>baea</td>
+                <td>120</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+
+
+
+        <div class="col">
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <canvas id="issuesDashboard"></canvas>   
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card text-white bg-dark mb-3 right">
+                    <div class="card-body">
+                        <canvas id="commitsDashboard"></canvas>
+                    </div>
+                    </div>
+                </div>
+
             </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <canvas id="branchesDashboard"></canvas> 
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card text-white bg-dark mb-3 right">
+                    <div class="card-body">
+                        <canvas id="prsDashboard"></canvas>   
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+
         </div>
     </div>
     </div>
