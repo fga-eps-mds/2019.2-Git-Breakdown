@@ -1,18 +1,21 @@
-
 let url_base = 'http://18.215.242.203:3000'
 
-let issuesData , branchsData, prData, commitsData
+let issuesData , branchsData, prData, commitsData, rankingData
+
+let weights = [1,1,1,1] // default weights
 
 function getMetrics() 
 {
-    chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
+    chrome.runtime.sendMessage({metric: weights}, function(response) 
     {
+        console.log(weights)
         if (response !== undefined)
         {
             commitsData = response[0]
             issuesData = response[1]
             branchsData = response[2]
             prData = response[3]
+            rankingData = response[4]
         }
     })
 }
@@ -22,7 +25,8 @@ const METRICS =
   'commitsDashboard', // 0 
   'issuesDashboard', // 1
   'branchesDashboard', // 2
-  'prsDashboard' // 3
+  'prsDashboard', // 3
+  'ranking' // 4
 ]
 
 const homeBtn = () => {
@@ -65,13 +69,17 @@ const initScreen = () =>
     
     try{
         if (typeof chrome.app.isInstalled !== 'undefined'){
-            chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) {
+            chrome.runtime.sendMessage({metric: weights}, function(response) {
+                console.log(weights)
                 if (response !== undefined){
                     console.log("good response")
                     commitsData = response[0]
                     issuesData = response[1]
                     branchsData = response[2]
                     prData = response[3]
+                    rankingData = response[4]
+
+                    console.log(rankingData)
                     
                     try{
                         let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
