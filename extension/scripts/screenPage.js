@@ -92,71 +92,55 @@ function gbdScreen()
             <tr>
                 <th scope="row">1</th>
                 <td>pxpc2</td>
-                <td>2000</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>wdvictor</td>
-                <td>420</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>baea</td>
-                <td>120</td>
-            </tr>
-            </tbody>
-        </table>
-        </div>
-
-
+                        <td>2000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>wdvictor</td>
+                        <td>420</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>baea</td>
+                        <td>120</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
 
         <div class="col">
-
             <div class="row">
-
-                <div class="col-sm-6">
-                    <div class="card text-white bg-dark mb-3">
-                    <div class="card-body">
-                        <canvas id="issuesDashboard"></canvas>   
-                    </div>
-                    </div>
+                <div class="card text-white bg-dark mb-3">
+                    <canvas id="issuesDashboard"></canvas>   
                 </div>
-
-                <div class="col-sm-6">
-                    <div class="card text-white bg-dark mb-3 right">
-                    <div class="card-body">
-                        <canvas id="commitsDashboard"></canvas>
-                    </div>
-                    </div>
-                </div>
-
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="card text-white bg-dark mb-3">
-                    <div class="card-body">
-                        <canvas id="branchesDashboard"></canvas> 
-                    </div>
-                    </div>
+                <div class="card text-white bg-dark mb-3">
+                    <canvas id="branchesDashboard"></canvas> 
                 </div>
+            </div>
+        </div>
 
-                <div class="col-sm-6">
-                    <div class="card text-white bg-dark mb-3 right">
-                    <div class="card-body">
-                        <canvas id="prsDashboard"></canvas>   
-                    </div>
-                    </div>
+        <div class="col">
+            <div class="row">
+
+                <div class="card text-white bg-dark mb-3 right">
+                    <canvas id="commitsDashboard"></canvas>
                 </div>
             </div>
 
+            <div class="row">
+                <div class="card text-white bg-dark mb-3 right">
+                    <canvas id="prsDashboard"></canvas>   
+                </div>
+            </div>
         </div>
         </div>
-
-
         </div>
     </div>
     </div>
     `
     return gbdScreen
 }
+
