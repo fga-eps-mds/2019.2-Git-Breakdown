@@ -70,16 +70,14 @@ const initScreen = () =>
     try{
         if (typeof chrome.app.isInstalled !== 'undefined'){
             chrome.runtime.sendMessage({metric: weights}, function(response) {
-                console.log(weights)
                 if (response !== undefined){
-                    console.log("good response")
+
                     commitsData = response[0]
                     issuesData = response[1]
                     branchsData = response[2]
                     prData = response[3]
                     rankingData = response[4]
 
-                    console.log(rankingData)
                     
                     try{
                         let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
@@ -112,11 +110,22 @@ const initScreen = () =>
 
     settingsOnClick()
 
+    
+    setTimeout(function(){
+        try{
+            plotRanking()
+        }catch(err){
+            console.log('GBD error:', err)
+        }
+    },6000)
+    
+    
+
 }
 
 window.onhashchange = function()
 {
-    console.log("changed")
+
     let gbdButton = document.getElementById('gbdButton')
     if (gbdButton !== this.undefined)
     {
@@ -164,6 +173,7 @@ window.onhashchange = function()
                 try{
                     selectBehavior()
                     initScreen()
+                  
                 }catch(err){
                     console.log("GBD error:", err)
                 }

@@ -62,7 +62,7 @@ function gbdScreen()
         <div class="gbdContent">
             <div class="row">
                 <div class="col">
-                    <table class="table table-striped table-dark ranking">
+                    <table class="table table-striped table-dark ranking" id="gbdRanking">
                         <thead>
                             <tr>
                                 <th scope="col">Rank</th>
@@ -70,23 +70,7 @@ function gbdScreen()
                                 <th scope="col">Score</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>pxpc2</td>
-                                <td>2000</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>wdvictor</td>
-                                <td>420</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>baea</td>
-                                <td>120</td>
-                            </tr>
-                        </tbody>
+        
                     </table>
                 </div>
                 <div class="col">
@@ -121,3 +105,40 @@ function gbdScreen()
     return gbdScreen
 }
 
+
+
+function plotRanking(){
+    let ranking = document.getElementById('gbdRanking')
+    console.log('SYS', rankingData.length)
+    console.log(rankingData)
+    let tbody = document.createElement('tbody')
+    let pos = 1
+    for(let i = 0; i < rankingData.length ; i++){
+        
+        console.log(rankingData[i])
+        let tr = document.createElement('tr')
+        tr.innerHTML = 
+        `
+            <th scope="row">${pos}</th>
+            <td>${rankingData[i].name}</td>
+            <td>${rankingData[i].score}</td>
+    
+        `
+        pos+=1
+        tbody.appendChild(tr)
+    }
+
+    ranking.appendChild(tbody)
+}
+
+
+function loadingPage(){
+    let container = document.createElement('div')
+    container.class = 'progress'
+    container.innerHTML = 
+    `
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>    </div>
+    </div>
+    `
+}
