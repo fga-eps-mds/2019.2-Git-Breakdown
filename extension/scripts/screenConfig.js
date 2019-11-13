@@ -2,9 +2,9 @@ let url_base = 'http://18.215.242.203:3000'
 
 let issuesData , branchsData, prData, commitsData, rankingData
 
-let weights = [1,1,1,1] // default weights
+let weights = [4,5,3,2] // default weights
 
-let sprintLenght = 7 // default sprint size
+let sprintLength = 7 // default sprint size
 
 function getMetrics() 
 {
@@ -112,6 +112,17 @@ const initScreen = () =>
     settingsOnClick()
 
 }
+
+// triggers when save button from configuration page is clicked
+$(document).on("click", "#settingsSave", function() 
+{
+    sprintLength = $('#sprintLength').val()
+    weights[0] = $('#mergedWeight').val()
+    weights[1] = $('#commitsWeight').val()
+    weights[2] = $('#openWeight').val()
+    weights[3] = $('#commentsWeight').val()
+    alert("Configurations saved!")
+})
 
 window.onhashchange = function()
 {
