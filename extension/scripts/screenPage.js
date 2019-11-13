@@ -34,15 +34,33 @@ function gbdScreen()
 
                 </ul>
 
+
                 
-                    <div id="settingsContent" class="hide">
-                    <div>
-                    <form>
-                        <label for="SprintLength">Sprint length in days: </label>
-                        <input type="number" name="SprintLength" id="sprintLength" min="1" max="10">
-                    </form>
+                <div id="settingsContent" class="hide">
+                    <ul class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+                        <li><a class="nav-item nav-link active" id="nav-time-tab" data-toggle="tab" href="#time" role="tab">Time</a></li>
+                        <li><a class="nav-item nav-link" id="nav-metrics-tab" data-toggle="tab" href="#metrics" role="tab">Metrics</a></li>
+                    </ul>
+                    
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="time">
+                            <form>
+                                <label for="SprintLength">Sprint length in days: </label>
+                                <input type="number" name="SprintLength" id="sprintLength" min="1" max="10">
+                            </form>
+                        </div>
+
+                        <div class="tab-pane" id="metrics">
+                            <form>
+                                <label for="commitsWeight">Commits weigth: </label>
+                                <input type="number" name="commitsWeight" id="commitsWeight" min="1" max="10">
+                            </form>
+                        </div>
                     </div>
-                    </div>
+                </div>
+
+
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">

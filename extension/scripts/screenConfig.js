@@ -70,7 +70,6 @@ const initScreen = () =>
     try{
         if (typeof chrome.app.isInstalled !== 'undefined'){
             chrome.runtime.sendMessage({metric: weights}, function(response) {
-                console.log(weights)
                 if (response !== undefined){
                     console.log("good response")
                     commitsData = response[0]
@@ -78,8 +77,6 @@ const initScreen = () =>
                     branchsData = response[2]
                     prData = response[3]
                     rankingData = response[4]
-
-                    console.log(rankingData)
                     
                     try{
                         let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
