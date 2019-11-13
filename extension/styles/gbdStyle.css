@@ -5,7 +5,7 @@ border-radius : 25px;
 box-shadow: #24292e;
 border-top : 0;
 width : 100%;
-height : 600px;
+height : 100%;
 left:0;
 
 }
@@ -45,8 +45,25 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
     left : 40%;
 }
 
+.col {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.row {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.table{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
 .card {
-    width: 100%;
+    width: 95%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .chartjs-render-monitor {
