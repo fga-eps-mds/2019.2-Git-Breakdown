@@ -38,8 +38,8 @@ function gbdScreen()
                 
                 <div id="settingsContent" class="hide">
                     <ul class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
-                        <li><a class="nav-item nav-link active" id="nav-time-tab" data-toggle="tab" href="#time" role="tab">Time</a></li>
-                        <li><a class="nav-item nav-link" id="nav-metrics-tab" data-toggle="tab" href="#metrics" role="tab">Metrics</a></li>
+                        <li class="active"><a class="nav-item nav-link active" id="nav-time-tab" data-toggle="tab" href="#time" role="tab">Time</a></li>
+                        <li class="tab"><a class="nav-item nav-link" id="nav-metrics-tab" data-toggle="tab" href="#metrics" role="tab">Metrics</a></li>
                     </ul>
                     
 
