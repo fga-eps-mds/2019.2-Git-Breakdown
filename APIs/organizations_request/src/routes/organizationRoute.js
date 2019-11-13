@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const issueController = require('../controllers/organizationController')
+const organizationController = require('../controllers/organizationController')
 
 router.get('/', organizationController.get)
 
