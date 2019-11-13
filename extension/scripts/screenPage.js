@@ -37,6 +37,7 @@ function gbdScreen()
 
                 
                 <div id="settingsContent" class="hide">
+
                     <ul class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
                         <li class="active"><a class="nav-item nav-link active" id="nav-time-tab" data-toggle="tab" href="#time" role="tab">Time</a></li>
                         <li class="tab"><a class="nav-item nav-link" id="nav-metrics-tab" data-toggle="tab" href="#metrics" role="tab">Metrics</a></li>
@@ -45,18 +46,34 @@ function gbdScreen()
 
                     <div class="tab-content">
                         <div class="tab-pane active" id="time">
-                            <form>
+                            <form style="margin-top: 8%;">
                                 <label for="SprintLength">Sprint length in days: </label>
                                 <input type="number" name="SprintLength" id="sprintLength" min="1" max="10">
                             </form>
                         </div>
 
                         <div class="tab-pane" id="metrics">
-                            <form>
-                                <label for="commitsWeight">Commits weigth: </label>
+                            <form style="margin-top: 8%;">
+                                <label for="commitsWeight">Weight for total of commits: </label>
                                 <input type="number" name="commitsWeight" id="commitsWeight" min="1" max="10">
                             </form>
+                            <form style="margin-top: 8%;">
+                                <label for="mergedWeight">Weight for total of merged pull requests: </label>
+                                <input type="number" name="mergedWeight" id="mergedWeight" min="1" max="10">
+                            </form>
+                            <form style="margin-top: 8%;">
+                                <label for="commitsWeight">Weight for total of opened issues: </label>
+                                <input type="number" name="openWeight" id="openWeight" min="1" max="10">
+                            </form>
+                            <form style="margin-top: 8%;">
+                                <label for="commitsWeight">Weight for total of comments on pull requests: </label>
+                                <input type="number" name="commentsWeight" id="commentsWeight" min="1" max="10">
+                            </form>
                         </div>
+                    </div>
+
+                    <div class="footer" style="margin-top: 50%; margin-left: 85%;">
+                        <button type="button" class="btn btn-primary btn-lg" id="settingsSave">Save</button>
                     </div>
                 </div>
 

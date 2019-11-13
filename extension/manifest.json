@@ -43,8 +43,6 @@
             "scripts/zenhubRequirements.js",
             "scripts/button.js",
             "scripts/screenConfig.js"
-            
-
         ],
         "css": 
         [

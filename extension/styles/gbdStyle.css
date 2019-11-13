@@ -12,7 +12,8 @@ left:0;
 
 .popover
 {
-    max-width: 400px;
+    min-width: 400px !important;
+    min-height: 300px !important;
 }
 
 .gbdContent {

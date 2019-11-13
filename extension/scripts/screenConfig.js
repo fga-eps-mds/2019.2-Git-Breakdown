@@ -4,6 +4,8 @@ let issuesData , branchsData, prData, commitsData, rankingData
 
 let weights = [1,1,1,1] // default weights
 
+let sprintLenght = 7 // default sprint size
+
 function getMetrics() 
 {
     chrome.runtime.sendMessage({metric: weights}, function(response) 
