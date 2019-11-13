@@ -10,7 +10,6 @@ function getMetrics()
 {
     chrome.runtime.sendMessage({metric: weights}, function(response) 
     {
-        console.log(weights)
         if (response !== undefined)
         {
             commitsData = response[0]
@@ -18,6 +17,7 @@ function getMetrics()
             branchsData = response[2]
             prData = response[3]
             rankingData = response[4]
+            console.log(rankingData)
         }
     })
 }
@@ -122,6 +122,7 @@ $(document).on("click", "#settingsSave", function()
     weights[2] = $('#openWeight').val()
     weights[3] = $('#commentsWeight').val()
     alert("Configurations saved!")
+    getMetrics()
 })
 
 window.onhashchange = function()
