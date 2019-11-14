@@ -117,7 +117,7 @@ const initScreen = () =>
         }catch(err){
             console.log('GBD error:', err)
         }
-    },6000)
+    },2000)
     
     
 

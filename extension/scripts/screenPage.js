@@ -62,7 +62,7 @@ function gbdScreen()
         <div class="gbdContent">
             <div class="row">
                 <div class="col">
-                    <table class="table table-striped table-dark ranking" id="gbdRanking">
+                    <table class="table table-hover table-dark" id="gbdRanking">
                         <thead>
                             <tr>
                                 <th scope="col">Rank</th>
@@ -107,6 +107,7 @@ function gbdScreen()
 
 
 
+
 function plotRanking(){
     let ranking = document.getElementById('gbdRanking')
     console.log('SYS', rankingData.length)
@@ -122,23 +123,11 @@ function plotRanking(){
             <th scope="row">${pos}</th>
             <td>${rankingData[i].name}</td>
             <td>${rankingData[i].score}</td>
-    
+            
         `
         pos+=1
         tbody.appendChild(tr)
     }
 
     ranking.appendChild(tbody)
-}
-
-
-function loadingPage(){
-    let container = document.createElement('div')
-    container.class = 'progress'
-    container.innerHTML = 
-    `
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>    </div>
-    </div>
-    `
 }
