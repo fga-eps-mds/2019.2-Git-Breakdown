@@ -8,6 +8,8 @@ let commitsWeight = 0
 let openIssuesWeight = 0
 let mergedWeight = 0
 let commentPrWeight = 0
+let closedIssuesWeight = 0
+let commentIssuesWeight = 0
 
 exports.get = async (req, res, next) => {
   const owner = req.query.owner
@@ -27,6 +29,12 @@ exports.get = async (req, res, next) => {
   }
   if (req.query.commentpr) {
       commentPrWeight = req.query.commentpr
+  }
+  if (req.query.closedissues) {
+      closedIssuesWeight = req.query.closedissues
+  }
+  if (req.query.commentissues) {
+      commentIssuesWeight = req.query.commentissues
   }
 
   if (owner === undefined || repository === undefined || token === undefined) {
@@ -57,7 +65,8 @@ exports.get = async (req, res, next) => {
         rankingRequest.push(issuesRanking)
         await rankingRequest[1].forEach(contribution => {
           let match = false
-          let score = contribution.opened_issues * openIssuesWeight
+          let score = contribution.opened_issues * openIssuesWeight + 
+              contribution.closed_issues * closedIssuesWeight + contribution.comments * commentIssuesWeight
 
           for (let contributor in rankingResponse) {
             if (rankingResponse[contributor].name === contribution.name) {
@@ -69,7 +78,8 @@ exports.get = async (req, res, next) => {
             }
           }
           if (match === false) {
-            let contributor = { name: contribution.name, score: score, opened_issues: contribution.opened_issues, closed_issues: contribution.closed_issues, comment_issues: contribution.comments }
+            let contributor = { name: contribution.name, score: score, 
+                               opened_issues: contribution.opened_issues, closed_issues: contribution.closed_issues, comment_issues: contribution.comments }
             rankingResponse.push(contributor)
           }
         })
@@ -97,7 +107,9 @@ exports.get = async (req, res, next) => {
                 }
               }
             if (match === false) {
-                let contributor = { name: contribution.name, score: score, merged_pull_requests: contribution.merged_pull_requests, comment_pr: contribution.comments }
+                let contributor = { name: contribution.name, score: score, 
+                                   merged_pull_requests: contribution.merged_pull_requests, 
+                                   comment_pr: contribution.comments }
             rankingResponse.push(contributor)
             }
         })
