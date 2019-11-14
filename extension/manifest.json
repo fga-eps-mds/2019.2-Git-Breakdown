@@ -34,6 +34,7 @@
             "scripts/Chart.min.js",
             "scripts/timeConfigPage.js",
             "scripts/graph.js",
+            "scripts/profilePage.js",
             "scripts/branchesPage.js",            
             "scripts/commitsPage.js",
             "scripts/issuesPage.js",

@@ -142,7 +142,6 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 
-
 .table-responsive{
     max-height: 1000px !important;
     overflow: auto !important;

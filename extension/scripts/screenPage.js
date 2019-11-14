@@ -125,8 +125,8 @@ function plotRanking(){
         tbody.appendChild(tr)
         tr.id = `${rankingData[i].name}`
         tr.addEventListener('click', ()=>{
-           //call a function that will redirect to
-           //the profile page
+           window.location.hash = `#breakdown/Profile=${tr.id}`
+    
         })
     }
 

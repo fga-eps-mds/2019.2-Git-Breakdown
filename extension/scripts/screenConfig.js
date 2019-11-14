@@ -35,7 +35,7 @@ const homeBtn = () => {
         try{
             document.getElementsByClassName('gbdContent')[0].innerHTML = initScreen()
         }catch(err) {
-            console.log("GBD error:", err)
+            console.log('GBD error:', err)
         }
      })
  }
@@ -57,7 +57,7 @@ const initScreen = () =>
             let answer = containgerPattern.exec(className)
             if (answer != null){
                 mainContainer[i].innerHTML = gbdScreen()
-                mainContainer[i].style.maxWidth = "100%"
+                mainContainer[i].style.maxWidth = '100%'
                 break;
             }
                  
@@ -95,17 +95,17 @@ const initScreen = () =>
                         for (let i = 0; i < 4; i++)
                             chartOnClick(i, response[i])
                     }catch(err){
-                        console.log("GBD error:", err)
+                        console.log('GBD error:', err)
                     }
                 }else
-                    console.log("undefined response")
+                    console.log('undefined response')
             })
         }
         else
-            console.log("undefined chrome app")
+            console.log('undefined chrome app')
         
     }catch(err) {
-        console.log("GBD error:", err)
+        console.log('GBD error:', err)
     }
 
     settingsOnClick()
@@ -130,43 +130,51 @@ window.onhashchange = function()
     if (gbdButton !== this.undefined)
     {
         zenhubOnClick() 
-        if (window.location.href.includes("#breakdown/issues"))
+        if (window.location.href.includes('#breakdown/issues'))
         {
             try{
                 
                 document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
             }catch(err){
-                console.log("GDB Erro: ", err)
+                console.log('GDB Erro: ', err)
             }
         }
-        else if (window.location.href.includes("#breakdown/commits")){
+        else if (window.location.href.includes('#breakdown/commits')){
             try {
                    
                 document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
                 plotTop10Commiter()
 
             } catch(err) {
-                console.log("GDB Erro: ", err)
+                console.log('GDB Erro: ', err)
             }
         }
-        else if (window.location.href.includes("#breakdown/branches") ) {
+        else if (window.location.href.includes('#breakdown/branches') ) {
             try{
                 document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
             }catch(err){
-                console.log("GBD error:", err)
+                console.log('GBD error:', err)
             }
         }
-        else if ( window.location.href.includes("#breakdown/pr")) {
+        else if ( window.location.href.includes('#breakdown/pr')) {
             try{
                    
                 document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
                 
             }catch(err){
-                console.log("GBD error:", err)
+                console.log('GBD error:', err)
             }
             
         }
-        else if (window.location.href.includes("#breakdown"))
+        else if(window.location.href.includes('#breakdown/Profile')){
+            try{
+                displayMember()
+
+            }catch(err){
+                console.log('GBD error:', err)
+            }
+        }
+        else if (window.location.href.includes('#breakdown'))
         {
             let screen = document.getElementById('gbdScreen')
             if (screen == null)
@@ -175,7 +183,7 @@ window.onhashchange = function()
                     initScreen()
                   
                 }catch(err){
-                    console.log("GBD error:", err)
+                    console.log('GBD error:', err)
                 }
         }
         else
@@ -198,8 +206,8 @@ const chartOnClick = (type, data) =>
             let screen = document.getElementById('gbdScreen')
             if (screen != null)
             {
-                console.log(METRICS[type].split("Dashboard")[0])
-                window.location.hash = `#breakdown/${METRICS[type].split("Dashboard")[0]}`
+                console.log(METRICS[type].split('Dashboard')[0])
+                window.location.hash = `#breakdown/${METRICS[type].split('Dashboard')[0]}`
             }
         })
     }
@@ -210,7 +218,7 @@ const gbdButtonOnClick = () =>{
     if (gbdtab !== null){
         gbdtab.addEventListener('click', function(){
             let screen = document.getElementById('gbdScreen')
-            if (screen == null && window.location.href.includes("#breakdown"))
+            if (screen == null && window.location.href.includes('#breakdown'))
                 initScreen()
                 selectBehavior()
                 zenhubOnClick()  
@@ -222,7 +230,7 @@ try{
     getMetrics()
     gbdButtonOnClick()
 }catch(err){
-    console.log("GBD error:", err)
+    console.log('GBD error:', err)
 }
 
 
