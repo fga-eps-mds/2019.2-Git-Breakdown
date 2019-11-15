@@ -1,23 +1,79 @@
 #gbdScreen {
-background-color: rgb(246,248,250);
+background-color: lightgray;
 position: relative;
 border-radius : 25px;
-box-shadow: 5px 5px 5px 5px; 
+box-shadow: #24292e;
 border-top : 0;
 width : 100%;
-height : 550px;
+height : 600px;
 left:0;
 
+}
+
+.popover
+{
+    min-width: 400px !important;
+    min-height: 200px !important;
 }
 
 .gbdContent {
 position: relative;
 width : 100%;
-height: 80%;
+height: 90%;
 top:5%;
 }
 
+.ranking
+{
+    margin-left: 2%;
+}
 
+.mainscreen
+{
+    max-width: inherit;
+    max-height: inherit;
+}
+
+.col
+{
+    height: 400px !important;
+    padding-right: 2%;
+}
+
+.row
+{
+    max-height: 80% !important;
+}
+
+.right
+{
+    margin-right: 1.5%;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+ }
+
+.card
+{
+    position: relative;
+    display: block;
+    width: 100% !important;
+    min-width: 450px !important;
+    min-height: 235px !important;
+    max-width: 478px !important;
+    max-height: 240px !important;
+}
+
+.card-body
+{
+    position: relative;
+    display: block;
+    height: 20% !important;
+    width: 100%;
+    padding: 0 !important;
+}
 
 .reponav-item.gbdselected {
 color:#24292e;
@@ -37,40 +93,31 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
 
 
 .chartjs-render-monitor {
-    position: absolute;
-    border: 1px solid black;
-    box-shadow: 5px 5px 5px 5px;
-    border-radius : 10px;
+    display: block;
+    overflow: hidden;
+    position: relative;
 }
 
 
 #commitsDashboard {
-    top: -8px;
-    right: 5px;
-    width: 50% !important;
-    height: 50% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 #issuesDashboard {
-    top: -8px;
-    left: -5px;
-    width: 50% !important;
-    height: 50% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
-#prsDashboard {
-    bottom: 0;
-    right: 5px;          
-    width: 50% !important;
-    height: 50% !important;
+#prsDashboard {        
+    width: 100% !important;
+    height: 100% !important;
 }
 
 
 #branchesDashboard {
-    bottom: 0;
-    left: -5px;  
-    width: 50% !important;
-    height: 50% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .metricsPageTitle {

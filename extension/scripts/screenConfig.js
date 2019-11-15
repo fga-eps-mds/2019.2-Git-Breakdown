@@ -1,11 +1,14 @@
-
 let url_base = 'http://18.215.242.203:3000'
 
-let issuesData , branchsData, prData, commitsData
+let issuesData , branchsData, prData, commitsData, rankingData
+
+let weights = [4,5,3,2] // default weights
+
+let sprintLength = 7 // default sprint size
 
 function getMetrics() 
 {
-    chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) 
+    chrome.runtime.sendMessage({metric: weights}, function(response) 
     {
         if (response !== undefined)
         {
@@ -13,6 +16,8 @@ function getMetrics()
             issuesData = response[1]
             branchsData = response[2]
             prData = response[3]
+            rankingData = response[4]
+            console.log(rankingData)
         }
     })
 }
@@ -22,7 +27,8 @@ const METRICS =
   'commitsDashboard', // 0 
   'issuesDashboard', // 1
   'branchesDashboard', // 2
-  'prsDashboard' // 3
+  'prsDashboard', // 3
+  'ranking' // 4
 ]
 
 const homeBtn = () => {
@@ -65,13 +71,14 @@ const initScreen = () =>
     
     try{
         if (typeof chrome.app.isInstalled !== 'undefined'){
-            chrome.runtime.sendMessage({metric: "get-metrics"}, function(response) {
+            chrome.runtime.sendMessage({metric: weights}, function(response) {
                 if (response !== undefined){
                     console.log("good response")
                     commitsData = response[0]
                     issuesData = response[1]
                     branchsData = response[2]
                     prData = response[3]
+                    rankingData = response[4]
                     
                     try{
                         let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
@@ -105,6 +112,18 @@ const initScreen = () =>
     settingsOnClick()
 
 }
+
+// triggers when save button from configuration page is clicked
+$(document).on("click", "#settingsSave", function() 
+{
+    sprintLength = $('#sprintLength').val()
+    weights[0] = $('#mergedWeight').val()
+    weights[1] = $('#commitsWeight').val()
+    weights[2] = $('#openWeight').val()
+    weights[3] = $('#commentsWeight').val()
+    alert("Configurations saved!")
+    getMetrics()
+})
 
 window.onhashchange = function()
 {
