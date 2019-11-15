@@ -59,3 +59,6 @@
     - [Sprint Review](docs/sprints/review/sprint9.md)
   - Sprint 10
     - [Sprint planing](docs/sprints/planing/sprint10.md)
+    - [Sprint Review](docs/sprints/review/sprint10.md)
+  - Sprint 11
+    - [Sprint planing](docs/sprints/planing/sprint11.md)
