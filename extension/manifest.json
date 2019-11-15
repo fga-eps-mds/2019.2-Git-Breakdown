@@ -49,7 +49,8 @@
         "css": 
         [
             "styles/bootstrap.min.css",
-            "styles/gbdStyle.css"
+            "styles/gbdStyle.css",
+            "styles/githubWebKit.css"  
         ]
     }],
     "browser_action": 
