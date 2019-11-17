@@ -1,0 +1,42 @@
+/*! CSS Used from: https://github.githubassets.com/assets/frameworks-481a47a96965f6706fb41bae0d14b09a.css ; media=all */
+@media all{
+    .octicon{display:inline-block;vertical-align:text-top;fill:currentColor;}
+    details{display:block !important;}
+    summary{display:list-item !important;}
+    a{background-color:initial;}
+    a:active,a:hover{outline-width:0;}
+    svg:not(:root){overflow:hidden;}
+    ::-webkit-input-placeholder{color:inherit;opacity:.54;}
+    *{box-sizing:border-box;}
+    a{color:#0366d6;text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    details summary{cursor:pointer !important;}
+    details:not([open])>:not(summary){display:none!important;}
+    .octicon{vertical-align:text-bottom;}
+    :-ms-input-placeholder{color:#6a737d;}
+    ::-ms-input-placeholder{color:#6a737d;}
+    ::placeholder{color:#6a737d;}
+    .details-reset>summary{list-style:none !important;}
+    .details-reset>summary:before{display:none !important;}
+    .details-reset>summary::-webkit-details-marker{display:none !important;}
+    .Header-link{font-weight:600;color:#fff;white-space:nowrap;}
+    .Header-link:focus,.Header-link:hover{color:hsla(0,0%,100%,.7);text-decoration:none;}
+    }
+    /*! CSS Used from: https://github.githubassets.com/assets/github-5362384f9e2512870c388a187eaf4868.css ; media=all */
+    @media all{
+    .dropdown-caret{display:inline-block;width:0;height:0;vertical-align:middle;content:"";border-top-style:solid;border-top-width:4px;border-right:4px solid transparent;border-bottom:0 solid transparent;border-left:4px solid transparent;}
+    .dropdown-menu{position:absolute;top:100%;left:0;z-index:100;width:160px;padding-top:4px;padding-bottom:4px;margin-top:2px;list-style:none;background-color:#fff;background-clip:padding-box;border:1px solid rgba(27,31,35,.15);border-radius:4px;box-shadow:0 1px 15px rgba(27,31,35,.15);}
+    .dropdown-menu:after,.dropdown-menu:before{position:absolute;display:inline-block;content:"";}
+    .dropdown-menu:before{border:8px solid transparent;border-bottom-color:rgba(27,31,35,.15);}
+    .dropdown-menu:after{border:7px solid transparent;border-bottom-color:#fff;}
+    .dropdown-item{display:block;padding:4px 8px 4px 16px;overflow:hidden;color:#24292e;text-overflow:ellipsis;white-space:nowrap;}
+    .dropdown-item:focus,.dropdown-item:hover{color:#fff;text-decoration:none;background-color:#0366d6;outline:none;}
+    .dropdown-divider{display:block;height:0;margin:8px 0;border-top:1px solid #e1e4e8;}
+    .dropdown-header{padding:4px 16px;font-size:12px;color:#586069;}
+    .dropdown-menu-sw{right:0;left:auto;}
+    .dropdown-menu-sw:before{top:-16px;right:9px;left:auto;}
+    .dropdown-menu-sw:after{top:-14px;right:10px;left:auto;}
+    .Header-link{font-weight:600;color:#fff;white-space:nowrap;}
+    .Header-link:focus,.Header-link:hover{color:hsla(0,0%,100%,.7);text-decoration:none;}
+    details-menu{display:block !important;}
+    }
