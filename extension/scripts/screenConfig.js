@@ -1,23 +1,27 @@
 let url_base = 'http://18.215.242.203:3000'
 
-let issuesData , branchsData, prData, commitsData, rankingData
+let issuesData , branchsData, prData, commitsData, rankingData, profileData
 
 let weights = [1,1,1,1] // default weights
 
 function getMetrics() 
 {
-    chrome.runtime.sendMessage({metric: weights}, function(response) 
-    {
-        console.log(weights)
-        if (response !== undefined)
+    return new Promise((resolve, reject) =>{
+        chrome.runtime.sendMessage({metric: weights}, function(response) 
         {
-            commitsData = response[0]
-            issuesData = response[1]
-            branchsData = response[2]
-            prData = response[3]
-            rankingData = response[4]
-        }
+            if (response !== undefined)
+            {
+                commitsData = response[0]
+                issuesData = response[1]
+                branchsData = response[2]
+                prData = response[3]
+                rankingData = response[4]
+                profileData = response[5]
+            }
+        })
+        resolve('metrics Done')
     })
+    
 }
 
 const METRICS = 
@@ -29,45 +33,48 @@ const METRICS =
   'ranking' // 4
 ]
 
-const homeBtn = () => {
-    let homeBtn = document.getElementById('gbdHomeBtn')
-    homeBtn.addEventListener('click', () => {
-        try{
-            document.getElementsByClassName('gbdContent')[0].innerHTML = initScreen()
-        }catch(err) {
-            console.log('GBD error:', err)
-        }
+function homeBtn(){
+    return new Promise((resolve, reject)=>{
+        let homeBtn = document.getElementById('gbdHomeBtn')
+        homeBtn.addEventListener('click', () => {
+            try{
+                document.getElementsByClassName('gbdContent')[0].innerHTML = initScreen()
+            }catch(err) {
+                console.log('GBD error:', err)
+            }
+         })
+         resolve('Home Button ready')
+    })
+    
+ }
+
+ function placeScreen(){
+     return new Promise((resolve, reject)=>{
+         let mainContainer = document.getElementById('gbdScreen')
+         mainContainer.innerHTML = gbdScreen()
+         resolve('GBD screen Ready')
      })
  }
 
-const initScreen = () => 
-{   
-    
-    //function to control the select behavior in buttons inside navbar
-    zhplugin()
-    selectBehavior()
-
-    
-    //Catching the container 
-    try{
+ function placeContainer(){
+     return new Promise((resolve, reject)=>{
         let mainContainer = document.getElementsByTagName('div')
         let containgerPattern = /.*(container-lg clearfix new-discussion-timeline experiment-repo-nav)+.*/ 
         for(let i = 0 ; i < mainContainer.length ; i++){
             let className = mainContainer[i].className
             let answer = containgerPattern.exec(className)
             if (answer != null){
-                mainContainer[i].innerHTML = gbdScreen()
+                mainContainer[i].innerHTML = loadPage()
                 mainContainer[i].style.maxWidth = '100%'
                 break;
-            }
-                 
+            }         
         }
-        homeBtn()
-    }catch(err) {
-        console.log('GBD Error:', err)
-    }
-    
-    try{
+        resolve('MainContainer Ready')
+     })
+ }
+
+ function plotGrafhics(){
+    return new Promise((resolve, reject)=>{
         if (typeof chrome.app.isInstalled !== 'undefined'){
             chrome.runtime.sendMessage({metric: weights}, function(response) {
                 if (response !== undefined){
@@ -77,6 +84,7 @@ const initScreen = () =>
                     branchsData = response[2]
                     prData = response[3]
                     rankingData = response[4]
+                    profileData = response[5]
 
                     
                     try{
@@ -103,27 +111,34 @@ const initScreen = () =>
         }
         else
             console.log('undefined chrome app')
+
+        resolve('Grafichs Done')
+    })
+ }
+
+async function initScreen() {   
+    
+    //function to control the select behavior in buttons inside navbar
+    zhplugin()
+    selectBehavior()
+    try{
+        await placeContainer()
+        plotProgress()
+        await placeScreen()
+        await homeBtn()
+        await plotGrafhics()
+        settingsOnClick()
+        setTimeout(function(){
+            plotRanking()
+        },2000)   
         
-    }catch(err) {
+    }catch(err){
         console.log('GBD error:', err)
     }
-
-    settingsOnClick()
-
     
-    setTimeout(function(){
-        try{
-            plotRanking()
-        }catch(err){
-            console.log('GBD error:', err)
-        }
-    },2000)
-    
-    
-
+           
+        
 }
-
-
 
 const chartOnClick = (type, data) =>
 {
@@ -142,23 +157,37 @@ const chartOnClick = (type, data) =>
     }
 }
 
-const gbdButtonOnClick = () =>{
-    const gbdtab = document.getElementById('gbdButton')
-    if (gbdtab !== null){
-        gbdtab.addEventListener('click', function(){
-            let screen = document.getElementById('gbdScreen')
-            if (screen == null && window.location.href.includes('#breakdown'))
-                initScreen()
-                selectBehavior()
-                zenhubOnClick()  
-        })
-    }
+function gbdButtonOnClick() {
+    return new Promise((resolve, reject)=>{
+        const gbdtab = document.getElementById('gbdButton')
+        if (gbdtab !== null){
+            gbdtab.addEventListener('click', function(){
+                let screen = document.getElementById('gbdScreen')
+                if (screen == null && window.location.href.includes('#breakdown'))
+                    initScreen()
+                    selectBehavior()
+                    zenhubOnClick()  
+            })
+        }
+        resolve('ok')
+    })
 }
 
+    
+
+async function initExtension(){
+    console.log("Initiating GBD")
+    await getMetrics()
+    console.log("Metrics Done")
+    await gbdButtonOnClick()
+    console.log("button ready")
+}
+
+
 try{
-    getMetrics()
-    gbdButtonOnClick()
-}catch(err){
+    initExtension()
+}
+catch(err){
     console.log('GBD error:', err)
 }
 

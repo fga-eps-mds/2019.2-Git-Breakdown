@@ -35,6 +35,7 @@
             "scripts/timeConfigPage.js",
             "scripts/hashChangeListener.js",
             "scripts/graph.js",
+            "scripts/loadingPage.js",
             "scripts/profilePage.js",
             "scripts/branchesPage.js",            
             "scripts/commitsPage.js",

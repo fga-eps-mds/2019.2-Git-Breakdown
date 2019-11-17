@@ -151,3 +151,7 @@ input[type=number]::-webkit-inner-spin-button {
     max-height: 1000px !important;
     overflow: auto !important;
 }
+
+#gbdProgressBar{
+    background-color: black;
+}

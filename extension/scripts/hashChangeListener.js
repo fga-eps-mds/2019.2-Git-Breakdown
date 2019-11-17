@@ -54,9 +54,9 @@ window.onhashchange = function()
             let screen = document.getElementById('gbdScreen')
             if (screen == null)
                 try{
+
                     selectBehavior()
                     initScreen()
-                  
                 }catch(err){
                     console.log('GBD error:', err)
                 }

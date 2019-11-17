@@ -14,7 +14,8 @@ const FETCH_METRICS =
   'issues', // 1
   'branches', // 2
   'pullrequests', // 3
-  'ranking' // 4
+  'ranking', // 4
+  'profile' //5
 ]
 
 async function fetchData(type, aux)
@@ -35,7 +36,7 @@ async function execute(request, aux)
   try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
     fetchedData = data_
-    fetchedData[5] = aux
+    fetchedData[6] = aux
     return data_
   } catch(err){
     console.log("GBD error at background.js\nAt execute():", err)
@@ -64,14 +65,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                     let url_aux = 
                     `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}&commits=${weights[0]}&merged=${weights[1]}&openissues=${weights[2]}&commentpr=${weights[3]}`
                     if (fetchedData.length > 0 && fetchedData[0] != undefined &&
-                      fetchedData[5] == url_aux)
+                      fetchedData[6] == url_aux)
                     {
                       console.log("returning fetched data")
                       sendResponse(fetchedData)
                     }
                     else
                     {
-                      if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[4] != url_aux)
+                      if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[5] != url_aux)
                         console.log("updating data")
 
                       console.log("fetching data")
