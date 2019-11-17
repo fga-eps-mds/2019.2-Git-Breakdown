@@ -33,6 +33,7 @@
             "scripts/bootstrap.min.js",
             "scripts/Chart.min.js",
             "scripts/timeConfigPage.js",
+            "scripts/hashChangeListener.js",
             "scripts/graph.js",
             "scripts/profilePage.js",
             "scripts/branchesPage.js",            

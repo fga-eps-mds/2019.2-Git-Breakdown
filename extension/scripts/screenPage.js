@@ -117,7 +117,7 @@ function plotRanking(){
         tr.innerHTML = 
         `
             <th scope="row">${pos}</th>
-            <td>${rankingData[i].name}</td>
+            <td><img class="rankingImg" id="${rankingData[i].name}">${rankingData[i].name}</td>
             <td>${rankingData[i].score}</td>
             
         `
@@ -131,6 +131,16 @@ function plotRanking(){
     }
 
     ranking.appendChild(tbody)
+}
+
+
+//wainting for the deploy
+function displayImgInRanking(){
+    let ranking = document.getElementsByClassName('rankingImg')
+    for(img in ranking){
+       let url = "//send requisition to /profile to get the url of the image"
+        img.src = url
+    }
 }
 
 
