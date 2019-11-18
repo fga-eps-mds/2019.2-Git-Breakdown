@@ -14,7 +14,7 @@ const FETCH_METRICS =
   'issues', // 1
   'branches', // 2
   'pullrequests', // 3
-  'ranking'
+  'ranking' // 4
 ]
 
 const FETCH_PROFILE = 
@@ -39,12 +39,42 @@ async function execute(request, aux)
 {
   try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
+
+    console.log(data_[0])
+    console.log(data_[4])
+
+    data_[0] = removeDuplicates(data_[0])
+    data_[4] = removeDuplicates(data_[4])
+
     fetchedData = data_
     fetchedData[5] = aux
+
     return data_
+    
   } catch(err){
     console.log("GBD error at background.js\nAt execute():", err)
   }
+}
+
+function removeDuplicates(data)
+{
+  let array = data
+  let seenNames = {}
+
+  array = array.filter(function(curr)
+  {
+    if (curr.name in seenNames)
+    {
+      return false
+    }
+    else
+    {
+      seenNames[curr.name] = true
+      return true
+    }
+  })
+
+  return array
 }
 
 async function executeProfile(request, aux)

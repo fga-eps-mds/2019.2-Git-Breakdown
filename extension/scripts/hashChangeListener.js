@@ -44,7 +44,6 @@ window.onhashchange = function()
         else if(window.location.href.includes('#breakdown/Profile')){
             try{
                 let user = findUser()
-                console.log(user.name)
                 getProfile(user.name)
                
 
