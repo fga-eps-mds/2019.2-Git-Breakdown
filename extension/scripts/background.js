@@ -14,8 +14,12 @@ const FETCH_METRICS =
   'issues', // 1
   'branches', // 2
   'pullrequests', // 3
-  'ranking', // 4
-  'profile' //5
+  'ranking'
+]
+
+const FETCH_PROFILE = 
+[
+  'profile'
 ]
 
 async function fetchData(type, aux)
@@ -36,7 +40,19 @@ async function execute(request, aux)
   try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
     fetchedData = data_
-    fetchedData[6] = aux
+    fetchedData[5] = aux
+    return data_
+  } catch(err){
+    console.log("GBD error at background.js\nAt execute():", err)
+  }
+}
+
+async function executeProfile(request, aux)
+{
+  try {
+    console.log("executing profile")
+    const data_ = await Promise.all(FETCH_PROFILE.map(type => fetchData(type, aux)))
+    fetchedData = data_
     return data_
   } catch(err){
     console.log("GBD error at background.js\nAt execute():", err)
@@ -64,19 +80,31 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                     let repo = url[4].split("#")[0]
                     let url_aux = 
                     `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}&commits=${weights[0]}&merged=${weights[1]}&openissues=${weights[2]}&commentpr=${weights[3]}`
-                    if (fetchedData.length > 0 && fetchedData[0] != undefined &&
-                      fetchedData[6] == url_aux)
+
+                    if (request.getProfile)
                     {
-                      console.log("returning fetched data")
-                      sendResponse(fetchedData)
+                      console.log("fetching profile")
+                      url_aux = 
+                      `?owner=${request.profile}&repository=${repo}&token=${res.oauth2_token}`
+                      executeProfile(request, url_aux).then(sendResponse)
                     }
                     else
                     {
-                      if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[5] != url_aux)
-                        console.log("updating data")
+                      console.log("not fetching profile")
+                      if (fetchedData.length > 0 && fetchedData[0] != undefined &&
+                        fetchedData[5] == url_aux)
+                      {
+                        console.log("returning fetched data")
+                        sendResponse(fetchedData)
+                      }
+                      else
+                      {
+                        if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[5] != url_aux)
+                          console.log("updating data")
 
-                      console.log("fetching data")
-                      execute(request, url_aux).then(sendResponse)
+                        console.log("fetching data")
+                        execute(request, url_aux).then(sendResponse)
+                      }
                     }
                   } catch (err) {
                       console.log("GBD erro at background.js\nAt chrome.runtime.onMessage.addListener\n At function(tab):", err)

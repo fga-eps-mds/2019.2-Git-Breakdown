@@ -151,10 +151,15 @@ function findUser(){
     let url = window.location.hash
     url = url.split('=')
 
-    let userProfile
-    for(let i = 0 ; i < rankingData.lenght ; i++){
+    let username = url[1]
+
+    getProfile(username)
+
+    for(let i = 0 ; i < rankingData.length ; i++){
         if (rankingData[i].name == url[1])
+        {
            userProfile = rankingData[i]
+        }
     }
 
     // userProfile += requestProfile(userProfile.name)
@@ -163,16 +168,24 @@ function findUser(){
 }
 
 
-function requestProfile(userName){
+function getProfile(username) 
+{
     return new Promise((resolve, reject) =>{
-        let userProfile
-        chrome.runtime.sendMessage({metric: userName}, function(response) 
+        chrome.runtime.sendMessage({metric: weights, getProfile: true, profile: username}, function(response) 
         {
             if (response !== undefined)
             {
-                userProfile = response[5]
+                // TEM QUE PEGAR OS DADOS DAQUI SE NAO PODE SER UNDEFINED
+                console.log(response[0].avatar)
+                console.log(response[0].bio)
+                console.log(response[0].location)
+                console.log(response[0].login)
+            }
+            else
+            {
+                console.log("profile response undefined")
             }
         })
-        resolve(userProfile)
     })
+    
 }

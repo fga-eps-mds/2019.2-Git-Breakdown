@@ -7,7 +7,7 @@ let weights = [1,1,1,1] // default weights
 function getMetrics() 
 {
     return new Promise((resolve, reject) =>{
-        chrome.runtime.sendMessage({metric: weights}, function(response) 
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: ""}, function(response) 
         {
             if (response !== undefined)
             {
@@ -73,7 +73,7 @@ function homeBtn(){
      })
  }
 
- function plotGrafhics(){
+ function plotGraphics(){
     return new Promise((resolve, reject)=>{
         if (typeof chrome.app.isInstalled !== 'undefined'){
             chrome.runtime.sendMessage({metric: weights}, function(response) {
@@ -126,7 +126,7 @@ async function initScreen() {
         plotProgress()
         await placeScreen()
         await homeBtn()
-        await plotGrafhics()
+        await plotGraphics()
         settingsOnClick()
         setTimeout(function(){
             plotRanking()
