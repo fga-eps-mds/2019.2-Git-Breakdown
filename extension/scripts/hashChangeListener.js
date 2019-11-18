@@ -43,7 +43,8 @@ window.onhashchange = function()
         }
         else if(window.location.href.includes('#breakdown/Profile')){
             try{
-                displayMember()
+                let user = findUser()
+                document.getElementsByClassName('gbdContent')[0].innerHTML = profilePage(user)
 
             }catch(err){
                 console.log('GBD error:', err)

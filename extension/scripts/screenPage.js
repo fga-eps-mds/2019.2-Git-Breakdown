@@ -133,10 +133,6 @@ function plotRanking(){
        
     }catch(err){
         console.log("GBD error:", err)
-        if(executedTimes < 4){
-            plotRanking()
-            
-        }
     }
 
     ranking.appendChild(tbody)

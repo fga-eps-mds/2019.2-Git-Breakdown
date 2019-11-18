@@ -136,7 +136,7 @@ async function initScreen() {
         console.log('GBD error:', err)
     }
     
-           
+    console.log(profileData)
         
 }
 
