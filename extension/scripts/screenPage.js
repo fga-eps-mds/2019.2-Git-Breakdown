@@ -112,19 +112,19 @@ function plotRanking(){
     let tbody = document.createElement('tbody')
     let pos = 1
     try{
-        for(let i = 0; i < rankingData.length ; i++){
+        for(user in rankingData){
             
             let tr = document.createElement('tr')
             tr.innerHTML = 
             `
                 <th scope="row">${pos}</th>
-                <td><img class="rankingImg" id="${rankingData[i].name}">${rankingData[i].name}</td>
-                <td>${rankingData[i].score}</td>
+                <td><img class="rankingImg" id="${rankingData[user].name}">${rankingData[user].name}</td>
+                <td>${rankingData[user].score}</td>
                 
             `
             pos+=1
             tbody.appendChild(tr)
-            tr.id = `${rankingData[i].name}`
+            tr.id = `${rankingData[user].name}`
             tr.addEventListener('click', ()=>{
             window.location.hash = `#breakdown/Profile=${tr.id}`
         

@@ -4,6 +4,8 @@ let issuesData , branchsData, prData, commitsData, rankingData, profileData
 
 let weights = [1,1,1,1] // default weights
 
+
+
 function getMetrics() 
 {
     return new Promise((resolve, reject) =>{
@@ -130,13 +132,12 @@ async function initScreen() {
         settingsOnClick()
         setTimeout(function(){
             plotRanking()
-        },2000)   
+        },3000)   
         
     }catch(err){
         console.log('GBD error:', err)
     }
     
-    console.log(profileData)
         
 }
 
@@ -176,11 +177,8 @@ function gbdButtonOnClick() {
     
 
 async function initExtension(){
-    console.log("Initiating GBD")
     await getMetrics()
-    console.log("Metrics Done")
     await gbdButtonOnClick()
-    console.log("button ready")
 }
 
 

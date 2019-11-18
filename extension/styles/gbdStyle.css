@@ -155,3 +155,11 @@ input[type=number]::-webkit-inner-spin-button {
 #gbdProgressBar{
     background-color: black;
 }
+
+
+#avatar{
+    border:1px solid black;
+    width: 100%;
+    
+}
+
