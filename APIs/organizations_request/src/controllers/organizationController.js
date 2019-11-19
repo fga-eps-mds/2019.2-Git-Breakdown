@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require('axios-https-proxy-fix')
 const queryString = { per_page: 10000 }
 
 
@@ -17,7 +17,7 @@ exports.get = async (req, res, next) => {
 
         const header_option = {
             headers: {
-                'Accept': 'application/json',
+                'Accept': 'application/vnd.github.v3+json',
                 'Accept-Charset': 'utf-8',
                 'User-Agent': '2019.2-Git-Breakdown',
                 'Authorization': `token ${token}`
