@@ -108,6 +108,19 @@ ranking_request:
     - sudo docker-compose up -d
     - npm test --prefix ./APIs/ranking_request
     - sudo docker-compose down
+    
+organizations_request:
+  stage: test
+  image: node:alpine
+  before_script:
+    # install requirement to organizations_request
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/constants.js
+    - npm --prefix ./APIs/organizations_request install ./APIs/organizations_request
+
+  script:
+    - sudo docker-compose up -d
+    - npm test --prefix ./APIs/organizations_request
+    - sudo docker-compose down
 
 # Stage III
 # Deploying Phase:
