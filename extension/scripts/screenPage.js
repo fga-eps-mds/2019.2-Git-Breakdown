@@ -139,13 +139,4 @@ function plotRanking(){
 }
 
 
-//wainting for the deploy
-function displayImgInRanking(){
-    let ranking = document.getElementsByClassName('rankingImg')
-    for(img in ranking){
-       let url = "//send requisition to /profile to get the url of the image"
-        img.src = url
-    }
-}
-
 

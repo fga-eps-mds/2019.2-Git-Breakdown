@@ -39,56 +39,29 @@ function profilePage(user, profile){
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col">
+                                <div class="row">
 
-                                <label></label>
-                            
-                                </div>
-                            <div class="col-md-6">
+                                    <canvas id="percentCommits"></canvas>
 
-                                <p></p>
-                            
                                 </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                
-                                <label></label>
-                            
+                                <div class="row">
+
+                                    <canvas id="2"></canvas>
+
                                 </div>
-                            <div class="col-md-6">
-                                
-                                <p></p>
-                            
+                            </div>
+                            <div class="col">
+                                <div class="row">
+
+                                        <canvas id="3"></canvas>
+
                                 </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                
-                                <label></label>
-                            
+                                <div class="row">
+
+                                    <canvas id="4"></canvas>   
+
                                 </div>
-                            <div class="col-md-6">
-                                
-                                <p></p>
-                            
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                
-                            <label></label>
-                            </div>
-                            <div class="col-md-6">
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label></label>
-                            </div>
-                            <div class="col-md-6">
-                                <p></p>
                             </div>
                         </div>
                     </div>

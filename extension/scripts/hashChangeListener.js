@@ -43,14 +43,24 @@ window.onhashchange = function()
         }
         else if(window.location.href.includes('#breakdown/Profile')){
             try{
+               
                 let url = window.location.hash
                 url = url.split('=')
 
-                calcPercentCommits(commitsData , url[1])
-                calcPercentOpenedIssues(rankingData, url[1])
-
-                
                 getProfile(url[1])
+
+                setTimeout(function(){
+                    let percentCommits = calcPercentCommits(commitsData , url[1])
+                    let percentCommitsGraphics = document.getElementById('percentCommits').getContext('2d')
+                    createPercentCommits(percentCommits, percentCommitsGraphics, url[1])
+                },2000)
+               
+
+                // calcPercentOpenedIssues(rankingData, url[1])
+                // //calcPercentClosedIssues(rankingData, url[1])
+                // calcPercentMergedPullRequest(rankingData, url[1])
+
+               
                
 
             }catch(err){
