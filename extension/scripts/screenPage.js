@@ -110,6 +110,7 @@ function gbdScreen()
 function plotRanking(){
     let ranking = document.getElementById('gbdRanking')
     let tbody = document.createElement('tbody')
+    tbody.id = 'gbdRankingTbody'
     let pos = 1
     try{
         for(user in rankingData){
@@ -136,7 +137,39 @@ function plotRanking(){
     }
 
     ranking.appendChild(tbody)
+
+    plotColorStatus()
 }
 
 
+function plotColorStatus(){
+    let ranking = document.getElementById('gbdRankingTbody').childNodes
 
+    let avarage = getScoreAvarage(rankingData)
+
+    for(user in ranking){
+        if(ranking[user].id != undefined)
+            if(rankingData[user].score > avarage+15)
+                document.getElementById(ranking[user].id).style.backgroundColor = 'green'
+            else if( rankingData[user].score < avarage+15 && rankingData[user].score < avarage-15)
+                document.getElementById(ranking[user].id).style.backgroundColor = 'blue'
+            else
+                document.getElementById(ranking[user].id).style.backgroundColor = 'red'
+    }
+
+   
+
+}
+
+function getScoreAvarage(rankingData){
+    let scoreAvarage = 0
+    let total = 0
+
+    for(user in rankingData){
+        if(rankingData[user].score != undefined){
+            scoreAvarage += rankingData[user].score
+            total++
+        }
+    }
+    return scoreAvarage / total
+}
