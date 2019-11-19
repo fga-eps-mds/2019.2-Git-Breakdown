@@ -73,6 +73,12 @@ function gbdScreen()
                         </thead>
                     </table>
                 </div>
+                <div id="legends">
+                    <label>Contribution status Legends</label>
+                    <div id="good">good</div>
+                    <div id="ok">ok</div>
+                    <div id="bad">bad</div>
+                </div>
             </div>
             <div class="col">
                 <div class="row">
@@ -151,7 +157,7 @@ function plotColorStatus(){
         if(ranking[user].id != undefined)
             if(rankingData[user].score > avarage+15)
                 document.getElementById(ranking[user].id).style.backgroundColor = 'green'
-            else if( rankingData[user].score < avarage+15 && rankingData[user].score < avarage-15)
+            else if( rankingData[user].score < avarage+15 && rankingData[user].score > avarage-15)
                 document.getElementById(ranking[user].id).style.backgroundColor = 'blue'
             else
                 document.getElementById(ranking[user].id).style.backgroundColor = 'red'
