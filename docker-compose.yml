@@ -15,6 +15,7 @@ services:
       - branch_api
       - ranking_api
       - profile_api
+      - organization_api
 
     links:
       - commit_api
@@ -23,6 +24,7 @@ services:
       - branch_api
       - ranking_api
       - profile_api
+      - organization_api
   
   commit_api:
     build: ./APIs/commits_request/.
@@ -72,3 +74,10 @@ services:
     volumes:
       - .:/usr/breakdown/profile_request
 
+  organization_api:
+    build: ./APIs/organizations_request/.
+    command: npm start
+    ports:
+      - "3007:3007"
+    volumes:
+      - .:/usr/breakdown/organizations_request
