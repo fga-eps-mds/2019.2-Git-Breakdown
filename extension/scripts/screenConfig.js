@@ -123,6 +123,7 @@ $(document).on("click", "#settingsSave", function()
     weights[3] = $('#commentsWeight').val()
     alert("Configurations saved!")
     getMetrics()
+    $('#settingsButton').popover('hide');
 })
 
 window.onhashchange = function()

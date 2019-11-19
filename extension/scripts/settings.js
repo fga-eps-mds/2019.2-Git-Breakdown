@@ -1,6 +1,3 @@
-
-
-
 function settingsOnClick()
 {
     let button = document.getElementById("settingsButton")
@@ -17,5 +14,15 @@ function settingsOnClick()
             }
             
         )
+        $(document).mouseup(function (e)
+        {
+            var container = $(".popover")
+    
+            if (!container.is(e.target)
+                && container.has(e.target).length === 0) 
+            {
+                container.popover("hide")
+            }
+        })   
     }
 }
