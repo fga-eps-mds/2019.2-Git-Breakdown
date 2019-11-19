@@ -41,26 +41,21 @@ function profilePage(user, profile){
                         <div class="row">
                             <div class="col">
                                 <div class="row">
-                                    <div = class="card text-white bg-dark mb-3">
+                                    <div class="card text-white bg-dark mb-3">
                                         <canvas id="percentIssues"></canvas>
                                     </div>
-                                </div>
-                                <div class="row">
-
-                                    <canvas id="2"></canvas>
-
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <div = class="card text-white bg-dark mb-3">
+                                    <div class="card text-white bg-dark mb-3">
                                         <canvas id="percentCommits"></canvas>
                                     </div>
                                 </div>
                                 <div class="row">
-
-                                    <canvas id="4"></canvas>   
-
+                                    <div class="card text-white bg-dark mb-3">
+                                        <canvas id="percentPullRequests"></canvas>
+                                    </div>   
                                 </div>
                             </div>
                         </div>
@@ -101,6 +96,7 @@ function getProfile(username)
 
             
         })
+        resolve('profile displaying')
     })
     
 }

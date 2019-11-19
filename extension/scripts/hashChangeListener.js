@@ -1,4 +1,4 @@
-window.onhashchange = function()
+window.onhashchange = async function()
 {
 
     let gbdButton = document.getElementById('gbdButton')
@@ -47,21 +47,11 @@ window.onhashchange = function()
                 let url = window.location.hash
                 url = url.split('=')
 
-                getProfile(url[1])
-
+                await getProfile(url[1])
                 setTimeout(function(){
-                    let percentCommits = calcPercentCommits(commitsData , url[1])
-                    let percentCommitsGraphics = document.getElementById('percentCommits').getContext('2d')
-                    let percentCommitsLabels = ['total of commits', `${url[1]} commits`]
-                    createPercentGraphic(percentCommits, percentCommitsGraphics, percentCommitsLabels,
-                        '# of commits', `commits from ${url[1]}`)
-                },2000)
+                    plotPercentGraphics(url[1])
+                }, 2000) 
                
-
-                // calcPercentOpenedIssues(rankingData, url[1])
-                // //calcPercentClosedIssues(rankingData, url[1])
-                // calcPercentMergedPullRequest(rankingData, url[1])
-
                
                
 
