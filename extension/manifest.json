@@ -45,7 +45,8 @@
             "scripts/observers.js",
             "scripts/zenhubRequirements.js",
             "scripts/button.js",
-            "scripts/screenConfig.js"
+            "scripts/screenConfig.js",
+            "scripts/metricsCalc.js"
             
 
         ],

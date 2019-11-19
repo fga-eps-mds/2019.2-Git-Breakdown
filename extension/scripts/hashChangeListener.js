@@ -43,9 +43,14 @@ window.onhashchange = function()
         }
         else if(window.location.href.includes('#breakdown/Profile')){
             try{
-                let user = findUser()
-                console.log(user)
-                getProfile(user[0].name)
+                let url = window.location.hash
+                url = url.split('=')
+
+                calcPercentCommits(commitsData , url[1])
+                calcPercentOpenedIssues(rankingData, url[1])
+
+                
+                getProfile(url[1])
                
 
             }catch(err){
@@ -57,6 +62,8 @@ window.onhashchange = function()
             let screen = document.getElementById('gbdScreen')
             if (screen == null)
                 try{
+
+                   
 
                     selectBehavior()
                     initScreen()

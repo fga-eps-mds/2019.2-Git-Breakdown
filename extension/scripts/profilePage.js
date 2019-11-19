@@ -1,6 +1,5 @@
 //this function is not used yet
 function profilePage(user, profile){
-    console.log(profile)
     let profilePage = 
     `
 <div class="container emp-profile">
@@ -105,7 +104,6 @@ function profilePage(user, profile){
 function findUser(){
     let url = window.location.hash
     url = url.split('=')
-   console.log("lenght-->", rankingData.length)
     for(user in rankingData){
         if( url[1] === rankingData[user].name)
             return [rankingData[user],  ((+user)+(+1)).toString(), rankingData.length]
@@ -120,7 +118,7 @@ function getProfile(username)
         {
             if (response !== undefined)
             {   
-                // TEM QUE PEGAR OS DADOS DAQUI SE NAO PODE SER UNDEFINED
+                
                 document.getElementsByClassName('gbdContent')[0].innerHTML = profilePage(findUser(), response[0])
             }
             else
