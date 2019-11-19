@@ -51,63 +51,50 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" alt="avatar" class="avatar">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
     <style>
-        body {background-color: gray}
-        button 
-            {
-                height: 50px;
-                width: 160px;
-                border: 1px solid gray;
-                background: none;
-                text-transform: uppercase;
-                border-radius: 8px;
-                font-weight: 700;
-                color:steelblue;
-                letter-spacing: 1px;
-                font-size:inherit;
-                transition: all 0.3s;
-                -webkit-transition: all 0.3s;
-                -moz-transition: all 0.3s;
-                outline: none;
-            }
-            button:hover
-            {
-                color: white;
-                background-color: steelblue;
-            }
+        .container-fluid{
+            width: 100%;
+        }
+        button{
+            position: relative;
+            height: 50px;
+            width: 220px;
+        }
     </style>
   </head>
   
   <body>
   	<div class="container-fluid" id="popupContainer">
-    	<div id="title">
-        	<h1>GitBreakDown App</h1>
-        </div>
+        <img id="logo" src="../images/logo.jpg" class="img-thumbnail" alt="Responsive image">
 
-        <img src="images/logo.jpg" width="30" height="30">
+        <h3 class="text-center text-uppercase">Git Breakdown App</h3>
 
         <div id="login">
-			<button type="button" id="loginButton">Login</button>
+			<button type="button" class="btn btn-primary" id="loginButton">Login</button>
     	</div>
         
         <div id="logout">
-        	<button type="button" id="logoutButton">Logout</button>
+        	<button type="button" class="btn-primary" id="logoutButton">Logout</button>
         </div>
 		
-        <div>
-        	<a class="button" data-toggle="collapse" href="#aboutus" role="button">About Us</a>
+        <div id="aboutus_link">
+        	<button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" href="#aboutus_text">About Us</button>
         </div>
         
-        <div class="collapse" id="aboutus">
+        <div class="collapse" id="aboutus_text">
 			<div class="card card-body">
             Git BreakDown Resume
-  			</div>
-		</div>
-		
-        <script src="scripts/jquery.min.js"></script>
-        <script src="scripts/popper.min.js"></script>
-        <script src="scripts/bootstrap.min.js"></script>
-        <script type="module" src="scripts/popup.js"> </script>
+            </div>
+        </div>
+        
+    </div>    
+    
+        <script src="../scripts/jquery.min.js"></script>
+        <script src="../scripts/popper.min.js"></script>
+        <script src="../scripts/bootstrap.min.js"></script>
+        <script type="module" src="../scripts/popup.js"> </script>
   </body>
 </html>
