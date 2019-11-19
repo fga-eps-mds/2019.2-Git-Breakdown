@@ -158,8 +158,16 @@ input[type=number]::-webkit-inner-spin-button {
 
 
 #avatar{
-    border:1px solid black;
-    width: 100%;
-    
+    border:3px solid black;
+    border-radius: 50%;
+    width: 60%;
 }
 
+.profile-work a{
+    text-decoration: none;
+}
+
+
+.container {
+    margin-left: 0;
+}
