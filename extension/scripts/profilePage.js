@@ -41,9 +41,9 @@ function profilePage(user, profile){
                         <div class="row">
                             <div class="col">
                                 <div class="row">
-
-                                    <canvas id="percentCommits"></canvas>
-
+                                    <div = class="card text-white bg-dark mb-3">
+                                        <canvas id="percentIssues"></canvas>
+                                    </div>
                                 </div>
                                 <div class="row">
 
@@ -53,9 +53,9 @@ function profilePage(user, profile){
                             </div>
                             <div class="col">
                                 <div class="row">
-
-                                        <canvas id="3"></canvas>
-
+                                    <div = class="card text-white bg-dark mb-3">
+                                        <canvas id="percentCommits"></canvas>
+                                    </div>
                                 </div>
                                 <div class="row">
 

@@ -67,17 +67,17 @@ function calcPercentMergedPullRequest(rankingData , userName){
 
 }
 
-function createPercentCommits(data, ctx, userName)
+function createPercentGraphic(data, ctx, labels , label, title)
 {
-    const commitsPercentCharts = new Chart(ctx, 
+    const PercentChart= new Chart(ctx, 
     {
         type: 'pie',
         data: 
         {
-            labels: ['total of commits', 'user commits'],
+            labels: [labels[0], labels[1]],
             datasets: 
             [{
-                label: '# of commits',
+                label: label,
                 fontColor: 'white',
                 data: [data[0], data[1]],
                 backgroundColor: 
@@ -106,7 +106,7 @@ function createPercentCommits(data, ctx, userName)
                 fontSize: 12,
                 fontColor: 'white',
                 display: true,
-                text: `Commits from ${userName}`
+                text: title
             },
             scales: 
             {

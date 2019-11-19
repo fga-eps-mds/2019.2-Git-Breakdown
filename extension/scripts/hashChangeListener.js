@@ -52,7 +52,9 @@ window.onhashchange = function()
                 setTimeout(function(){
                     let percentCommits = calcPercentCommits(commitsData , url[1])
                     let percentCommitsGraphics = document.getElementById('percentCommits').getContext('2d')
-                    createPercentCommits(percentCommits, percentCommitsGraphics, url[1])
+                    let percentCommitsLabels = ['total of commits', `${url[1]} commits`]
+                    createPercentGraphic(percentCommits, percentCommitsGraphics, percentCommitsLabels,
+                        '# of commits', `commits from ${url[1]}`)
                 },2000)
                
 
