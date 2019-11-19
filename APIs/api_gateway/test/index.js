@@ -153,4 +153,74 @@ describe('API Gateway integration tests', () => {
         })
         done()
     })
+    
+    it('/ranking: valid request', (done) => {
+        axios.get(urlBase+'/ranking'+urlParams).then((response) => {
+                let _body = {}
+                try{
+                  _body = response.data
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.status != undefined)
+                    expect(response.status).to.equal(200)
+            }
+        ).catch(err => {
+          const errorResponse = err
+        })
+        done()
+    })
+    it('/ranking: invalid request', (done) => {
+        axios.get(urlBase+'/ranking').then((response) => {
+                let _body = {}
+                try{
+                  _body = response.data
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.status != undefined)
+                    expect(response.status).to.equal(400)
+            }
+        ).catch(err => {
+          expect(err.response.status).to.equal(400)
+        })
+        done()
+    })
+    
+    it('/profile: valid request', (done) => {
+        axios.get(urlBase+'/profile'+urlParams).then((response) => {
+                let _body = {}
+                try{
+                  _body = response.data
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.status != undefined)
+                    expect(response.status).to.equal(200)
+            }
+        ).catch(err => {
+          const errorResponse = err
+        })
+        done()
+    })
+    it('/profile: invalid request', (done) => {
+        axios.get(urlBase+'/profile').then((response) => {
+                let _body = {}
+                try{
+                  _body = response.data
+                }
+                catch(e){
+                  _body = {}
+                }
+                if(response.status != undefined)
+                    expect(response.status).to.equal(400)
+            }
+        ).catch(err => {
+          expect(err.response.status).to.equal(400)
+        })
+        done()
+    })
 })

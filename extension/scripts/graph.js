@@ -6,10 +6,10 @@ function createCommitsChart(data, ctx)
     let colorArray = getRandomColorArray(size)
     for (let i = 0; i < size; i++)
     {
-        if (data[i+1] != undefined)
+        if (data[i] != undefined)
         {
-            names[i] = data[i+1].name
-            qtCommits[i] = data[i+1].commits
+            names[i] = data[i].name
+            qtCommits[i] = data[i].commits
         }
     }
     const commitsChart = new Chart(ctx, 
@@ -17,7 +17,7 @@ function createCommitsChart(data, ctx)
         type: 'bar',
         data: 
         {
-            
+            fontColor: 'white',
             labels: names,
             datasets: 
             [{
@@ -25,7 +25,8 @@ function createCommitsChart(data, ctx)
                 data: qtCommits,
                 backgroundColor: colorArray,
                 borderColor: colorArray,
-                fontSize: 20,
+                fontSize: 12,
+                fontColor: 'white',
                 borderWidth: 1
             }]
         },
@@ -34,19 +35,21 @@ function createCommitsChart(data, ctx)
             maintainAspectRatio: false,
             title:
             {
-                fontSize: 30,
+                fontSize: 12,
+                fontColor: 'white',
                 display: true,
                 text: 'Commits per person dashboard'
             },
             tooltips:
             {
-                titleFontSize: 30,
-                bodyFontSize: 25
+                titleFontSize: 12,
+                bodyFontSize: 12
             },
             scales: 
             {
                 yAxes: 
                 [{
+                    display: false,
                     gridLines: 
                     {
                         display: false
@@ -55,7 +58,8 @@ function createCommitsChart(data, ctx)
                 xAxes: 
                 [{
                     ticks: {
-                        fontSize: 22
+                        fontColor: 'white',
+                        fontSize: 12
                     },
                     gridLines: 
                     {
@@ -65,7 +69,8 @@ function createCommitsChart(data, ctx)
             },
             legend: {
                 labels: {
-                    fontSize: 25
+                    fontSize: 12,
+                    fontColor: 'white'
                 }
             }
         }
@@ -83,6 +88,7 @@ function createBranchesChart(data, ctx)
             labels: ['Active', 'Merged'],
             datasets: 
             [{
+                fontColor: 'white',
                 label: '# of branches',
                 data: [data.active_branches, qtMerged],
                 backgroundColor: 
@@ -102,18 +108,20 @@ function createBranchesChart(data, ctx)
         {
             tooltips:
             {
-                titleFontSize: 30,
-                bodyFontSize: 25
+                titleFontSize: 12,
+                bodyFontSize: 12
             },
             legend: {
                 labels: {
-                    fontSize: 25
+                    fontColor: 'white',
+                    fontSize: 12
                 }
             },
             maintainAspectRatio: false,
             title:
             {
-                fontSize: 30,
+                fontSize: 12,
+                fontColor: 'white',
                 display: true,
                 text: 'Branches dashboard'
             },
@@ -142,6 +150,7 @@ function createPRChart(data, ctx)
             datasets: 
             [{
                 label: '# of pullrequests',
+                fontColor: 'white',
                 data: [data.open, total_accepted, total_refused],
                 backgroundColor: 
                 [
@@ -162,18 +171,20 @@ function createPRChart(data, ctx)
         {
             tooltips:
             {
-                titleFontSize: 30,
-                bodyFontSize: 25
+                titleFontSize: 12,
+                bodyFontSize: 12
             },
             legend: {
                 labels: {
-                    fontSize: 25
+                    fontColor: 'white',
+                    fontSize: 12
                 }
             },
             maintainAspectRatio: false,
             title:
             {
-                fontSize: 30,
+                fontSize: 12,
+                fontColor: 'white',
                 display: true,
                 text: 'Pull Requests dashboard'
             },
@@ -199,6 +210,7 @@ function createIssuesChart(data, ctx)
             datasets: 
             [{
                 label: '# of issues',
+                fontColor: 'white',
                 data: [data.open, data.closed],
                 backgroundColor: 
                 [
@@ -217,13 +229,14 @@ function createIssuesChart(data, ctx)
         {
             tooltips:
             {
-                titleFontSize: 30,
-                bodyFontSize: 25
+                titleFontSize: 12,
+                bodyFontSize: 12
             },
             maintainAspectRatio: false,
             title:
             {
-                fontSize: 30,
+                fontSize: 12,
+                fontColor: 'white',
                 display: true,
                 text: 'Issues dashboard'
             },
@@ -236,7 +249,8 @@ function createIssuesChart(data, ctx)
             },
             legend: {
                 labels: {
-                    fontSize: 25
+                    fontColor: 'white',
+                    fontSize: 12
                 }
             }
         }

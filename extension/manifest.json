@@ -2,6 +2,7 @@
     "name": "GitBreakdown",
     "version": "0.7",
     "description": "GitBreakdown Chrome extension",
+    "web_accessible_resources": ["images/logo.jpg", "images/cog-8x.png"],
     "permissions": 
     [
         "declarativeContent",
@@ -27,11 +28,28 @@
         "js": 
         [
             "scripts/oauth.js",
-            "scripts/contentScripts.js",
+            "scripts/jquery.min.js",
+            "scripts/popper.min.js",
+            "scripts/bootstrap.min.js",
             "scripts/Chart.min.js",
+            "scripts/settings.js",
             "scripts/graph.js",
+            "scripts/branchesPage.js",            
+            "scripts/commitsPage.js",
+            "scripts/issuesPage.js",
+            "scripts/prPage.js",
+            "scripts/screenPage.js",
+            "scripts/observers.js",
+            "scripts/zenhubRequirements.js",
             "scripts/button.js",
-            "scripts/screen.js"
+            "scripts/screenConfig.js"
+        ],
+        "css": 
+        [
+            "styles/bootstrap.min.css",
+            "styles/gbdStyle.css",
+            "styles/githubWebKit.css",
+            "styles/githubMainPageWebKit.css"  
         ]
     }],
     "browser_action": 

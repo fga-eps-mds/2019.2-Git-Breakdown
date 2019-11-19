@@ -1,0 +1,161 @@
+#gbdScreen {
+background-color: lightgray;
+position: relative;
+border-radius : 25px;
+box-shadow: #24292e;
+border-top : 0;
+width : 100%;
+height : 600px;
+left:0;
+
+}
+
+.popover
+{
+    min-width: 400px !important;
+    min-height: 200px !important;
+}
+
+.gbdContent {
+position: relative;
+width : 100%;
+height: 90%;
+top:5%;
+}
+
+.ranking
+{
+    margin-left: 2%;
+}
+
+.mainscreen
+{
+    max-width: inherit;
+    max-height: inherit;
+}
+
+.col
+{
+    height: 400px !important;
+    padding-right: 2%;
+}
+
+.row
+{
+    max-height: 80% !important;
+}
+
+.right
+{
+    margin-right: 1.5%;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+ }
+
+.card
+{
+    position: relative;
+    display: block;
+    width: 100% !important;
+    min-width: 450px !important;
+    min-height: 235px !important;
+    max-width: 478px !important;
+    max-height: 240px !important;
+}
+
+.card-body
+{
+    position: relative;
+    display: block;
+    height: 20% !important;
+    width: 100%;
+    padding: 0 !important;
+}
+
+.reponav-item.gbdselected {
+color:#24292e;
+background-color:#fff;
+border-color:
+rgba(0,51,102,0.7) #e1e4e8 transparent;
+}
+
+
+.flexContainer
+{
+    position: relative;
+    width: 60%;
+    height: 100%;
+    left : 40%;
+}
+
+
+.chartjs-render-monitor {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+
+#commitsDashboard {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#issuesDashboard {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#prsDashboard {        
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+#branchesDashboard {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.metricsPageTitle {
+    margin-left: 27.5%;
+    width: 45%;
+    text-align: center;
+    box-shadow: 5px 5px 5px 5px black;
+    border-radius: 25px;
+}
+
+#metricContainer {
+    display:flex;
+    padding-top: 15px;
+    height: 90%;
+}
+
+
+
+#progressContainer {
+    padding: 4px;
+    position: relative;
+    right: -2%;
+    box-shadow: 5px 0 20px 5px black;
+    border-radius: 25px 0px 25px 25px;
+    border: 4px solid black;
+    width: 68%;
+    height: 103%;
+}
+
+#repoRanking{
+    padding: 1%;
+    border-radius: 1%;
+    box-shadow: 5px 0 20px 5px black;
+    border: 3px solid black;
+} 
+
+
+input[type=number]::-webkit-outer-spin-button, 
+input[type=number]::-webkit-inner-spin-button {
+-webkit-appearance: inner-spin-button !important;
+}

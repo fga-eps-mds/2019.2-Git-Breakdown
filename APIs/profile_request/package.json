@@ -1,27 +1,25 @@
 {
-  "name": "pullrequests_request",
+  "name": "profile_request",
   "version": "1.0.0",
   "description": "",
+  "repository": "https://github.com/fga-eps-mds/2019.2-Git-Breakdown",
   "main": "index.js",
   "directories": {
     "test": "mocha"
   },
   "scripts": {
-    "test": "./node_modules/.bin/_mocha --recursive --exit ./test/*.js",
-    "start": "nodemon ./bin/server.js"
+    "start": "nodemon ./bin/server.js",
+    "test": "./node_modules/.bin/_mocha --recursive --exit ./test/*.js"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
     "express": "^4.17.1",
-    "http": "0.0.0",
     "nodemon": "^1.19.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chai-json": "^1.0.0",
     "mocha": "^6.2.0",
     "should": "^13.2.3"
   }

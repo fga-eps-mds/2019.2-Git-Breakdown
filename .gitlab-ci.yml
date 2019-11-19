@@ -1,8 +1,8 @@
 # Git Breakdown CI/CD configuration file.
 stages:
-- build
-- test
-- deploy
+  - build
+  - test
+  - deploy
 
 # Stage I
 # Build Phase:
@@ -83,6 +83,31 @@ commits_request:
     - npm test --prefix ./APIs/commits_request
     - sudo docker-compose down
 
+profile_request:
+  stage: test
+  image: node:alpine
+  before_script:
+    # install requirement to profile_request
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/constants.js
+    - npm --prefix ./APIs/profile_request install ./APIs/profile_request
+
+  script:
+    - sudo docker-compose up -d
+    - npm test --prefix ./APIs/profile_request
+    - sudo docker-compose down
+
+ranking_request:
+  stage: test
+  image: node:alpine
+  before_script:
+    # install requirement to ranking_request
+    - echo "exports.token = '$GIT_TOKEN'" >> ./APIs/constants.js
+    - npm --prefix ./APIs/ranking_request install ./APIs/ranking_request
+
+  script:
+    - sudo docker-compose up -d
+    - npm test --prefix ./APIs/ranking_request
+    - sudo docker-compose down
 
 # Stage III
 # Deploying Phase:
@@ -91,7 +116,7 @@ deploy:
   stage: deploy
   image: ubuntu:latest
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
     - chmod a+x ./deploy/disableHostKeyChecking.sh
 
   script:
