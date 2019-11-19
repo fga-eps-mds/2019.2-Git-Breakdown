@@ -133,9 +133,20 @@ function plotRanking(){
             tbody.appendChild(tr)
             tr.id = `${rankingData[user].name}`
             tr.addEventListener('click', ()=>{
-            window.location.hash = `#breakdown/Profile=${tr.id}`
+                window.location.hash = `#breakdown/Profile=${tr.id}`
         
             })
+
+            tr.onpointerover = () => {
+                tr.style.opacity = '50%'
+            }
+
+            tr.onpointerleave = () => {
+                tr.style.opacity = '100%'
+            }
+            
+
+           
         }
        
     }catch(err){
