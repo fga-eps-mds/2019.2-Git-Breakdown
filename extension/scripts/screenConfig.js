@@ -30,7 +30,7 @@ function getMetrics(updateRanking)
                 {
                     console.log("updating ranking")
                     setTimeout(function(){
-                        plotRanking()
+                        plotRanking(updateRanking)
                     },3000)  
                 }
             }
@@ -145,7 +145,7 @@ async function initScreen() {
         await plotGraphics()
         settingsOnClick()
         setTimeout(function(){
-            plotRanking()
+            plotRanking(false)
         },3000)   
         
     }catch(err){
