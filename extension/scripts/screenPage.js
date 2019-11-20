@@ -1,14 +1,13 @@
+
+
 function gbdScreen()
 {
     let urlLogo = chrome.extension.getURL("images/logo.jpg")
     let urlCog = chrome.extension.getURL("images/cog-8x.png")
     let gbdScreen = 
-    `
-    <div class="container-fluid">    
-    <div id="gbdScreen">
+    `  
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="box-shadow: 1px 1px 1px 1px black;
         border-radius: 20px;">
-
             <a class="navbar-brand" href="#breakdown"><img src="${urlLogo}" width="30" height="30" class="d-inline-block align-top"> GitBreakdown</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -88,91 +87,136 @@ function gbdScreen()
                 </ul>
 
             </div>
-        </nav>
-
-        <div class="gbdContent">
-        <div class="row">
-
-
-
-        <div class="col">
-        <table class="table table-striped table-dark ranking">
-            <thead>
-                <tr>
-                <th scope="col">Rank</th>
-                <th scope="col">User</th>
-                <th scope="col">Score</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>pxpc2</td>
-                <td>2000</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>wdvictor</td>
-                <td>420</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>baea</td>
-                <td>120</td>
-            </tr>
-            </tbody>
-        </table>
         </div>
-
-
-
-        <div class="col">
-
-            <div class="row">
-
-                <div class="col-sm-6">
+    </nav>
+    <div class="gbdContent">
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-hover table-dark" id="gbdRanking">
+                        <thead>
+                            <tr>
+                                <th scope="col">Rank</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Score</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="legends">
+                    <label>Contribution status Legends</label>
+                    <div id="good">good</div>
+                    <div id="ok">ok</div>
+                    <div id="bad">bad</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
                     <div class="card text-white bg-dark mb-3">
-                    <div class="card-body">
                         <canvas id="issuesDashboard"></canvas>   
                     </div>
-                    </div>
                 </div>
-
-                <div class="col-sm-6">
-                    <div class="card text-white bg-dark mb-3 right">
-                    <div class="card-body">
-                        <canvas id="commitsDashboard"></canvas>
-                    </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
+                <div class="row">
                     <div class="card text-white bg-dark mb-3">
-                    <div class="card-body">
                         <canvas id="branchesDashboard"></canvas> 
                     </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="card text-white bg-dark mb-3 right">
+                        <canvas id="commitsDashboard"></canvas>
                     </div>
                 </div>
-
-                <div class="col-sm-6">
+                <div class="row">
                     <div class="card text-white bg-dark mb-3 right">
-                    <div class="card-body">
                         <canvas id="prsDashboard"></canvas>   
-                    </div>
                     </div>
                 </div>
             </div>
-
         </div>
-        </div>
-
-
-        </div>
-    </div>
     </div>
     `
     return gbdScreen
+}
+
+
+
+
+function plotRanking(){
+    let ranking = document.getElementById('gbdRanking')
+    let tbody = document.createElement('tbody')
+    tbody.id = 'gbdRankingTbody'
+    let pos = 1
+    try{
+        for(user in rankingData){
+            
+            let tr = document.createElement('tr')
+            tr.innerHTML = 
+            `
+                <th scope="row">${pos}</th>
+                <td><img class="rankingImg" id="${rankingData[user].name}">${rankingData[user].name}</td>
+                <td>${rankingData[user].score}</td>
+                
+            `
+            pos+=1
+            tbody.appendChild(tr)
+            tr.id = `${rankingData[user].name}`
+            tr.addEventListener('click', ()=>{
+                window.location.hash = `#breakdown/Profile=${tr.id}`
+        
+            })
+
+            tr.onpointerover = () => {
+                tr.style.opacity = '50%'
+            }
+
+            tr.onpointerleave = () => {
+                tr.style.opacity = '100%'
+            }
+            
+
+           
+        }
+       
+    }catch(err){
+        console.log("GBD error:", err)
+    }
+
+    ranking.appendChild(tbody)
+
+    plotColorStatus()
+}
+
+
+function plotColorStatus(){
+    let ranking = document.getElementById('gbdRankingTbody').childNodes
+
+    let avarage = getScoreAvarage(rankingData)
+
+    for(user in ranking){
+        if(ranking[user].id != undefined)
+            if(rankingData[user].score > avarage+15)
+                document.getElementById(ranking[user].id).style.backgroundColor = 'green'
+            else if( rankingData[user].score < avarage+15 && rankingData[user].score > avarage-15)
+                document.getElementById(ranking[user].id).style.backgroundColor = 'blue'
+            else
+                document.getElementById(ranking[user].id).style.backgroundColor = 'red'
+    }
+
+   
+
+}
+
+function getScoreAvarage(rankingData){
+    let scoreAvarage = 0
+    let total = 0
+
+    for(user in rankingData){
+        if(rankingData[user].score != undefined){
+            scoreAvarage += rankingData[user].score
+            total++
+        }
+    }
+    return scoreAvarage / total
 }
