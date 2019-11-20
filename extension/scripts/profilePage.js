@@ -2,72 +2,48 @@
 function profilePage(user, profile){
     let profilePage = 
     `
-<div class="container emp-profile">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="${profile.avatar}" id="avatar" alt=""/>
+            <div class="col">
+                <div class="profileImage">
+                    <img src="${profile.avatar}" id="GbdProfileAvatar">
+                </div>
+                <div class="profieInfo">
+
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h1>
-                        <a href="https://github.com/${user[0].name}">
-                        ${user[0].name}
-                        </a>
-                    </h1>
-                    </br>
-                    <h2>
-                        ${profile.bio}
-                    </h2>
-                    <p class="proile-rating">RANKING:${user[1]}/${user[2]}</p>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                        </li>
-                    </ul>
+            <div class="col">
+                <div class="row">
+                    <div class="card text-white bg-dark mb-3">
+                        <canvas id="percentPullRequests"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                   
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>Location:${getLocation(profile.location)}</p>
+            <div class="col">
+                <div class="row">
+                    <div class="card text-white bg-dark mb-3">
+                        <canvas id="percentCommits"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="card text-white bg-dark mb-3">
-                                        <canvas id="percentIssues"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="row">
-                                    <div class="card text-white bg-dark mb-3">
-                                        <canvas id="percentCommits"></canvas>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="card text-white bg-dark mb-3">
-                                        <canvas id="percentPullRequests"></canvas>
-                                    </div>   
-                                </div>
-                            </div>
-                        </div>
+
+                <div class="row">
+                    <div class="card text-white bg-dark mb-3">
+                        <canvas id="percentIssues"></canvas>
                     </div>
                 </div>
             </div>
-        </div>           
-</div>
+        </div>
+
+    </div>
     `
     return profilePage
 }
-
+//percentPullRequests
+//percentCommits
+//percentIssues
 
 function findUser(){
     let url = window.location.hash

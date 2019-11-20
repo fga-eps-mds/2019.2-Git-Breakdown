@@ -102,12 +102,6 @@ function gbdScreen()
                             </tr>
                         </thead>
                     </table>
-                    <div id="legends">
-                        <label>Contribution status Legends</label>
-                        <div id="good">good</div>
-                        <div id="ok">ok</div>
-                        <div id="bad">bad</div>
-                    </div>
                 </div>
                 <div id="legends">
                     <label>Contribution status Legends</label>
