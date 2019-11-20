@@ -40,11 +40,11 @@ async function execute(request, aux)
   try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
 
-    console.log(data_[0])
-    console.log(data_[4])
-
     data_[0] = removeDuplicates(data_[0])
     data_[4] = removeDuplicates(data_[4])
+
+    console.log(data_[0])
+    console.log(data_[4])
 
     fetchedData = data_
     fetchedData[5] = aux
@@ -111,8 +111,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                     let repo = url[4].split("#")[0]
                     let url_aux = 
                     `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}&commits=${weights[0]}&merged=${weights[1]}&openissues=${weights[2]}&commentpr=${weights[3]}`
-                    if (fetchedData.length > 0 && fetchedData[0] != undefined &&
-                      fetchedData[5] == url_aux)
+                    if (request.getProfile)
                     {
                       console.log("fetching profile")
                       url_aux = 

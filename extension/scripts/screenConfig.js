@@ -6,8 +6,14 @@ let weights = [1,1,1,1] // default weights
 let sprintLength = 7
 
 
-function getMetrics() 
+function getMetrics(updateRanking) 
 {
+    if (updateRanking === undefined)
+    {
+        console.log("updateRanking undefined")
+        updateRanking = false
+    }
+
     return new Promise((resolve, reject) =>{
         chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: ""}, function(response) 
         {
@@ -19,6 +25,14 @@ function getMetrics()
                 prData = response[3]
                 rankingData = response[4]
                 profileData = response[5]
+
+                if (updateRanking)
+                {
+                    console.log("updating ranking")
+                    setTimeout(function(){
+                        plotRanking()
+                    },3000)  
+                }
             }
         })
         resolve('metrics Done')
@@ -151,8 +165,8 @@ $(document).on("click", "#settingsSave", function()
     weights[2] = $('#openWeight').val()
     weights[3] = $('#commentsWeight').val()
     alert("Configurations saved!")
-    getMetrics()
-    $('#settingsButton').popover('hide');
+    getMetrics(true)
+    $('#settingsButton').popover('hide')
 })
 
 const chartOnClick = (type, data) =>
@@ -191,7 +205,7 @@ function gbdButtonOnClick() {
     
 
 async function initExtension(){
-    await getMetrics()
+    await getMetrics(false)
     await gbdButtonOnClick()
 }
 
