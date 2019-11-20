@@ -33,7 +33,10 @@
             "scripts/bootstrap.min.js",
             "scripts/Chart.min.js",
             "scripts/settings.js",
+            "scripts/hashChangeListener.js",
             "scripts/graph.js",
+            "scripts/loadingPage.js",
+            "scripts/profilePage.js",
             "scripts/branchesPage.js",            
             "scripts/commitsPage.js",
             "scripts/issuesPage.js",
@@ -44,6 +47,9 @@
             "scripts/button.js",
             "scripts/screenConfig.js",
             "scripts/popup.js"
+            "scripts/metricsCalc.js"
+            
+
         ],
         "css": 
         [
