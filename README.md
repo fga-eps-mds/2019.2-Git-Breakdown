@@ -2,6 +2,8 @@
 <h1 align="center"> Git Breakdown </h1>
 
 <p align="right">
+<img src="https://api.codeclimate.com/v1/badges/208bad6783e37daacf22/maintainability">
+
 <img src="https://img.shields.io/badge/docs-Github%20Pages-blue.svg">
 
 <img src="https://gitlab.com/omateusp/2019-2-Git-Breakdown/badges/master/pipeline.svg">
