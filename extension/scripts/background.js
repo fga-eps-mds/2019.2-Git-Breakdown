@@ -83,6 +83,7 @@ async function executeProfile(request, aux)
     console.log("executing profile")
     const data_ = await Promise.all(FETCH_PROFILE.map(type => fetchData(type, aux)))
     fetchedData = data_
+    fetchedData[5] = aux
     return data_
   } catch(err){
     console.log("GBD error at background.js\nAt execute():", err)
@@ -110,8 +111,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                     let repo = url[4].split("#")[0]
                     let url_aux = 
                     `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}&commits=${weights[0]}&merged=${weights[1]}&openissues=${weights[2]}&commentpr=${weights[3]}`
-
-                    if (request.getProfile)
+                    if (fetchedData.length > 0 && fetchedData[0] != undefined &&
+                      fetchedData[5] == url_aux)
                     {
                       console.log("fetching profile")
                       url_aux = 

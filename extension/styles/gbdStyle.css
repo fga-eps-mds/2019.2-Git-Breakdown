@@ -15,6 +15,12 @@ left:0;
 overflow: hidden;
 }
 
+.popover
+{
+    min-width: 400px !important;
+    min-height: 200px !important;
+}
+
 .gbdContent {
 position: relative;
 width : 100%;

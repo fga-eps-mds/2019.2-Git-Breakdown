@@ -3,7 +3,7 @@ let url_base = 'http://18.215.242.203:3000'
 let issuesData , branchsData, prData, commitsData, rankingData, profileData
 
 let weights = [1,1,1,1] // default weights
-
+let sprintLength = 7
 
 
 function getMetrics() 
@@ -137,9 +137,22 @@ async function initScreen() {
     }catch(err){
         console.log('GBD error:', err)
     }
+
+    
     
         
 }
+
+$(document).on("click", "#settingsSave", function() 
+{
+    sprintLength = $('#sprintLength').val()
+    weights[0] = $('#mergedWeight').val()
+    weights[1] = $('#commitsWeight').val()
+    weights[2] = $('#openWeight').val()
+    weights[3] = $('#commentsWeight').val()
+    alert("Configurations saved!")
+    getMetrics()
+})
 
 const chartOnClick = (type, data) =>
 {
