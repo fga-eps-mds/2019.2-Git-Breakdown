@@ -1,13 +1,19 @@
 let url_base = 'http://18.215.242.203:3000'
 
-let issuesData , branchsData, prData, commitsData, rankingData, profileData
+let issuesData, branchsData, prData, commitsData, rankingData, profileData
 
-let weights = [1,1,1,1] // default weights
-let sprintLength = 7
+let weights = [5, 4, 2, 3] // default weights
 
+let sprintLength = 7 // default sprint length in days
 
-function getMetrics() 
+function getMetrics(updateRanking) 
 {
+    if (updateRanking === undefined)
+    {
+        console.log("updateRanking undefined")
+        updateRanking = false
+    }
+
     return new Promise((resolve, reject) =>{
         chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: ""}, function(response) 
         {
@@ -19,6 +25,14 @@ function getMetrics()
                 prData = response[3]
                 rankingData = response[4]
                 profileData = response[5]
+
+                if (updateRanking)
+                {
+                    console.log("updating ranking")
+                    setTimeout(function(){
+                        plotRanking(updateRanking)
+                    },3000)  
+                }
             }
         })
         resolve('metrics Done')
@@ -114,7 +128,7 @@ function homeBtn(){
         else
             console.log('undefined chrome app')
 
-        resolve('Grafichs Done')
+        resolve('Graphics Done')
     })
  }
 
@@ -131,7 +145,7 @@ async function initScreen() {
         await plotGraphics()
         settingsOnClick()
         setTimeout(function(){
-            plotRanking()
+            plotRanking(false)
         },3000)   
         
     }catch(err){
@@ -151,7 +165,8 @@ $(document).on("click", "#settingsSave", function()
     weights[2] = $('#openWeight').val()
     weights[3] = $('#commentsWeight').val()
     alert("Configurations saved!")
-    getMetrics()
+    getMetrics(true)
+    $('#settingsButton').popover('hide')
 })
 
 const chartOnClick = (type, data) =>
@@ -190,7 +205,7 @@ function gbdButtonOnClick() {
     
 
 async function initExtension(){
-    await getMetrics()
+    await getMetrics(false)
     await gbdButtonOnClick()
 }
 
