@@ -8,10 +8,12 @@
 
     <style>
         .container-fluid{
+            background: #24292e;
             width: 100%;
             margin-top: 5%;
             margin-bottom: 6%;
             margin-right: 10%;
+            
         }
         button{
             position: relative;
@@ -19,11 +21,14 @@
             width: 220px;
             margin-top: 2%;
             margin-bottom: 2%;
+            border-radius: 3px;
+            text-emphasis: none;
         }
         h4{
             margin-top: 5%;
             font-style: normal;
             font-family: Arial, Helvetica, sans-serif;
+            color: white;
         }
         div{
             margin-bottom: 2%;
@@ -36,6 +41,7 @@
         }
         p{
             font-size: 80%;
+            color: white;
         }
         .card{
             margin-bottom: 0;
@@ -43,30 +49,30 @@
     </style>
   </head>
   
-  <body>
+  <body style="background-color: #24292e;">
   	<div class="container-fluid" id="popupContainer" data-toggle="center">
         <img id="logo" src="../images/logo.jpg" class="img-thumbnail" alt="Responsive image">
 
         <h4 class="text-center">Git Breakdown App</h4>
 
         <div id="login">
-			<button type="button" class="btn btn-primary" id="loginButton">Login</button>
+			<button type="button" class="btn btn-primary btn-dark " id="loginButton">Login</button>
     	</div>
         
         <div id="logout">
-        	<button type="button" class="btn-primary" id="logoutButton">Logout</button>
+        	<button type="button" class="btn-primary btn-dark" id="logoutButton">Logout</button>
         </div>
 		
         <div id="aboutus_link">
-        	<button type="button" class="btn btn-link btn-light btn-sm" data-toggle="collapse" href="#aboutus_text">About Us</button>
+        	<button type="button" class="btn btn-dark btn-sm" data-toggle="collapse" href="#aboutus_text">About Us</button>
         </div>
         
         <div class="collapse" id="aboutus_text" data-toggle="center">
-			<div class="card card-body">
+			<div class="w3-card w3-card-silver card-body">
                 <p>The Git Breakdown project is a Google Chrome extension for Github plug-in that seeks help or the user better defines a repository for contribution.
 Our software has an API to extract data from Github to analyze created metrics.</p>
             </div>
-            <a href="#" class="btn btn-secondary btn-sm">Link git pages</a>
+            <a href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/#/" class="btn btn-secondary btn-sm" id="gitpages">Link Git Pages</a>
         </div>
         
     </div>    
