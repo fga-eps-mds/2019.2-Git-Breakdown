@@ -6,7 +6,10 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.19.0",
+    "babel-jest": "^24.9.0",
+    "coveralls": "^3.0.7",
     "express": "^4.17.1",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.2"
   },
   "devDependencies": {
@@ -18,7 +21,8 @@
   },
   "scripts": {
     "start": "nodemon ./bin/server.js",
-    "test": "./node_modules/.bin/_mocha --recursive --exit ./test/*.js"
+    "test": "./node_modules/.bin/_mocha --recursive --exit ./test/*.js",
+    "test-ci": "jest --config config.json --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [],
   "author": "",
