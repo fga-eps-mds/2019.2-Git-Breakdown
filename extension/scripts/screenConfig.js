@@ -2,9 +2,11 @@ let url_base = 'http://18.215.242.203:3000'
 
 let issuesData, branchsData, prData, commitsData, rankingData, profileData
 
-let weights = [5, 4, 2, 3] // default weights
 
-let sprintLength = 7 // default sprint length in days
+let weights = [4,5,2,3] // default weights
+
+let sprintLength = 7
+
 
 function getMetrics(updateRanking) 
 {
