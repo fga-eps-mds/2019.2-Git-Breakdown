@@ -137,7 +137,7 @@ function plotPercentGraphics(userName){
 
         let percentMergedPr = calcPercentMergedPullRequest(rankingData, userName)
         let percentMergedPrGraphic = document.getElementById('percentPullRequests').getContext('2d')
-        let percentMergedPrLabels = ['total of merged Pull Requests', `Pull requests merged by ${userName}`]
+        let percentMergedPrLabels = ['total of merged Pull Requests', `Merged pull requests opened by ${userName}`]
         createPercentGraphic(percentMergedPr , percentMergedPrGraphic , percentMergedPrLabels,
             '# of merged Pull Request', `Pull requests merged by ${userName}`)
 

@@ -1,10 +1,10 @@
 let url_base = 'http://18.215.242.203:3000'
 
-let issuesData , branchsData, prData, commitsData, rankingData, profileData
+let issuesData, branchsData, prData, commitsData, rankingData, profileData
 
-let weights = [1,1,1,1] // default weights
-let sprintLength = 7
+let weights = [5, 4, 2, 3] // default weights
 
+let sprintLength = 7 // default sprint length in days
 
 function getMetrics(updateRanking) 
 {
@@ -128,7 +128,7 @@ function homeBtn(){
         else
             console.log('undefined chrome app')
 
-        resolve('Grafichs Done')
+        resolve('Graphics Done')
     })
  }
 

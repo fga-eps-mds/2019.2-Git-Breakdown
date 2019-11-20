@@ -43,9 +43,6 @@ async function execute(request, aux)
     data_[0] = removeDuplicates(data_[0])
     data_[4] = removeDuplicates(data_[4])
 
-    console.log(data_[0])
-    console.log(data_[4])
-
     fetchedData = data_
     fetchedData[5] = aux
 
