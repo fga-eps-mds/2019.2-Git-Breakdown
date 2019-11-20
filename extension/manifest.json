@@ -46,7 +46,7 @@
             "scripts/zenhubRequirements.js",
             "scripts/button.js",
             "scripts/screenConfig.js",
-            "scripts/popup.js"
+            "scripts/popup.js",
             "scripts/metricsCalc.js"
             
 
