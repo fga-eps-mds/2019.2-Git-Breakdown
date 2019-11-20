@@ -4,13 +4,27 @@ function profilePage(user, profile){
     `
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
+            <div class="col" id="profilePageSideBar">
                 <div class="profileImage">
                     <img src="${profile.avatar}" id="GbdProfileAvatar">
+                    <div class="card text-white bg-dark mb-3">
+                        <label id="profileLogin">${profile.login}</button>
+                    </div>
                 </div>
-                <div class="profieInfo">
-
-                </div>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                       Contribution Ranking
+                    <span class="badge badge-primary badge-pill">${user[1]}/${user[2]}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                       Location:
+                    <span class="badge badge-primary badge-pill">${getLocation(profile.location)}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Bio:
+                       ${getBio(profile.bio)}
+                    </li>
+                </ul>
             </div>
             <div class="col">
                 <div class="row">
@@ -85,3 +99,11 @@ function getLocation(location){
         return 'unknown'
     }
 }
+
+function getBio(bio){
+    if (bio != null)
+        return bio
+    else
+        return ' '
+}
+

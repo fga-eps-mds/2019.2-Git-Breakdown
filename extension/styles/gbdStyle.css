@@ -196,3 +196,30 @@ input[type=number]::-webkit-inner-spin-button {
     background-color: red;
     
 }
+
+
+/*profilePage.js*/
+
+#profilePageSideBar{
+    display: block;
+    background-color: rgb(52, 58, 64);
+}
+
+.profileImage{
+    padding:10% 10% 10% 10%;
+    display: flex !important;
+    text-align: center;
+}
+.profileImage div{
+    font-size: large;
+    padding-top: 15%;
+    border: none;
+}
+
+#GbdProfileAvatar{
+    width: 50%;
+    border-radius: 50%;
+}
+
+
+/*------*/
