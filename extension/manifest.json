@@ -46,7 +46,6 @@
             "scripts/zenhubRequirements.js",
             "scripts/button.js",
             "scripts/screenConfig.js",
-            "scripts/popup.js",
             "scripts/metricsCalc.js"
             
 
@@ -56,8 +55,7 @@
             "styles/bootstrap.min.css",
             "styles/gbdStyle.css",
             "styles/githubWebKit.css",
-            "styles/githubMainPageWebKit.css",
-            "styles/popupStyle.css"
+            "styles/githubMainPageWebKit.css"
 
         ]
     }],
