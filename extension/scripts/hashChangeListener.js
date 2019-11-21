@@ -47,9 +47,11 @@ window.onhashchange = async function()
                 let url = window.location.hash
                 url = url.split('=')
 
-                await getProfile(url[1])
+                
+                await getProfile(url[1]) //profilePage.js
                 setTimeout(function(){
-                    plotPercentGraphics(url[1])
+                    let userContribution = plotPercentGraphics(url[1]) //metricsCalc.js
+                    
                 }, 2000) 
                
                
@@ -64,9 +66,6 @@ window.onhashchange = async function()
             let screen = document.getElementById('gbdScreen')
             if (screen == null)
                 try{
-
-                   
-
                     selectBehavior()
                     initScreen()
                 }catch(err){

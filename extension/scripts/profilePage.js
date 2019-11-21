@@ -31,22 +31,51 @@ function profilePage(user, profile){
                     <div class="card text-white bg-dark mb-3">
                         <canvas id="percentPullRequests"></canvas>
                     </div>
-                </div>
-                <div class="row">
-                   
-                </div>
-            </div>
-            <div class="col">
+                </div >
                 <div class="row">
                     <div class="card text-white bg-dark mb-3">
                         <canvas id="percentCommits"></canvas>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="card text-white bg-dark mb-3">
                         <canvas id="percentIssues"></canvas>
                     </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <table id="MergedPrPercent">
+                        <thread>
+                            <tr>
+                                <th scope="col">${profile.login} Pull Request send</th>
+                                <th scope="col">Total of Pull send</th>
+                                <th scope="col">${profile.login} participation</th>
+                            <tr/>
+                        <thread>
+                    </table>
+                </div>
+                <div class="row">
+                <table id="CommitsPercent">
+                        <thread>
+                            <tr>
+                                <th scope="col">${profile.login} commits</th>
+                                <th scope="col">Total of commits</th>
+                                <th scope="col">${profile.login} participation</th>
+                            <tr/>
+                        <thread>
+                    </table>
+                </div>
+                <div class="row">
+                <table id="OpenedIssuesPercent">
+                        <thread>
+                            <tr>
+                                <th scope="col">${profile.login} issues created</th>
+                                <th scope="col">Total of issues created</th>
+                                <th scope="col">${profile.login} participation</th>
+                            <tr/>
+                        <thread>
+                    </table>
                 </div>
             </div>
         </div>

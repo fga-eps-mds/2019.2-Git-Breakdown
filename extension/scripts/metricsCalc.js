@@ -146,5 +146,25 @@ function plotPercentGraphics(userName){
         let percentCommitsLabels = ['total of commits', `${userName} commits`]
         createPercentGraphic(percentCommits, percentCommitsGraphic, percentCommitsLabels,
             '# of commits', `commits from ${userName}`)
+        
+        return {
+            'OpenedIssuesPercent' : percentOpenedIssues, 
+            'MergedPrPercent' : percentMergedPr , 
+            'CommitsPercent' : percentCommits}
 
 }
+
+
+// function displayTableInfo(userContribution , tableId){
+//     let infoTab = document.getElementById(tableId)
+//     let tbody = document.createElement('tbody')
+//     tbody.id = `${tableId}-tbody`
+//     for(data in userContribution){
+//         let tr = document.createElement('tr')
+//         tr.innerHTML = 
+//         `
+
+//         `
+//     }
+    
+// }
