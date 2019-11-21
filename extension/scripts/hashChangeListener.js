@@ -8,7 +8,6 @@ window.onhashchange = async function()
         if (window.location.href.includes('#breakdown/issues'))
         {
             try{
-                
                 document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
             }catch(err){
                 console.log('GDB Erro: ', err)

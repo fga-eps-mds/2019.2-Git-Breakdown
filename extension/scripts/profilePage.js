@@ -25,7 +25,7 @@ function profilePage(user, profile){
                 </ul>
             </div>
             <div class="col-8" id="profileCol-8">
-                <div style="text-align: center; padding-bottom:5%; font-size:initial;">
+                <div style="text-align: center; padding-bottom:5%; padding-top:5%; font-size:initial;">
                     <label >${profile.login}'s participation</label>
                 </div>
                 <div class="row">
@@ -109,6 +109,7 @@ function getProfile(username)
             {   
                 
                 document.getElementsByClassName('gbdContent')[0].innerHTML = profilePage(findUser(), response[0])
+                avatarDisplay()
             }
             else
             {
@@ -138,3 +139,14 @@ function getBio(bio){
         return ' '
 }
 
+function avatarDisplay(){
+    let avatar = document.getElementById('GbdProfileAvatar')
+
+    avatar.onmousemove = () => {
+        avatar.style.opacity = "50%"
+    }
+
+    avatar.onmouseleave = () => {
+        avatar.style.opacity = "100%"
+    }
+}
