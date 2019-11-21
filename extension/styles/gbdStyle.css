@@ -226,6 +226,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 #profileCol-9 div > span {
+    width: 100%;
     display: inherit;
 }
 
@@ -233,12 +234,15 @@ input[type=number]::-webkit-inner-spin-button {
     width: 50%;
 }
 
-
-
-.gbd-div-table-percent-content{
-    width: 50%;
-    font-size: initial;
+#profileCol-9 div > span > div > table > thead > tr > th{
+    padding: 2% 2% 2% 2%;
 }
+
+#profileCol-9 div > span > div > table > tbody > tr > td {
+    text-align: center;
+    padding: 2% 2% 2% 2%;
+}
+
 
 
 /*------*/

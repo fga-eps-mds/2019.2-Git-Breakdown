@@ -8,9 +8,7 @@ function profilePage(user, profile){
                 <div class="profileImage">
                     <img src="${profile.avatar}" id="GbdProfileAvatar">
                 </div>
-                <div class="card text-white bg-dark mb-3">
-                        <label id="profileLogin">${profile.login}</button>
-                </div>
+                <label id="profileLogin">${profile.login}</button>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                        Contribution Ranking
@@ -32,13 +30,13 @@ function profilePage(user, profile){
                         <div class="card text-white bg-dark mb-3">
                                 <canvas id="percentPullRequests"></canvas>
                         </div>
-                        <div class="gbd-div-table-percent-content">
-                            <table class="table-dark" id="MergedPrPercent">
+                        <div>
+                            <table class="table-bordered" id="MergedPrPercent">
                                 <thead>
-                                    <tr class="table-secondary"> 
-                                        <th scope="col">${profile.login} Pull Request send</th>
-                                        <th scope="col">Total of Pull send</th>
-                                        <th scope="col">${profile.login} participation</th>
+                                    <tr> 
+                                        <th scope="col"> ${profile.login} \n Pull Request send </th>
+                                        <th scope="col"> Total of PR sends </th>
+                                        <th scope="col"> ${profile.login} \n participation </th>
                                     </tr>
                                 </thead>
                             </table>
@@ -50,8 +48,8 @@ function profilePage(user, profile){
                         <div class="card text-white bg-dark mb-3">
                             <canvas id="percentCommits"></canvas>
                         </div>
-                        <div class="gbd-div-table-percent-content">
-                            <table class="table-secondary" id="CommitsPercent">
+                        <div>
+                            <table class="table-bordered" id="CommitsPercent">
                                 <thead>
                                     <tr>
                                         <th scope="col">${profile.login} commits</th>
@@ -68,8 +66,8 @@ function profilePage(user, profile){
                         <div class="card text-white bg-dark mb-3">
                             <canvas id="percentIssues"></canvas>
                         </div>
-                        <div class="gbd-div-table-percent-content">
-                            <table class="table-secondary" id="OpenedIssuesPercent">
+                        <div>
+                            <table class="table-bordered" id="OpenedIssuesPercent">
                                 <thead>
                                     <tr>
                                         <th scope="col">${profile.login} issues created</th>

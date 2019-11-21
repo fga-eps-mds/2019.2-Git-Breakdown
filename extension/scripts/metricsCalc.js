@@ -164,7 +164,7 @@ function displayTableInfo(userContribution , tableId){
     `
         <td>${userContribution[0]}</td>
         <td>${userContribution[1]}</td>
-        <td>${userContribution[2]}</td>
+        <td>${userContribution[2].toFixed(2)}%</td>
     `
     tbody.appendChild(tr)
     infoTab.appendChild(tbody)
