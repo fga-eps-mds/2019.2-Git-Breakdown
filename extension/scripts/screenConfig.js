@@ -170,8 +170,14 @@ $(document).on("click", "#settingsSave", function()
     weights[1] = $('#commitsWeight').val()
     weights[2] = $('#openWeight').val()
     weights[3] = $('#commentsWeight').val()
+    init_week_day = $('#weekdaylist').val()
+    date_unix_time = Math.floor(new Date($('#initdate').val()).getTime() / 1000)
 
     alert("Configurations saved!")
+
+    console.log(sprintLength)
+    console.log(init_week_day)
+    console.log(date_unix_time)
 
     getMetrics(true)
 

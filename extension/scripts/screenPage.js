@@ -64,7 +64,7 @@ function gbdScreen()
                             </form>
                             <form style="margin-top: 8%;">
                                 <label for="InitialDay">Weekday that each sprint starts: </label>
-                                <select name="InitialDay" id="#weekdaylist">
+                                <select name="InitialDay" id="weekdaylist">
                                     <option value="0">Sunday</option>
                                     <option value="1">Monday</option>
                                     <option value="2">Tuesday</option>
@@ -76,7 +76,7 @@ function gbdScreen()
                             </form>
                             <form style="margin-top: 8%;">
                                 <label for="initdate">Starting date of sprint 1: </label>
-                                <input type="date" id="init_date" name="init_date" min="2019-01-01" max="${today}">
+                                <input type="date" id="initdate" name="initdate" min="2019-01-01" max="${today}">
                             </form>
                         </div>
 
