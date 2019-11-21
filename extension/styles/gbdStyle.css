@@ -220,25 +220,35 @@ input[type=number]::-webkit-inner-spin-button {
     width: 50%;
     border-radius: 50%;
 }
-
-#profileCol-9 div{
-    margin: 0;
+#profileCol-8 {
+    padding: 0% 3% 0% 3%;
+    margin-left: 3%;
+    border-radius: 3%;
+    background-color: whitesmoke;
+   
 }
 
-#profileCol-9 div > span {
+#profileCol-8 div{
+    margin: 0;
+}
+#profileCol-8 div > span > div ~ div{
+    padding: 5%;
+}
+
+#profileCol-8 div > span {
     width: 100%;
     display: inherit;
 }
 
-#profileCol-9 div > span > div {
+#profileCol-8 div > span > div {
     width: 50%;
 }
 
-#profileCol-9 div > span > div > table > thead > tr > th{
+#profileCol-8 div > span > div > table > thead > tr > th{
     padding: 2% 2% 2% 2%;
 }
 
-#profileCol-9 div > span > div > table > tbody > tr > td {
+#profileCol-8 div > span > div > table > tbody > tr > td {
     text-align: center;
     padding: 2% 2% 2% 2%;
 }

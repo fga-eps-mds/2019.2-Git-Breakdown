@@ -39,28 +39,20 @@ window.onhashchange = async function()
             }catch(err){
                 console.log('GBD error:', err)
             }
-            
         }
         else if(window.location.href.includes('#breakdown/Profile')){
             try{
                
                 let url = window.location.hash
                 url = url.split('=')
-
-                
                 await getProfile(url[1]) //profilePage.js
                 setTimeout(function(){
                     let userContribution = plotPercentGraphics(url[1]) //metricsCalc.js
                     for(var key in userContribution){
-                        console.log(key , userContribution[key])
                         displayTableInfo(userContribution[key], key)
                     }
                     
                 }, 2000) 
-               
-               
-               
-
             }catch(err){
                 console.log('GBD error:', err)
             }

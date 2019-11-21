@@ -8,7 +8,9 @@ function profilePage(user, profile){
                 <div class="profileImage">
                     <img src="${profile.avatar}" id="GbdProfileAvatar">
                 </div>
-                <label id="profileLogin">${profile.login}</button>
+                <div class="card">
+                    <label id="profileLogin">${profile.login}</button>
+                </div>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                        Contribution Ranking
@@ -24,19 +26,22 @@ function profilePage(user, profile){
                     </li>
                 </ul>
             </div>
-            <div class="col-9" id="profileCol-9">
+            <div class="col-8" id="profileCol-8">
+                <div style="text-align: center; padding-bottom=5%; font-size:initial;">
+                    <label >${profile.login}'s participation</label>
+                </div>
                 <div class="row">
                     <span>
                         <div class="card text-white bg-dark mb-3">
-                                <canvas id="percentPullRequests"></canvas>
+                            <canvas id="percentPullRequests"></canvas>
                         </div>
                         <div>
                             <table class="table-bordered" id="MergedPrPercent">
                                 <thead>
                                     <tr> 
-                                        <th scope="col"> ${profile.login} \n Pull Request send </th>
-                                        <th scope="col"> Total of PR sends </th>
-                                        <th scope="col"> ${profile.login} \n participation </th>
+                                        <th scope="col"> ${profile.login} Pull Request send </th>
+                                        <th scope="col"> Total of PR send </th>
+                                        <th scope="col"> ${profile.login} participation </th>
                                     </tr>
                                 </thead>
                             </table>

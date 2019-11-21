@@ -8,8 +8,10 @@ function calcPercentCommits(commitsData, userName){
         return user.name === userName
     })
 
-    
 
+    //let userContributionStatus = totalCommits / commitsData.length
+
+    
     let percent = ((+userCommits[0].commits) / (+totalCommits)).toString() * 100    
     return [userCommits[0].commits ,totalCommits, percent]
 }
@@ -133,19 +135,19 @@ function plotPercentGraphics(userName){
         let percentOpenedIssuesGraphic = document.getElementById('percentIssues').getContext('2d')
         let percentOpenedIssuesLabels = ['total of issues', `issues opened by ${userName}`]
         createPercentGraphic(percentOpenedIssues, percentOpenedIssuesGraphic, percentOpenedIssuesLabels,
-            `issues opened by ${userName}`, '# of issues opened')
+            `issues opened by ${userName}`, `In issues opened`)
 
         let percentMergedPr = calcPercentMergedPullRequest(rankingData, userName)
         let percentMergedPrGraphic = document.getElementById('percentPullRequests').getContext('2d')
         let percentMergedPrLabels = ['total of merged Pull Requests', `Pull requests merged by ${userName}`]
         createPercentGraphic(percentMergedPr , percentMergedPrGraphic , percentMergedPrLabels,
-            `Pull requests merged by ${userName}`, '# of merged Pull Request')
+            `Pull requests merged by ${userName}`, ` In merged Pull Requests`)
 
         let percentCommits = calcPercentCommits(commitsData , userName)
         let percentCommitsGraphic = document.getElementById('percentCommits').getContext('2d')
         let percentCommitsLabels = ['total of commits', `${userName} commits`]
         createPercentGraphic(percentCommits, percentCommitsGraphic, percentCommitsLabels,
-            `commits from ${userName}`,  '# of commits')
+            `commits from ${userName}`,  `In commits`)
         
         return {
             'OpenedIssuesPercent' : percentOpenedIssues, 
