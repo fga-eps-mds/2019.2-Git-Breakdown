@@ -11,7 +11,7 @@ function calcPercentCommits(commitsData, userName){
     
 
     let percent = ((+userCommits[0].commits) / (+totalCommits)).toString() * 100    
-    return [totalCommits, userCommits[0].commits, percent]
+    return [userCommits[0].commits ,totalCommits, percent]
 }
 
 
@@ -26,26 +26,26 @@ function calcPercentOpenedIssues(rankingData , userName){
     })
     let percent = ((+userOpenedIssues[0].opened_issues) / (+totalOpenedIssues)).toString() * 100
 
-    return [totalOpenedIssues, userOpenedIssues[0].opened_issues, percent]
+    return [userOpenedIssues[0].opened_issues, totalOpenedIssues,  percent]
 }
 
-//closed_issues always 0 in the server response
-function calcPercentClosedIssues(rankingData, userName){
-    let totalClosedIssues = 0
+// //closed_issues always 0 in the server response
+// function calcPercentClosedIssues(rankingData, userName){
+//     let totalClosedIssues = 0
 
-    for(user in rankingData){
-        if(rankingData[user].closed_issues != undefined)
-            totalClosedIssues += rankingData[user].closed_issues
-    }
+//     for(user in rankingData){
+//         if(rankingData[user].closed_issues != undefined)
+//             totalClosedIssues += rankingData[user].closed_issues
+//     }
 
-    let userClosedIssues = rankingData.filter((user)=>{
-        return user.name === userName
-    })
+//     let userClosedIssues = rankingData.filter((user)=>{
+//         return user.name === userName
+//     })
 
-    let percent = ((+userClosedIssues[0].closed_issues) / (+totalClosedIssues)).toString() * 100
+//     let percent = ((+userClosedIssues[0].closed_issues) / (+totalClosedIssues)).toString() * 100
 
-    return [percent]
-}
+//     return [percent]
+// }
 
 
 function calcPercentMergedPullRequest(rankingData , userName){
@@ -63,7 +63,7 @@ function calcPercentMergedPullRequest(rankingData , userName){
     let percent = ((+userMergedPrs[0].merged_pull_requests) / (+totalPrMerged)).toString() * 100
 
  
-    return [totalPrMerged, userMergedPrs[0].merged_pull_requests, percent]
+    return [userMergedPrs[0].merged_pull_requests, totalPrMerged,  percent]
 
 }
 
@@ -155,16 +155,17 @@ function plotPercentGraphics(userName){
 }
 
 
-// function displayTableInfo(userContribution , tableId){
-//     let infoTab = document.getElementById(tableId)
-//     let tbody = document.createElement('tbody')
-//     tbody.id = `${tableId}-tbody`
-//     for(data in userContribution){
-//         let tr = document.createElement('tr')
-//         tr.innerHTML = 
-//         `
-
-//         `
-//     }
-    
-// }
+function displayTableInfo(userContribution , tableId){
+    let infoTab = document.getElementById(tableId)
+    let tbody = document.createElement('tbody')
+    tbody.id = `${tableId}-tbody`
+    let tr = document.createElement('tr')
+    tr.innerHTML = 
+    `
+        <td>${userContribution[0]}</td>
+        <td>${userContribution[1]}</td>
+        <td>${userContribution[2]}</td>
+    `
+    tbody.appendChild(tr)
+    infoTab.appendChild(tbody)
+}

@@ -51,6 +51,10 @@ window.onhashchange = async function()
                 await getProfile(url[1]) //profilePage.js
                 setTimeout(function(){
                     let userContribution = plotPercentGraphics(url[1]) //metricsCalc.js
+                    for(var key in userContribution){
+                        console.log(key , userContribution[key])
+                        displayTableInfo(userContribution[key], key)
+                    }
                     
                 }, 2000) 
                

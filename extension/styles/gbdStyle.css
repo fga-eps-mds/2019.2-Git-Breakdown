@@ -221,5 +221,24 @@ input[type=number]::-webkit-inner-spin-button {
     border-radius: 50%;
 }
 
+#profileCol-9 div{
+    margin: 0;
+}
+
+#profileCol-9 div > span {
+    display: inherit;
+}
+
+#profileCol-9 div > span > div {
+    width: 50%;
+}
+
+
+
+.gbd-div-table-percent-content{
+    width: 50%;
+    font-size: initial;
+}
+
 
 /*------*/

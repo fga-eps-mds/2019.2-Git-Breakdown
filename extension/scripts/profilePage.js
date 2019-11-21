@@ -4,7 +4,7 @@ function profilePage(user, profile){
     `
     <div class="container-fluid">
         <div class="row">
-            <div class="col" id="profilePageSideBar">
+            <div class="col-3" id="profilePageSideBar">
                 <div class="profileImage">
                     <img src="${profile.avatar}" id="GbdProfileAvatar">
                     <div class="card text-white bg-dark mb-3">
@@ -26,67 +26,68 @@ function profilePage(user, profile){
                     </li>
                 </ul>
             </div>
-            <div class="col">
+            <div class="col-9" id="profileCol-9">
                 <div class="row">
-                    <div class="card text-white bg-dark mb-3">
-                        <canvas id="percentPullRequests"></canvas>
-                    </div>
-                </div >
-                <div class="row">
-                    <div class="card text-white bg-dark mb-3">
-                        <canvas id="percentCommits"></canvas>
-                    </div>
+                    <span>
+                        <div class="card text-white bg-dark mb-3">
+                                <canvas id="percentPullRequests"></canvas>
+                        </div>
+                        <div class="gbd-div-table-percent-content">
+                            <table class="table-dark" id="MergedPrPercent">
+                                <thead>
+                                    <tr class="table-secondary"> 
+                                        <th scope="col">${profile.login} Pull Request send</th>
+                                        <th scope="col">Total of Pull send</th>
+                                        <th scope="col">${profile.login} participation</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </span> 
                 </div>
                 <div class="row">
-                    <div class="card text-white bg-dark mb-3">
-                        <canvas id="percentIssues"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <table id="MergedPrPercent">
-                        <thread>
-                            <tr>
-                                <th scope="col">${profile.login} Pull Request send</th>
-                                <th scope="col">Total of Pull send</th>
-                                <th scope="col">${profile.login} participation</th>
-                            <tr/>
-                        <thread>
-                    </table>
-                </div>
-                <div class="row">
-                <table id="CommitsPercent">
-                        <thread>
-                            <tr>
-                                <th scope="col">${profile.login} commits</th>
-                                <th scope="col">Total of commits</th>
-                                <th scope="col">${profile.login} participation</th>
-                            <tr/>
-                        <thread>
-                    </table>
+                    <span>
+                        <div class="card text-white bg-dark mb-3">
+                            <canvas id="percentCommits"></canvas>
+                        </div>
+                        <div class="gbd-div-table-percent-content">
+                            <table class="table-secondary" id="CommitsPercent">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">${profile.login} commits</th>
+                                        <th scope="col">Total of commits</th>
+                                        <th scope="col">${profile.login} participation</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </span>
                 </div>
                 <div class="row">
-                <table id="OpenedIssuesPercent">
-                        <thread>
-                            <tr>
-                                <th scope="col">${profile.login} issues created</th>
-                                <th scope="col">Total of issues created</th>
-                                <th scope="col">${profile.login} participation</th>
-                            <tr/>
-                        <thread>
-                    </table>
+                    <span>
+                        <div class="card text-white bg-dark mb-3">
+                            <canvas id="percentIssues"></canvas>
+                        </div>
+                        <div class="gbd-div-table-percent-content">
+                            <table class="table-secondary" id="OpenedIssuesPercent">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">${profile.login} issues created</th>
+                                        <th scope="col">Total of issues created</th>
+                                        <th scope="col">${profile.login} participation</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    <span>
                 </div>
             </div>
         </div>
-
     </div>
     `
     return profilePage
 }
-//percentPullRequests
-//percentCommits
-//percentIssues
+
 
 function findUser(){
     let url = window.location.hash
