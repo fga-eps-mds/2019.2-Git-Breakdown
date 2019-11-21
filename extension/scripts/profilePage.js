@@ -20,13 +20,12 @@ function profilePage(user, profile){
                     <span class="badge badge-primary badge-pill">${getLocation(profile.location)}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Bio:
                        ${getBio(profile.bio)}
                     </li>
                 </ul>
             </div>
             <div class="col-8" id="profileCol-8">
-                <div style="text-align: center; padding-bottom=5%; font-size:initial;">
+                <div style="text-align: center; padding-bottom:5%; font-size:initial;">
                     <label >${profile.login}'s participation</label>
                 </div>
                 <div class="row">
@@ -38,8 +37,8 @@ function profilePage(user, profile){
                             <table class="table-bordered" id="MergedPrPercent">
                                 <thead>
                                     <tr> 
-                                        <th scope="col"> ${profile.login} Pull Request send </th>
-                                        <th scope="col"> Total of PR send </th>
+                                        <th scope="col" style="width:30%;">PR send </th>
+                                        <th scope="col" style="width:30%;"> Total </th>
                                         <th scope="col"> ${profile.login} participation </th>
                                     </tr>
                                 </thead>
@@ -56,8 +55,8 @@ function profilePage(user, profile){
                             <table class="table-bordered" id="CommitsPercent">
                                 <thead>
                                     <tr>
-                                        <th scope="col">${profile.login} commits</th>
-                                        <th scope="col">Total of commits</th>
+                                        <th scope="col" style="width:30%;"> Commits</th>
+                                        <th scope="col" style="width:30%;"> Total </th>
                                         <th scope="col">${profile.login} participation</th>
                                     </tr>
                                 </thead>
@@ -74,9 +73,9 @@ function profilePage(user, profile){
                             <table class="table-bordered" id="OpenedIssuesPercent">
                                 <thead>
                                     <tr>
-                                        <th scope="col">${profile.login} issues created</th>
-                                        <th scope="col">Total of issues created</th>
-                                        <th scope="col">${profile.login} participation</th>
+                                        <th scope="col" style="width:30%;"> Issues Opened</th>
+                                        <th scope="col" style="width:30%;"> Total </th>
+                                        <th scope="col"> ${profile.login} participation </th>
                                     </tr>
                                 </thead>
                             </table>

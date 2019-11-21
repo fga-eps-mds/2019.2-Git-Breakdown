@@ -9,10 +9,12 @@ function calcPercentCommits(commitsData, userName){
     })
 
 
-    //let userContributionStatus = totalCommits / commitsData.length
-
-    
-    let percent = ((+userCommits[0].commits) / (+totalCommits)).toString() * 100    
+    let percent
+    if(totalCommits !== 0){
+        percent = ((+userCommits[0].commits) / (+totalCommits)).toString() * 100
+    }else{
+        percent = 0
+    } 
     return [userCommits[0].commits ,totalCommits, percent]
 }
 
@@ -26,7 +28,19 @@ function calcPercentOpenedIssues(rankingData , userName){
     let userOpenedIssues = rankingData.filter((user)=>{
         return user.name === userName
     })
-    let percent = ((+userOpenedIssues[0].opened_issues) / (+totalOpenedIssues)).toString() * 100
+
+    if(userOpenedIssues[0].opened_issues === undefined)
+    userOpenedIssues[0].opened_issues = 0
+
+    let percent
+
+    if (totalOpenedIssues !== 0){
+         percent = ((+userOpenedIssues[0].opened_issues) / (+totalOpenedIssues)).toString() * 100
+
+    }else{
+        percent = 0
+    }
+    
 
     return [userOpenedIssues[0].opened_issues, totalOpenedIssues,  percent]
 }
@@ -61,8 +75,15 @@ function calcPercentMergedPullRequest(rankingData , userName){
         return user.name === userName
     })
 
-  
-    let percent = ((+userMergedPrs[0].merged_pull_requests) / (+totalPrMerged)).toString() * 100
+    let percent 
+    if (totalPrMerged !== 0)
+    {
+        percent = ((+userMergedPrs[0].merged_pull_requests) / (+totalPrMerged)).toString() * 100
+
+    }
+    else{
+        percent = 0
+    }
 
  
     return [userMergedPrs[0].merged_pull_requests, totalPrMerged,  percent]
@@ -84,13 +105,8 @@ function createPercentGraphic(data, ctx, labels , label, title)
                 data: [data[1], data[0]],
                 backgroundColor: 
                 [
-                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(255, 255, 255, 255)',
                     'rgba(54, 162, 235, 0.6)'
-                ],
-                borderColor: 
-                [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)'
                 ],
                 borderWidth: 1
             }]
