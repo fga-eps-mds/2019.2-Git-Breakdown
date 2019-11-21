@@ -79,7 +79,7 @@ function createPercentGraphic(data, ctx, labels , label, title)
             [{
                 label: label,
                 fontColor: 'white',
-                data: [data[0], data[1]],
+                data: [data[1], data[0]],
                 backgroundColor: 
                 [
                     'rgba(255, 99, 132, 0.6)',
@@ -133,19 +133,19 @@ function plotPercentGraphics(userName){
         let percentOpenedIssuesGraphic = document.getElementById('percentIssues').getContext('2d')
         let percentOpenedIssuesLabels = ['total of issues', `issues opened by ${userName}`]
         createPercentGraphic(percentOpenedIssues, percentOpenedIssuesGraphic, percentOpenedIssuesLabels,
-          '# of issues opened', `issues opened by ${userName}`)
+            `issues opened by ${userName}`, '# of issues opened')
 
         let percentMergedPr = calcPercentMergedPullRequest(rankingData, userName)
         let percentMergedPrGraphic = document.getElementById('percentPullRequests').getContext('2d')
         let percentMergedPrLabels = ['total of merged Pull Requests', `Pull requests merged by ${userName}`]
         createPercentGraphic(percentMergedPr , percentMergedPrGraphic , percentMergedPrLabels,
-            '# of merged Pull Request', `Pull requests merged by ${userName}`)
+            `Pull requests merged by ${userName}`, '# of merged Pull Request')
 
         let percentCommits = calcPercentCommits(commitsData , userName)
         let percentCommitsGraphic = document.getElementById('percentCommits').getContext('2d')
         let percentCommitsLabels = ['total of commits', `${userName} commits`]
         createPercentGraphic(percentCommits, percentCommitsGraphic, percentCommitsLabels,
-            '# of commits', `commits from ${userName}`)
+            `commits from ${userName}`,  '# of commits')
         
         return {
             'OpenedIssuesPercent' : percentOpenedIssues, 

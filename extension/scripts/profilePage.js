@@ -7,9 +7,9 @@ function profilePage(user, profile){
             <div class="col-3" id="profilePageSideBar">
                 <div class="profileImage">
                     <img src="${profile.avatar}" id="GbdProfileAvatar">
-                    <div class="card text-white bg-dark mb-3">
+                </div>
+                <div class="card text-white bg-dark mb-3">
                         <label id="profileLogin">${profile.login}</button>
-                    </div>
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
