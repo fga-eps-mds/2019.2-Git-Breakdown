@@ -6,11 +6,10 @@ function profilePage(user, profile){
         <div class="row">
             <div class="col-3" id="profilePageSideBar">
                 <div class="profileImage">
-                    <img src="${profile.avatar}" id="GbdProfileAvatar">
-                </div>
-                <div class="card">
-                    <label id="profileLogin">${profile.login}</button>
-                </div>
+                    <a href="https://github.com/${profile.login}">
+                        <img src="${profile.avatar}" id="GbdProfileAvatar">
+                    </a>
+                        </div>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                        Contribution Ranking
