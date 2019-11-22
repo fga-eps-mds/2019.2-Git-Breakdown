@@ -4,7 +4,7 @@ function commitsPage(){
     `
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
+                <div class="col-sm-4">
                     <div class="table-responsive">
                     <table class="table table-hover table-dark" id="commitsRanking">
                         <thead>
@@ -16,19 +16,20 @@ function commitsPage(){
                     </table>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-sm-8">
                     <div class="row">
-                        <div class="card text-white bg-dark mb-3">
-                            
-                        </div>
+                        <canvas id="commitsTimeDashboard"></canvas>   
                     </div>
                 </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="card text-white bg-dark mb-3">
-                            <canvas id="commitsTimeDashboard"></canvas>   
-                        </div>
-                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="jumbotron vertical-center">
+                    <h1 class="display-4">Hello, world!</h1>
+                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                    <hr class="my-4">
+                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
                 </div>
             </div>
         </div> 
@@ -49,8 +50,8 @@ function plotCommitsChart()
                     labels: ['sprint 1', 'sprint 2', 'sprint 3', 'sprint 4', 'sprint 5'],
                     datasets: 
                     [{
-                        label: '# of issues',
-                        fontColor: 'white',
+                        label: 'total of commits per sprint',
+                        fontColor: 'black',
                         data: [5, 2, 4, 7, 10],
                         backgroundColor: 
                         [
@@ -82,8 +83,8 @@ function plotCommitsChart()
                     maintainAspectRatio: false,
                     title:
                     {
-                        fontSize: 12,
-                        fontColor: 'white',
+                        fontSize: 15,
+                        fontColor: 'black',
                         display: true,
                         text: 'Commits per sprint dashboard'
                     },
@@ -94,7 +95,7 @@ function plotCommitsChart()
                     },
                     legend: {
                         labels: {
-                            fontColor: 'white',
+                            fontColor: 'black',
                             fontSize: 12
                         }
                     }
