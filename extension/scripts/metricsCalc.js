@@ -167,7 +167,7 @@ function createPercentGraphic(data, ctx, labels , label, title, color)
 
 function plotPercentGraphics(userName){
 
-
+    try{
         let percentOpenedIssues = calcPercentOpenedIssues(rankingData, userName)
         let percentOpenedIssuesGraphic = document.getElementById('percentIssues').getContext('2d')
         let percentOpenedIssuesLabels = ['total of issues', `issues opened by ${userName}`]
@@ -186,10 +186,14 @@ function plotPercentGraphics(userName){
         createPercentGraphic(percentCommits, percentCommitsGraphic, percentCommitsLabels,
             `commits from ${userName}`,  `In commits`, defineColor(percentCommits[3]))
         
-        return {
+            return {
             'OpenedIssuesPercent' : percentOpenedIssues, 
             'MergedPrPercent' : percentMergedPr , 
             'CommitsPercent' : percentCommits}
+    }catch(err){
+        console.log('GBD error:', err)
+    }
+        
 
 }
 

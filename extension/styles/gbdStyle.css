@@ -169,35 +169,6 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 
-#legends{
-    text-align: center;
-    padding-top: 10%;
-}
-
-#legends div{
-    margin: 0 auto;
-    padding-top: 2%;
-    width: 70%;
-    height: 10%;
-    text-align: center;
-}
-
-#good{
-    background-color: green;
-    
-}
-
-#ok{
-    background-color: blue;
-    
-}
-
-#bad{
-    background-color: red;
-    
-}
-
-
 /*profilePage.js*/
 
 #profilePageSideBar{
@@ -226,7 +197,6 @@ input[type=number]::-webkit-inner-spin-button {
     margin-left: 3%;
     border-radius: 3%;
     background-color: whitesmoke;
-   
 }
 
 #profileCol-8 div{

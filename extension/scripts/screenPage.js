@@ -90,8 +90,10 @@ function gbdScreen()
         </div>
     </nav>
     <div class="gbdContent">
+       
         <div class="row">
             <div class="col">
+                
                 <div class="table-responsive">
                     <table class="table table-hover table-dark" id="gbdRanking">
                         <thead>
@@ -102,12 +104,6 @@ function gbdScreen()
                             </tr>
                         </thead>
                     </table>
-                </div>
-                <div id="legends">
-                    <label>Contribution status Legends</label>
-                    <div id="good">good</div>
-                    <div id="ok">ok</div>
-                    <div id="bad">bad</div>
                 </div>
             </div>
             <div class="col">
@@ -135,6 +131,9 @@ function gbdScreen()
                 </div>
             </div>
         </div>
+        <button type="button" id="gbdQuestionMark" class="btn btn-lg btn-danger" data-toggle="popover" style="left:3%;">
+            (?*)
+        </button>
     </div>
     `
     return gbdScreen
