@@ -108,14 +108,15 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
 #commitsTimeDashboard
 {
     width: 100% !important;
-    height: 80% !important;
 }
 
-.vertical-center 
+#commitsDetails 
 {
-    display: flex;
-    align-items: center;
-  }
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin-left: 50% !important;
+}
 
 .metricsPageTitle {
     margin-left: 27.5%;

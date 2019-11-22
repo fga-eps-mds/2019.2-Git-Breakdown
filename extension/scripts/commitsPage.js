@@ -16,20 +16,17 @@ function commitsPage(){
                     </table>
                     </div>
                 </div>
-                <div class="col-sm-8">
-                    <div class="row">
-                        <canvas id="commitsTimeDashboard"></canvas>   
-                    </div>
+                <div class="col-sm-8" id="timechartdiv">
+                    <canvas id="commitsTimeDashboard"></canvas>   
                 </div>
                 </div>
             </div>
             <div class="row">
-                <div class="jumbotron vertical-center">
-                    <h1 class="display-4">Hello, world!</h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                    <hr class="my-4">
-                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                <div class="col-sm-6">
+                    <div class="jumbotron" id="commitsDetails">
+                        <h1 class="display-4">Fluid jumbotron</h1>
+                        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    </div>
                 </div>
             </div>
         </div> 
@@ -113,25 +110,32 @@ function plotCommiters()
     tbody.id = 'commitsRankingTbody'
     try
     {
-        for(let i = 0; i < commitsData.length; i++)
+        if (commitsData !== undefined)
         {
-            if (commitsData[i] != undefined)
+            for(let i = 0; i < commitsData.length; i++)
             {
-                let member = commitsData[i].name
-                let memberTotalCommits = commitsData[i].commits
-                let tr = document.createElement('tr')
-                tr.innerHTML = 
-                    `
-                        <th scope="row">${member}</th>
-                        <td>${memberTotalCommits}</td>
-                    `
-                tbody.appendChild(tr)
+                if (commitsData[i] != undefined)
+                {
+                    let member = commitsData[i].name
+                    let memberTotalCommits = commitsData[i].commits
+                    let tr = document.createElement('tr')
+                    tr.innerHTML = 
+                        `
+                            <th scope="row">${member}</th>
+                            <td>${memberTotalCommits}</td>
+                        `
+                    tbody.appendChild(tr)
+                }
             }
+            table.appendChild(tbody)
+            let table_height = $('#commitsRanking').height()
+            console.log(table_height)
+            document.getElementById('commitsTimeDashboard').style.setProperty('height', `${table_height}px`)
         }
-        table.appendChild(tbody)
     }
     catch (err)
     {
         console.log(err)
     }   
+    plotCommitsChart(undefined)
 }

@@ -18,7 +18,6 @@ window.onhashchange = async function()
             try {
                    
                 document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
-                plotCommitsChart(this.undefined)
                 plotCommiters()
             } catch(err) {
                 console.log('GDB Erro: ', err)
