@@ -20,7 +20,7 @@ exports.get = async (req, res, next) =>
 
         const header_option = {
             headers: {
-                'Accept': 'application/vnd.github.v3+json',
+                'Accept': 'application/json',
                 'Accept-Charset': 'utf-8',
                 'User-Agent': '2019.2-Git-Breakdown',
                 'Authorization': `token ${token}`
@@ -42,17 +42,7 @@ exports.get = async (req, res, next) =>
 
                 const url_endpointB = `${gitApiUrl}/repos/${owner}/${repository}/${endpointB}`
 
-                const header_optionB = {
-                    headers: {
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Accept-Charset': 'utf-8',
-                        'User-Agent': '2019.2-Git-Breakdown',
-                        'Authorization': `token ${token}`
-                    },
-                    params: queryString
-                }
-            
-                await axios.get(url_endpointB, header_optionB).then( response => {
+                await axios.get(url_endpointB, header_option).then( response => {
                         let branches = response.data
 
                         function filterActiveBranches(br) {
