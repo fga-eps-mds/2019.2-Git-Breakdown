@@ -25,6 +25,8 @@ function profilePage(user, profile){
                 </ul>
             </div>
             <div class="col-8" id="profileCol-8">
+                <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" 
+                title="Colors" data-content="${questionMark()}">(?*)</button>
                 <div style="text-align: center; padding-bottom:5%; padding-top:5%; font-size:initial;">
                     <label >${profile.login}'s participation</label>
                 </div>
@@ -110,6 +112,9 @@ function getProfile(username)
                 
                 document.getElementsByClassName('gbdContent')[0].innerHTML = profilePage(findUser(), response[0])
                 avatarDisplay()
+                $(function () {
+                    $('[data-toggle="popover"]').popover()
+                  })
             }
             else
             {
@@ -149,4 +154,17 @@ function avatarDisplay(){
     avatar.onmouseleave = () => {
         avatar.style.opacity = "100%"
     }
+}
+
+function questionMark(){
+    let questionMark = 
+    `
+        The colors indicate how the user is contributing to the repository
+        
+            green: Indicate that the user is 30% above contribution avarage
+            blue: User is within 30% of average (plus or minus) 
+            red: User is bellow 30% of the avarage
+    
+    `
+    return questionMark
 }
