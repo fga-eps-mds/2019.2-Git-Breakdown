@@ -25,8 +25,9 @@ function profilePage(user, profile){
                 </ul>
             </div>
             <div class="col-8" id="profileCol-8">
-                <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" 
-                title="Colors" data-content="${questionMark()}">(?*)</button>
+                <button type="button" id="gbdQuestionMark" class="btn btn-lg btn-danger" data-toggle="popover">
+                    (?*)
+                </button>
                 <div style="text-align: center; padding-bottom:5%; padding-top:5%; font-size:initial;">
                     <label >${profile.login}'s participation</label>
                 </div>
@@ -115,6 +116,37 @@ function getProfile(username)
                 $(function () {
                     $('[data-toggle="popover"]').popover()
                   })
+                
+
+                $("#gbdQuestionMark").popover({
+                    title: 
+                        `<h3 class="custom-title">
+                            Color info 
+                        </h3>`,
+                    content: 
+                        `<p>
+                            Colors represent the user contribution to the repository
+                            based on contribution avarage
+                        </p>
+                        <p>
+                            <span id="gbdGreenMark">Green</span>: User contributed more than 30% of average.
+                        </p>
+                        <p>
+                            <span id="gbdBlueMark">Blue</span>: User is in a range of 30% of the avarage(plus or minus).
+                        </p>
+                        <p>
+                            <span id="gbdRedMark">Red</span>: User is bellow 30% of the avarage.
+                        </p>
+                        `,
+                    html: true,
+                })
+                
+               
+                
+                
+               
+                  
+                
             }
             else
             {
@@ -156,15 +188,3 @@ function avatarDisplay(){
     }
 }
 
-function questionMark(){
-    let questionMark = 
-    `
-        The colors indicate how the user is contributing to the repository
-        
-            green: Indicate that the user is 30% above contribution avarage
-            blue: User is within 30% of average (plus or minus) 
-            red: User is bellow 30% of the avarage
-    
-    `
-    return questionMark
-}

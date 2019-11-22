@@ -258,6 +258,19 @@ input[type=number]::-webkit-inner-spin-button {
     padding: 2% 2% 2% 2%;
 }
 
+#gbdGreenMark{
+    color:green;
+}
+
+#gbdBlueMark{
+    color:blue;
+}
+
+
+#gbdRedMark{
+    color:red;
+}
+
 
 
 /*------*/
