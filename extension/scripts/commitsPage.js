@@ -22,10 +22,33 @@ function commitsPage(){
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-6" id="jumbo-col">
                     <div class="jumbotron" id="commitsDetails">
-                        <h1 class="display-4">Fluid jumbotron</h1>
-                        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                        <h1 class="display-4 text-center">Commits by sprint</h1>
+                        <p class="lead text-center ">Based on the configurations settings for sprints, the following information was calculated:</p>
+                        <hr class="my-4">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold text-center">A total of X commits were pushed.</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold text-center">There was a total of X sprints.</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold text-center">The average number of commits per sprint was X.</p>
+                            </div>
+                        </div>
+                        <hr class="my-4">   
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="font-weight-bold text-center">Your best sprint was Sprint X with a total of Y commits.</p>
+                                <p class="font-weight-bold text-center">That's a productivity of xxx% compared to the average.</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="font-weight-bold text-center">Your worst sprint was Sprint J with a total of I commits.</p>
+                                <p class="font-weight-bold text-center">That's a productivity of xxx% compared to the average.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

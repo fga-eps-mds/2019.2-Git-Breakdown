@@ -110,12 +110,18 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
     width: 100% !important;
 }
 
+#jumbo-col
+{
+    margin-bottom: 3% !important;
+}
+
 #commitsDetails 
 {
     display: block !important;
     width: 100% !important;
     height: 100% !important;
     margin-left: 50% !important;
+    padding-top: 2rem !important;
 }
 
 .metricsPageTitle {
