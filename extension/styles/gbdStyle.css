@@ -245,6 +245,10 @@ input[type=number]::-webkit-inner-spin-button {
     width: 50%;
 }
 
+#profileCol-8 div > span > div > table {
+    background-color: lightgray;
+}
+
 #profileCol-8 div > span > div > table > thead > tr > th{
     padding: 2% 2% 2% 2%;
 }

@@ -205,12 +205,16 @@ function plotColorStatus(){
     let ranking = document.getElementById('gbdRankingTbody').childNodes
 
     let avarage = getScoreAvarage(rankingData)
+    let x = avarage * 0.3
+
+    //x is a range of 30% of the avarage. Is used to set if some one have 30%
+    //above or below avarage of parcitipation
 
     for(user in ranking){
         if(ranking[user].id != undefined)
-            if(rankingData[user].score > avarage+15)
+            if(rankingData[user].score > avarage+x)
                 document.getElementById(ranking[user].id).style.backgroundColor = 'green'
-            else if( rankingData[user].score < avarage+15 && rankingData[user].score > avarage-15)
+            else if( rankingData[user].score < avarage+x && rankingData[user].score > avarage-x)
                 document.getElementById(ranking[user].id).style.backgroundColor = 'blue'
             else
                 document.getElementById(ranking[user].id).style.backgroundColor = 'red'
