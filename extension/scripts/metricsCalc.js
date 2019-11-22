@@ -111,7 +111,7 @@ function calcPercentMergedPullRequest(rankingData , userName){
     return [userMergedPrs[0].merged_pull_requests, totalPrMerged,  percent, userStatus]
 }
 
-function createPercentGraphic(data, ctx, labels , label, title)
+function createPercentGraphic(data, ctx, labels , label, title, color)
 {
     const PercentChart= new Chart(ctx, 
     {
@@ -126,8 +126,8 @@ function createPercentGraphic(data, ctx, labels , label, title)
                 data: [data[1], data[0]],
                 backgroundColor: 
                 [
-                    'rgba(255, 255, 255, 255)',
-                    'rgba(54, 162, 235, 0.6)'
+                    'rgb(255, 255, 255)',
+                    color
                 ],
                 borderWidth: 1
             }]
@@ -172,19 +172,19 @@ function plotPercentGraphics(userName){
         let percentOpenedIssuesGraphic = document.getElementById('percentIssues').getContext('2d')
         let percentOpenedIssuesLabels = ['total of issues', `issues opened by ${userName}`]
         createPercentGraphic(percentOpenedIssues, percentOpenedIssuesGraphic, percentOpenedIssuesLabels,
-            `issues opened by ${userName}`, `In issues opened`)
+            `issues opened by ${userName}`, `In issues opened`, defineColor(percentOpenedIssues[3]))
 
         let percentMergedPr = calcPercentMergedPullRequest(rankingData, userName)
         let percentMergedPrGraphic = document.getElementById('percentPullRequests').getContext('2d')
         let percentMergedPrLabels = ['total of merged Pull Requests', `Pull requests merged by ${userName}`]
         createPercentGraphic(percentMergedPr , percentMergedPrGraphic , percentMergedPrLabels,
-            `Pull requests merged by ${userName}`, ` In merged Pull Requests`)
+            `Pull requests merged by ${userName}`, ` In merged Pull Requests`, defineColor(percentMergedPr[3]))
 
         let percentCommits = calcPercentCommits(commitsData , userName)
         let percentCommitsGraphic = document.getElementById('percentCommits').getContext('2d')
         let percentCommitsLabels = ['total of commits', `${userName} commits`]
         createPercentGraphic(percentCommits, percentCommitsGraphic, percentCommitsLabels,
-            `commits from ${userName}`,  `In commits`)
+            `commits from ${userName}`,  `In commits`, defineColor(percentCommits[3]))
         
         return {
             'OpenedIssuesPercent' : percentOpenedIssues, 
@@ -214,11 +214,16 @@ function displayTableInfo(userContribution , tableId){
 
 function tableColorPercent(status, id){
     let table = document.getElementById(`${id}-td`)
-    
+    table.style.backgroundColor = defineColor(status)
+   
+}
+
+
+function defineColor(status){
     if (status === 1)
-        table.style.backgroundColor = 'green'
+       return 'green'
     else if(status === 0)
-        table.style.backgroundColor = 'blue'
+        return 'blue'
     else
-        table.style.backgroundColor = 'red'
+        return 'red'
 }
