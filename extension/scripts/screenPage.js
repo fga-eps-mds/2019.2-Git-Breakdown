@@ -2,6 +2,19 @@
 
 function gbdScreen()
 {
+    let today = new Date()
+    let dd = today.getDate()
+    let mm = today.getMonth()+1
+    let yyyy = today.getFullYear()
+
+    if (dd < 10)
+        dd='0'+dd
+    
+    if (mm < 10)
+        mm='0'+mm
+    
+    today = yyyy+'-'+mm+'-'+dd
+
     let urlLogo = chrome.extension.getURL("images/logo.jpg")
     let urlCog = chrome.extension.getURL("images/cog-8x.png")
     let gbdScreen = 
@@ -48,6 +61,22 @@ function gbdScreen()
                             <form style="margin-top: 8%;">
                                 <label for="SprintLength">Sprint length in days: </label>
                                 <input type="number" name="SprintLength" value="7" id="sprintLength" min="1" max="10">
+                            </form>
+                            <form style="margin-top: 8%;">
+                                <label for="InitialDay">Weekday that each sprint starts: </label>
+                                <select name="InitialDay" id="weekdaylist">
+                                    <option value="0">Sunday</option>
+                                    <option value="1">Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                </select>
+                            </form>
+                            <form style="margin-top: 8%;">
+                                <label for="initdate">Starting date of sprint 1: </label>
+                                <input type="date" id="initdate" name="initdate" min="2019-01-01" max="${today}">
                             </form>
                         </div>
 
