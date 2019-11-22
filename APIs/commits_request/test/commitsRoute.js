@@ -23,8 +23,10 @@ describe('Commits route tests', () => {
             expect(response.status).to.equal(200)
            
         if(_body[0].commits != undefined){
-            expect(_body[1]).to.have.property('name')
-            expect(_body[1]).to.have.property('commits')
+          _body.forEach((obj) => {
+            expect(_body[obj]).to.have.property('name')
+            expect(_body[obj]).to.have.property('commits')
+          })  
         }
       }
     ).catch(err => {
