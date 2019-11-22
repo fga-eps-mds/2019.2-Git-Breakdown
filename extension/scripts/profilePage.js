@@ -39,7 +39,7 @@ function profilePage(user, profile){
                                     <tr> 
                                         <th scope="col" style="width:30%;">PR send </th>
                                         <th scope="col" style="width:30%;"> Total </th>
-                                        <th scope="col" class="userParticipation"> ${profile.login} participation </th>
+                                        <th scope="col"> ${profile.login} participation </th>
                                     </tr>
                                 </thead>
                             </table>
@@ -57,7 +57,7 @@ function profilePage(user, profile){
                                     <tr>
                                         <th scope="col" style="width:30%;"> Commits</th>
                                         <th scope="col" style="width:30%;"> Total </th>
-                                        <th scope="col" class="userParticipation">${profile.login} participation</th>
+                                        <th scope="col">${profile.login} participation</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -75,7 +75,7 @@ function profilePage(user, profile){
                                     <tr>
                                         <th scope="col" style="width:30%;"> Issues Opened</th>
                                         <th scope="col" style="width:30%;"> Total </th>
-                                        <th scope="col" class="userParticipation"> ${profile.login} participation </th>
+                                        <th scope="col"> ${profile.login} participation </th>
                                     </tr>
                                 </thead>
                             </table>

@@ -48,7 +48,7 @@ window.onhashchange = async function()
                 setTimeout(function(){
                     let userContribution = plotPercentGraphics(url[1]) //metricsCalc.js
                     for(var key in userContribution){
-                        displayTableInfo(userContribution[key], key)
+                        displayTableInfo(userContribution[key], key) //metricsCalc.js
                     }
                     
                 }, 2000) 

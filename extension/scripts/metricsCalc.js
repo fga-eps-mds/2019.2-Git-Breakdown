@@ -8,6 +8,17 @@ function calcPercentCommits(commitsData, userName){
         return user.name === userName
     })
 
+    let avarage = totalCommits / commitsData.length
+    let x = avarage * 0.3
+    let userStatus
+
+    if(userCommits[0].commits > avarage + x)
+        userStatus = 1 //very good
+    else if(userCommits[0].commits < avarage+x && userCommits[0].commits > avarage-x)
+        userStatus = 0 //ok / expected
+    else
+        userStatus = -1 //not good
+
 
     let percent
     if(totalCommits !== 0){
@@ -15,7 +26,7 @@ function calcPercentCommits(commitsData, userName){
     }else{
         percent = 0
     } 
-    return [userCommits[0].commits ,totalCommits, percent]
+    return [userCommits[0].commits ,totalCommits, percent, userStatus]
 }
 
 
@@ -32,17 +43,23 @@ function calcPercentOpenedIssues(rankingData , userName){
     if(userOpenedIssues[0].opened_issues === undefined)
     userOpenedIssues[0].opened_issues = 0
 
+    let userStatus
     let percent
-
     if (totalOpenedIssues !== 0){
-         percent = ((+userOpenedIssues[0].opened_issues) / (+totalOpenedIssues)).toString() * 100
-
+        percent = ((+userOpenedIssues[0].opened_issues) / (+totalOpenedIssues)).toString() * 100
+        let avarage = totalOpenedIssues / rankingData.length
+        let x = avarage * 0.3
+       
+        if(userOpenedIssues[0].opened_issues > avarage + x)
+            userStatus = 1 //very good
+        else if(userOpenedIssues[0].opened_issues < avarage+x && userOpenedIssues[0].opened_issues > avarage-x)
+            userStatus = 0 //ok / expected
+        else
+            userStatus = -1 //not good
     }else{
         percent = 0
     }
-    
-
-    return [userOpenedIssues[0].opened_issues, totalOpenedIssues,  percent]
+    return [userOpenedIssues[0].opened_issues, totalOpenedIssues,  percent, userStatus]
 }
 
 // //closed_issues always 0 in the server response
@@ -74,20 +91,24 @@ function calcPercentMergedPullRequest(rankingData , userName){
     let userMergedPrs = rankingData.filter((user)=>{
         return user.name === userName
     })
-
+    let userStatus
     let percent 
     if (totalPrMerged !== 0)
     {
         percent = ((+userMergedPrs[0].merged_pull_requests) / (+totalPrMerged)).toString() * 100
-
+        let avarage = totalPrMerged / rankingData.length
+        let x = avarage * 0.3
+        if(userMergedPrs[0].merged_pull_requests > avarage + x)
+            userStatus = 1 //very good
+        else if(userMergedPrs[0].merged_pull_requests < avarage+x && userMergedPrs[0].merged_pull_requests > avarage-x)
+            userStatus = 0 //ok / expected
+        else
+            userStatus = -1 //not good
     }
     else{
         percent = 0
     }
-
- 
-    return [userMergedPrs[0].merged_pull_requests, totalPrMerged,  percent]
-
+    return [userMergedPrs[0].merged_pull_requests, totalPrMerged,  percent, userStatus]
 }
 
 function createPercentGraphic(data, ctx, labels , label, title)
@@ -182,8 +203,22 @@ function displayTableInfo(userContribution , tableId){
     `
         <td>${userContribution[0]}</td>
         <td>${userContribution[1]}</td>
-        <td>${userContribution[2].toFixed(2)}%</td>
+        <td id="${tableId}-td">${userContribution[2].toFixed(2)}%</td>
     `
+
     tbody.appendChild(tr)
     infoTab.appendChild(tbody)
+    tableColorPercent(userContribution[3], tableId)
+}
+
+
+function tableColorPercent(status, id){
+    let table = document.getElementById(`${id}-td`)
+    
+    if (status === 1)
+        table.style.backgroundColor = 'green'
+    else if(status === 0)
+        table.style.backgroundColor = 'blue'
+    else
+        table.style.backgroundColor = 'red'
 }
