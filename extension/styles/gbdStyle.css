@@ -105,6 +105,12 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
     height: 100% !important;
 }
 
+#commitsTimeDashboard
+{
+    width: 100% !important;
+    height: 100% !important;
+}
+
 .metricsPageTitle {
     margin-left: 27.5%;
     width: 45%;
