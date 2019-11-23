@@ -74,8 +74,33 @@ function homeBtn(){
      return new Promise((resolve, reject)=>{
          let mainContainer = document.getElementById('gbdScreen')
          mainContainer.innerHTML = gbdScreen()
+
+         $("#gbdQuestionMark").popover({
+            title: 
+                `<h3 class="custom-title">
+                    Color info 
+                </h3>`,
+            content: 
+                `<p>
+                    Colors represent the user contribution to the repository
+                    based on contribution avarage
+                </p>
+                <p>
+                    <span id="gbdGreenMark">Green</span>: User contributed more than 30% of average.
+                </p>
+                <p>
+                    <span id="gbdBlueMark">Blue</span>: User is in a range of 30% of the avarage(plus or minus).
+                </p>
+                <p>
+                    <span id="gbdRedMark">Red</span>: User is bellow 30% of the avarage.
+                </p>
+                `,
+            html: true,
+        })
+        
          resolve('GBD screen Ready')
      })
+     
  }
 
  function placeContainer(){
@@ -183,6 +208,7 @@ $(document).on("click", "#settingsSave", function()
 
     $('#settingsButton').popover('hide')
 })
+
 
 const chartOnClick = (type, data) =>
 {
