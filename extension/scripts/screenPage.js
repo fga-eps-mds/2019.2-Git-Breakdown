@@ -174,7 +174,6 @@ function gbdScreen()
 
 
 function plotRanking(updateRanking){
-    console.log(weights)
     if(updateRanking){
        try{
         let rankingTable = document.getElementById('gbdRanking')
