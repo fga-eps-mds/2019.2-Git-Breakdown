@@ -12,7 +12,7 @@ let init_week_day
 let date_unix_time
 
 
-function getMetrics(updateRanking) 
+function getMetrics(updateRanking, unixTime, weekDay, sprintLength) 
 {
     if (updateRanking === undefined)
     {
@@ -21,7 +21,7 @@ function getMetrics(updateRanking)
     }
 
     return new Promise((resolve, reject) =>{
-        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time: 0, weekday: 0, sprintLength: 7}, function(response) 
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time: unixTime, weekday: weekDay, sprintLength: sprintLength}, function(response) 
         {
             if (response !== undefined)
             {
@@ -205,7 +205,7 @@ $(document).on("click", "#settingsSave", function()
     console.log(init_week_day)
     console.log(date_unix_time)
 
-    getMetrics(true)
+    getMetrics(true, date_unix_time, init_week_day, sprintLength)
 
     $('#settingsButton').popover('hide')
 })
