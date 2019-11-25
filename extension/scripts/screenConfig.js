@@ -164,7 +164,7 @@ function homeBtn(){
  }
 
 async function initScreen() {   
-    
+    console.log('initScree()')
     //function to control the select behavior in buttons inside navbar
     zhplugin()
     selectBehavior()
@@ -227,17 +227,23 @@ function gbdButtonOnClick() {
             gbdtab.addEventListener('click', function(){
                 let screen = document.getElementById('gbdScreen')
                 if (screen == null && window.location.href.includes('#breakdown'))
+                {
                     chrome.storage.sync.get('oauth2_token', (res)=>{
                         if(res.oauth2_token != undefined){
+                            console.log('oauth->1', res.oauth2_token)
                             initScreen()
                             selectBehavior()
                             zenhubOnClick() 
-                    }
-                    else{
-                        placeContainer(loginPage())
-                        login()
-                    }    
-                })      
+                        }
+                        else{
+                            console.log('oauth->2', res.oauth2_token)
+                            selectBehavior()
+                            zenhubOnClick() 
+                            placeContainer(loginPage())
+                            login()
+                        }    
+                    })      
+                }    
             })
         }
         resolve('ok')
