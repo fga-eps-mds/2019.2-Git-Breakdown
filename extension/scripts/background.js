@@ -106,8 +106,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                     let url = tabs[0].url.split("/")
                     let owner = url[3]
                     let repo = url[4].split("#")[0]
+                    let unix_time = request.unix_time
+                    let weekday = request.weekday
+                    let sprintLength = request.sprintLength
                     let url_aux = 
-                    `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}&commits=${weights[0]}&merged=${weights[1]}&openissues=${weights[2]}&commentpr=${weights[3]}`
+                    `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}&commits=${weights[0]}&merged=${weights[1]}&openissues=${weights[2]}&commentpr=${weights[3]}&unixTime=${unix_time}&weekday=${weekday}&sprintLength=${sprintLength}`
                     if (request.getProfile)
                     {
                       console.log("fetching profile")
