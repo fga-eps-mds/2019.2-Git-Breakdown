@@ -12,7 +12,7 @@ function calcPercentCommits(commitsData, userName){
     let x = avarage * 0.3
     let userStatus
 
-    if(totalCommits != 0 && userCommits[0].commits != undefined)
+    if(userCommits != undefined && userCommits[0].commits != undefined)
         if(userCommits[0].commits > avarage + x)
             userStatus = 1 //very good
         else if(userCommits[0].commits < avarage+x && userCommits[0].commits > avarage-x)
@@ -20,7 +20,6 @@ function calcPercentCommits(commitsData, userName){
         else
             userStatus = -1 //not good
     else
-        totalCommits = 0
         userCommits[0].commits = 0
 
     let percent
@@ -97,7 +96,7 @@ function calcPercentMergedPullRequest(rankingData , userName){
     })
     let userStatus
     let percent 
-    if (totalPrMerged !== 0 && userMergedPrs.merged_pull_requests != undefined)
+    if (totalPrMerged !== 0 && userMergedPrs[0].merged_pull_requests != undefined)
     {
         percent = ((+userMergedPrs[0].merged_pull_requests) / (+totalPrMerged)).toString() * 100
         let avarage = totalPrMerged / rankingData.length
