@@ -12,13 +12,15 @@ function calcPercentCommits(commitsData, userName){
     let x = avarage * 0.3
     let userStatus
 
-    if(userCommits[0].commits > avarage + x)
-        userStatus = 1 //very good
-    else if(userCommits[0].commits < avarage+x && userCommits[0].commits > avarage-x)
-        userStatus = 0 //ok / expected
+    if(userCommits != undefined && userCommits[0].commits != undefined)
+        if(userCommits[0].commits > avarage + x)
+            userStatus = 1 //very good
+        else if(userCommits[0].commits < avarage+x && userCommits[0].commits > avarage-x)
+            userStatus = 0 //ok / expected
+        else
+            userStatus = -1 //not good
     else
-        userStatus = -1 //not good
-
+        userCommits[0].commits = 0
 
     let percent
     if(totalCommits !== 0){
@@ -45,7 +47,7 @@ function calcPercentOpenedIssues(rankingData , userName){
 
     let userStatus
     let percent
-    if (totalOpenedIssues !== 0){
+    if (totalOpenedIssues !== 0 && userOpenedIssues[0].opened_issues != undefined){
         percent = ((+userOpenedIssues[0].opened_issues) / (+totalOpenedIssues)).toString() * 100
         let avarage = totalOpenedIssues / rankingData.length
         let x = avarage * 0.3
@@ -57,6 +59,7 @@ function calcPercentOpenedIssues(rankingData , userName){
         else
             userStatus = -1 //not good
     }else{
+        userOpenedIssues[0].opened_issues = 0
         percent = 0
     }
     return [userOpenedIssues[0].opened_issues, totalOpenedIssues,  percent, userStatus]
@@ -93,7 +96,7 @@ function calcPercentMergedPullRequest(rankingData , userName){
     })
     let userStatus
     let percent 
-    if (totalPrMerged !== 0)
+    if (totalPrMerged !== 0 && userMergedPrs[0].merged_pull_requests != undefined)
     {
         percent = ((+userMergedPrs[0].merged_pull_requests) / (+totalPrMerged)).toString() * 100
         let avarage = totalPrMerged / rankingData.length
@@ -107,6 +110,7 @@ function calcPercentMergedPullRequest(rankingData , userName){
     }
     else{
         percent = 0
+        userMergedPrs[0].merged_pull_requests = 0
     }
     return [userMergedPrs[0].merged_pull_requests, totalPrMerged,  percent, userStatus]
 }

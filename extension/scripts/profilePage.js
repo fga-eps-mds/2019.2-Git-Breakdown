@@ -140,16 +140,10 @@ function getProfile(username)
                         `,
                     html: true,
                 })
-                
                
-                
-                
-               
-                  
-                
             }
             else
-            {
+            {loginButton
                 console.log("profile response undefined")
             }
 
