@@ -20,7 +20,11 @@ describe('Issues route tests', () => {
         }
 
         expect(response.status).to.equal(200);
-        body.should.have.property('open');
+
+        expect(_body).to.have.property('open')
+        expect(_body).to.have.property('closed')
+        expect(_body).to.have.property('openPercent')
+        expect(_body).to.have.property('closedPercent')
       }
     ).catch(err => {
       const errorResponse = err

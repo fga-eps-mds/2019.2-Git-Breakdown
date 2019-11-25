@@ -19,7 +19,10 @@ describe('Issues ranking tests', () => {
         }
 
         expect(response.status).to.equal(200);
-        body.should.have.property('issues');
+        expect(_body).to.have.property('name');
+        expect(_body).to.have.property('open_issues');
+        expect(_body).to.have.property('closed_issues');
+        expect(_body).to.have.property('comments');
       }
     ).catch(err => {
       const errorResponse = err
