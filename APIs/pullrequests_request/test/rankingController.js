@@ -23,7 +23,9 @@ describe('PullRequests ranking test', () => {
             expect(response.status).to.equal(200);
 
         if(_body != undefined){
-            expect(_body).to.have.property('pullrequests')
+            expect(_body).to.have.property('name')
+            expect(_body).to.have.property('merged_pull_requests')
+            expect(_body).to.have.property('comments')
         }
       }
     ).catch(err => {

@@ -26,6 +26,8 @@ describe('PullRequests route tests', () => {
             expect(_body).to.have.property('open')
             expect(_body).to.have.property('closed')
             expect(_body).to.have.property('refused_percent')
+            expect(_body).to.have.property('merged')
+            expect(_body).to.have.property('refused')
         }
       }
     ).catch(err => {
