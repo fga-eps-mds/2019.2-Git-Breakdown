@@ -3,6 +3,10 @@ const axios = require('axios')
 const commit_route = express.Router()
 const queryString = { state:'all', per_page: 10000 }
 
+let initial_unix_time = 0
+let init_weekday = 0
+let sprint_length = 7
+
 
 commit_route.get = async (req, res, next) => {
 
@@ -11,6 +15,7 @@ commit_route.get = async (req, res, next) => {
     const repository = req.query.repository
     const endpoint = 'contributors'
     contributorsInformation = []
+    let sprints = []
 
     if (owner === undefined || req.query.repository === undefined || req.query.token === undefined) {
         return res.status(400).send('Error 400: Bad Request')
@@ -37,7 +42,36 @@ commit_route.get = async (req, res, next) => {
                     let committer = { 'name': contributor.login, 'commits': contributor.contributions }
                     contributorsInformation.push(committer)
                 })
-                return res.status(200).json(contributorsInformation)
+
+                const url_endpointB = `${gitApiUrl}/repos/${owner}/${repository}/stats/commit_activity`
+
+                await axios.get(url_endpointB, header_option).then(async (response) =>
+                {
+                    const stats = response.data
+                    let length = contributorsInformation.length
+                    
+                    initial_unix_time = req.query.unixTime
+                    init_week_day = req.query.weekday
+                    sprint_length = req.query.sprintLength
+
+                    let initWeek
+                    
+                    if (initial_unix_time === 0)
+                        initWeek = filterStartingWeek(stats, undefined)
+                    else
+                    {
+                        let init = getInitUnixTime(init_week_day, initial_unix_time)
+                        initWeek = filterStartingWeek(stats, init)
+                    }
+
+                    sprints = getSprintTotals(stats, initWeek, init_week_day, sprint_length)
+
+                    contributorsInformation[length] = sprints
+
+                    return res.status(200).json(contributorsInformation)
+                })
+
+                
             }).catch(function (err) {
                 console.log(err)
             })
@@ -45,6 +79,93 @@ commit_route.get = async (req, res, next) => {
             return res.status(500).json(err)
         }
     }
+}
+
+/**
+ * O usuário escolhe uma data para ser a inicial, e esse dia será transformado em UNIX TIME. Porém, como ele pode não ser
+ * um domingo e o JSON começa pelos domingos, essa função faz a conversão pro domingo da semana escolhida.
+ * 
+ * @param {*} weekday dia da semana escolhido pelo usuário 0 = domingo, 1 = segunda, ..., 6 = sábado
+ * @param {*} time ao escolher nas configurações o dia inicial, este é transformado em UNIX TIME que é recebido aqui
+ * como paramêtro
+ */
+function getInitUnixTime(weekday, time)
+{
+  // a gnt pega o tempo inicial da data que o usuario escolheu e acha o domingo da sua semana
+  return (weekday === 0? time : (time - (weekday*86400)))
+}
+
+/**
+ * Retorna a posição do vetor do JSON que contém a semana inicial
+ * 
+ * @param {*} data 
+ * @param {*} initTime 
+ */
+function filterStartingWeek(data, initTime)
+{
+  for (let i = 0; i < data.length; i++)
+  {
+
+    if (initTime === undefined)
+        if (data[i] > 0) return i
+    else
+    {
+        if (data[i].week === initTime)
+        return i
+        else if (data[i].week > initTime)
+        {
+        if (data[i-1].week < initTime) 
+            return (i-1) // se o tempo inicial definido não é de um domingo pegamos do domingo que iniciou a semana
+        }
+    }
+  }
+  return 0
+}
+
+/**
+ * Pega o total de commits por sprint
+ * 
+ * @param {*} data json
+ * @param {*} initWeek posicao da semana inicial no json
+ * @param {*} weekday dia da semana que começa a sprint
+ * @param {*} sprintLength tamanho da sprint
+ */
+function getSprintTotals(data, initWeek, weekday, sprintLength)
+{
+  let totals = []
+  let t_count = 0
+
+  for (let i = 0; i < data.length - initWeek; i++)
+    totals[i] = 0 // inicializar o vetor com 0
+
+  for (let i = initWeek; i < data.length; i++) // começamos na semana inicial definida
+  {
+    let dayTotals = data[i].days
+    let count = sprintLength
+    for (let j = weekday; j < 7; j++) // para cada dia dessa semana, comecando do dia inicial
+    {
+      totals[t_count] += dayTotals[j] // somamos o total
+      count--; // diminuimos o contador de dias corridos da sprint
+    }
+    if (count !== 0) // se os 7 dias da semana acabou mas a sprint nao acabou, pegamos da proxima sprint
+    {
+      // devemos verificar se existe proxima sprint pelo menos
+      if (i + 1 < data.length)
+      {
+        let k = 0
+        while (count > 0) // enquanto a sprint n acaba
+        {
+          totals[t_count] += data[i+1].days[k] // vamos somando os da proxima semana
+          count--
+          k++
+        }
+      }
+    }
+    // agora que a sprint acabou, passamos pra proxima
+    t_count++
+  }
+
+  return totals
 }
 
 //export this functionality as a module

@@ -21,10 +21,11 @@ function getMetrics(updateRanking)
     }
 
     return new Promise((resolve, reject) =>{
-        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: ""}, function(response) 
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time: 0, weekday: 0, sprintLength: 7}, function(response) 
         {
             if (response !== undefined)
             {
+                console.log(response[0])
                 commitsData = response[0]
                 issuesData = response[1]
                 branchsData = response[2]
@@ -74,8 +75,33 @@ function homeBtn(){
      return new Promise((resolve, reject)=>{
          let mainContainer = document.getElementById('gbdScreen')
          mainContainer.innerHTML = gbdScreen()
+
+         $("#gbdQuestionMark").popover({
+            title: 
+                `<h3 class="custom-title">
+                    Color info 
+                </h3>`,
+            content: 
+                `<p>
+                    Colors represent the user contribution to the repository
+                    based on contribution avarage
+                </p>
+                <p>
+                    <span id="gbdGreenMark">Green</span>: User contributed more than 30% of average.
+                </p>
+                <p>
+                    <span id="gbdBlueMark">Blue</span>: User is in a range of 30% of the avarage(plus or minus).
+                </p>
+                <p>
+                    <span id="gbdRedMark">Red</span>: User is bellow 30% of the avarage.
+                </p>
+                `,
+            html: true,
+        })
+        
          resolve('GBD screen Ready')
      })
+     
  }
 
  function placeContainer(){
@@ -98,7 +124,7 @@ function homeBtn(){
  function plotGraphics(){
     return new Promise((resolve, reject)=>{
         if (typeof chrome.app.isInstalled !== 'undefined'){
-            chrome.runtime.sendMessage({metric: weights}, function(response) {
+            chrome.runtime.sendMessage({metric: weights, unix_time: 0, weekday: 0, sprintLength: 7}, function(response) {
                 if (response !== undefined){
 
                     commitsData = response[0]
@@ -183,6 +209,7 @@ $(document).on("click", "#settingsSave", function()
 
     $('#settingsButton').popover('hide')
 })
+
 
 const chartOnClick = (type, data) =>
 {

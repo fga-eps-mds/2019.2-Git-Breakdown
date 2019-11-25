@@ -184,30 +184,78 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 
-#legends{
+/*profilePage.js*/
+
+#profilePageSideBar{
+    display: block;
+    background-color: rgb(52, 58, 64);
+}
+
+.profileImage{
+    padding:10% 10% 10% 10%;
+    display: flex !important;
     text-align: center;
-    padding-top: 10%;
+}
+.profileImage div{
+    font-size: large;
+    padding-top: 15%;
+    border: none;
 }
 
-#legends div{
-    margin: 0 auto;
-    padding-top: 2%;
-    width: 70%;
-    height: 10%;
+#GbdProfileAvatar{
+    border: 3px solid whitesmoke;
+    width: 50%;
+    border-radius: 50%;
+}
+#profileCol-8 {
+    padding: 0% 3% 0% 3%;
+    margin-left: 3%;
+    border-radius: 3%;
+    background-color: whitesmoke;
+}
+
+#profileCol-8 div{
+    margin: 0;
+}
+#profileCol-8 div > span > div ~ div{
+    padding: 5%;
+}
+
+#profileCol-8 div > span {
+    width: 100%;
+    display: inherit;
+}
+
+#profileCol-8 div > span > div {
+    width: 50%;
+}
+
+#profileCol-8 div > span > div > table {
+    background-color: lightgray;
+}
+
+#profileCol-8 div > span > div > table > thead > tr > th{
+    padding: 2% 2% 2% 2%;
+}
+
+#profileCol-8 div > span > div > table > tbody > tr > td {
     text-align: center;
+    padding: 2% 2% 2% 2%;
 }
 
-#good{
-    background-color: green;
-    
+#gbdGreenMark{
+    color:green;
 }
 
-#ok{
-    background-color: blue;
-    
+#gbdBlueMark{
+    color:blue;
 }
 
-#bad{
-    background-color: red;
-    
+
+#gbdRedMark{
+    color:red;
 }
+
+
+
+/*------*/
