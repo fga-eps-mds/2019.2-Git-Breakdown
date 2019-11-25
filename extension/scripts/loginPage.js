@@ -27,5 +27,7 @@ function login(){
     let loginButton = document.getElementById('loginButton')
     loginButton.addEventListener('click', () =>{
         window.open(url)
+        location.reload()
     })
+   
 }
