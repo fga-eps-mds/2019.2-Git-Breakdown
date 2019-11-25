@@ -37,7 +37,19 @@ commit_route.get = async (req, res, next) => {
                     let committer = { 'name': contributor.login, 'commits': contributor.contributions }
                     contributorsInformation.push(committer)
                 })
-                return res.status(200).json(contributorsInformation)
+
+                const url_endpointB = `${gitApiUrl}/repos/${owner}/${repository}/stats/commit_activity`
+
+                await axios.get(url_endpointB, header_option).then(async (response) =>
+                {
+                    const stats = response.data
+                    let length = contributorsInformation.length
+                    contributorsInformation[length] = stats
+
+                    return res.status(200).json(contributorsInformation)
+                })
+
+                
             }).catch(function (err) {
                 console.log(err)
             })
