@@ -2,10 +2,24 @@
 
 function gbdScreen()
 {
+    let today = new Date()
+    let dd = today.getDate()
+    let mm = today.getMonth()+1
+    let yyyy = today.getFullYear()
+
+    if (dd < 10)
+        dd='0'+dd
+    
+    if (mm < 10)
+        mm='0'+mm
+    
+    today = yyyy+'-'+mm+'-'+dd
+
     let urlLogo = chrome.extension.getURL("images/logo.jpg")
     let urlCog = chrome.extension.getURL("images/cog-8x.png")
     let gbdScreen = 
     `  
+    <div id="gbdScreen">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="box-shadow: 1px 1px 1px 1px black;
         border-radius: 20px;">
             <a class="navbar-brand" href="#breakdown"><img src="${urlLogo}" width="30" height="30" class="d-inline-block align-top"> GitBreakdown</a>
@@ -49,6 +63,22 @@ function gbdScreen()
                                 <label for="SprintLength">Sprint length in days: </label>
                                 <input type="number" name="SprintLength" value="7" id="sprintLength" min="1" max="10">
                             </form>
+                            <form style="margin-top: 8%;">
+                                <label for="InitialDay">Weekday that each sprint starts: </label>
+                                <select name="InitialDay" id="weekdaylist">
+                                    <option value="0">Sunday</option>
+                                    <option value="1">Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                </select>
+                            </form>
+                            <form style="margin-top: 8%;">
+                                <label for="initdate">Starting date of sprint 1: </label>
+                                <input type="date" id="initdate" name="initdate" min="2019-01-01" max="${today}">
+                            </form>
                         </div>
 
                         <div class="tab-pane" id="metrics">
@@ -90,8 +120,10 @@ function gbdScreen()
         </div>
     </nav>
     <div class="gbdContent">
+       
         <div class="row">
             <div class="col">
+                
                 <div class="table-responsive">
                     <table class="table table-hover table-dark" id="gbdRanking">
                         <thead>
@@ -102,12 +134,6 @@ function gbdScreen()
                             </tr>
                         </thead>
                     </table>
-                </div>
-                <div id="legends">
-                    <label>Contribution status Legends</label>
-                    <div id="good">good</div>
-                    <div id="ok">ok</div>
-                    <div id="bad">bad</div>
                 </div>
             </div>
             <div class="col">
@@ -135,6 +161,10 @@ function gbdScreen()
                 </div>
             </div>
         </div>
+        <button type="button" id="gbdQuestionMark" class="btn btn-lg btn-danger" data-toggle="popover" style="left:3%;">
+            (?*)
+        </button>
+    </div>
     </div>
     `
     return gbdScreen
@@ -144,7 +174,6 @@ function gbdScreen()
 
 
 function plotRanking(updateRanking){
-    console.log(weights)
     if(updateRanking){
        try{
         let rankingTable = document.getElementById('gbdRanking')
@@ -205,12 +234,16 @@ function plotColorStatus(){
     let ranking = document.getElementById('gbdRankingTbody').childNodes
 
     let avarage = getScoreAvarage(rankingData)
+    let x = avarage * 0.3
+
+    //x is a range of 30% of the avarage. Is used to set if some one have 30%
+    //above or below avarage of parcitipation
 
     for(user in ranking){
         if(ranking[user].id != undefined)
-            if(rankingData[user].score > avarage+15)
+            if(rankingData[user].score > avarage+x)
                 document.getElementById(ranking[user].id).style.backgroundColor = 'green'
-            else if( rankingData[user].score < avarage+15 && rankingData[user].score > avarage-15)
+            else if( rankingData[user].score < avarage+x && rankingData[user].score > avarage-x)
                 document.getElementById(ranking[user].id).style.backgroundColor = 'blue'
             else
                 document.getElementById(ranking[user].id).style.backgroundColor = 'red'

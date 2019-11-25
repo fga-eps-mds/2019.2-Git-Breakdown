@@ -4,46 +4,94 @@ function profilePage(user, profile){
     `
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
+            <div class="col-3" id="profilePageSideBar">
                 <div class="profileImage">
-                    <img src="${profile.avatar}" id="GbdProfileAvatar">
-                </div>
-                <div class="profieInfo">
-
-                </div>
+                    <a href="https://github.com/${profile.login}" >
+                        <img src="${profile.avatar}" id="GbdProfileAvatar">
+                    </a>
+                        </div>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                       Contribution Ranking
+                    <span class="badge badge-primary badge-pill">${user[1]}/${user[2]}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                       Location:
+                    <span class="badge badge-primary badge-pill">${getLocation(profile.location)}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                       ${getBio(profile.bio)}
+                    </li>
+                </ul>
             </div>
-            <div class="col">
-                <div class="row">
-                    <div class="card text-white bg-dark mb-3">
-                        <canvas id="percentPullRequests"></canvas>
-                    </div>
+            <div class="col-8" id="profileCol-8">
+                <button type="button" id="gbdQuestionMark" class="btn btn-lg btn-danger" data-toggle="popover">
+                    (?*)
+                </button>
+                <div style="text-align: center; padding-bottom:5%; padding-top:5%; font-size:initial;">
+                    <label >${profile.login}'s participation</label>
                 </div>
                 <div class="row">
-                   
+                    <span>
+                        <div class="card text-white bg-dark mb-3">
+                            <canvas id="percentPullRequests"></canvas>
+                        </div>
+                        <div>
+                            <table class="table-bordered" id="MergedPrPercent">
+                                <thead>
+                                    <tr> 
+                                        <th scope="col" style="width:30%;">PR send </th>
+                                        <th scope="col" style="width:30%;"> Total </th>
+                                        <th scope="col"> ${profile.login} participation </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </span> 
                 </div>
-            </div>
-            <div class="col">
                 <div class="row">
-                    <div class="card text-white bg-dark mb-3">
-                        <canvas id="percentCommits"></canvas>
-                    </div>
+                    <span>
+                        <div class="card text-white bg-dark mb-3">
+                            <canvas id="percentCommits"></canvas>
+                        </div>
+                        <div>
+                            <table class="table-bordered" id="CommitsPercent">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width:30%;"> Commits</th>
+                                        <th scope="col" style="width:30%;"> Total </th>
+                                        <th scope="col">${profile.login} participation</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </span>
                 </div>
-
                 <div class="row">
-                    <div class="card text-white bg-dark mb-3">
-                        <canvas id="percentIssues"></canvas>
-                    </div>
+                    <span>
+                        <div class="card text-white bg-dark mb-3">
+                            <canvas id="percentIssues"></canvas>
+                        </div>
+                        <div>
+                            <table class="table-bordered" id="OpenedIssuesPercent">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width:30%;"> Issues Opened</th>
+                                        <th scope="col" style="width:30%;"> Total </th>
+                                        <th scope="col"> ${profile.login} participation </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    <span>
                 </div>
             </div>
         </div>
-
     </div>
     `
     return profilePage
 }
-//percentPullRequests
-//percentCommits
-//percentIssues
+
 
 function findUser(){
     let url = window.location.hash
@@ -64,9 +112,38 @@ function getProfile(username)
             {   
                 
                 document.getElementsByClassName('gbdContent')[0].innerHTML = profilePage(findUser(), response[0])
+                avatarDisplay()
+                $(function () {
+                    $('[data-toggle="popover"]').popover()
+                  })
+                
+
+                $("#gbdQuestionMark").popover({
+                    title: 
+                        `<h3 class="custom-title">
+                            Color info 
+                        </h3>`,
+                    content: 
+                        `<p>
+                            Colors represent the user contribution to the repository
+                            based on contribution avarage
+                        </p>
+                        <p>
+                            <span id="gbdGreenMark">Green</span>: User contributed more than 30% of average.
+                        </p>
+                        <p>
+                            <span id="gbdBlueMark">Blue</span>: User is in a range of 30% of the avarage(plus or minus).
+                        </p>
+                        <p>
+                            <span id="gbdRedMark">Red</span>: User is bellow 30% of the avarage.
+                        </p>
+                        `,
+                    html: true,
+                })
+               
             }
             else
-            {
+            {loginButton
                 console.log("profile response undefined")
             }
 
@@ -85,3 +162,23 @@ function getLocation(location){
         return 'unknown'
     }
 }
+
+function getBio(bio){
+    if (bio != null)
+        return bio
+    else
+        return ' '
+}
+
+function avatarDisplay(){
+    let avatar = document.getElementById('GbdProfileAvatar')
+
+    avatar.onmousemove = () => {
+        avatar.style.opacity = "50%"
+    }
+
+    avatar.onmouseleave = () => {
+        avatar.style.opacity = "100%"
+    }
+}
+

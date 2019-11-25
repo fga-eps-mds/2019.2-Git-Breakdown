@@ -7,6 +7,10 @@ let weights = [4,5,2,3] // default weights
 
 let sprintLength = 7
 
+let init_week_day
+
+let date_unix_time
+
 
 function getMetrics(updateRanking) 
 {
@@ -17,10 +21,11 @@ function getMetrics(updateRanking)
     }
 
     return new Promise((resolve, reject) =>{
-        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: ""}, function(response) 
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time: 0, weekday: 0, sprintLength: 7}, function(response) 
         {
             if (response !== undefined)
             {
+                console.log(response[0])
                 commitsData = response[0]
                 issuesData = response[1]
                 branchsData = response[2]
@@ -70,11 +75,36 @@ function homeBtn(){
      return new Promise((resolve, reject)=>{
          let mainContainer = document.getElementById('gbdScreen')
          mainContainer.innerHTML = gbdScreen()
+
+         $("#gbdQuestionMark").popover({
+            title: 
+                `<h3 class="custom-title">
+                    Color info 
+                </h3>`,
+            content: 
+                `<p>
+                    Colors represent the user contribution to the repository
+                    based on contribution avarage
+                </p>
+                <p>
+                    <span id="gbdGreenMark">Green</span>: User contributed more than 30% of average.
+                </p>
+                <p>
+                    <span id="gbdBlueMark">Blue</span>: User is in a range of 30% of the avarage(plus or minus).
+                </p>
+                <p>
+                    <span id="gbdRedMark">Red</span>: User is bellow 30% of the avarage.
+                </p>
+                `,
+            html: true,
+        })
+        
          resolve('GBD screen Ready')
      })
+     
  }
 
- function placeContainer(){
+ function placeContainer(page){
      return new Promise((resolve, reject)=>{
         let mainContainer = document.getElementsByTagName('div')
         let containgerPattern = /.*(container-lg clearfix new-discussion-timeline experiment-repo-nav)+.*/ 
@@ -82,7 +112,7 @@ function homeBtn(){
             let className = mainContainer[i].className
             let answer = containgerPattern.exec(className)
             if (answer != null){
-                mainContainer[i].innerHTML = loadPage()
+                mainContainer[i].innerHTML = page
                 mainContainer[i].style.maxWidth = '100%'
                 break;
             }         
@@ -94,7 +124,7 @@ function homeBtn(){
  function plotGraphics(){
     return new Promise((resolve, reject)=>{
         if (typeof chrome.app.isInstalled !== 'undefined'){
-            chrome.runtime.sendMessage({metric: weights}, function(response) {
+            chrome.runtime.sendMessage({metric: weights, unix_time: 0, weekday: 0, sprintLength: 7}, function(response) {
                 if (response !== undefined){
 
                     commitsData = response[0]
@@ -135,14 +165,12 @@ function homeBtn(){
  }
 
 async function initScreen() {   
-    
+    console.log('initScree()')
     //function to control the select behavior in buttons inside navbar
     zhplugin()
     selectBehavior()
     try{
-        await placeContainer()
-        plotProgress()
-        await placeScreen()
+        await placeContainer(gbdScreen())
         await homeBtn()
         await plotGraphics()
         settingsOnClick()
@@ -166,10 +194,15 @@ $(document).on("click", "#settingsSave", function()
     weights[1] = $('#commitsWeight').val()
     weights[2] = $('#openWeight').val()
     weights[3] = $('#commentsWeight').val()
+    init_week_day = $('#weekdaylist').val()
+    date_unix_time = Math.floor(new Date($('#initdate').val()).getTime() / 1000)
+
     alert("Configurations saved!")
     getMetrics(true)
+
     $('#settingsButton').popover('hide')
 })
+
 
 const chartOnClick = (type, data) =>
 {
@@ -195,9 +228,23 @@ function gbdButtonOnClick() {
             gbdtab.addEventListener('click', function(){
                 let screen = document.getElementById('gbdScreen')
                 if (screen == null && window.location.href.includes('#breakdown'))
-                    initScreen()
-                    selectBehavior()
-                    zenhubOnClick()  
+                {
+                    chrome.storage.sync.get('oauth2_token', (res)=>{
+                        if(res.oauth2_token != undefined){
+                            console.log('oauth->1', res.oauth2_token)
+                            initScreen()
+                            selectBehavior()
+                            zenhubOnClick() 
+                        }
+                        else{
+                            console.log('oauth->2', res.oauth2_token)
+                            selectBehavior()
+                            zenhubOnClick() 
+                            placeContainer(loginPage())
+                            login()
+                        }    
+                    })      
+                }    
             })
         }
         resolve('ok')
