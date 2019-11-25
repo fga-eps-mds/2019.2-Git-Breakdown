@@ -26,38 +26,14 @@ exports.get = async (req, res, next) => {
         
         await axios.get(url_endpoint, header_option).then( response => {
             let pullrequests = response.data
-            
-            function filterOpenPR(pr) {
-                if(pr.state === 'open'){
-                    return true
-                }
-                return false
-            }
             let openPRs = pullrequests.filter(filterOpenPR)
-
-            function filterClosedPR(pr) {
-                if(pr.state === 'closed'){
-                    return true
-                }
-                return false
-            }
             let closedPRs = pullrequests.filter(filterClosedPR)
-
-            function getRefusedMerge(pr) {
-                if(pr.merged_at === null){
-                    return true
-                }
-                return false
-            }
             let refusedPullrequests = closedPRs.filter(getRefusedMerge)
-
             let numberOfOpen = Object.keys(openPRs).length
             let numberOfClosed = Object.keys(closedPRs).length 
             let numberOfRefused = Object.keys(refusedPullrequests).length
             let percentageOfRefused = (numberOfRefused/Object.keys(pullrequests).length)*100
-
             let total_merged = numberOfClosed - numberOfRefused
-
             let prInfo = {'open': numberOfOpen, 'closed': numberOfClosed, 'refused_percent': percentageOfRefused,
         'merged': total_merged, 'refused': numberOfRefused}
             
@@ -80,4 +56,25 @@ exports.put = (req, res, next) => {
 exports.delete = (req, res, next) => {
     let id = req.params.id
     res.status(200).send(`Requisição recebida com sucesso! ${id}`)
+}
+
+function filterOpenPR(pr) {
+    if(pr.state === 'open'){
+        return true
+    }
+    return false
+}
+
+function filterClosedPR(pr) {
+    if(pr.state === 'closed'){
+        return true
+    }
+    return false
+}
+
+function getRefusedMerge(pr) {
+    if(pr.merged_at === null){
+        return true
+    }
+    return false
 }
