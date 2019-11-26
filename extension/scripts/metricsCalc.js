@@ -180,7 +180,12 @@ function plotPercentGraphics(userName){
         createPercentGraphic(percentMergedPr , percentMergedPrGraphic , percentMergedPrLabels,
             `Pull requests merged by ${userName}`, ` In merged Pull Requests`, defineColor(percentMergedPr[3]))
 
-        let percentCommits = calcPercentCommits(commitsData , userName)
+        let userCommitsData = []
+
+        for (let i = 0; i < commitsData.length-1; i++)
+            userCommitsData[i] = commitsData[i]
+        
+        let percentCommits = calcPercentCommits(userCommitsData, userName)
         let percentCommitsGraphic = document.getElementById('percentCommits').getContext('2d')
         let percentCommitsLabels = ['total of commits', `${userName} commits`]
         createPercentGraphic(percentCommits, percentCommitsGraphic, percentCommitsLabels,
