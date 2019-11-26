@@ -1,0 +1,52 @@
+{
+  "docs": {
+    "Iniciação": [
+      "backlog", 
+      "orcamento", 
+      "tap", 
+      "metricas", 
+      "visao", 
+      "arquitetura",
+      "eap"
+    ],
+    "Planos": [
+      "risco",
+      "comunicacao",
+      "gerenciamento"
+    ],
+    "Políticas": [
+      "commits",
+      "branches",
+      "issues"
+    ],
+    "Sprints Planning": [
+      "sprints/planning/sprint0",
+      "sprints/planning/sprint1",
+      "sprints/planning/sprint2",
+      "sprints/planning/sprint3",
+      "sprints/planning/sprint4",
+      "sprints/planning/sprint5",
+      "sprints/planning/sprint6",
+      "sprints/planning/sprint7",
+      "sprints/planning/sprint8",
+      "sprints/planning/sprint9",
+      "sprints/planning/sprint10",
+      "sprints/planning/sprint11",
+      "sprints/planning/sprint12"
+    ],
+    "Sprints Review": [
+      "sprints/review/sprint0",
+      "sprints/review/sprint1",
+      "sprints/review/sprint2",
+      "sprints/review/sprint3",
+      "sprints/review/sprint4",
+      "sprints/review/sprint5",
+      "sprints/review/sprint6",
+      "sprints/review/sprint7",
+      "sprints/review/sprint8",
+      "sprints/review/sprint9",
+      "sprints/review/sprint10",
+      "sprints/review/sprint11"
+    ]
+  }
+}
