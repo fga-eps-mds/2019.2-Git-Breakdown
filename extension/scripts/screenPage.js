@@ -19,6 +19,7 @@ function gbdScreen()
     let urlCog = chrome.extension.getURL("images/cog-8x.png")
     let gbdScreen = 
     `  
+    <div id="gbdScreen">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="box-shadow: 1px 1px 1px 1px black;
         border-radius: 20px;">
             <a class="navbar-brand" href="#breakdown"><img src="${urlLogo}" width="30" height="30" class="d-inline-block align-top"> GitBreakdown</a>
@@ -164,6 +165,7 @@ function gbdScreen()
             (?*)
         </button>
     </div>
+    </div>
     `
     return gbdScreen
 }
@@ -172,7 +174,6 @@ function gbdScreen()
 
 
 function plotRanking(updateRanking){
-    console.log(weights)
     if(updateRanking){
        try{
         let rankingTable = document.getElementById('gbdRanking')

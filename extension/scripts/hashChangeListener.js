@@ -60,8 +60,17 @@ window.onhashchange = async function()
             let screen = document.getElementById('gbdScreen')
             if (screen == null)
                 try{
-                    selectBehavior()
-                    initScreen()
+                    chrome.storage.sync.get('oauth2_token', (res)=>{
+                        if(res.oauth2_token != undefined){
+                            selectBehavior()
+                            initScreen()
+                        }else{
+                            selectBehavior()
+                            placeContainer(loginPage())
+                            login()
+                        }
+                    })
+
                 }catch(err){
                     console.log('GBD error:', err)
                 }
@@ -74,4 +83,25 @@ window.onhashchange = async function()
             }
         }
     }
+}
+
+window.onload = ()=>{
+    if (window.location.href.includes('#breakdown'))
+    {
+        try{
+            chrome.storage.sync.get('oauth2_token', (res)=>{
+                if(res.oauth2_token != undefined){
+                    selectBehavior()
+                    initScreen()
+                }else{
+                    selectBehavior()
+                    placeContainer(loginPage())
+                    login()
+                }
+            })
+
+        }catch(err){
+            console.log('GBD error:', err)
+        }
+    } 
 }

@@ -104,7 +104,7 @@ function homeBtn(){
      
  }
 
- function placeContainer(){
+ function placeContainer(page){
      return new Promise((resolve, reject)=>{
         let mainContainer = document.getElementsByTagName('div')
         let containgerPattern = /.*(container-lg clearfix new-discussion-timeline experiment-repo-nav)+.*/ 
@@ -112,7 +112,7 @@ function homeBtn(){
             let className = mainContainer[i].className
             let answer = containgerPattern.exec(className)
             if (answer != null){
-                mainContainer[i].innerHTML = loadPage()
+                mainContainer[i].innerHTML = page
                 mainContainer[i].style.maxWidth = '100%'
                 break;
             }         
@@ -165,14 +165,12 @@ function homeBtn(){
  }
 
 async function initScreen() {   
-    
+    console.log('initScree()')
     //function to control the select behavior in buttons inside navbar
     zhplugin()
     selectBehavior()
     try{
-        await placeContainer()
-        plotProgress()
-        await placeScreen()
+        await placeContainer(gbdScreen())
         await homeBtn()
         await plotGraphics()
         settingsOnClick()
@@ -235,9 +233,23 @@ function gbdButtonOnClick() {
             gbdtab.addEventListener('click', function(){
                 let screen = document.getElementById('gbdScreen')
                 if (screen == null && window.location.href.includes('#breakdown'))
-                    initScreen()
-                    selectBehavior()
-                    zenhubOnClick()  
+                {
+                    chrome.storage.sync.get('oauth2_token', (res)=>{
+                        if(res.oauth2_token != undefined){
+                            console.log('oauth->1', res.oauth2_token)
+                            initScreen()
+                            selectBehavior()
+                            zenhubOnClick() 
+                        }
+                        else{
+                            console.log('oauth->2', res.oauth2_token)
+                            selectBehavior()
+                            zenhubOnClick() 
+                            placeContainer(loginPage())
+                            login()
+                        }    
+                    })      
+                }    
             })
         }
         resolve('ok')
