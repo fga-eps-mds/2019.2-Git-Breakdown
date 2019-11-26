@@ -57,8 +57,34 @@ function commitsPage(){
     return commitPage
 }
 
+function getLabels()
+{
+    let pos = (commitsData.length - 4)
+    let labels = []
+    for (let i = 0; i < commitsData[pos].length; i++)
+    {
+        labels.push(`Sprint ${commitsData[pos][i].sprint} from ${commitsData[pos][i].starting_date} to ${commitsData[pos][i].ending_date}`)
+    }
+    return labels
+}
+
+function getData()
+{
+    let pos = (commitsData.length - 4)
+    let data = []
+    for (let i = 0; i < commitsData[pos].length; i++)
+    {
+        data.push(commitsData[pos][i].commits)
+    }
+    return data
+}
+
 function plotCommitsChart()
 {
+    console.log(commitsData)
+    let labels = getLabels()
+    let data = getData()
+    console.log(labels)
     let ctx = document.getElementById('commitsTimeDashboard').getContext('2d')
     if (ctx !== undefined)
     {
@@ -67,12 +93,12 @@ function plotCommitsChart()
                 type: 'line',
                 data: 
                 {
-                    labels: ['sprint 1', 'sprint 2', 'sprint 3', 'sprint 4', 'sprint 5'],
+                    labels: labels,
                     datasets: 
                     [{
                         label: 'total of commits per sprint',
                         fontColor: 'black',
-                        data: [5, 2, 4, 7, 10],
+                        data: data,
                         backgroundColor: 
                         [
                             'rgba(255, 99, 132, 0.6)',
@@ -160,5 +186,5 @@ function plotCommiters()
     {
         console.log(err)
     }   
-    plotCommitsChart(undefined)
+    plotCommitsChart()
 }
