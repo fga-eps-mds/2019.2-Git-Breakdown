@@ -1,8 +1,11 @@
 
 function calcPercentCommits(commitsData, userName){
     let totalCommits = 0
-    for(user in commitsData)
-        totalCommits += commitsData[user].commits
+
+    commitsData.forEach(user => {
+        if(user.commits != undefined)
+            totalCommits += user.commits
+    });
 
     let userCommits = commitsData.filter((user)=>{
         return user.name === userName
