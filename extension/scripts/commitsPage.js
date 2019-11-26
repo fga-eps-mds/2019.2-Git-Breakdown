@@ -135,7 +135,7 @@ function plotCommiters()
     {
         if (commitsData !== undefined)
         {
-            for(let i = 0; i < commitsData.length; i++)
+            for(let i = 0; i < commitsData.length-4; i++)
             {
                 if (commitsData[i] != undefined)
                 {

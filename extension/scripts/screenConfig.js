@@ -9,7 +9,7 @@ let sprintLength = 7
 
 let init_week_day
 
-let date_unix_time = 1543708800
+let date_unix_time = 0
 
 
 function getMetrics(updateRanking, unix_time, week_day, sprint_length) 
@@ -21,17 +21,19 @@ function getMetrics(updateRanking, unix_time, week_day, sprint_length)
     }
 
     return new Promise((resolve, reject) =>{
-        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time:date_unix_time, weekday: week_day, sprintLength: sprint_length}, function(response) 
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time:unix_time, weekday: week_day, sprintLength: sprint_length}, function(response) 
         {
             if (response !== undefined)
             {
-                console.log(response[0])
                 commitsData = response[0]
                 issuesData = response[1]
                 branchsData = response[2]
                 prData = response[3]
                 rankingData = response[4]
                 profileData = response[5]
+
+                console.log(rankingData)
+                console.log(commitsData)
 
                 if (updateRanking)
                 {
@@ -254,7 +256,7 @@ function gbdButtonOnClick() {
     
 
 async function initExtension(){
-    await getMetrics(false, date_unix_time, 0, 7)
+    await getMetrics(false, 0, 0, 7)
     await gbdButtonOnClick()
 }
 
