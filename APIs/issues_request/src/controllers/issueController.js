@@ -38,30 +38,9 @@ exports.get = async (req, res, next) => {
 
     await axios.get(url_endpoint, header_option).then( response => {
             let issues = response.data
-            function filterIssues(issue) {
-                if(issue.pull_request === undefined){
-                    return true
-                }
-                return false
-            }
             let filteredIssues = issues.filter(filterIssues)
-
-            function getOpenIssues(filteredIssues) {
-                if(filteredIssues.state === 'open'){
-                    return true
-                }
-                return false
-            }
             let openIssues = filteredIssues.filter(getOpenIssues)
-
-            function getClosedIssues(filteredIssues) {
-                if(filteredIssues.state === 'closed'){
-                    return true
-                }
-                return false
-            }
             let closedIssues = filteredIssues.filter(getClosedIssues)
-
             let tIssues = Object.keys(filteredIssues).length //number of all issues
             let oIssues = Object.keys(openIssues).length //number of open issues
             let cIssues = Object.keys(closedIssues).length //number of closed issues
@@ -88,4 +67,25 @@ exports.put = (req, res, next) => {
 exports.delete = (req, res, next) => {
     let id = req.params.id
     res.status(200).send(`Requisição recebida com sucesso! ${id}`)
+}
+
+function filterIssues(issue) {
+    if(issue.pull_request === undefined){
+        return true
+    }
+    return false
+}
+
+function getOpenIssues(filteredIssues) {
+    if(filteredIssues.state === 'open'){
+        return true
+    }
+    return false
+}
+
+function getClosedIssues(filteredIssues) {
+    if(filteredIssues.state === 'closed'){
+        return true
+    }
+    return false
 }
