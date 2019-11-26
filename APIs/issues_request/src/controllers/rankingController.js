@@ -3,13 +3,14 @@ const axios = require('axios')
 const queryString = { state:'all', per_page: 10000 }
 const queryString2 = { state:'all', per_page: 10000 }
 const endpoint = 'issues'
-contributorsInformation = []
 
 exports.get = async (req, res, next) => {
     const owner = req.query.owner
     const repository = req.query.repository
     const token = req.query.token
     
+    contributorsInformation = []
+
     if(owner === undefined || repository === undefined || token === undefined){
         res.status(400).send('Error 400: Bad Request')
     }else{

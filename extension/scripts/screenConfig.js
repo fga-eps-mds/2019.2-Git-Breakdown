@@ -9,10 +9,10 @@ let sprintLength = 7
 
 let init_week_day
 
-let date_unix_time
+let date_unix_time = 1543708800
 
 
-function getMetrics(updateRanking) 
+function getMetrics(updateRanking, unix_time, week_day, sprint_length) 
 {
     if (updateRanking === undefined)
     {
@@ -21,7 +21,7 @@ function getMetrics(updateRanking)
     }
 
     return new Promise((resolve, reject) =>{
-        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time: 0, weekday: 0, sprintLength: 7}, function(response) 
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time:date_unix_time, weekday: week_day, sprintLength: sprint_length}, function(response) 
         {
             if (response !== undefined)
             {
@@ -124,7 +124,7 @@ function homeBtn(){
  function plotGraphics(){
     return new Promise((resolve, reject)=>{
         if (typeof chrome.app.isInstalled !== 'undefined'){
-            chrome.runtime.sendMessage({metric: weights, unix_time: 0, weekday: 0, sprintLength: 7}, function(response) {
+            chrome.runtime.sendMessage({metric: weights, unix_time: date_unix_time, weekday: 0, sprintLength: 7}, function(response) {
                 if (response !== undefined){
 
                     commitsData = response[0]
@@ -133,9 +133,9 @@ function homeBtn(){
                     prData = response[3]
                     rankingData = response[4]
                     profileData = response[5]
-
                     
                     try{
+
                         let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
                         createIssuesChart(issuesData, issuesCtx)
                         
@@ -198,7 +198,7 @@ $(document).on("click", "#settingsSave", function()
     date_unix_time = Math.floor(new Date($('#initdate').val()).getTime() / 1000)
 
     alert("Configurations saved!")
-    getMetrics(true)
+    getMetrics(true, date_unix_time, init_week_day, sprintLength)
 
     $('#settingsButton').popover('hide')
 })
@@ -254,7 +254,7 @@ function gbdButtonOnClick() {
     
 
 async function initExtension(){
-    await getMetrics(false)
+    await getMetrics(false, date_unix_time, 0, 7)
     await gbdButtonOnClick()
 }
 
