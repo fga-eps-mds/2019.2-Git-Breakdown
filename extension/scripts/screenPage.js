@@ -22,33 +22,24 @@ function gbdScreen()
     <div id="gbdScreen">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="box-shadow: 1px 1px 1px 1px black;
         border-radius: 20px;">
-            <a class="navbar-brand" href="#breakdown"><img src="${urlLogo}" width="30" height="30" class="d-inline-block align-top"> GitBreakdown</a>
-
+            <a class="navbar-brand" href="#breakdown"><img src="${urlLogo}" width="30" height="30" class="d-inline-block align-top">GitBreakdown</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a id="gbdHomeBtn" class="nav-link" href="#breakdown">Home</a>
                 </li>
-
-                <li class="nav-item dropdown active">
-                    
+                <li class="nav-item dropdown active">                   
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Metrics
                     </a>
-
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#breakdown/commits">Commits</a>
                         <a class="dropdown-item" href="#breakdown/issues">Issues</a>
                         <a class="dropdown-item" href="#breakdown/branches">Branches</a>
                         <a class="dropdown-item" href="#breakdown/pr">Pull Request</a>
                     </div>
-
                 </li>
-
-                </ul>
-
-
-                
+                </ul> 
                 <div id="settingsContent" class="hide">
 
                     <ul class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
@@ -189,11 +180,9 @@ function createUserRanking(user, index){
         window.location.hash = `#breakdown/Profile=${tr.id}`
 
     })
-
     tr.onpointerover = () => {
         tr.style.opacity = '50%'
     }
-
     tr.onpointerleave = () => {
         tr.style.opacity = '100%'
     }
@@ -221,46 +210,35 @@ function plotRanking(updateRanking){
             plotColorStatus()
         }catch(err){
             console.log("GBD error:", err)
-        }
-       
+        } 
     }
 }
 
 
+function changeUserColor(user, index){
+    if(rankingData[index].score > this + this*0.3)
+        user.style.backgroundColor = 'green'
+    else if (rankingData[index].score < this + this*0.3 && rankingData[index].score > this - this*0.3)
+        user.style.backgroundColor = 'blue'
+    else
+        user.style.backgroundColor = 'red'
+}
 
 
 function plotColorStatus(){
     let ranking = document.getElementById('gbdRankingTbody').childNodes
-
     let avarage = getScoreAvarage(rankingData)
-    let x = avarage * 0.3
-
-    //x is a range of 30% of the avarage. Is used to set if some one have 30%
-    //above or below avarage of parcitipation
-
-    for(user in ranking){
-        if(ranking[user].id != undefined)
-            if(rankingData[user].score > avarage+x)
-                document.getElementById(ranking[user].id).style.backgroundColor = 'green'
-            else if( rankingData[user].score < avarage+x && rankingData[user].score > avarage-x)
-                document.getElementById(ranking[user].id).style.backgroundColor = 'blue'
-            else
-                document.getElementById(ranking[user].id).style.backgroundColor = 'red'
-    }
-
-   
-
+    ranking.forEach(changeUserColor , avarage)
 }
 
 function getScoreAvarage(rankingData){
     let scoreAvarage = 0
     let total = 0
-
-    for(user in rankingData){
-        if(rankingData[user].score != undefined){
-            scoreAvarage += rankingData[user].score
+    rankingData.forEach(user =>{
+        if(user.score != null){
+            scoreAvarage += user.score
             total++
         }
-    }
+    })
     return scoreAvarage / total
 }
