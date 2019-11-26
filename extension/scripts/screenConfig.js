@@ -25,7 +25,6 @@ function getMetrics(updateRanking)
         {
             if (response !== undefined)
             {
-                console.log(response[0])
                 commitsData = response[0]
                 issuesData = response[1]
                 branchsData = response[2]
@@ -165,7 +164,6 @@ function homeBtn(){
  }
 
 async function initScreen() {   
-    console.log('initScree()')
     //function to control the select behavior in buttons inside navbar
     zhplugin()
     selectBehavior()

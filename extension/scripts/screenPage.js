@@ -171,6 +171,33 @@ function gbdScreen()
 }
 
 
+function createUserRanking(user, index){
+    if(user.name == undefined)
+        return 
+    let tbody = document.getElementById('gbdRankingTbody')
+    let tr = document.createElement('tr')
+    tr.innerHTML = 
+    `
+        <th scope="row">${index+1}</th>
+        <td><img class="rankingImg" id="${user.name}">${user.name}</td>
+        <td>${user.score}</td>
+        
+    `
+    tbody.appendChild(tr)
+    tr.id = `${user.name}`
+    tr.addEventListener('click', ()=>{
+        window.location.hash = `#breakdown/Profile=${tr.id}`
+
+    })
+
+    tr.onpointerover = () => {
+        tr.style.opacity = '50%'
+    }
+
+    tr.onpointerleave = () => {
+        tr.style.opacity = '100%'
+    }
+}
 
 
 function plotRanking(updateRanking){
@@ -185,49 +212,21 @@ function plotRanking(updateRanking){
        }
     }
     else{
-        let rankingTable = document.getElementById('gbdRanking')
-        let tbody = document.createElement('tbody')
-        tbody.id = 'gbdRankingTbody'
-        let pos = 1
         try{
-            for(user in rankingData){
-                
-                let tr = document.createElement('tr')
-                tr.innerHTML = 
-                `
-                    <th scope="row">${pos}</th>
-                    <td><img class="rankingImg" id="${rankingData[user].name}">${rankingData[user].name}</td>
-                    <td>${rankingData[user].score}</td>
-                    
-                `
-                pos+=1
-                tbody.appendChild(tr)
-                tr.id = `${rankingData[user].name}`
-                tr.addEventListener('click', ()=>{
-                    window.location.hash = `#breakdown/Profile=${tr.id}`
-            
-                })
-
-                tr.onpointerover = () => {
-                    tr.style.opacity = '50%'
-                }
-
-                tr.onpointerleave = () => {
-                    tr.style.opacity = '100%'
-                }
-                
-            }
+            let rankingTable = document.getElementById('gbdRanking')
+            let tbody = document.createElement('tbody')
+            tbody.id = 'gbdRankingTbody'
             rankingTable.appendChild(tbody)
+            rankingData.forEach(createUserRanking)
             plotColorStatus()
         }catch(err){
             console.log("GBD error:", err)
         }
        
     }
-   
-
-    
 }
+
+
 
 
 function plotColorStatus(){
