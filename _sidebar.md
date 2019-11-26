@@ -65,3 +65,4 @@
     - [Sprint Review](docs/sprints/review/sprint11.md)
   - Sprint 12
     - [Sprint planing](docs/sprints/planing/sprint12.md)
+    - [Sprint Review](docs/sprints/review/sprint12.md)
