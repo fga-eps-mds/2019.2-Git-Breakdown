@@ -137,6 +137,7 @@ function filterStartingWeek(data, initTime)
 function getSprintTotals(data, initWeek, weekday, sprintLength)
 {
   let totals = []
+  let sprints = []
   let t_count = 0
 
   for (let i = 0; i < data.length - initWeek; i++)
@@ -144,6 +145,10 @@ function getSprintTotals(data, initWeek, weekday, sprintLength)
 
   for (let i = initWeek; i < data.length; i++) // começamos na semana inicial definida
   {
+    let startingDate = data[i].week + (86400 * weekday)
+    let endDate = data[i].week + (86400 * sprintLength)
+    console.log(startingDate + ' yea')
+    console.log(endDate + ' oi')
     let dayTotals = data[i].days
     let count = sprintLength
     for (let j = weekday; j < 7; j++) // para cada dia dessa semana, comecando do dia inicial
@@ -163,13 +168,22 @@ function getSprintTotals(data, initWeek, weekday, sprintLength)
           count--
           k++
         }
+
       }
     }
+    let currSprint = {'sprint': t_count+1, 'commits': totals[t_count], 'starting_date': convertFromUnixTime(startingDate+86400), 
+   'ending_date': convertFromUnixTime(endDate)}
+    sprints.push(currSprint)
     // agora que a sprint acabou, passamos pra proxima
     t_count++
   }
 
-  return totals
+  return sprints
+}
+
+function convertFromUnixTime(unix_time)
+{
+  return new Date(unix_time*1000).toLocaleDateString("en-US")
 }
 
 //export this functionality as a module
