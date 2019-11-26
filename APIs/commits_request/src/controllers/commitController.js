@@ -3,6 +3,8 @@ const axios = require('axios')
 const commit_route = express.Router()
 const queryString = { state:'all', per_page: 10000 }
 
+const MAX = 1000000000
+
 let initial_unix_time = 0
 let init_weekday = 0
 let sprint_length = 7
@@ -68,9 +70,11 @@ commit_route.get = async (req, res, next) => {
 
                     let bestSprint = getBestSprint(sprints)
 
-                    console.log(bestSprint)
-
                     contributorsInformation.push(bestSprint)
+
+                    let worstSprint = getWorstSprint(sprints)
+
+                    contributorsInformation.push(worstSprint)
 
                     return res.status(200).json(contributorsInformation)
                 })
@@ -151,8 +155,6 @@ function getSprintTotals(data, initWeek, weekday, sprintLength)
   {
     let startingDate = data[i].week + (86400 * weekday)
     let endDate = data[i].week + (86400 * sprintLength)
-    console.log(startingDate + ' yea')
-    console.log(endDate + ' oi')
     let dayTotals = data[i].days
     let count = sprintLength
     for (let j = weekday; j < 7; j++) // para cada dia dessa semana, comecando do dia inicial
@@ -185,18 +187,48 @@ function getSprintTotals(data, initWeek, weekday, sprintLength)
   return sprints
 }
 
+function getAverageCommitsPerSprint(sprints)
+{
+  let count = 0
+  
+  for (let i = 0; i < sprints.length; i++)
+    count += sprints[i].commits
+  
+  return count / sprints.length
+}
+
 function getBestSprint(sprints)
 {
-  let max = {'sprint': 0, 'commits': 0}
+  let max = {'sprint': 0, 'commits': 0, 'percentage_of_average': 0.0}
   for (let i = 0; i < sprints.length; i++)
   {
     if (sprints[i].commits > max.commits)
     {
       max.commits = sprints[i].commits
       max.sprint = sprints[i].sprint
+
+      let avg = getAverageCommitsPerSprint(sprints)
+      max.percentage_of_average = (max.commits / avg).toFixed(2)
     }
   }
   return max
+}
+
+function getWorstSprint(sprints)
+{
+  let min = {'sprint': 999, 'commits': MAX, 'percentage_of_average': 0.0}
+  for (let i = 0; i < sprints.length; i++)
+  {
+    if (sprints[i].commits < min.commits)
+    {
+      min.sprint = sprints[i].sprint
+      min.commits = sprints[i].commits
+
+      let avg = getAverageCommitsPerSprint(sprints)
+      min.percentage_of_average = (min.commits / avg).toFixed(2)
+    }
+  }
+  return min
 }
 
 function convertFromUnixTime(unix_time)
