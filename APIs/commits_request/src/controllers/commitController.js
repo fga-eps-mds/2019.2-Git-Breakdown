@@ -105,13 +105,17 @@ function filterStartingWeek(data, initTime)
 {
   for (let i = 0; i < data.length; i++)
   {
-
     if (initTime === undefined)
-        if (data[i] > 0) return i
+    {
+        if (data[i] > 0) 
+        {
+          return i
+        }
+    }
     else
     {
         if (data[i].week === initTime)
-        return i
+          return i
         else if (data[i].week > initTime)
         {
         if (data[i-1].week < initTime) 
