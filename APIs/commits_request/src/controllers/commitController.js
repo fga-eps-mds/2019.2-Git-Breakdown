@@ -76,6 +76,8 @@ commit_route.get = async (req, res, next) => {
 
                     contributorsInformation.push(worstSprint)
 
+                    contributorsInformation.push(getAverageCommitsPerSprint(sprints))
+
                     return res.status(200).json(contributorsInformation)
                 })
 
@@ -193,8 +195,12 @@ function getAverageCommitsPerSprint(sprints)
   
   for (let i = 0; i < sprints.length; i++)
     count += sprints[i].commits
+
+  let avg = count / sprints.length
+
+  let avg_obj = {'average_commits': avg}
   
-  return count / sprints.length
+  return avg_obj
 }
 
 function getBestSprint(sprints)
@@ -208,7 +214,7 @@ function getBestSprint(sprints)
       max.sprint = sprints[i].sprint
 
       let avg = getAverageCommitsPerSprint(sprints)
-      max.percentage_of_average = (max.commits / avg).toFixed(2)
+      max.percentage_of_average = (max.commits / avg.average_commits).toFixed(2)
     }
   }
   return max
@@ -225,7 +231,7 @@ function getWorstSprint(sprints)
       min.commits = sprints[i].commits
 
       let avg = getAverageCommitsPerSprint(sprints)
-      min.percentage_of_average = (min.commits / avg).toFixed(2)
+      min.percentage_of_average = (min.commits / avg.average_commits).toFixed(2)
     }
   }
   return min
