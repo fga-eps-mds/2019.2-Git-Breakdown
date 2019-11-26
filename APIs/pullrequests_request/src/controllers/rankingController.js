@@ -3,6 +3,7 @@ const http = require('http');
 const agent = new http.Agent({ family: 4 });
 
 const queryString = { state:'all', per_page: 10000 }
+const gitApiUrl = 'https://api.github.com'
 
 exports.get = async (req, res, next) => {
     const owner = req.query.owner
@@ -14,9 +15,7 @@ exports.get = async (req, res, next) => {
     if(owner === undefined || repository === undefined || token === undefined){
         res.status(400).send('Error 400: Bad Request')
     }else{
-        const gitApiUrl = 'https://api.github.com'
         const url_endpoint = `${gitApiUrl}/repos/${owner}/${repository}/${endpoint}`
-
         const header_option = {
             headers: {
                 'Accept': 'application/vnd.github.v3+json',
@@ -30,13 +29,6 @@ exports.get = async (req, res, next) => {
         
         await axios.get(url_endpoint, header_option).then(async response => {
             let pullrequests = response.data
-            
-            function filterPullRequests(pullrequest){
-                if(pullrequest.state === 'closed' && pullrequest.merged_at != undefined){
-                    return true
-                }
-                return false
-            }
             let filteredPullRequests = pullrequests.filter(filterPullRequests)
             
             await filteredPullRequests.forEach(async (pr, index, array) => {
@@ -83,4 +75,12 @@ exports.get = async (req, res, next) => {
             console.log(err)
         })
     }
+}
+
+            
+function filterPullRequests(pullrequest){
+    if(pullrequest.state === 'closed' && pullrequest.merged_at != undefined){
+        return true
+    }
+    return false
 }

@@ -2,13 +2,13 @@ const axios = require('axios')
 
 const queryString = { state:'all', per_page: 10000 }
 const queryString2 = { state:'all', per_page: 10000 }
+const endpoint = 'issues'
+contributorsInformation = []
 
 exports.get = async (req, res, next) => {
     const owner = req.query.owner
     const repository = req.query.repository
     const token = req.query.token
-    const endpoint = 'issues'
-    contributorsInformation = []
     
     if(owner === undefined || repository === undefined || token === undefined){
         res.status(400).send('Error 400: Bad Request')
@@ -40,14 +40,7 @@ exports.get = async (req, res, next) => {
 
     await axios.get(url_endpoint, header_option).then(async response => {
             let issues = response.data
-            function filterIssues(issue) {
-                if(issue.pull_request === undefined){
-                    return true
-                }
-                return false
-            }
             let filteredIssues = issues.filter(filterIssues)
-
             const header_option_2 = {
                 headers: {
                     'Accept': 'application/vnd.github.v3+json',
@@ -129,4 +122,11 @@ exports.get = async (req, res, next) => {
                 console.log(err)
         })
     }
+}
+
+function filterIssues(issue) {
+    if(issue.pull_request === undefined){
+        return true
+    }
+    return false
 }
