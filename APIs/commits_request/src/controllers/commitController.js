@@ -7,7 +7,6 @@ let initial_unix_time = 0
 let init_weekday = 0
 let sprint_length = 7
 
-
 commit_route.get = async (req, res, next) => {
 
     //verify if exist the necessary parms to send a get request
@@ -15,7 +14,6 @@ commit_route.get = async (req, res, next) => {
     const repository = req.query.repository
     const endpoint = 'contributors'
     contributorsInformation = []
-    let sprints = []
 
     if (owner === undefined || req.query.repository === undefined || req.query.token === undefined) {
         return res.status(400).send('Error 400: Bad Request')
@@ -64,9 +62,15 @@ commit_route.get = async (req, res, next) => {
                         initWeek = filterStartingWeek(stats, init)
                     }
 
-                    sprints = getSprintTotals(stats, initWeek, init_week_day, sprint_length)
+                    let sprints = getSprintTotals(stats, initWeek, init_week_day, sprint_length)
 
-                    contributorsInformation[length] = sprints
+                    contributorsInformation.push(sprints)
+
+                    let bestSprint = getBestSprint(sprints)
+
+                    console.log(bestSprint)
+
+                    contributorsInformation.push(bestSprint)
 
                     return res.status(200).json(contributorsInformation)
                 })
@@ -179,6 +183,20 @@ function getSprintTotals(data, initWeek, weekday, sprintLength)
   }
 
   return sprints
+}
+
+function getBestSprint(sprints)
+{
+  let max = {'sprint': 0, 'commits': 0}
+  for (let i = 0; i < sprints.length; i++)
+  {
+    if (sprints[i].commits > max.commits)
+    {
+      max.commits = sprints[i].commits
+      max.sprint = sprints[i].sprint
+    }
+  }
+  return max
 }
 
 function convertFromUnixTime(unix_time)
