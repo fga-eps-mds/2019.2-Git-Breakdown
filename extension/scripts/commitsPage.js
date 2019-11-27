@@ -21,36 +21,9 @@ function commitsPage(){
                 </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6" id="jumbo-col">
-                    <div class="jumbotron" id="commitsDetails">
-                        <h1 class="display-4 text-center">Commits by sprint</h1>
-                        <p class="lead text-center ">Based on the configurations settings for sprints, the following information was calculated:</p>
-                        <hr class="my-4">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <p class="font-weight-bold text-center">A total of X commits were pushed.</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p class="font-weight-bold text-center">There was a total of X sprints.</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p class="font-weight-bold text-center">The average number of commits per sprint was X.</p>
-                            </div>
-                        </div>
-                        <hr class="my-4">   
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="font-weight-bold text-center">Your best sprint was Sprint X with a total of Y commits.</p>
-                                <p class="font-weight-bold text-center">That's a productivity of xxx% compared to the average.</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p class="font-weight-bold text-center">Your worst sprint was Sprint J with a total of I commits.</p>
-                                <p class="font-weight-bold text-center">That's a productivity of xxx% compared to the average.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="commits_info_row">
+                
+            </div>
             </div>
         </div> 
     `
@@ -150,6 +123,48 @@ function plotCommitsChart()
     }
 }
 
+function plotCommitsInfo()
+{
+    let count = 0
+    for (let i = 0; i < commitsData.length-4; i++)
+    {
+        count += commitsData[i].commits
+    }
+    let row = document.getElementById('commits_info_row')
+    row.innerHTML =
+    `
+    <div class="col-sm-6" id="jumbo-col">
+                    <div class="jumbotron" id="commitsDetails">
+                        <h1 class="display-4 text-center">Commits by sprint</h1>
+                        <p class="lead text-center ">Based on the configurations settings for sprints, the following information was calculated:</p>
+                        <hr class="my-4">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold text-center">A total of ${count} commits have been pushed.</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold text-center">There is a total of ${commitsData[commitsData.length-4].length} sprints.</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold text-center">The average number of commits per sprint is ${(commitsData[commitsData.length-1].average_commits).toFixed(2)}.</p>
+                            </div>
+                        </div>
+                        <hr class="my-4">   
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="font-weight-bold text-center">The best sprint is Sprint ${commitsData[commitsData.length-3].sprint} with a total of ${commitsData[commitsData.length-3].commits} commits.</p>
+                                <p class="font-weight-bold text-center">That's a productivity of ${((commitsData[commitsData.length-3].percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="font-weight-bold text-center">The worst sprint is Sprint ${commitsData[commitsData.length-2].sprint} with a total of ${commitsData[commitsData.length-2].commits} commits.</p>
+                                <p class="font-weight-bold text-center">That's a productivity of ${((commitsData[commitsData.length-2].percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
+                            </div>
+                        </div>
+                    </div>
+    `
+
+}
+
 
 function plotCommiters()
 {
@@ -186,5 +201,6 @@ function plotCommiters()
     {
         console.log(err)
     }   
+    plotCommitsInfo()
     plotCommitsChart()
 }
