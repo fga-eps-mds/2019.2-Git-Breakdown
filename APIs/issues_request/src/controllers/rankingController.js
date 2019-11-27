@@ -12,22 +12,10 @@ exports.get = async (req, res, next) => {
     contributorsInformation = []
 
     if(owner === undefined || repository === undefined || token === undefined){
-        res.status(400).send('Error 400: Bad Request')
+        return res.status(400).send('Error 400: Bad Request')
     }else{
         const gitApiUrl = 'http://api.github.com'
         const url_endpoint = `${gitApiUrl}/repos/${owner}/${repository}/${endpoint}`
-        
-    if(req.query.date != undefined){    
-        let date = new Date()
-        let selectedDate = req.query.date.split('-') //date first format: DD-MM-YYYY
-        let day = selectedDate[0]
-        let month = selectedDate[1]
-        let year = selectedDate[2]
-        let hour = 0
-        date.setFullYear(year, month -1, day)
-        date.setHours(hour - 3, 0, 0, 0)
-        queryString.since = date
-    }
     
     const header_option = {
             headers: {
@@ -110,10 +98,6 @@ exports.get = async (req, res, next) => {
                             contributorsInformation.push(committer)
                         }
                     }) 
-                    contributorsInformation[0].issues += 1
-                    if (contributorsInformation[0].issues === array.length) {
-                        
-                    }
                 }).catch(err => {
                     console.log(err)
                 })
