@@ -40,7 +40,7 @@ const siteConfig = {
   headerLinks: [
     {doc: 'backlog', label: 'Docs'},
     // {page: 'help', label: 'Help'},
-    {blog: true, label: 'Blog'},
+    {blog: true, label: 'Release Notes'},
   ],
 
   // If you have users set above, you add it here:

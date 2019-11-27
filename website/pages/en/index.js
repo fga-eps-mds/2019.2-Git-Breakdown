@@ -65,7 +65,7 @@ class HomeSplash extends React.Component {
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
             <Button href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown">GitHub</Button>
-            <Button href="/docs/backlog">Documentação</Button>
+            <Button href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/docs/backlog">Documentação</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -105,12 +105,12 @@ class Index extends React.Component {
         {[
           {
             content:
-              'To make your landing page more attractive, use illustrations! Check out ' +
-              '[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. ' +
-              'The illustrations you see on this page are from unDraw.',
+              'Um perfil individualizado de cada desenvolvedor é disponibilizado com informações ' +
+              'de contribuições nas principais métricas coletadas. Cores são usadas para mostrar ' +
+              'o nível de contribuição no repositório.',
             image: `${baseUrl}img/tela_usuario.png`,
             imageAlign: 'left',
-            title: 'Wonderful SVG Illustrations',
+            title: 'Perfil do desenvolvedor',
           },
         ]}
       </Block>
@@ -121,10 +121,12 @@ class Index extends React.Component {
         {[
           {
             content:
-              'This is another description of how this project is useful',
+              'As principais métricas para o desenvolvimento de um sóftware são coletadas. ' +
+              'Gráficos das métricas e como elas são usadas por cada desenvolvedor podem ajudar ' +
+              'a análise de contribuição em cada repositório',
             image: `${baseUrl}img/metricas_usuario.png`,
             imageAlign: 'right',
-            title: 'Description',
+            title: 'Métricas coletadas',
           },
         ]}
       </Block>
@@ -135,10 +137,12 @@ class Index extends React.Component {
         {[
           {
             content:
-              'Each new Docusaurus project has **randomly-generated** theme colors.',
+              'Git Breakdown vai trazer uma análise geral de um repositório de acordo' +
+              'com informaçãoes de PRs, issues, commits e branches individualizadas em forma de gráficos.' + 
+              ' Um ranking é montado de acordo com cada contribuição nas métricas por cada desenvolvedor. ',
             image: `${baseUrl}img/tela_geral.png`,
             imageAlign: 'right',
-            title: 'Randomly Generated Theme Colors',
+            title: 'Análise geral de repositórios',
           },
         ]}
       </Block>
@@ -185,7 +189,7 @@ class Index extends React.Component {
           <div className="column">
             <div className="img-style" style={{width: "200px"}}>
               <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/Jnqb1pT/diego.jpg" alt=""></img>
+                <img className="img-responsive" href= "google.com" src="https://i.ibb.co/Jnqb1pT/diego.jpg" alt=""></img>
                 <div className="overlay">
                     <h2>Diego Resende</h2>
                     <p>

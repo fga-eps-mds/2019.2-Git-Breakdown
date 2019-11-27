@@ -118,7 +118,8 @@
         "sidebar_label": "Sprint 11"
       },
       "sprints/review/sprint12": {
-        "title": "sprints/review/sprint12"
+        "title": "Sprint 12",
+        "sidebar_label": "Sprint 12"
       },
       "sprints/review/sprint2": {
         "title": "Sprint 2",
@@ -163,8 +164,7 @@
     },
     "links": {
       "Docs": "Docs",
-      "Help": "Help",
-      "Blog": "Blog"
+      "Release Notes": "Release Notes"
     },
     "categories": {
       "Iniciação": "Iniciação",

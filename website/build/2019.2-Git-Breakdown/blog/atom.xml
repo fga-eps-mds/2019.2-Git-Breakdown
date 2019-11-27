@@ -2,74 +2,67 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog</id>
     <title>Git Breakdown Blog</title>
-    <updated>2017-10-24T06:00:00Z</updated>
+    <updated>2019-11-20T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Git Breakdown news and events.</subtitle>
     <logo>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/img/logo_fundo_br.png</logo>
     <rights>Copyright © 2019 Your Name or Your Company Name</rights>
     <entry>
-        <title type="html"><![CDATA[New Version 1.0.0]]></title>
-        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2017/10/24/new-version-1.0.0.html</id>
-        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2017/10/24/new-version-1.0.0.html">
+        <title type="html"><![CDATA[Ranking for users! V1.3]]></title>
+        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2019/11/20/V-1.3.html</id>
+        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2019/11/20/V-1.3.html">
         </link>
-        <updated>2017-10-24T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>This blog post will test file name parsing issues when periods are present.</p> ]]></summary>
-        <author>
-            <name>Eric Nakagawa</name>
-            <uri>http://twitter.com/ericnakagawa</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Adding RSS Support]]></title>
-        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2017/09/26/adding-rss.html</id>
-        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2017/09/26/adding-rss.html">
-        </link>
-        <updated>2017-09-26T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>This is a test post.</p> <p>A whole bunch of other information.</p> ]]></summary>
-        <author>
-            <name>Eric Nakagawa</name>
-            <uri>http://twitter.com/ericnakagawa</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Adding RSS Support - RSS Truncation Test]]></title>
-        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2017/09/25/testing-rss.html</id>
-        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2017/09/25/testing-rss.html">
-        </link>
-        <updated>2017-09-25T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
-<p>This should be truncated.</p>
+        <updated>2019-11-20T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<h1><a class="anchor" aria-hidden="true" id="we-got-it"></a><a href="#we-got-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>we got it!</h1>
+<p>Access the latest version on the <a href="https://chrome.google.com/webstore/search/gitbreakdown?hl=en">Chrome Store</a></p>
+<p>To access the repository and keep track of new <a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown">GitBreakdown features</a></p>
 ]]></summary>
         <author>
-            <name>Eric Nakagawa</name>
-            <uri>http://twitter.com/ericnakagawa</uri>
+            <name>Git Brakdown</name>
+            <uri>https://github.com/fga-eps-mds/2019.2-Git-Breakdown/</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[New Blog Post]]></title>
-        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2017/04/10/blog-post-two.html</id>
-        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2017/04/10/blog-post-two.html">
+        <title type="html"><![CDATA[Graph and more graph V1.2]]></title>
+        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2019/11/05/V-1.2.html</id>
+        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2019/11/05/V-1.2.html">
         </link>
-        <updated>2017-04-10T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum massa eget nulla aliquet sagittis. Proin odio tortor, vulputate ut odio in, ultrices ultricies augue. Cras ornare ultrices lorem malesuada iaculis. Etiam sit amet libero tempor, pulvinar mauris sed, sollicitudin sapien.</p>
+        <updated>2019-11-05T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<h1><a class="anchor" aria-hidden="true" id="we-got-it"></a><a href="#we-got-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>we got it!</h1>
+<p>Access the latest version on the <a href="https://chrome.google.com/webstore/search/gitbreakdown?hl=en">Chrome Store</a></p>
+<p>To access the repository and keep track of new <a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown">GitBreakdown features</a></p>
 ]]></summary>
         <author>
-            <name>Blog Author</name>
-            <uri>http://twitter.com/</uri>
+            <name>Git Brakdown</name>
+            <uri>https://github.com/fga-eps-mds/2019.2-Git-Breakdown/</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Blog Title]]></title>
-        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2016/03/11/blog-post.html</id>
-        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2016/03/11/blog-post.html">
+        <title type="html"><![CDATA[All graphics and extension icons V1.1]]></title>
+        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2019/10/19/V-1.1.html</id>
+        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2019/10/19/V-1.1.html">
         </link>
-        <updated>2016-03-11T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum massa eget nulla aliquet sagittis. Proin odio tortor, vulputate ut odio in, ultrices ultricies augue. Cras ornare ultrices lorem malesuada iaculis. Etiam sit amet libero tempor, pulvinar mauris sed, sollicitudin sapien.</p>
+        <updated>2019-10-19T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<h1><a class="anchor" aria-hidden="true" id="we-got-it"></a><a href="#we-got-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>We got it</h1>
+<p>Access the latest version on the <a href="https://chrome.google.com/webstore/search/gitbreakdown?hl=pt-BR">Chrome Store</a></p>
+<p>To access the repository and keep track of new <a href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown">GitBreakdown features</a></p>
 ]]></summary>
         <author>
-            <name>Blog Author</name>
-            <uri>http://twitter.com/</uri>
+            <name>Git Brakdown</name>
+            <uri>https://github.com/fga-eps-mds/2019.2-Git-Breakdown/</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[API Gateway and visual graph V1.0]]></title>
+        <id>https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2019/09/30/V-1.0.html</id>
+        <link href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/blog/2019/09/30/V-1.0.html">
+        </link>
+        <updated>2019-09-30T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>At this point, the project contains the minimum required to perform a repository integrity summary.</p> <p>Working from API Gateway and microservice to issues, public relations, branches and commits.</p> <p>First graphs built, extension login.</p> <p>So far can only be u...</p>]]></summary>
+        <author>
+            <name>Git Brakdown</name>
+            <uri>https://github.com/fga-eps-mds/2019.2-Git-Breakdown/</uri>
         </author>
     </entry>
 </feed>
