@@ -16,12 +16,11 @@ window.onhashchange = async function()
         else if (window.location.href.includes('#breakdown/commits')){
             try {
                 document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
+                getMetrics(false, date_unix_time, 0, 7)
                 setTimeout(function()
                 {
-                    getMetrics(false, date_unix_time, 0, 7)
+                    plotCommiters()
                 }, 2000) 
-                plotTop10Commiter()
-
             } catch(err) {
                 console.log('GDB Erro: ', err)
             }

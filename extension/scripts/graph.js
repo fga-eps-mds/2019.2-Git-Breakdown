@@ -1,6 +1,6 @@
 function createCommitsChart(data, ctx)
 {
-    let size = Object.keys(data).length
+    let size = Object.keys(data).length - 1
     let names = []
     let qtCommits = []
     let colorArray = getRandomColorArray(size)
