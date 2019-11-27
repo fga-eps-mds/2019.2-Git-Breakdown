@@ -5,14 +5,13 @@ const gitApiUrl = 'https://api.github.com'
 const endpoint = 'pulls'
 const endpointB = 'branches'
 
-exports.get = async (req, res, next) => 
-{
+exports.get = async (req, res, next) => {
     const owner = req.query.owner
     const repository = req.query.repository
     const token = req.query.token
     
     if(owner === undefined || repository === undefined || token === undefined){
-        res.status(400).send("Error 400")
+        return res.status(400).send("Error 400")
     }
     else
     {
@@ -31,7 +30,7 @@ exports.get = async (req, res, next) =>
                 
                 let pullrequests = response.data
                 let mergedBranches = pullrequests.filter(getMergedBranches)
-                qtdMerged = Object.keys(mergedBranches).length
+                let qtdMerged = Object.keys(mergedBranches).length
                 const url_endpointB = `${gitApiUrl}/repos/${owner}/${repository}/${endpointB}`
 
                 await axios.get(url_endpointB, header_option).then( response => {
@@ -40,34 +39,17 @@ exports.get = async (req, res, next) =>
                         let activeBranches = branches.filter(filterActiveBranches)
                         let qtdActive = Object.keys(activeBranches).length
                         let percentage_merged = parseFloat(((qtdMerged / (qtdActive+qtdMerged)) * 100).toFixed(2))
-                        let branchInfo = {'active_branches': qtdActive,'percentage_merged': percentage_merged}
+                        let branchInfo = { 'active_branches': qtdActive,'percentage_merged': percentage_merged }
             
-                        res.status(200).json(branchInfo)
+                        return res.status(200).json(branchInfo)
                     }).catch(function (err) {
                         console.log(err)
                 })
-            }).catch(function (err) {
-                console.log(err)
+        }).catch(function (err) {
+            console.log(err)
         })
     }
 
-}
-
-exports.post = (req, res, next) => 
-{
-    res.status(201).send('Requisição recebida com sucesso!')
-}
-
-exports.put = (req, res, next) => 
-{
-    let id = req.params.id
-    res.status(201).send(`Requisição recebida com sucesso! ${id}`)
-}
-
-exports.delete = (req, res, next) => 
-{
-    let id = req.params.id
-    res.status(200).send(`Requisição recebida com sucesso! ${id}`)
 }
 
 function getMergedBranches(pr) {

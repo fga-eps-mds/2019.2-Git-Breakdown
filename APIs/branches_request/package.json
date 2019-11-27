@@ -17,8 +17,8 @@
     "@babel/preset-env": "^7.7.4",
     "babel-jest": "^24.9.0",
     "jest": "^24.9.0",
-    "chai": "^4.2.0",
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.0",
+    "supertest": "^4.0.2"
   },
   "directories": {
     "test": "mocha"
