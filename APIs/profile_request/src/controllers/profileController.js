@@ -20,7 +20,7 @@ profile_route.get = async (req, res, next) => {
         const url_endpoint = `${gitApiUrl}/${endpoint}/${owner}`
         const header_option = {
             headers: {
-                'Accept': 'application/json',
+                'Accept': 'application/vnd.github.v3+json',
                 'Accept-Charset': 'utf-8',
                 'User-Agent': '2019.2-Git-Breakdown',
                 'Authorization': `token ${req.query.token}`

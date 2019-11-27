@@ -1,25 +1,50 @@
 let url_base = 'http://18.215.242.203:3000'
 
-let issuesData , branchsData, prData, commitsData, rankingData
+let issuesData, branchsData, prData, commitsData, rankingData, profileData
 
-let weights = [4,5,3,2] // default weights
 
-let sprintLength = 7 // default sprint size
+let weights = [4,5,2,3] // default weights
 
-function getMetrics() 
+let sprintLength = 7
+
+let init_week_day
+
+let date_unix_time = 1543708800
+
+
+function getMetrics(updateRanking, unix_time, week_day, sprint_length) 
 {
-    chrome.runtime.sendMessage({metric: weights}, function(response) 
+    if (updateRanking === undefined)
     {
-        if (response !== undefined)
+        console.log("updateRanking undefined")
+        updateRanking = false
+    }
+
+    return new Promise((resolve, reject) =>{
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time:date_unix_time, weekday: week_day, sprintLength: sprint_length}, function(response) 
         {
-            commitsData = response[0]
-            issuesData = response[1]
-            branchsData = response[2]
-            prData = response[3]
-            rankingData = response[4]
-            console.log(rankingData)
-        }
+            if (response !== undefined)
+            {
+                console.log(response[0])
+                commitsData = response[0]
+                issuesData = response[1]
+                branchsData = response[2]
+                prData = response[3]
+                rankingData = response[4]
+                profileData = response[5]
+
+                if (updateRanking)
+                {
+                    console.log("updating ranking")
+                    setTimeout(function(){
+                        plotRanking(updateRanking)
+                    },3000)  
+                }
+            }
+        })
+        resolve('metrics Done')
     })
+    
 }
 
 const METRICS = 
@@ -31,56 +56,86 @@ const METRICS =
   'ranking' // 4
 ]
 
-const homeBtn = () => {
-    let homeBtn = document.getElementById('gbdHomeBtn')
-    homeBtn.addEventListener('click', () => {
-        try{
-            document.getElementsByClassName('gbdContent')[0].innerHTML = initScreen()
-        }catch(err) {
-            console.log("GBD error:", err)
-        }
-     })
+function homeBtn(){
+    return new Promise((resolve, reject)=>{
+        let homeBtn = document.getElementById('gbdHomeBtn')
+        homeBtn.addEventListener('click', () => {
+            try{
+                document.getElementsByClassName('gbdContent')[0].innerHTML = initScreen()
+            }catch(err) {
+                console.log('GBD error:', err)
+            }
+         })
+         resolve('Home Button ready')
+    })
+    
  }
 
-const initScreen = () => 
-{   
-    
-    //function to control the select behavior in buttons inside navbar
-    zhplugin()
-    selectBehavior()
+ function placeScreen(){
+     return new Promise((resolve, reject)=>{
+         let mainContainer = document.getElementById('gbdScreen')
+         mainContainer.innerHTML = gbdScreen()
 
-    
-    //Catching the container 
-    try{
+         $("#gbdQuestionMark").popover({
+            title: 
+                `<h3 class="custom-title">
+                    Color info 
+                </h3>`,
+            content: 
+                `<p>
+                    Colors represent the user contribution to the repository
+                    based on contribution avarage
+                </p>
+                <p>
+                    <span id="gbdGreenMark">Green</span>: User contributed more than 30% of average.
+                </p>
+                <p>
+                    <span id="gbdBlueMark">Blue</span>: User is in a range of 30% of the avarage(plus or minus).
+                </p>
+                <p>
+                    <span id="gbdRedMark">Red</span>: User is bellow 30% of the avarage.
+                </p>
+                `,
+            html: true,
+        })
+        
+         resolve('GBD screen Ready')
+     })
+     
+ }
+
+ function placeContainer(page){
+     return new Promise((resolve, reject)=>{
         let mainContainer = document.getElementsByTagName('div')
         let containgerPattern = /.*(container-lg clearfix new-discussion-timeline experiment-repo-nav)+.*/ 
         for(let i = 0 ; i < mainContainer.length ; i++){
             let className = mainContainer[i].className
             let answer = containgerPattern.exec(className)
             if (answer != null){
-                mainContainer[i].innerHTML = gbdScreen()
-                mainContainer[i].style.maxWidth = "100%"
+                mainContainer[i].innerHTML = page
+                mainContainer[i].style.maxWidth = '100%'
                 break;
-            }
-                 
+            }         
         }
-        homeBtn()
-    }catch(err) {
-        console.log('GBD Error:', err)
-    }
-    
-    try{
+        resolve('MainContainer Ready')
+     })
+ }
+
+ function plotGraphics(){
+    return new Promise((resolve, reject)=>{
         if (typeof chrome.app.isInstalled !== 'undefined'){
-            chrome.runtime.sendMessage({metric: weights}, function(response) {
+            chrome.runtime.sendMessage({metric: weights, unix_time: date_unix_time, weekday: 0, sprintLength: 7}, function(response) {
                 if (response !== undefined){
-                    console.log("good response")
+
                     commitsData = response[0]
                     issuesData = response[1]
                     branchsData = response[2]
                     prData = response[3]
                     rankingData = response[4]
+                    profileData = response[5]
                     
                     try{
+
                         let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
                         createIssuesChart(issuesData, issuesCtx)
                         
@@ -96,24 +151,42 @@ const initScreen = () =>
                         for (let i = 0; i < 4; i++)
                             chartOnClick(i, response[i])
                     }catch(err){
-                        console.log("GBD error:", err)
+                        console.log('GBD error:', err)
                     }
                 }else
-                    console.log("undefined response")
+                    console.log('undefined response')
             })
         }
         else
-            console.log("undefined chrome app")
+            console.log('undefined chrome app')
+
+        resolve('Graphics Done')
+    })
+ }
+
+async function initScreen() {   
+    console.log('initScree()')
+    //function to control the select behavior in buttons inside navbar
+    zhplugin()
+    selectBehavior()
+    try{
+        await placeContainer(gbdScreen())
+        await homeBtn()
+        await plotGraphics()
+        settingsOnClick()
+        setTimeout(function(){
+            plotRanking(false)
+        },3000)   
         
-    }catch(err) {
-        console.log("GBD error:", err)
+    }catch(err){
+        console.log('GBD error:', err)
     }
 
-    settingsOnClick()
-
+    
+    
+        
 }
 
-// triggers when save button from configuration page is clicked
 $(document).on("click", "#settingsSave", function() 
 {
     sprintLength = $('#sprintLength').val()
@@ -121,73 +194,15 @@ $(document).on("click", "#settingsSave", function()
     weights[1] = $('#commitsWeight').val()
     weights[2] = $('#openWeight').val()
     weights[3] = $('#commentsWeight').val()
+    init_week_day = $('#weekdaylist').val()
+    date_unix_time = Math.floor(new Date($('#initdate').val()).getTime() / 1000)
+
     alert("Configurations saved!")
-    getMetrics()
+    getMetrics(true, date_unix_time, init_week_day, sprintLength)
+
+    $('#settingsButton').popover('hide')
 })
 
-window.onhashchange = function()
-{
-    console.log("changed")
-    let gbdButton = document.getElementById('gbdButton')
-    if (gbdButton !== this.undefined)
-    {
-        zenhubOnClick() 
-        if (window.location.href.includes("#breakdown/issues"))
-        {
-            try{
-                
-                document.getElementsByClassName('gbdContent')[0].innerHTML = issuesPage()
-            }catch(err){
-                console.log("GDB Erro: ", err)
-            }
-        }
-        else if (window.location.href.includes("#breakdown/commits")){
-            try {
-                   
-                document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
-                plotTop10Commiter()
-
-            } catch(err) {
-                console.log("GDB Erro: ", err)
-            }
-        }
-        else if (window.location.href.includes("#breakdown/branches") ) {
-            try{
-                document.getElementsByClassName('gbdContent')[0].innerHTML = branchPage()
-            }catch(err){
-                console.log("GBD error:", err)
-            }
-        }
-        else if ( window.location.href.includes("#breakdown/pr")) {
-            try{
-                   
-                document.getElementsByClassName('gbdContent')[0].innerHTML = prPage()
-                
-            }catch(err){
-                console.log("GBD error:", err)
-            }
-            
-        }
-        else if (window.location.href.includes("#breakdown"))
-        {
-            let screen = document.getElementById('gbdScreen')
-            if (screen == null)
-                try{
-                    selectBehavior()
-                    initScreen()
-                }catch(err){
-                    console.log("GBD error:", err)
-                }
-        }
-        else
-        {
-            if (gbdButton.className == 'js-selected-navigation-item gbdselected reponav-item')
-            {
-                gbdButton.classList.remove('gbdselected')
-            }
-        }
-    }
-}
 
 const chartOnClick = (type, data) =>
 {
@@ -199,31 +214,56 @@ const chartOnClick = (type, data) =>
             let screen = document.getElementById('gbdScreen')
             if (screen != null)
             {
-                console.log(METRICS[type].split("Dashboard")[0])
-                window.location.hash = `#breakdown/${METRICS[type].split("Dashboard")[0]}`
+                console.log(METRICS[type].split('Dashboard')[0])
+                window.location.hash = `#breakdown/${METRICS[type].split('Dashboard')[0]}`
             }
         })
     }
 }
 
-const gbdButtonOnClick = () =>{
-    const gbdtab = document.getElementById('gbdButton')
-    if (gbdtab !== null){
-        gbdtab.addEventListener('click', function(){
-            let screen = document.getElementById('gbdScreen')
-            if (screen == null && window.location.href.includes("#breakdown"))
-                initScreen()
-                selectBehavior()
-                zenhubOnClick()  
-        })
-    }
+function gbdButtonOnClick() {
+    return new Promise((resolve, reject)=>{
+        const gbdtab = document.getElementById('gbdButton')
+        if (gbdtab !== null){
+            gbdtab.addEventListener('click', function(){
+                let screen = document.getElementById('gbdScreen')
+                if (screen == null && window.location.href.includes('#breakdown'))
+                {
+                    chrome.storage.sync.get('oauth2_token', (res)=>{
+                        if(res.oauth2_token != undefined){
+                            console.log('oauth->1', res.oauth2_token)
+                            initScreen()
+                            selectBehavior()
+                            zenhubOnClick() 
+                        }
+                        else{
+                            console.log('oauth->2', res.oauth2_token)
+                            selectBehavior()
+                            zenhubOnClick() 
+                            placeContainer(loginPage())
+                            login()
+                        }    
+                    })      
+                }    
+            })
+        }
+        resolve('ok')
+    })
 }
 
+    
+
+async function initExtension(){
+    await getMetrics(false, date_unix_time, 0, 7)
+    await gbdButtonOnClick()
+}
+
+
 try{
-    getMetrics()
-    gbdButtonOnClick()
-}catch(err){
-    console.log("GBD error:", err)
+    initExtension()
+}
+catch(err){
+    console.log('GBD error:', err)
 }
 
 

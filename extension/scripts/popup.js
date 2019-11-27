@@ -21,6 +21,11 @@ document.getElementById('logoutButton').addEventListener("click", function()
     }
 })
 
+document.getElementById('gitpages').addEventListener("click", function()
+{
+    window.open('https://fga-eps-mds.github.io/2019.2-Git-Breakdown/#/')
+},false)
+
 document.addEventListener('DOMContentLoaded', function() 
 {
     chrome.tabs.query

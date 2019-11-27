@@ -33,7 +33,10 @@
             "scripts/bootstrap.min.js",
             "scripts/Chart.min.js",
             "scripts/settings.js",
+            "scripts/hashChangeListener.js",
             "scripts/graph.js",
+            "scripts/loadingPage.js",
+            "scripts/profilePage.js",
             "scripts/branchesPage.js",            
             "scripts/commitsPage.js",
             "scripts/issuesPage.js",
@@ -42,19 +45,24 @@
             "scripts/observers.js",
             "scripts/zenhubRequirements.js",
             "scripts/button.js",
-            "scripts/screenConfig.js"
+            "scripts/screenConfig.js",
+            "scripts/metricsCalc.js",
+            "scripts/loginPage.js"
+            
+
         ],
         "css": 
         [
             "styles/bootstrap.min.css",
             "styles/gbdStyle.css",
             "styles/githubWebKit.css",
-            "styles/githubMainPageWebKit.css"  
+            "styles/githubMainPageWebKit.css"
+
         ]
     }],
     "browser_action": 
     {
-        "default_popup": "popup.html"
+        "default_popup": "popup/popup.html"
     },
     "manifest_version": 2
   }
