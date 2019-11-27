@@ -1,18 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const get_commits = require('../controllers/commitController')
+const commitController = require('../controllers/commitController')
 
+router.get('/', commitController.get)
 
-router.get('/', (req , res) => {
-    res.send("ok")
-})
-
-router.get('/index', (req , res) => {
-    console.log("/index requested")
-    res.send('ok')
-})
-
-router.get('/commits', get_commits.get)
-
-
-module.exports = router;
+module.exports = router
