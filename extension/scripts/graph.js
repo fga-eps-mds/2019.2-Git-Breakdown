@@ -8,6 +8,10 @@ function createCommitsChart(data, ctx)
     {
         if (data[i] !== undefined)
         {
+            
+            if (data[i].name === undefined)
+                continue
+
             names[i] = data[i].name
             qtCommits[i] = data[i].commits
         }

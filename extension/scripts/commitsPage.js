@@ -214,6 +214,7 @@ function plotCommiters(update)
                 if (count_commits_tries === 5)
                 {
                     alert("Please, go to home and reload your page.")
+                    return
                 }
 
                 console.log("undefined commits data")
@@ -230,6 +231,7 @@ function plotCommiters(update)
                 if (count_commits_tries === 5)
                 {
                     alert("Please, go to home and reload your page.")
+                    return
                 }
 
                 console.log("undefined sprints data")
@@ -246,6 +248,7 @@ function plotCommiters(update)
                 if (count_commits_tries === 5)
                 {
                     alert("Please, go to home and reload your page.")
+                    return
                 }
 
                 console.log("invalid date")

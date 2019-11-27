@@ -162,6 +162,8 @@ function gbdScreen()
 
 
 function plotRanking(updateRanking){
+    console.log(rankingData)
+    let count = 0
     if(updateRanking){
        try{
         let rankingTable = document.getElementById('gbdRanking')
@@ -179,7 +181,13 @@ function plotRanking(updateRanking){
         let pos = 1
         try{
             for(user in rankingData){
-                
+
+                if (rankingData[user].name === undefined)
+                {
+                    count++
+                    continue
+                }
+
                 let tr = document.createElement('tr')
                 tr.innerHTML = 
                 `
@@ -207,6 +215,12 @@ function plotRanking(updateRanking){
             }
             rankingTable.appendChild(tbody)
             plotColorStatus()
+
+            if (count > 1)
+            {
+                console.log("Mais de 1 undefined no ranking -- atualizar dados")
+            }
+
         }catch(err){
             console.log("GBD error:", err)
         }
