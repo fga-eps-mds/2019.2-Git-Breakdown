@@ -77,7 +77,7 @@ function plotCommitsChart()
                             'rgba(54, 162, 235, 0.6)',
                             'rgba(255, 99, 132, 0.6)'
                         ],
-                        fill: false,
+                        fill: true,
                         borderColor: 
                         [
                             'rgba(255, 99, 132, 1)',

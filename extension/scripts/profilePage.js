@@ -126,16 +126,16 @@ function getProfile(username)
                     content: 
                         `<p>
                             Colors represent the user contribution to the repository
-                            based on contribution avarage
+                            based on contribution average
                         </p>
                         <p>
                             <span id="gbdGreenMark">Green</span>: User contributed more than 30% of average.
                         </p>
                         <p>
-                            <span id="gbdBlueMark">Blue</span>: User is in a range of 30% of the avarage(plus or minus).
+                            <span id="gbdBlueMark">Blue</span>: User is in a range of 30% of the average(plus or minus).
                         </p>
                         <p>
-                            <span id="gbdRedMark">Red</span>: User is bellow 30% of the avarage.
+                            <span id="gbdRedMark">Red</span>: User is bellow 30% of the average.
                         </p>
                         `,
                     html: true,
