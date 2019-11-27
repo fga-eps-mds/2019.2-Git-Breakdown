@@ -40,8 +40,11 @@ async function execute(request, aux)
   try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
 
+    console.log(data_[0])
     data_[0] = removeDuplicates(data_[0])
     data_[4] = removeDuplicates(data_[4])
+
+    console.log(data_[0])
 
     fetchedData = data_
     fetchedData[5] = aux
@@ -60,14 +63,21 @@ function removeDuplicates(data)
 
   array = array.filter(function(curr)
   {
-    if (curr.name in seenNames)
+    if (curr.sprint !== undefined || curr.average_commits !== undefined)
     {
-      return false
+      return true
     }
     else
     {
-      seenNames[curr.name] = true
-      return true
+      if (curr.name in seenNames)
+      {
+        return false
+      }
+      else
+      {
+        seenNames[curr.name] = true
+        return true
+      }
     }
   })
 
