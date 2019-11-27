@@ -1,6 +1,5 @@
 const request = require('supertest')
 const app = require('../src/app')
-const { getInitUnixTime } = require('../src/controllers/commitController')
 
 const token = require('../../constants').token
 
@@ -19,11 +18,4 @@ describe('Commits route tests', () => {
         expect(res).toEqual(expect.any(Object));
         expect(res.statusCode).toEqual(400);
     })
-    
-//    it('test getInitUnixTime', (done) => {
-//        const unixTime = getInitUnixTime(0,0)
-//        expect(unixTime).toEqual(0)
-//        done()
-//    })
-
 })
