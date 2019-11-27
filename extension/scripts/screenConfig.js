@@ -163,18 +163,6 @@ function homeBtn(shouldRequest){
 
     try
     {
-        let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-        createIssuesChart(issuesData, issuesCtx)
-        
-        let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-        createCommitsChart(commitsData, commitCtx)
-
-        let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-        createBranchesChart(branchsData, branchesCtx)
-
-        let prCtx = document.getElementById('prsDashboard').getContext('2d')
-        createPRChart(prData, prCtx)
-
         if (commitsData === undefined)
         {
             console.log('commits data undefined from inside plottting funciton')
@@ -182,7 +170,30 @@ function homeBtn(shouldRequest){
             setTimeout(function()
             {
                 onlyPlot()
-            },3000)  
+            },2000)  
+        }
+        else if (commitsData.length === 0)
+        {
+            console.log('commits data length is 0 from inside plottting funciton')
+            getCommitsData()
+            setTimeout(function()
+            {
+                onlyPlot()
+            },2000)  
+        }
+        else
+        {
+            let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+            createIssuesChart(issuesData, issuesCtx)
+            
+            let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+            createCommitsChart(commitsData, commitCtx)
+
+            let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+            createBranchesChart(branchsData, branchesCtx)
+
+            let prCtx = document.getElementById('prsDashboard').getContext('2d')
+            createPRChart(prData, prCtx)
         }
 
     }

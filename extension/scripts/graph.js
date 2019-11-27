@@ -6,7 +6,7 @@ function createCommitsChart(data, ctx)
     let colorArray = getRandomColorArray(size)
     for (let i = 0; i < size-4; i++)
     {
-        if (data[i] != undefined)
+        if (data[i] !== undefined)
         {
             names[i] = data[i].name
             qtCommits[i] = data[i].commits
