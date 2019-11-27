@@ -145,7 +145,7 @@ function homeBtn(shouldRequest){
         {
             if (response !== undefined)
             {   
-                console.log("RESPONSE FROM COMMITS ")
+                console.log("RESPONSE FROM COMMITS")
                 commitsData = response[0]
             }
             else

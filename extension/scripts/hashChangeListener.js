@@ -19,7 +19,6 @@ window.onhashchange = async function()
         else if (window.location.href.includes('#breakdown/commits')){
             try {
                 document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
-                console.log("commits page is on")
                 setTimeout(function()
                 {
                     plotCommiters(updateCommitsHashChange)
@@ -71,7 +70,6 @@ window.onhashchange = async function()
                         if(res.oauth2_token != undefined){
                             selectBehavior()
                             initScreen(true)
-                            console.log("initScreen from inside hash")
                         }else{
                             selectBehavior()
                             placeContainer(loginPage())
@@ -86,7 +84,6 @@ window.onhashchange = async function()
             {
                 console.log("screen not null")
                 setTimeout(function(){
-                    console.log("get metrics from inside hash")
                     getMetrics(updateRankingHashChange, date_unix_time, init_week_day, sprintLength)
                 }, 2000) 
                 console.log(updateRankingHashChange)
