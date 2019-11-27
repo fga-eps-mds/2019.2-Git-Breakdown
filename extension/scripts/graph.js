@@ -12,6 +12,7 @@ function createCommitsChart(data, ctx)
             qtCommits[i] = data[i].commits
         }
     }
+    console.log(commitsData)
     const commitsChart = new Chart(ctx, 
     {
         type: 'bar',
