@@ -36,7 +36,9 @@ function getLabels()
     let labels = []
     for (let i = 0; i < commitsData[pos].length; i++)
     {
-        labels.push(`Sprint ${commitsData[pos][i].sprint} from ${commitsData[pos][i].starting_date} to ${commitsData[pos][i].ending_date}`)
+        let curr = commitsData[pos][i]
+        let ordinal = (curr.sprint === 1? 'st' : (curr.sprint === 2? 'nd' : (curr.sprint === 3? 'rd' : 'th')))
+        labels.push(`${curr.sprint}${ordinal} sprint [${curr.starting_date}] to [${curr.ending_date}]`)
     }
     return labels
 }
@@ -123,9 +125,19 @@ function plotCommitsChart()
     }
 }
 
+function getOrdinal(curr)
+{
+    return (curr.sprint === 1? 'st' : (curr.sprint === 2? 'nd' : (curr.sprint === 3? 'rd' : 'th')))
+}
+
 function plotCommitsInfo()
 {
     let count = 0
+    let length = commitsData.length
+
+    let best = commitsData[length-3]
+    let worst = commitsData[length-2]
+
     for (let i = 0; i < commitsData.length-4; i++)
     {
         count += commitsData[i].commits
@@ -135,7 +147,7 @@ function plotCommitsInfo()
     `
     <div class="col-sm-6" id="jumbo-col">
                     <div class="jumbotron" id="commitsDetails">
-                        <h1 class="display-4 text-center">Commits by sprint</h1>
+                        <h1 class="display-4 text-center">Commits per sprint</h1>
                         <p class="lead text-center ">Based on the configurations settings for sprints, the following information was calculated:</p>
                         <hr class="my-4">
                         <div class="row">
@@ -143,21 +155,21 @@ function plotCommitsInfo()
                                 <p class="font-weight-bold text-center">A total of ${count} commits have been pushed.</p>
                             </div>
                             <div class="col-sm-4">
-                                <p class="font-weight-bold text-center">There is a total of ${commitsData[commitsData.length-4].length} sprints.</p>
+                                <p class="font-weight-bold text-center">There is a total of ${commitsData[length-4].length} sprints.</p>
                             </div>
                             <div class="col-sm-4">
-                                <p class="font-weight-bold text-center">The average number of commits per sprint is ${(commitsData[commitsData.length-1].average_commits).toFixed(2)}.</p>
+                                <p class="font-weight-bold text-center">The average number of commits per sprint is ${(commitsData[length-1].average_commits).toFixed(2)}.</p>
                             </div>
                         </div>
                         <hr class="my-4">   
                         <div class="row">
                             <div class="col-sm-6">
-                                <p class="font-weight-bold text-center">The best sprint is Sprint ${commitsData[commitsData.length-3].sprint} with a total of ${commitsData[commitsData.length-3].commits} commits.</p>
-                                <p class="font-weight-bold text-center">That's a productivity of ${((commitsData[commitsData.length-3].percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
+                                <p class="font-weight-bold text-center">The best sprint is the ${best.sprint}${getOrdinal(best)} sprint with a total of ${best.commits} commits.</p>
+                                <p class="font-weight-bold text-center">That's a productivity of ${((best.percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
                             </div>
                             <div class="col-sm-6">
-                                <p class="font-weight-bold text-center">The worst sprint is Sprint ${commitsData[commitsData.length-2].sprint} with a total of ${commitsData[commitsData.length-2].commits} commits.</p>
-                                <p class="font-weight-bold text-center">That's a productivity of ${((commitsData[commitsData.length-2].percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
+                                <p class="font-weight-bold text-center">The worst sprint is the ${worst.sprint}${getOrdinal(worst)} sprint with a total of ${worst.commits} commits.</p>
+                                <p class="font-weight-bold text-center">That's a productivity of ${((worst.percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
                             </div>
                         </div>
                     </div>

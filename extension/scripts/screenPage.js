@@ -25,28 +25,16 @@ function gbdScreen()
             <a class="navbar-brand" href="#breakdown"><img src="${urlLogo}" width="30" height="30" class="d-inline-block align-top"> GitBreakdown</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a id="gbdHomeBtn" class="nav-link" href="#breakdown">Home</a>
-                </li>
+                    <li class="nav-item active">
+                        <a id="gbdHomeBtn" class="nav-link" href="#breakdown">Home</a>
+                    </li>
 
-                <li class="nav-item dropdown active">
-                    
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Metrics
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#breakdown/commits">Commits</a>
-                        <a class="dropdown-item" href="#breakdown/issues">Issues</a>
-                        <a class="dropdown-item" href="#breakdown/branches">Branches</a>
-                        <a class="dropdown-item" href="#breakdown/pr">Pull Request</a>
-                    </div>
-
-                </li>
-
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#breakdown/commits">Commits page</a>
+                    </li>
                 </ul>
-
 
                 
                 <div id="settingsContent" class="hide">
