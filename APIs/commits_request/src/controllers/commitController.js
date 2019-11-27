@@ -6,16 +6,17 @@ const queryString = { state:'all', per_page: 10000 }
 const MAX = 1000000000
 
 let initial_unix_time = 0
-let init_weekday = 0
+//let init_weekday = 0
 let sprint_length = 7
 
-commit_route.get = async (req, res, next) => {
+let contributorsInformation = []
+
+exports.get = async (req, res, next) => {
 
     //verify if exist the necessary parms to send a get request
     const owner = req.query.owner
     const repository = req.query.repository
     const endpoint = 'contributors'
-    contributorsInformation = []
 
     if (owner === undefined || req.query.repository === undefined || req.query.token === undefined) {
         return res.status(400).send('Error 400: Bad Request')
@@ -51,7 +52,7 @@ commit_route.get = async (req, res, next) => {
                     let length = contributorsInformation.length
                     
                     initial_unix_time = req.query.unixTime
-                    init_week_day = req.query.weekday
+                    let init_week_day = req.query.weekday
                     sprint_length = req.query.sprintLength
 
                     let initWeek
@@ -256,5 +257,4 @@ function convertFromDate(date)
   return new Date(date).getTime() / 1000
 }
 
-//export this functionality as a module
-module.exports = commit_route
+exports.getInitUnixTime

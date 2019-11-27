@@ -1,52 +1,29 @@
-const chai = require('chai')
-const axios = require('axios')
-const expect = chai.expect
+const request = require('supertest')
+const app = require('../src/app')
+const { getInitUnixTime } = require('../src/controllers/commitController')
 
-const urlBase = 'http://localhost:3001/commits'
-const token = require('../../constants')
-const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=' + token
-
+const token = require('../../constants').token
 
 describe('Commits route tests', () => {
-  it('Test: Request valid', (done) => {
-    axios.get(urlEndpoint).then(response => {
 
-        let _body = {}
-        try{
-          _body = response.data
-        }
-        catch(e){
-          _body = {}
-        }
-
-        if(response.status != undefined)
-            expect(response.status).to.equal(200)
-           
-        if(_body[0].commits != undefined){
-            expect(_body[1]).to.have.property('name')
-            expect(_body[1]).to.have.property('commits')
-        }
-      }
-    ).catch(err => {
-      const errorResponse = err
+    it('should respond with status code 200', async() => {
+        const res = await request(app).get(`/commits?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=${token}&weekday=0&sprintLength=7&unixTime=0`)
+        
+        expect(res).toEqual(expect.any(Object));
+        expect(res.statusCode).toEqual(200);
     })
-    done()
-  })
-  
-  it('Test: Request without parameters', (done) => {
-    axios.get(urlBase).then(response => {
-
-        let _body = {}
-        try{
-          _body = response.data
-        }
-        catch(e){
-          _body = {}
-        }
-      }
-    ).catch(err => {
-      expect(err.response.status).to.equal(400)
-      done()
+    
+    it('should respond with status code 400', async() => {
+        const res = await request(app).get(`/commits?owner=fga-eps-mds&repository=2019.2-Git-Breakdown`)
+        
+        expect(res).toEqual(expect.any(Object));
+        expect(res.statusCode).toEqual(400);
     })
-  })
+    
+//    it('test getInitUnixTime', (done) => {
+//        const unixTime = getInitUnixTime(0,0)
+//        expect(unixTime).toEqual(0)
+//        done()
+//    })
+
 })
