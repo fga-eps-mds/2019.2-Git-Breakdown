@@ -96,5 +96,5 @@ O projeto possui duas grandes entregas, sendo essas as releases
 | Descrição | Data |
 |--|--|
 | Release 1 | 03/10/2019 |
-| Release 2 | 05/12/2019 |
+| Release 2 | 28/11/2019 |
 

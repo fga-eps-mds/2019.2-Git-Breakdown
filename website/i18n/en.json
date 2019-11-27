@@ -45,6 +45,10 @@
         "title": "Orçamento inicial",
         "sidebar_label": "Orçamento Inicial"
       },
+      "readme": {
+        "title": "Readme",
+        "sidebar_label": "Readme"
+      },
       "risco": {
         "title": "Plano Gerenciamento de Riscos",
         "sidebar_label": "Gerenciamento de riscos"
