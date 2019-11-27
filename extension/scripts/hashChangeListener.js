@@ -1,3 +1,6 @@
+let updateRankingHashChange = false
+let updateCommitsHashChange = false
+
 window.onhashchange = async function()
 {
 
@@ -16,10 +19,11 @@ window.onhashchange = async function()
         else if (window.location.href.includes('#breakdown/commits')){
             try {
                 document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
+                console.log("commits page is on")
                 getMetrics(false, date_unix_time, 0, 7)
                 setTimeout(function()
                 {
-                    plotCommiters()
+                    plotCommiters(updateCommitsHashChange)
                 }, 2000) 
             } catch(err) {
                 console.log('GDB Erro: ', err)
@@ -62,21 +66,35 @@ window.onhashchange = async function()
         {
             let screen = document.getElementById('gbdScreen')
             if (screen == null)
+            {
                 try{
                     chrome.storage.sync.get('oauth2_token', (res)=>{
                         if(res.oauth2_token != undefined){
                             selectBehavior()
-                            initScreen()
+                            initScreen(true)
+                            console.log("initScreen from inside hash")
                         }else{
                             selectBehavior()
                             placeContainer(loginPage())
                             login()
                         }
                     })
-
                 }catch(err){
                     console.log('GBD error:', err)
                 }
+            }
+            else
+            {
+                console.log("screen not null")
+                setTimeout(function(){
+                    getMetrics(updateRankingHashChange, date_unix_time, init_week_day, sprintLength)
+                }, 2000) 
+                console.log(updateRankingHashChange)
+                if (updateRankingHashChange)
+                {
+                    updateRankingHashChange = false
+                }
+            }
         }
         else
         {
@@ -84,6 +102,7 @@ window.onhashchange = async function()
             {
                 gbdButton.classList.remove('gbdselected')
             }
+            
         }
     }
 }
@@ -95,7 +114,7 @@ window.onload = ()=>{
             chrome.storage.sync.get('oauth2_token', (res)=>{
                 if(res.oauth2_token != undefined){
                     selectBehavior()
-                    initScreen()
+                    initScreen(true)
                 }else{
                     selectBehavior()
                     placeContainer(loginPage())

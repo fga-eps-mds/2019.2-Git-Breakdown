@@ -131,16 +131,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                     else
                     {
                       console.log("not fetching profile")
-                      if (fetchedData.length > 0 && fetchedData[0] != undefined &&
+                      /*if (fetchedData.length > 0 && fetchedData[0] !== undefined &&
                         fetchedData[5] == url_aux)
                       {
                         console.log("returning fetched data")
                         sendResponse(fetchedData)
                       }
                       else
-                      {
+                      */{
                         if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[5] != url_aux)
+                        {
                           console.log("updating data")
+                        }
 
                         console.log("fetching data")
                         execute(request, url_aux).then(sendResponse)

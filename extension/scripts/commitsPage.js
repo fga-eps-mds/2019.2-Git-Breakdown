@@ -1,28 +1,24 @@
-function commitsPage(){
+let chart
+let skip = false
+let count_commits_tries = 0
 
+function commitsPage(){
     let commitPage = 
     `
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="table-responsive">
-                    <table class="table table-hover table-dark" id="commitsRanking">
-                        <thead>
-                            <tr>
-                                <th scope="col">User</th>
-                                <th scope="col">Total of commits</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    </div>
+            <div class="row" >
+                <div class="col-sm-2">
+
                 </div>
                 <div class="col-sm-8" id="timechartdiv">
                     <canvas id="commitsTimeDashboard"></canvas>   
                 </div>
+                <div class="col-sm-2">
+
                 </div>
             </div>
             <div class="row" id="commits_info_row">
-                
+                <h1 class="display-4 text-center" id="loading">Loading</h1>
             </div>
             </div>
         </div> 
@@ -56,14 +52,12 @@ function getData()
 
 function plotCommitsChart()
 {
-    console.log(commitsData)
     let labels = getLabels()
     let data = getData()
-    console.log(labels)
     let ctx = document.getElementById('commitsTimeDashboard').getContext('2d')
     if (ctx !== undefined)
     {
-        const chart = new Chart(ctx, 
+        chart = new Chart(ctx, 
             {
                 type: 'line',
                 data: 
@@ -122,6 +116,7 @@ function plotCommitsChart()
                     }
                 }
             })
+            document.getElementById('commitsTimeDashboard').style.setProperty('height', `450px`)
     }
 }
 
@@ -145,7 +140,6 @@ function plotCommitsInfo()
     let row = document.getElementById('commits_info_row')
     row.innerHTML =
     `
-    <div class="col-sm-6" id="jumbo-col">
                     <div class="jumbotron" id="commitsDetails">
                         <h1 class="display-4 text-center">Commits per sprint</h1>
                         <p class="lead text-center ">Based on the configurations settings for sprints, the following information was calculated:</p>
@@ -172,47 +166,106 @@ function plotCommitsInfo()
                                 <p class="font-weight-bold text-center">That's a productivity of ${((worst.percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
                             </div>
                         </div>
-                    </div>
     `
+    plotCommitsChart()
+}
 
+function updateChart()
+{
+    let labels = getLabels()
+    let data = getData()
+
+    chart.data.labels.pop()
+    chart.data.datasets.forEach((dataset) =>
+    {
+        dataset.pop()
+    })
+
+    chart.data.labels.push(labels)
+    chart.data.datasets.forEach((dataset) =>
+    {
+        dataset.push(data)
+    })
+
+    chart.update()
+
+    plotCommitsInfo()
 }
 
 
-function plotCommiters()
+function plotCommiters(update)
 {
-    let table = document.getElementById("commitsRanking")
-    let tbody = document.createElement('tbody')
-
-    tbody.id = 'commitsRankingTbody'
-    try
+    if (update)
     {
-        if (commitsData !== undefined)
-        {
-            for(let i = 0; i < commitsData.length-4; i++)
-            {
-                if (commitsData[i] != undefined)
-                {
-                    let member = commitsData[i].name
-                    let memberTotalCommits = commitsData[i].commits
-                    let tr = document.createElement('tr')
-                    tr.innerHTML = 
-                        `
-                            <th scope="row">${member}</th>
-                            <td>${memberTotalCommits}</td>
-                        `
-                    tbody.appendChild(tr)
-                }
-            }
-            table.appendChild(tbody)
-            let table_height = $('#commitsRanking').height()
-            console.log(table_height)
-            document.getElementById('commitsTimeDashboard').style.setProperty('height', `${table_height}px`)
-        }
+        updateChart()  
+        updateCommitsHashChange = false
     }
-    catch (err)
+    else
     {
-        console.log(err)
+        try
+        {
+            console.log(commitsData)
+            console.log("count: " + count_commits_tries)
+            if (commitsData === undefined)
+            {
+                if (count_commits_tries === 5)
+                {
+                    alert("Please, go to home and reload your page.")
+                }
+
+                console.log("undefined commits data")
+                getMetrics(false, date_unix_time, init_week_day, sprintLength)
+                setTimeout(function()
+                {
+                    skip = true
+                    plotCommiters(update)
+                }, 3000) 
+                count_commits_tries++
+            }
+            else if (commitsData[commitsData.length-4] === undefined)
+            {
+                if (count_commits_tries === 5)
+                {
+                    alert("Please, go to home and reload your page.")
+                }
+
+                console.log("undefined sprints data")
+                getMetrics(false, date_unix_time, init_week_day, sprintLength)
+                setTimeout(function()
+                {
+                    skip = true
+                    plotCommiters(update)
+                }, 3000) 
+                count_commits_tries++
+            } 
+            else if (commitsData[commitsData.length-4][0].starting_date == "Invalid Date")
+            {
+                if (count_commits_tries === 5)
+                {
+                    alert("Please, go to home and reload your page.")
+                }
+
+                console.log("invalid date")
+                getMetrics(false, date_unix_time, init_week_day, sprintLength)
+                setTimeout(function()
+                {
+                    skip = true
+                    plotCommiters(update)
+                }, 3000) 
+                count_commits_tries++
+            }
+            else
+            {
+                count = 0
+            }
+
+            plotCommitsInfo()
+        }
+        catch (err)
+        {
+            console.log(err)
+        }
     }   
-    plotCommitsInfo()
-    plotCommitsChart()
+    
+        
 }
