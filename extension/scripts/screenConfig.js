@@ -138,6 +138,26 @@ function homeBtn(shouldRequest){
      })
  }
 
+ function getCommitsData() 
+{
+    return new Promise((resolve, reject) =>{
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: '', getCommitsData: true, unix_time:date_unix_time, weekday: init_week_day, sprintLength: sprintLength}, function(response) 
+        {
+            if (response !== undefined)
+            {   
+                console.log("RESPONSE FROM COMMITS ")
+                commitsData = response[0]
+            }
+            else
+            {
+                console.log("profile response undefined")
+            }
+        })
+        resolve('profile displaying')
+    })
+    
+}
+
  function onlyPlot()
  {
 
@@ -154,13 +174,23 @@ function homeBtn(shouldRequest){
 
         let prCtx = document.getElementById('prsDashboard').getContext('2d')
         createPRChart(prData, prCtx)
+
+        if (commitsData === undefined)
+        {
+            console.log('commits data undefined from inside plottting funciton')
+            getCommitsData()
+            setTimeout(function()
+            {
+                onlyPlot()
+            },3000)  
+        }
+
     }
     catch(err)
     {
         console.log(err)
-        setTimeout(function(){
-            getMetrics(false, unix_time, init_week_day, sprintLength)
-        },3000)   
+        console.log("get metrics from inside onlyPlot()")
+        getMetrics(false, date_unix_time, init_week_day, sprintLength)
     }
  }
 

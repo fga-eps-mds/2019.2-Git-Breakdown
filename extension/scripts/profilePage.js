@@ -143,7 +143,7 @@ function getProfile(username)
                
             }
             else
-            {loginButton
+            {
                 console.log("profile response undefined")
             }
 

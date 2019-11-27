@@ -20,7 +20,6 @@ window.onhashchange = async function()
             try {
                 document.getElementsByClassName('gbdContent')[0].innerHTML = commitsPage()
                 console.log("commits page is on")
-                getMetrics(false, date_unix_time, 0, 7)
                 setTimeout(function()
                 {
                     plotCommiters(updateCommitsHashChange)
@@ -87,6 +86,7 @@ window.onhashchange = async function()
             {
                 console.log("screen not null")
                 setTimeout(function(){
+                    console.log("get metrics from inside hash")
                     getMetrics(updateRankingHashChange, date_unix_time, init_week_day, sprintLength)
                 }, 2000) 
                 console.log(updateRankingHashChange)

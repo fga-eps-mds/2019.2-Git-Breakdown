@@ -22,6 +22,11 @@ const FETCH_PROFILE =
   'profile'
 ]
 
+const FETCH_COMMITS = 
+[
+  'commits'
+]
+
 async function fetchData(type, aux)
 {
     let url_fetch = `${url_base}/${type}/${aux}`
@@ -35,12 +40,23 @@ async function fetchData(type, aux)
     }
 }
 
+async function executeCommits(request, aux)
+{
+  try {
+    console.log("executing commits")
+    const data_ = await Promise.all(FETCH_COMMITS.map(type => fetchData(type, aux)))
+    fetchedData = data_
+    fetchedData[5] = aux
+    return data_
+  } catch(err){
+    console.log("GBD error at background.js\nAt execute():", err)
+  }
+}
+
 async function execute(request, aux)
 {
   try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
-
-    console.log(data_[0])
     data_[0] = removeDuplicates(data_[0])
     data_[4] = removeDuplicates(data_[4])
 
@@ -127,6 +143,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                       url_aux = 
                       `?owner=${request.profile}&repository=${repo}&token=${res.oauth2_token}`
                       executeProfile(request, url_aux).then(sendResponse)
+                    }
+                    else if (request.getCommitsData)
+                    {
+                      console.log("only updating commits data")
+                      executeCommits(request, url_aux).then(sendResponse)
                     }
                     else
                     {

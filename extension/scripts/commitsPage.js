@@ -10,15 +10,16 @@ function commitsPage(){
                 <div class="col-sm-2">
 
                 </div>
-                <div class="col-sm-8" id="timechartdiv">
+                <div class="col-sm-6" id="timechartdiv">
                     <canvas id="commitsTimeDashboard"></canvas>   
                 </div>
                 <div class="col-sm-2">
 
                 </div>
             </div>
-            <div class="row" id="commits_info_row">
-                <h1 class="display-4 text-center" id="loading">Loading</h1>
+                <div class="row" id="commits_info_row">
+                    <h1 class="display-1 text-center" id="loading">Loading</h1>
+                </div>
             </div>
             </div>
         </div> 
@@ -140,6 +141,7 @@ function plotCommitsInfo()
     let row = document.getElementById('commits_info_row')
     row.innerHTML =
     `
+            <div class="col-sm-6" id="jumbo-col">
                     <div class="jumbotron" id="commitsDetails">
                         <h1 class="display-4 text-center">Commits per sprint</h1>
                         <p class="lead text-center ">Based on the configurations settings for sprints, the following information was calculated:</p>
@@ -166,6 +168,7 @@ function plotCommitsInfo()
                                 <p class="font-weight-bold text-center">That's a productivity of ${((worst.percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
                             </div>
                         </div>
+            </div>
     `
     plotCommitsChart()
 }
@@ -178,13 +181,13 @@ function updateChart()
     chart.data.labels.pop()
     chart.data.datasets.forEach((dataset) =>
     {
-        dataset.pop()
+        dataset.data.pop()
     })
 
     chart.data.labels.push(labels)
     chart.data.datasets.forEach((dataset) =>
     {
-        dataset.push(data)
+        dataset.data.push(data)
     })
 
     chart.update()
@@ -214,7 +217,7 @@ function plotCommiters(update)
                 }
 
                 console.log("undefined commits data")
-                getMetrics(false, date_unix_time, init_week_day, sprintLength)
+                getCommitsData()
                 setTimeout(function()
                 {
                     skip = true
@@ -230,7 +233,7 @@ function plotCommiters(update)
                 }
 
                 console.log("undefined sprints data")
-                getMetrics(false, date_unix_time, init_week_day, sprintLength)
+                getCommitsData()
                 setTimeout(function()
                 {
                     skip = true
@@ -246,7 +249,7 @@ function plotCommiters(update)
                 }
 
                 console.log("invalid date")
-                getMetrics(false, date_unix_time, init_week_day, sprintLength)
+                getCommitsData()
                 setTimeout(function()
                 {
                     skip = true
@@ -264,6 +267,12 @@ function plotCommiters(update)
         catch (err)
         {
             console.log(err)
+            getCommitsData()
+            setTimeout(function()
+            {
+                skip = true
+                plotCommiters(update)
+            }, 3000) 
         }
     }   
     
