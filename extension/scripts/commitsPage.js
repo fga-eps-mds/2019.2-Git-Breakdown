@@ -175,6 +175,7 @@ function plotCommitsInfo()
 
 function updateChart()
 {
+    console.log(commitsData)
     let labels = getLabels()
     let data = getData()
 
