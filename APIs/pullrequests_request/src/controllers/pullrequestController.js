@@ -9,7 +9,7 @@ exports.get = async (req, res, next) => {
     const endpoint = 'pulls'
     
     if(owner === undefined || repository === undefined || token === undefined){
-        res.status(400).send('Error 400: Bad Request')
+        return res.status(400).send('Error 400: Bad Request')
     }else{
         const gitApiUrl = 'https://api.github.com'
         const url_endpoint = `${gitApiUrl}/repos/${owner}/${repository}/${endpoint}`
@@ -58,26 +58,12 @@ exports.get = async (req, res, next) => {
 
             let total_merged = numberOfClosed - numberOfRefused
 
-            let prInfo = {'open': numberOfOpen, 'closed': numberOfClosed, 'refused_percent': percentageOfRefused,
-        'merged': total_merged, 'refused': numberOfRefused}
+            let prInfo = { 'open': numberOfOpen, 'closed': numberOfClosed, 'refused_percent': percentageOfRefused,
+        'merged': total_merged, 'refused': numberOfRefused }
             
-            res.status(200).json(prInfo)
+            return res.status(200).json(prInfo)
         }).catch(function (err) {
                 console.log(err)
         })
     }
-}
-
-exports.post = (req, res, next) => {
-    res.status(201).send('Requisição recebida com sucesso!')
-}
-
-exports.put = (req, res, next) => {
-    let id = req.params.id
-    res.status(201).send(`Requisição recebida com sucesso! ${id}`)
-}
-
-exports.delete = (req, res, next) => {
-    let id = req.params.id
-    res.status(200).send(`Requisição recebida com sucesso! ${id}`)
 }
