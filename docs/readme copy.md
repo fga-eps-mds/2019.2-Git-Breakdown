@@ -4,15 +4,17 @@ title: Como Contribuir
 sidebar_label: Como Contribuir
 ---
 
+## Como Contribuir
+
 ### 1. Orientações
 
 * Se você for um colaborador externo, dê um fork no projeto.
 
-* A criação de issues deve seguir a [política de issues](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/docs/issues).
+* A criação de issues deve seguir a [política de issues](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/issues/).
 
-* A criação de branches deve seguir a [política de branches](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/docs/branches).
+* A criação de branches deve seguir a [política de branches](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/branches/).
 
-* No desenvolvimento, usar nossa [política de commits](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/docs/commits).
+* No desenvolvimento, usar nossa [política de commits](https://fga-eps-mds.github.io/2019.2-Git-Breakdown/commits/).
 
 * Pull requests só serão aceitos se estiverem passando na integração.
 

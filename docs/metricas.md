@@ -4,34 +4,23 @@ title: Métricas Coletadas
 sidebar_label: Métricas
 ---
 
-O plugin será dividido em duas páginas:
+O plugin Git Breakdown é uma aplicação de análise de métricas para identificar o nível de atividade de produção dos diversos repositórios, trazendo informações detalhadas do quanto que cada desenvolvedor está contribuindo no repositório  
 
-1.  Contribuições gerais em um repositório.
-    
-2.  Contribuições específicas de desenvolvedores. 
+Foram escolhidas algumas métricas que são referências de atividade de um repositório. São essas métricas: 
 
-Serão aplicados filtros, de acordo com o contexto, que farão a análise e comparação de tempos. Os filtro aplicados serão de:
-
-1.  Desde a abertura do repositório
-2.  Meses
-3.  Semanas    
-4.  Dias
+1.  Issues
+2.  Commits
+3.  Branches     
+4.  PR's
 
 ## Página de contribuição geral
 Será feita uma análise de forma geral do repositório coletando informações de issues, branches e pull requests. Essa análise será responsável por informar o quão ativo o repositório se encontra. Após a coleta de informações será feito cálculos de comparações entre períodos.
 
--   **Métricas a ser coletadas:**
-	1.  Número de branches ativas
-	2.  Número de branches obsoletas
-	3.  Número de pull request abertas
-		a.  Proporção de pr abertas e fechadas
-	4.  Números de issues abertas
-	 a. Proporção de issues abertas e fechadas
+- Um ranking será mostrado com um cálculo de score das métricas de cada desenvolvedor. Trazendo uma análise de quem está contribuindo mais no repositório
 
-## Página de contribuição dos desenvolvedores
-Será feita uma análise de forma mais específica do repositório, levando em consideração informações dos desenvolvedores.
+## Ranking de contribuição
 
--   **Métricas a ser coletadas:**
-	1.  Número de commits
-	2.  Número de adições
-	3.  número de exclusões
+O Ranking é uma junção dos scores de cada desenvolvedor. O score são métricas coletadas onde há a aplicação de pesos que definirá as métricas mais importantes para o cálculo desse score
+
+## Página de perfil do desenvolvedor
+Será levantados os detalhes das métricas referentes a cada desenvolvedor e o que ajudou no cáculo do score e consequentemente na posição no ranking.
