@@ -140,6 +140,8 @@ function homeBtn(shouldRequest){
 
  function getCommitsData() 
 {
+    try
+    {
     return new Promise((resolve, reject) =>{
         chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: '', getCommitsData: true, unix_time:date_unix_time, weekday: init_week_day, sprintLength: sprintLength}, function(response) 
         {
@@ -155,7 +157,15 @@ function homeBtn(shouldRequest){
         })
         resolve('profile displaying')
     })
-    
+    }
+    catch (err)
+    {
+        console.log('err from getCommitsData(): ' + err)
+        browser.runtime.connect().onDisconnect.addListener(function() {
+            // clean up when content script gets disconnected
+            alert("Problem in chrome extension API. Please close this tab and try again.")
+        })
+    }
 }
 
  function onlyPlot()
@@ -167,7 +177,7 @@ function homeBtn(shouldRequest){
         {
             return
         }
-        
+
         if (commitsData === undefined)
         {
             console.log('commits data undefined from inside plottting funciton')

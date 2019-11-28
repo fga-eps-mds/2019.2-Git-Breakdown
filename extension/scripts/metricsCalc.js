@@ -61,7 +61,10 @@ function calcPercentCommits(fullData, userName){
             count_commits++
             setTimeout(function()
             {
-                calcPercentCommits(commitsData, userName)
+                let userContribution = plotPercentGraphics(userName)
+                for(var key in userContribution){
+                    displayTableInfo(userContribution[key], key) //metricsCalc.js
+                }
             }, 2000) 
         }
     }
@@ -212,6 +215,7 @@ function createPercentGraphic(data, ctx, labels , label, title, color)
 function plotPercentGraphics(userName){
     try
     {
+        console.log("plotting percent graphics")
         let percentOpenedIssues = calcPercentOpenedIssues(rankingData, userName)
         let percentOpenedIssuesGraphic = document.getElementById('percentIssues').getContext('2d')
         let percentOpenedIssuesLabels = ['total of issues', `issues opened by ${userName}`]
@@ -240,23 +244,11 @@ function plotPercentGraphics(userName){
     catch(err)
     {
         console.log('error: ', err)
-            try
-            {
-                console.log(commitsData)
-                getCommitsData()
-
-                setTimeout(function()
-                {
-                    
-                    plotPercentGraphics(userName)
-                    
-                }, 2000) 
-            }
-            catch(err)
-            {
-                console.log('error: ', err)
-            }
-        
+        if (document.getElementById('percentIssues') === null)
+        {
+            console.log("screen is null")
+            alert("An error occurred in Chrome Extensions. Please re-load this tab.")
+        }
     }
 }
 

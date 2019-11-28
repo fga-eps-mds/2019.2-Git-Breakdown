@@ -82,11 +82,9 @@ window.onhashchange = async function()
             }
             else
             {
-                console.log("screen not null")
                 setTimeout(function(){
                     getMetrics(updateRankingHashChange, date_unix_time, init_week_day, sprintLength)
-                }, 2000) 
-                console.log(updateRankingHashChange)
+                }, 2000)
                 if (updateRankingHashChange)
                 {
                     updateRankingHashChange = false
