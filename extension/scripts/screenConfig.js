@@ -150,7 +150,7 @@ function homeBtn(shouldRequest){
             }
             else
             {
-                console.log("profile response undefined")
+                console.log("commits response undefined")
             }
         })
         resolve('profile displaying')
