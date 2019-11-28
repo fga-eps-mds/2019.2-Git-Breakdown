@@ -65,7 +65,7 @@ class HomeSplash extends React.Component {
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
             <Button href="https://github.com/fga-eps-mds/2019.2-Git-Breakdown">GitHub</Button>
-            <Button href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/docs/backlog">Documentação</Button>
+            <Button href="https://fga-eps-mds.github.io/2019.2-Git-Breakdown/docs/readme">Documentação</Button>
           </PromoSection>
         </div>
       </SplashContainer>

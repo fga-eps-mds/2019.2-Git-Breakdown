@@ -26,117 +26,19 @@ class Users extends React.Component {
     ));
 
     return (
-      <div className="mainContainer" style={{background: "#DCDCDC"}}>
-        <div className="tittleTeam">
-            <p>Conheça nossa equipe</p>
-        </div>
+      <div className="mainContainer">
         <Container padding={['bottom', 'top']}>
-        <div className="row">
-          <div className="column">
-            <div className="img-style" style={{width: "200px"}}>
-              <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/9hDDzg5/joao.jpg" alt=""></img>
-                <div className="overlay">
-                    <h2>Diego Resende</h2>
-                    <p>
-                        Product Owner
-                    </p>
-                </div>
-              </div>
+          <div className="showcaseSection">
+            <div className="prose">
+              <h1>Who is Using This?</h1>
+              <p>This project is used by many folks</p>
             </div>
+            <div className="logos">{showcase}</div>
+            <p>Are you using this project?</p>
+            <a href={editUrl} className="button">
+              Add your company
+            </a>
           </div>
-          <div className="column">
-            <div className="img-style" style={{width: "200px"}}>
-              <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/9hDDzg5/joao.jpg" alt=""></img>
-                <div className="overlay">
-                    <h2>Diego Resende</h2>
-                    <p>
-                        Product Owner
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column">
-            <div className="img-style" style={{width: "200px"}}>
-              <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/9hDDzg5/joao.jpg" alt=""></img>
-                <div className="overlay">
-                    <h2>Diego Resende</h2>
-                    <p>
-                        Product Owner
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column">
-            <div className="img-style" style={{width: "200px"}}>
-              <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/9hDDzg5/joao.jpg" alt=""></img>
-                <div className="overlay">
-                    <h2>Diego Resende</h2>
-                    <p>
-                        Product Owner
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column">
-            <div className="img-style" style={{width: "200px"}}>
-              <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/9hDDzg5/joao.jpg" alt=""></img>
-                <div className="overlay">
-                    <h2>Diego Resende</h2>
-                    <p>
-                        Product Owner
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column">
-            <div className="img-style" style={{width: "200px"}}>
-              <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/9hDDzg5/joao.jpg" alt=""></img>
-                <div className="overlay">
-                    <h2>Diego Resende</h2>
-                    <p>
-                        Product Owner
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column">
-            <div className="img-style" style={{width: "200px"}}>
-              <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/9hDDzg5/joao.jpg" alt=""></img>
-                <div className="overlay">
-                    <h2>Diego Resende</h2>
-                    <p>
-                        Product Owner
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column">
-            <div className="img-style" style={{width: "200px"}}>
-              <div className="hovereffect">
-                <img className="img-responsive" src="https://i.ibb.co/9hDDzg5/joao.jpg" alt=""></img>
-                <div className="overlay">
-                    <h2>Diego Resende</h2>
-                    <p>
-                        Product Owner
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         </Container>
       </div>
     );
@@ -144,5 +46,3 @@ class Users extends React.Component {
 }
 
 module.exports = Users;
-
-
