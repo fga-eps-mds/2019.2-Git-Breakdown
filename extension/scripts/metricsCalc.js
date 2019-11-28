@@ -1,34 +1,46 @@
 
 function calcPercentCommits(commitsData, userName){
-    let totalCommits = 0
-    for(user in commitsData)
-        totalCommits += commitsData[user].commits
+    try
+    {
+        let data = []
 
-    let userCommits = commitsData.filter((user)=>{
-        return user.name === userName
-    })
+        for (let i = 0; i < commitsData.length-4; i++)
+            data[i] = commitsData[i]
 
-    let avarage = totalCommits / commitsData.length
-    let x = avarage * 0.3
-    let userStatus
+        let totalCommits = 0
+        for(user in data)
+            totalCommits += data[user].commits
 
-    if(userCommits != undefined && userCommits[0].commits != undefined)
-        if(userCommits[0].commits > avarage + x)
-            userStatus = 1 //very good
-        else if(userCommits[0].commits < avarage+x && userCommits[0].commits > avarage-x)
-            userStatus = 0 //ok / expected
+        let userCommits = data.filter((user)=>{
+            return user.name === userName
+        })
+
+        let avarage = totalCommits / data.length
+        let x = avarage * 0.3
+        let userStatus
+
+        if(userCommits != undefined && userCommits[0].commits != undefined)
+            if(userCommits[0].commits > avarage + x)
+                userStatus = 1 //very good
+            else if(userCommits[0].commits < avarage+x && userCommits[0].commits > avarage-x)
+                userStatus = 0 //ok / expected
+            else
+                userStatus = -1 //not good
         else
-            userStatus = -1 //not good
-    else
-        userCommits[0].commits = 0
+            userCommits[0].commits = 0
 
-    let percent
-    if(totalCommits !== 0){
-        percent = ((+userCommits[0].commits) / (+totalCommits)).toString() * 100
-    }else{
-        percent = 0
-    } 
-    return [userCommits[0].commits ,totalCommits, percent, userStatus]
+        let percent
+        if(totalCommits !== 0){
+            percent = ((+userCommits[0].commits) / (+totalCommits)).toString() * 100
+        }else{
+            percent = 0
+        } 
+        return [userCommits[0].commits ,totalCommits, percent, userStatus]
+    }
+    catch (err)
+    {
+        console.log(err)
+    }
 }
 
 

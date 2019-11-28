@@ -1,28 +1,25 @@
-function commitsPage(){
+let chart
+let skip = false
+let count_commits_tries = 0
 
+function commitsPage(){
     let commitPage = 
     `
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="table-responsive">
-                    <table class="table table-hover table-dark" id="commitsRanking">
-                        <thead>
-                            <tr>
-                                <th scope="col">User</th>
-                                <th scope="col">Total of commits</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    </div>
+            <div class="row" >
+                <div class="col-sm-2">
+
                 </div>
-                <div class="col-sm-8" id="timechartdiv">
+                <div class="col-sm-6" id="timechartdiv">
                     <canvas id="commitsTimeDashboard"></canvas>   
                 </div>
+                <div class="col-sm-2">
+
                 </div>
             </div>
-            <div class="row" id="commits_info_row">
-                
+                <div class="row" id="commits_info_row">
+                    <h1 class="display-1 text-center" id="loading">Loading</h1>
+                </div>
             </div>
             </div>
         </div> 
@@ -36,7 +33,9 @@ function getLabels()
     let labels = []
     for (let i = 0; i < commitsData[pos].length; i++)
     {
-        labels.push(`Sprint ${commitsData[pos][i].sprint} from ${commitsData[pos][i].starting_date} to ${commitsData[pos][i].ending_date}`)
+        let curr = commitsData[pos][i]
+        let ordinal = (curr.sprint === 1? 'st' : (curr.sprint === 2? 'nd' : (curr.sprint === 3? 'rd' : 'th')))
+        labels.push(`${curr.sprint}${ordinal} sprint [${curr.starting_date}] to [${curr.ending_date}]`)
     }
     return labels
 }
@@ -54,14 +53,12 @@ function getData()
 
 function plotCommitsChart()
 {
-    console.log(commitsData)
     let labels = getLabels()
     let data = getData()
-    console.log(labels)
     let ctx = document.getElementById('commitsTimeDashboard').getContext('2d')
     if (ctx !== undefined)
     {
-        const chart = new Chart(ctx, 
+        chart = new Chart(ctx, 
             {
                 type: 'line',
                 data: 
@@ -80,7 +77,7 @@ function plotCommitsChart()
                             'rgba(54, 162, 235, 0.6)',
                             'rgba(255, 99, 132, 0.6)'
                         ],
-                        fill: false,
+                        fill: true,
                         borderColor: 
                         [
                             'rgba(255, 99, 132, 1)',
@@ -120,12 +117,23 @@ function plotCommitsChart()
                     }
                 }
             })
+            document.getElementById('commitsTimeDashboard').style.setProperty('height', `450px`)
     }
+}
+
+function getOrdinal(curr)
+{
+    return (curr.sprint === 1? 'st' : (curr.sprint === 2? 'nd' : (curr.sprint === 3? 'rd' : 'th')))
 }
 
 function plotCommitsInfo()
 {
     let count = 0
+    let length = commitsData.length
+
+    let best = commitsData[length-3]
+    let worst = commitsData[length-2]
+
     for (let i = 0; i < commitsData.length-4; i++)
     {
         count += commitsData[i].commits
@@ -133,9 +141,9 @@ function plotCommitsInfo()
     let row = document.getElementById('commits_info_row')
     row.innerHTML =
     `
-    <div class="col-sm-6" id="jumbo-col">
+            <div class="col-sm-6" id="jumbo-col">
                     <div class="jumbotron" id="commitsDetails">
-                        <h1 class="display-4 text-center">Commits by sprint</h1>
+                        <h1 class="display-4 text-center">Commits per sprint</h1>
                         <p class="lead text-center ">Based on the configurations settings for sprints, the following information was calculated:</p>
                         <hr class="my-4">
                         <div class="row">
@@ -143,64 +151,133 @@ function plotCommitsInfo()
                                 <p class="font-weight-bold text-center">A total of ${count} commits have been pushed.</p>
                             </div>
                             <div class="col-sm-4">
-                                <p class="font-weight-bold text-center">There is a total of ${commitsData[commitsData.length-4].length} sprints.</p>
+                                <p class="font-weight-bold text-center">There is a total of ${commitsData[length-4].length} sprints.</p>
                             </div>
                             <div class="col-sm-4">
-                                <p class="font-weight-bold text-center">The average number of commits per sprint is ${(commitsData[commitsData.length-1].average_commits).toFixed(2)}.</p>
+                                <p class="font-weight-bold text-center">The average number of commits per sprint is ${(commitsData[length-1].average_commits).toFixed(2)}.</p>
                             </div>
                         </div>
                         <hr class="my-4">   
                         <div class="row">
                             <div class="col-sm-6">
-                                <p class="font-weight-bold text-center">The best sprint is Sprint ${commitsData[commitsData.length-3].sprint} with a total of ${commitsData[commitsData.length-3].commits} commits.</p>
-                                <p class="font-weight-bold text-center">That's a productivity of ${((commitsData[commitsData.length-3].percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
+                                <p class="font-weight-bold text-center">The best sprint is the ${best.sprint}${getOrdinal(best)} sprint with a total of ${best.commits} commits.</p>
+                                <p class="font-weight-bold text-center">That's a productivity of ${((best.percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
                             </div>
                             <div class="col-sm-6">
-                                <p class="font-weight-bold text-center">The worst sprint is Sprint ${commitsData[commitsData.length-2].sprint} with a total of ${commitsData[commitsData.length-2].commits} commits.</p>
-                                <p class="font-weight-bold text-center">That's a productivity of ${((commitsData[commitsData.length-2].percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
+                                <p class="font-weight-bold text-center">The worst sprint is the ${worst.sprint}${getOrdinal(worst)} sprint with a total of ${worst.commits} commits.</p>
+                                <p class="font-weight-bold text-center">That's a productivity of ${((worst.percentage_of_average)*100).toFixed(2)}% compared to the average.</p>
                             </div>
                         </div>
-                    </div>
+            </div>
     `
+    plotCommitsChart()
+}
 
+function updateChart()
+{
+    let labels = getLabels()
+    let data = getData()
+
+    chart.data.labels.pop()
+    chart.data.datasets.forEach((dataset) =>
+    {
+        dataset.data.pop()
+    })
+
+    chart.data.labels.push(labels)
+    chart.data.datasets.forEach((dataset) =>
+    {
+        dataset.data.push(data)
+    })
+
+    chart.update()
+
+    plotCommitsInfo()
 }
 
 
-function plotCommiters()
+function plotCommiters(update)
 {
-    let table = document.getElementById("commitsRanking")
-    let tbody = document.createElement('tbody')
-
-    tbody.id = 'commitsRankingTbody'
-    try
+    if (update)
     {
-        if (commitsData !== undefined)
-        {
-            for(let i = 0; i < commitsData.length-4; i++)
-            {
-                if (commitsData[i] != undefined)
-                {
-                    let member = commitsData[i].name
-                    let memberTotalCommits = commitsData[i].commits
-                    let tr = document.createElement('tr')
-                    tr.innerHTML = 
-                        `
-                            <th scope="row">${member}</th>
-                            <td>${memberTotalCommits}</td>
-                        `
-                    tbody.appendChild(tr)
-                }
-            }
-            table.appendChild(tbody)
-            let table_height = $('#commitsRanking').height()
-            console.log(table_height)
-            document.getElementById('commitsTimeDashboard').style.setProperty('height', `${table_height}px`)
-        }
+        updateChart()  
+        updateCommitsHashChange = false
     }
-    catch (err)
+    else
     {
-        console.log(err)
+        try
+        {
+            console.log(commitsData)
+            console.log("count: " + count_commits_tries)
+            if (commitsData === undefined)
+            {
+                if (count_commits_tries === 5)
+                {
+                    alert("Please, go to home and reload your page.")
+                    return
+                }
+
+                console.log("undefined commits data")
+                getCommitsData()
+                setTimeout(function()
+                {
+                    skip = true
+                    plotCommiters(update)
+                }, 3000) 
+                count_commits_tries++
+            }
+            else if (commitsData[commitsData.length-4] === undefined)
+            {
+                if (count_commits_tries === 5)
+                {
+                    alert("Please, go to home and reload your page.")
+                    return
+                }
+
+                console.log("undefined sprints data")
+                getCommitsData()
+                setTimeout(function()
+                {
+                    skip = true
+                    plotCommiters(update)
+                }, 3000) 
+                count_commits_tries++
+            } 
+            else if (commitsData[commitsData.length-4][0].starting_date == "Invalid Date")
+            {
+                if (count_commits_tries === 5)
+                {
+                    alert("Please, go to home and reload your page.")
+                    return
+                }
+
+                console.log("invalid date")
+                getCommitsData()
+                setTimeout(function()
+                {
+                    skip = true
+                    plotCommiters(update)
+                }, 3000) 
+                count_commits_tries++
+            }
+            else
+            {
+                count = 0
+            }
+
+            plotCommitsInfo()
+        }
+        catch (err)
+        {
+            console.log(err)
+            getCommitsData()
+            setTimeout(function()
+            {
+                skip = true
+                plotCommiters(update)
+            }, 3000) 
+        }
     }   
-    plotCommitsInfo()
-    plotCommitsChart()
+    
+        
 }
