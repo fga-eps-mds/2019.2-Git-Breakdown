@@ -10,8 +10,10 @@ stages:
 build:
   image: docker:dind
   stage: build
-  script:
+  before_script:
     - sudo docker-compose down
+    - npm cache clean --force
+  script:
     - sudo docker-compose build --no-cache
 
 # Stage II
