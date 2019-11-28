@@ -16,7 +16,15 @@ async function requisition (link, token){
 
     await axios.get(link, header_option).then( response => {
         let issues = response.data
-        let link = response.headers.link.split(',')
+        let link = response.headers.link
+        let lastIndex = link.indexOf('rel="last"')
+        let leanLink = link.slice(0, lastIndex)
+        let aux = leanLink.lastIndexOf("=")
+        let aux2 = leanLink.slice(aux)
+        indexNumber = aux2.split("").filter(Number).join("")
+
+
+        console.log(indexNumber)
 
         return issues
     }).then(issues => {
