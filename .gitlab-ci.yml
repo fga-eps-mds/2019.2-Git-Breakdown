@@ -12,7 +12,6 @@ build:
   stage: build
   before_script:
     - sudo docker-compose down
-    - npm cache clean --force
   script:
     - sudo docker-compose build --no-cache
 

@@ -25,6 +25,11 @@
   },
   "devDependencies": {
     "mocha": "^6.2.0",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "superagent": "^5.1.1"
   }
 }

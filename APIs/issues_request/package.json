@@ -10,7 +10,7 @@
   "scripts": {
     "start": "nodemon ./bin/server.js",
     "test": "./node_modules/.bin/_mocha --recursive --exit ./test/*.js",
-    "test-ci": "jest --config config.json --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test-ci": "jest --config config.json --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,10 +20,15 @@
     "coveralls": "^3.0.7",
     "express": "^4.17.1",
     "jest": "^24.9.0",
-    "nodemon": "^1.19.2",
+    "nodemon": "^1.19.2"
   },
   "devDependencies": {
     "mocha": "^6.2.0",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "superagent": "^5.1.1"
   }
 }
