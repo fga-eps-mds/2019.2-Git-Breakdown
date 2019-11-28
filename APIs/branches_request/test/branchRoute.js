@@ -3,7 +3,7 @@ const app = require('../src/app')
 
 const token = require('../../constants').token
 
-describe('Issues route tests', () => {
+describe('Branches route tests', () => {
 
     beforeAll(() => {
         jest.setTimeout(10000);

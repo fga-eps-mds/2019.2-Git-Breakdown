@@ -1,53 +1,31 @@
-const chai = require('chai')
-const axios = require('axios')
-const expect = chai.expect
-chai.use(require('chai-json'))
+const request = require('supertest')
+const app = require('../src/app')
 
-const urlBase = 'http://localhost:3003/pullrequests'
-const token = require('../../constants')
-const urlEndpoint = urlBase + '?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=' + token
+const token = require('../../constants').token
 
 describe('PullRequests route tests', () => {
-  it('Test: Request valid', (done) => {
-    axios.get(urlEndpoint).then(response => {
 
-        let _body = {};
-        try{
-          _body = response.data
-        }
-        catch(e){
-          _body = {}
-        }
-
-        if(response.status != undefined)
-            expect(response.status).to.equal(200);
-
-        if(_body != undefined){
-            expect(_body).to.have.property('open')
-            expect(_body).to.have.property('closed')
-            expect(_body).to.have.property('refused_percent')
-        }
-      }
-    ).catch(err => {
-      const errorResponse = err
+    beforeAll(() => {
+        jest.setTimeout(10000);
     })
-    done()
-  })
-
-  it('Test: Request without parameters', (done) => {
-    axios.get(urlBase).then(response => {
-
-        let _body = {};
-        try{
-          _body = response.data
-        }
-        catch(e){
-          _body = {}
-        }
-      }
-    ).catch(err => {
-      expect(err.response.status).to.equal(400)
+    
+    it('should respond with status code 200', async() => {
+        const res = await request(app).get(`/pullrequests?owner=fga-eps-mds&repository=2019.2-Git-Breakdown&token=${token}`)
+        let json = JSON.parse(res.text)
+        
+        expect(res).toEqual(expect.any(Object));
+        expect(res.statusCode).toEqual(200);
+        
+        expect(json).toHaveProperty('open')
+        expect(json).toHaveProperty('open')
+        expect(json).toHaveProperty('refused_percent')
     })
-    done()
-  })
+    
+    it('should respond with status code 400', async() => {
+        const res = await request(app).get(`/pullrequests?owner=fga-eps-mds&repository=2019.2-Git-Breakdown`)
+        
+        expect(res).toEqual(expect.any(Object));
+        expect(res.statusCode).toEqual(400);
+    })
+
 })

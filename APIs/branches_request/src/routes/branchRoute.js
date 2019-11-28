@@ -5,4 +5,3 @@ const controller = require('../controllers/branchController')
 router.get('/', controller.get)
 
 module.exports = router
-
