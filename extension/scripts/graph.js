@@ -1,17 +1,22 @@
 function createCommitsChart(data, ctx)
 {
-    let size = Object.keys(data).length
+    let size = Object.keys(data).length - 1
     let names = []
     let qtCommits = []
     let colorArray = getRandomColorArray(size)
-    for (let i = 0; i < size; i++)
+    for (let i = 0; i < size-4; i++)
     {
-        if (data[i] != undefined)
+        if (data[i] !== undefined)
         {
+            
+            if (data[i].name === undefined)
+                continue
+
             names[i] = data[i].name
             qtCommits[i] = data[i].commits
         }
     }
+    console.log(commitsData)
     const commitsChart = new Chart(ctx, 
     {
         type: 'bar',

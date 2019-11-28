@@ -115,9 +115,9 @@ function filterStartingWeek(data, initTime)
 {
   for (let i = 0; i < data.length; i++)
   {
-    if (initTime === undefined)
+    if (initTime === undefined || initTime === 0)
     {
-        if (data[i] > 0) 
+        if (data[i].total > 0) 
         {
           return i
         }
@@ -125,11 +125,15 @@ function filterStartingWeek(data, initTime)
     else
     {
         if (data[i].week === initTime)
+        {
           return i
+        }
         else if (data[i].week > initTime)
         {
-        if (data[i-1].week < initTime) 
-            return (i-1) // se o tempo inicial definido não é de um domingo pegamos do domingo que iniciou a semana
+          if (data[i-1].week < initTime) 
+          {
+              return (i-1) // se o tempo inicial definido não é de um domingo pegamos do domingo que iniciou a semana
+          }
         }
     }
   }
@@ -156,7 +160,7 @@ function getSprintTotals(data, initWeek, weekday, sprintLength)
   for (let i = initWeek; i < data.length; i++) // começamos na semana inicial definida
   {
     let startingDate = data[i].week + (86400 * weekday)
-    let endDate = data[i].week + (86400 * sprintLength)
+    let endDate = data[i].week + (86400 * weekday) + (86400 * sprintLength)
     let dayTotals = data[i].days
     let count = sprintLength
     for (let j = weekday; j < 7; j++) // para cada dia dessa semana, comecando do dia inicial
@@ -227,6 +231,11 @@ function getWorstSprint(sprints)
   {
     if (sprints[i].commits < min.commits)
     {
+      let unixdate = convertFromDate(sprints[i].starting_date)
+
+      if (unixdate > (Math.floor(Date.now() / 1000)))
+        continue
+        
       min.sprint = sprints[i].sprint
       min.commits = sprints[i].commits
 
@@ -240,6 +249,11 @@ function getWorstSprint(sprints)
 function convertFromUnixTime(unix_time)
 {
   return new Date(unix_time*1000).toLocaleDateString("en-US")
+}
+
+function convertFromDate(date)
+{
+  return new Date(date).getTime() / 1000
 }
 
 //export this functionality as a module

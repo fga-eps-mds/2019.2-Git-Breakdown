@@ -1,34 +1,77 @@
+let count_commits = 0
 
-function calcPercentCommits(commitsData, userName){
-    let totalCommits = 0
-    for(user in commitsData)
-        totalCommits += commitsData[user].commits
 
-    let userCommits = commitsData.filter((user)=>{
-        return user.name === userName
-    })
+function calcPercentCommits(fullData, userName){
+    try
+    {
+        let totalCommits = 0
+        if (fullData !== undefined && fullData.length > 0)
+        {
+            let data = []
+            for (let i = 0; i < fullData.length-4; i++)
+            {
+                if (fullData[i].name !== undefined)
+                {
+                    data[i] = fullData[i]
+                    totalCommits += fullData[i].commits
+                }
+            }
 
-    let avarage = totalCommits / commitsData.length
-    let x = avarage * 0.3
-    let userStatus
+            console.log(data)
 
-    if(userCommits != undefined && userCommits[0].commits != undefined)
-        if(userCommits[0].commits > avarage + x)
-            userStatus = 1 //very good
-        else if(userCommits[0].commits < avarage+x && userCommits[0].commits > avarage-x)
-            userStatus = 0 //ok / expected
+            let userCommits = data.filter((user)=>{
+                return user.name === userName
+            })
+
+            console.log(userCommits)
+
+            let avarage = totalCommits / data.length
+            let x = avarage * 0.3
+            let userStatus
+
+            if(userCommits != undefined && userCommits[0].commits != undefined)
+                if(userCommits[0].commits > avarage + x)
+                    userStatus = 1 //very good
+                else if(userCommits[0].commits < avarage+x && userCommits[0].commits > avarage-x)
+                    userStatus = 0 //ok / expected
+                else
+                    userStatus = -1 //not good
+            else
+                userCommits[0].commits = 0
+
+            let percent
+            if(totalCommits !== 0){
+                percent = ((+userCommits[0].commits) / (+totalCommits)).toString() * 100
+            }else{
+                percent = 0
+            } 
+            count_commits = 0
+            return [userCommits[0].commits ,totalCommits, percent, userStatus]
+        }
         else
-            userStatus = -1 //not good
-    else
-        userCommits[0].commits = 0
-
-    let percent
-    if(totalCommits !== 0){
-        percent = ((+userCommits[0].commits) / (+totalCommits)).toString() * 100
-    }else{
-        percent = 0
-    } 
-    return [userCommits[0].commits ,totalCommits, percent, userStatus]
+        {
+            console.log("data undefined or length is 0")
+            if (count_commits > 5)
+            {
+                alert("API not working properly right now. Try logging in again in the extension.")
+                return
+            }
+    
+            getCommitsData()
+            count_commits++
+            setTimeout(function()
+            {
+                let userContribution = plotPercentGraphics(userName)
+                for(var key in userContribution){
+                    displayTableInfo(userContribution[key], key) //metricsCalc.js
+                }
+            }, 2000) 
+        }
+    }
+    catch (err)
+    {
+        console.log('err from inside percent commits' + err)
+    }
 }
 
 
@@ -170,8 +213,9 @@ function createPercentGraphic(data, ctx, labels , label, title, color)
 
 
 function plotPercentGraphics(userName){
-
-    try{
+    try
+    {
+        console.log("plotting percent graphics")
         let percentOpenedIssues = calcPercentOpenedIssues(rankingData, userName)
         let percentOpenedIssuesGraphic = document.getElementById('percentIssues').getContext('2d')
         let percentOpenedIssuesLabels = ['total of issues', `issues opened by ${userName}`]
@@ -184,21 +228,28 @@ function plotPercentGraphics(userName){
         createPercentGraphic(percentMergedPr , percentMergedPrGraphic , percentMergedPrLabels,
             `Pull requests merged by ${userName}`, ` In merged Pull Requests`, defineColor(percentMergedPr[3]))
 
-        let percentCommits = calcPercentCommits(commitsData , userName)
+        let percentCommits = calcPercentCommits(commitsData, userName)
         let percentCommitsGraphic = document.getElementById('percentCommits').getContext('2d')
         let percentCommitsLabels = ['total of commits', `${userName} commits`]
         createPercentGraphic(percentCommits, percentCommitsGraphic, percentCommitsLabels,
             `commits from ${userName}`,  `In commits`, defineColor(percentCommits[3]))
         
-            return {
-            'OpenedIssuesPercent' : percentOpenedIssues, 
-            'MergedPrPercent' : percentMergedPr , 
-            'CommitsPercent' : percentCommits}
-    }catch(err){
-        console.log('GBD error:', err)
-    }
-        
+        return {
+        'OpenedIssuesPercent' : percentOpenedIssues, 
+        'MergedPrPercent' : percentMergedPr , 
+        'CommitsPercent' : percentCommits}
 
+        
+    }
+    catch(err)
+    {
+        console.log('error: ', err)
+        if (document.getElementById('percentIssues') === null)
+        {
+            console.log("screen is null")
+            alert("An error occurred in Chrome Extensions. Please re-load this tab.")
+        }
+    }
 }
 
 

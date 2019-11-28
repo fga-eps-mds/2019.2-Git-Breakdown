@@ -72,7 +72,7 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
 }
 
 .card {
-    width: 95%;
+    width: 100%;
     margin-left: 2%;
     margin-right: 2%;
 }
@@ -105,6 +105,26 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
     height: 100% !important;
 }
 
+#commitsTimeDashboard
+{
+    width: 100% !important;
+    margin-left: 10% !important;
+}
+
+#jumbo-col
+{
+    margin-bottom: 3% !important;
+}
+
+#commitsDetails 
+{
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin-left: 50% !important;
+    padding-top: 2rem !important;
+}
+
 .metricsPageTitle {
     margin-left: 27.5%;
     width: 45%;
@@ -120,8 +140,6 @@ rgba(0,51,102,0.7) #e1e4e8 transparent;
     padding-top: 15px;
     height: 90%;
 }
-
-
 
 #progressContainer {
     padding: 4px;
@@ -161,8 +179,6 @@ input[type=number]::-webkit-inner-spin-button {
 #gbdProgressBar{
     background-color: black;
 }
-
-
 
 .container {
     margin-left: 0;

@@ -7,12 +7,12 @@ let weights = [4,5,2,3] // default weights
 
 let sprintLength = 7
 
-let init_week_day
+let init_week_day = 0
 
-let date_unix_time
+let date_unix_time = 0
 
 
-function getMetrics(updateRanking) 
+function getMetrics(updateRanking, unix_time, week_day, sprint_length) 
 {
     if (updateRanking === undefined)
     {
@@ -20,12 +20,14 @@ function getMetrics(updateRanking)
         updateRanking = false
     }
 
+    commitsData = []
+
     return new Promise((resolve, reject) =>{
-        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time: 0, weekday: 0, sprintLength: 7}, function(response) 
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: "", unix_time:unix_time, weekday: week_day, sprintLength: sprint_length}, function(response) 
         {
+            console.log("getting info")
             if (response !== undefined)
             {
-                console.log(response[0])
                 commitsData = response[0]
                 issuesData = response[1]
                 branchsData = response[2]
@@ -35,11 +37,26 @@ function getMetrics(updateRanking)
 
                 if (updateRanking)
                 {
-                    console.log("updating ranking")
-                    setTimeout(function(){
-                        plotRanking(updateRanking)
-                    },3000)  
+                    alert("Configurations saved.")
+                    let ranking = document.getElementById('gbdRanking')
+                    if (ranking !== null)
+                    {
+                        console.log("updating ranking")
+                        updateCommitsHashChange = true
+                        setTimeout(function(){
+                            plotRanking(updateRanking)
+                        },3000)  
+                    }
+                    else
+                    {
+                        updateRankingHashChange = true
+                        plotCommiters(true)
+                    }   
                 }
+            }
+            else
+            {
+                console.log("response undefined")
             }
         })
         resolve('metrics Done')
@@ -56,12 +73,12 @@ const METRICS =
   'ranking' // 4
 ]
 
-function homeBtn(){
+function homeBtn(shouldRequest){
     return new Promise((resolve, reject)=>{
         let homeBtn = document.getElementById('gbdHomeBtn')
         homeBtn.addEventListener('click', () => {
             try{
-                document.getElementsByClassName('gbdContent')[0].innerHTML = initScreen()
+                document.getElementsByClassName('gbdContent')[0].innerHTML = initScreen(true)
             }catch(err) {
                 console.log('GBD error:', err)
             }
@@ -121,21 +138,110 @@ function homeBtn(){
      })
  }
 
+ function getCommitsData() 
+{
+    try
+    {
+    return new Promise((resolve, reject) =>{
+        chrome.runtime.sendMessage({metric: weights, getProfile: false, profile: '', getCommitsData: true, unix_time:date_unix_time, weekday: init_week_day, sprintLength: sprintLength}, function(response) 
+        {
+            if (response !== undefined)
+            {   
+                console.log("RESPONSE FROM COMMITS")
+                commitsData = response[0]
+            }
+            else
+            {
+                console.log("commits response undefined")
+            }
+        })
+        resolve('profile displaying')
+    })
+    }
+    catch (err)
+    {
+        console.log('err from getCommitsData(): ' + err)
+        browser.runtime.connect().onDisconnect.addListener(function() {
+            // clean up when content script gets disconnected
+            alert("Problem in chrome extension API. Please close this tab and try again.")
+        })
+    }
+}
+
+ function onlyPlot()
+ {
+
+    try
+    {
+        if (window.location.href.includes('#breakdown/Profile'))
+        {
+            return
+        }
+
+        if (commitsData === undefined)
+        {
+            console.log('commits data undefined from inside plottting funciton')
+            getCommitsData()
+            setTimeout(function()
+            {
+                onlyPlot()
+            },2000)  
+        }
+        else if (commitsData.length === 0)
+        {
+            console.log('commits data length is 0 from inside plottting funciton')
+            getCommitsData()
+            setTimeout(function()
+            {
+                onlyPlot()
+            },2000)  
+        }
+        else
+        {
+            let issuesDashboard = document.getElementById('issuesDashboard')
+            if (issuesDashboard !== null) // se existe o de issues, estamos na page certa e todos existirao tb
+            {
+                let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                createIssuesChart(issuesData, issuesCtx)
+                
+                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                createCommitsChart(commitsData, commitCtx)
+
+                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                createBranchesChart(branchsData, branchesCtx)
+
+                let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                createPRChart(prData, prCtx)
+            }
+        }
+
+    }
+    catch(err)
+    {
+        console.log(err)
+        console.log("get metrics from inside onlyPlot()")
+        getMetrics(false, date_unix_time, init_week_day, sprintLength)
+    }
+ }
+
  function plotGraphics(){
     return new Promise((resolve, reject)=>{
         if (typeof chrome.app.isInstalled !== 'undefined'){
-            chrome.runtime.sendMessage({metric: weights, unix_time: 0, weekday: 0, sprintLength: 7}, function(response) {
+            console.log("sending message")
+            chrome.runtime.sendMessage({metric: weights, unix_time: date_unix_time, weekday: init_week_day, sprintLength: sprintLength}, function(response) {
                 if (response !== undefined){
-
+                    console.log("message received")
                     commitsData = response[0]
                     issuesData = response[1]
                     branchsData = response[2]
                     prData = response[3]
                     rankingData = response[4]
                     profileData = response[5]
-
                     
                     try{
+
+                        console.log("PLOTTING")
+
                         let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
                         createIssuesChart(issuesData, issuesCtx)
                         
@@ -150,6 +256,7 @@ function homeBtn(){
                                         
                         for (let i = 0; i < 4; i++)
                             chartOnClick(i, response[i])
+
                     }catch(err){
                         console.log('GBD error:', err)
                     }
@@ -164,27 +271,23 @@ function homeBtn(){
     })
  }
 
-async function initScreen() {   
-    console.log('initScree()')
+async function initScreen(shouldRequest) {   
+    console.log('initScreen()')
     //function to control the select behavior in buttons inside navbar
     zhplugin()
     selectBehavior()
     try{
         await placeContainer(gbdScreen())
-        await homeBtn()
-        await plotGraphics()
+        await homeBtn(shouldRequest)
         settingsOnClick()
         setTimeout(function(){
+            onlyPlot()
             plotRanking(false)
         },3000)   
         
     }catch(err){
         console.log('GBD error:', err)
-    }
-
-    
-    
-        
+    }   
 }
 
 $(document).on("click", "#settingsSave", function() 
@@ -197,8 +300,8 @@ $(document).on("click", "#settingsSave", function()
     init_week_day = $('#weekdaylist').val()
     date_unix_time = Math.floor(new Date($('#initdate').val()).getTime() / 1000)
 
-    alert("Configurations saved!")
-    getMetrics(true)
+    alert("Please wait for configurations to update.")
+    getMetrics(true, date_unix_time, init_week_day, sprintLength)
 
     $('#settingsButton').popover('hide')
 })
@@ -232,7 +335,7 @@ function gbdButtonOnClick() {
                     chrome.storage.sync.get('oauth2_token', (res)=>{
                         if(res.oauth2_token != undefined){
                             console.log('oauth->1', res.oauth2_token)
-                            initScreen()
+                            initScreen(true)
                             selectBehavior()
                             zenhubOnClick() 
                         }
@@ -254,7 +357,7 @@ function gbdButtonOnClick() {
     
 
 async function initExtension(){
-    await getMetrics(false)
+    await getMetrics(false, 0, 0, 7)
     await gbdButtonOnClick()
 }
 

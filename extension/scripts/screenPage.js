@@ -25,28 +25,16 @@ function gbdScreen()
             <a class="navbar-brand" href="#breakdown"><img src="${urlLogo}" width="30" height="30" class="d-inline-block align-top"> GitBreakdown</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a id="gbdHomeBtn" class="nav-link" href="#breakdown">Home</a>
-                </li>
+                    <li class="nav-item active">
+                        <a id="gbdHomeBtn" class="nav-link" href="#breakdown">Home</a>
+                    </li>
 
-                <li class="nav-item dropdown active">
-                    
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Metrics
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#breakdown/commits">Commits</a>
-                        <a class="dropdown-item" href="#breakdown/issues">Issues</a>
-                        <a class="dropdown-item" href="#breakdown/branches">Branches</a>
-                        <a class="dropdown-item" href="#breakdown/pr">Pull Request</a>
-                    </div>
-
-                </li>
-
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#breakdown/commits">Commits page</a>
+                    </li>
                 </ul>
-
 
                 
                 <div id="settingsContent" class="hide">
@@ -174,6 +162,8 @@ function gbdScreen()
 
 
 function plotRanking(updateRanking){
+    console.log(rankingData)
+    let count = 0
     if(updateRanking){
        try{
         let rankingTable = document.getElementById('gbdRanking')
@@ -191,7 +181,13 @@ function plotRanking(updateRanking){
         let pos = 1
         try{
             for(user in rankingData){
-                
+
+                if (rankingData[user].name === undefined)
+                {
+                    count++
+                    continue
+                }
+
                 let tr = document.createElement('tr')
                 tr.innerHTML = 
                 `
@@ -219,6 +215,12 @@ function plotRanking(updateRanking){
             }
             rankingTable.appendChild(tbody)
             plotColorStatus()
+
+            if (count > 1)
+            {
+                console.log("Mais de 1 undefined no ranking -- atualizar dados")
+            }
+
         }catch(err){
             console.log("GBD error:", err)
         }

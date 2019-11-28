@@ -22,6 +22,11 @@ const FETCH_PROFILE =
   'profile'
 ]
 
+const FETCH_COMMITS = 
+[
+  'commits'
+]
+
 async function fetchData(type, aux)
 {
     let url_fetch = `${url_base}/${type}/${aux}`
@@ -35,13 +40,41 @@ async function fetchData(type, aux)
     }
 }
 
+async function getRateLimit()
+{
+  let url = 'https://api.github.com/rate_limit'
+  try
+  {
+    return (await fetch(url)).json()
+  }
+  catch (err)
+  {
+    console.log('Error: URL = ', url, ' err: ', err)
+  }
+}
+
+async function executeCommits(request, aux)
+{
+  try {
+    console.log("executing commits")
+    const data_ = await Promise.all(FETCH_COMMITS.map(type => fetchData(type, aux)))
+    fetchedData = data_
+    fetchedData[5] = aux
+    return data_
+  } catch(err){
+    console.log("GBD error at background.js\nAt execute():", err)
+  }
+}
+
 async function execute(request, aux)
 {
   try {
     const data_ = await Promise.all(FETCH_METRICS.map(type => fetchData(type, aux)))
-
     data_[0] = removeDuplicates(data_[0])
     data_[4] = removeDuplicates(data_[4])
+
+    let rate_limit = await getRateLimit()
+    console.log(rate_limit)
 
     fetchedData = data_
     fetchedData[5] = aux
@@ -60,14 +93,21 @@ function removeDuplicates(data)
 
   array = array.filter(function(curr)
   {
-    if (curr.name in seenNames)
+    if (curr.sprint !== undefined || curr.average_commits !== undefined)
     {
-      return false
+      return true
     }
     else
     {
-      seenNames[curr.name] = true
-      return true
+      if (curr.name in seenNames)
+      {
+        return false
+      }
+      else
+      {
+        seenNames[curr.name] = true
+        return true
+      }
     }
   })
 
@@ -111,6 +151,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                     let sprintLength = request.sprintLength
                     let url_aux = 
                     `?owner=${owner}&repository=${repo}&token=${res.oauth2_token}&commits=${weights[0]}&merged=${weights[1]}&openissues=${weights[2]}&commentpr=${weights[3]}&unixTime=${unix_time}&weekday=${weekday}&sprintLength=${sprintLength}`
+                    
                     if (request.getProfile)
                     {
                       console.log("fetching profile")
@@ -118,20 +159,22 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
                       `?owner=${request.profile}&repository=${repo}&token=${res.oauth2_token}`
                       executeProfile(request, url_aux).then(sendResponse)
                     }
+                    else if (request.getCommitsData)
+                    {
+                      console.log("only updating commits data")
+                      executeCommits(request, url_aux).then(sendResponse)
+                    }
                     else
                     {
                       console.log("not fetching profile")
-                      if (fetchedData.length > 0 && fetchedData[0] != undefined &&
+                      /*if (fetchedData.length > 0 && fetchedData[0] !== undefined &&
                         fetchedData[5] == url_aux)
                       {
                         console.log("returning fetched data")
                         sendResponse(fetchedData)
                       }
                       else
-                      {
-                        if (fetchedData.length > 0 && fetchedData[0] != undefined && fetchedData[5] != url_aux)
-                          console.log("updating data")
-
+                      */{
                         console.log("fetching data")
                         execute(request, url_aux).then(sendResponse)
                       }
