@@ -236,8 +236,27 @@ function plotPercentGraphics(userName){
         'CommitsPercent' : percentCommits}
 
         
-    }catch(err){
-        console.log('GBD error:', err)
+    }
+    catch(err)
+    {
+        console.log('error: ', err)
+            try
+            {
+                console.log(commitsData)
+                getCommitsData()
+
+                setTimeout(function()
+                {
+                    
+                    plotPercentGraphics(userName)
+                    
+                }, 2000) 
+            }
+            catch(err)
+            {
+                console.log('error: ', err)
+            }
+        
     }
 }
 

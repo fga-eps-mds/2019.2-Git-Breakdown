@@ -163,6 +163,11 @@ function homeBtn(shouldRequest){
 
     try
     {
+        if (window.location.href.includes('#breakdown/Profile'))
+        {
+            return
+        }
+        
         if (commitsData === undefined)
         {
             console.log('commits data undefined from inside plottting funciton')
@@ -183,17 +188,21 @@ function homeBtn(shouldRequest){
         }
         else
         {
-            let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
-            createIssuesChart(issuesData, issuesCtx)
-            
-            let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
-            createCommitsChart(commitsData, commitCtx)
+            let issuesDashboard = document.getElementById('issuesDashboard')
+            if (issuesDashboard !== null) // se existe o de issues, estamos na page certa e todos existirao tb
+            {
+                let issuesCtx = document.getElementById('issuesDashboard').getContext('2d')
+                createIssuesChart(issuesData, issuesCtx)
+                
+                let commitCtx = document.getElementById('commitsDashboard').getContext('2d')
+                createCommitsChart(commitsData, commitCtx)
 
-            let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
-            createBranchesChart(branchsData, branchesCtx)
+                let branchesCtx = document.getElementById('branchesDashboard').getContext('2d')
+                createBranchesChart(branchsData, branchesCtx)
 
-            let prCtx = document.getElementById('prsDashboard').getContext('2d')
-            createPRChart(prData, prCtx)
+                let prCtx = document.getElementById('prsDashboard').getContext('2d')
+                createPRChart(prData, prCtx)
+            }
         }
 
     }
