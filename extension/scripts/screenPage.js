@@ -162,20 +162,23 @@ function gbdScreen()
 
 
 function plotRanking(updateRanking){
-    console.log(rankingData)
     let count = 0
-    if(updateRanking){
-       try{
-        let rankingTable = document.getElementById('gbdRanking')
-        let tbody = document.getElementById('gbdRankingTbody')
-        rankingTable.removeChild(tbody)
-        plotRanking(false)
-       }catch(err){
-           console.error(err)
-       }
+    let rankingTable = document.getElementById('gbdRanking')
+    let tbody = document.getElementById('gbdRankingTbody')
+    if (tbody !== null)
+    {
+        console.log(tbody)
+        try
+        {
+            rankingTable.removeChild(tbody)
+        }
+        catch(err)
+        {
+            console.error(err)
+        }
     }
-    else{
-        let rankingTable = document.getElementById('gbdRanking')
+    else
+    {
         let tbody = document.createElement('tbody')
         tbody.id = 'gbdRankingTbody'
         let pos = 1

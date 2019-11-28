@@ -221,6 +221,11 @@ function homeBtn(shouldRequest){
         console.log(err)
         console.log("get metrics from inside onlyPlot()")
         getMetrics(false, date_unix_time, init_week_day, sprintLength)
+        setTimeout(function()
+        {
+            onlyPlot()
+            plotRanking(false)
+        },3000) 
     }
  }
 
